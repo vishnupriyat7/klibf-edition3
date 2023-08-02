@@ -1,5 +1,5 @@
   <!-- ======= Contest Section ======= -->
-  <section id="services" class="services">
+  <section id="contests" class="contests">
       <div class="container">
 
         <div class="section-title" data-aos="fade-in" data-aos-delay="100">

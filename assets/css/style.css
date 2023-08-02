@@ -47,21 +47,23 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 998;
-  background: #67b0d1;
-  width: 40px;
-  height: 40px;
+  /* background: #67b0d1; */
+  background: rgba(111, 153, 32, 0.9);
+  width: 60px;
+  height: 60px;
   border-radius: 50px;
   transition: all 0.4s;
 }
 
 .back-to-top i {
-  font-size: 24px;
+  font-size: 45px;
   color: #fff;
   line-height: 0;
 }
 
 .back-to-top:hover {
-  background: #86c0da;
+  /* background: #86c0da; */
+  background: #117525;
   color: #fff;
 }
 
@@ -709,7 +711,7 @@ section {
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/
-.services .icon-box {
+.contests .icon-box {
   padding: 30px;
   position: relative;
   overflow: hidden;
@@ -720,7 +722,7 @@ section {
   z-index: 1;
 }
 
-.services .icon-box::before {
+.contests .icon-box::before {
   content: "";
   position: absolute;
   background: white;
@@ -732,45 +734,45 @@ section {
   z-index: -1;
 }
 
-.services .icon-box:hover::before {
+.contests .icon-box:hover::before {
   background: #67b0d1;
   top: 0;
   border-radius: 0px;
 }
 
-.services .icon {
+.contests .icon {
   margin-bottom: 15px;
 }
 
-.services .icon i {
+.contests .icon i {
   font-size: 48px;
   line-height: 1;
   color: #67b0d1;
   transition: all 0.3s ease-in-out;
 }
 
-.services .title {
+.contests .title {
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 18px;
 }
 
-.services .title a {
+.contests .title a {
   color: #111;
 }
 
-.services .description {
+.contests .description {
   font-size: 15px;
   line-height: 28px;
   margin-bottom: 0;
 }
 
-.services .icon-box:hover .title a,
-.services .icon-box:hover .description {
+.contests .icon-box:hover .title a,
+.contests .icon-box:hover .description {
   color: #fff;
 }
 
-.services .icon-box:hover .icon i {
+.contests .icon-box:hover .icon i {
   color: #fff;
 }
 
@@ -864,13 +866,13 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Portfolio
+# gallery
 --------------------------------------------------------------*/
-.portfolio .portfolio-item {
+.gallery .gallery-item {
   margin-bottom: 30px;
 }
 
-.portfolio #portfolio-flters {
+.gallery #gallery-flters {
   padding: 0;
   margin: 0 auto 35px auto;
   list-style: none;
@@ -880,7 +882,7 @@ section {
   padding: 2px 15px;
 }
 
-.portfolio #portfolio-flters li {
+.gallery #gallery-flters li {
   cursor: pointer;
   display: inline-block;
   padding: 10px 15px 8px 15px;
@@ -893,23 +895,23 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
-.portfolio #portfolio-flters li:hover,
-.portfolio #portfolio-flters li.filter-active {
+.gallery #gallery-flters li:hover,
+.gallery #gallery-flters li.filter-active {
   color: #67b0d1;
 }
 
-.portfolio #portfolio-flters li:last-child {
+.gallery #gallery-flters li:last-child {
   margin-right: 0;
 }
 
-.portfolio .portfolio-wrap {
+.gallery .gallery-wrap {
   transition: 0.3s;
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
-.portfolio .portfolio-wrap::before {
+.gallery .gallery-wrap::before {
   content: "";
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
@@ -922,7 +924,7 @@ section {
   opacity: 0;
 }
 
-.portfolio .portfolio-wrap .portfolio-links {
+.gallery .gallery-wrap .gallery-links {
   opacity: 1;
   left: 0;
   right: 0;
@@ -934,7 +936,7 @@ section {
   justify-content: center;
 }
 
-.portfolio .portfolio-wrap .portfolio-links a {
+.gallery .gallery-wrap .gallery-links a {
   color: #fff;
   font-size: 28px;
   text-align: center;
@@ -943,15 +945,15 @@ section {
   width: 50%;
 }
 
-.portfolio .portfolio-wrap .portfolio-links a:hover {
+.gallery .gallery-wrap .gallery-links a:hover {
   background: rgba(103, 176, 209, 0.95);
 }
 
-.portfolio .portfolio-wrap .portfolio-links a+a {
+.gallery .gallery-wrap .gallery-links a+a {
   border-left: 1px solid #8ec4dd;
 }
 
-.portfolio .portfolio-wrap:hover::before {
+.gallery .gallery-wrap:hover::before {
   top: 0;
   left: 0;
   right: 0;
@@ -959,28 +961,28 @@ section {
   opacity: 1;
 }
 
-.portfolio .portfolio-wrap:hover .portfolio-links {
+.gallery .gallery-wrap:hover .gallery-links {
   opacity: 1;
   bottom: 0;
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details
+# gallery Details
 --------------------------------------------------------------*/
-.portfolio-details {
+.gallery-details {
   padding-top: 40px;
 }
 
-.portfolio-details .portfolio-details-slider img {
+.gallery-details .gallery-details-slider img {
   width: 100%;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination {
+.gallery-details .gallery-details-slider .swiper-pagination {
   margin-top: 20px;
   position: relative;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.gallery-details .gallery-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
@@ -988,16 +990,16 @@ section {
   border: 1px solid #67b0d1;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.gallery-details .gallery-details-slider .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #67b0d1;
 }
 
-.portfolio-details .portfolio-info {
+.gallery-details .gallery-info {
   padding: 30px;
   box-shadow: 0px 0 30px rgba(47, 77, 90, 0.08);
 }
 
-.portfolio-details .portfolio-info h3 {
+.gallery-details .gallery-info h3 {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -1005,27 +1007,27 @@ section {
   border-bottom: 1px solid #eee;
 }
 
-.portfolio-details .portfolio-info ul {
+.gallery-details .gallery-info ul {
   list-style: none;
   padding: 0;
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li+li {
+.gallery-details .gallery-info ul li+li {
   margin-top: 10px;
 }
 
-.portfolio-details .portfolio-description {
+.gallery-details .gallery-description {
   padding-top: 30px;
 }
 
-.portfolio-details .portfolio-description h2 {
+.gallery-details .gallery-description h2 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.portfolio-details .portfolio-description p {
+.gallery-details .gallery-description p {
   padding: 0;
 }
 
@@ -1127,19 +1129,19 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Team
+# speakers
 --------------------------------------------------------------*/
-.team .member {
+.speakers .member {
   text-align: center;
   margin-bottom: 80px;
   position: relative;
 }
 
-.team .member .pic {
+.speakers .member .pic {
   overflow: hidden;
 }
 
-.team .member .member-info {
+.speakers .member .member-info {
   position: absolute;
   top: 85%;
   left: 20px;
@@ -1153,11 +1155,11 @@ section {
   transition: max-height 0.5s ease-in-out;
 }
 
-.team .member:hover .member-info {
+.speakers .member:hover .member-info {
   max-height: 300px;
 }
 
-.team .member h4 {
+.speakers .member h4 {
   font-weight: 700;
   margin-bottom: 10px;
   font-size: 16px;
@@ -1166,7 +1168,7 @@ section {
   padding-bottom: 10px;
 }
 
-.team .member h4::after {
+.speakers .member h4::after {
   content: "";
   position: absolute;
   display: block;
@@ -1177,32 +1179,56 @@ section {
   left: calc(50% - 25px);
 }
 
-.team .member span {
+.speakers .member span {
   font-style: italic;
   display: block;
   font-size: 13px;
 }
 
-.team .member .social {
+.speakers .member .social {
   margin-top: 15px;
 }
 
-.team .member .social a {
+.speakers .member .social a {
   transition: color 0.3s;
   color: #52869d;
 }
 
-.team .member .social a:hover {
+.speakers .member .social a:hover {
   color: #67b0d1;
 }
 
-.team .member .social i {
+.speakers .member .social i {
   font-size: 16px;
   margin: 0 2px;
 }
 
+/* Newly added */
+.speakers .speaker-btn {
+  display: inline-block;
+  /* background: #67b0d1; */
+  background: rgba(111, 153, 32, 0.9);;
+  padding: 6px 44px 8px 30px;
+  color: #fff;
+  border-radius: 50px;
+  transition: 0.3s;
+  position: relative;
+}
+
+.speakers .speaker-btn i {
+  font-size: 18px;
+  position: absolute;
+  right: 18px;
+  top: 9px;
+}
+
+.speakers .speaker-btn:hover {
+  /* background: #7bbad7; */
+  background: #117525;
+}
+
 @media (max-width: 992px) {
-  .team .member {
+  .speakers .member {
     margin-bottom: 110px;
   }
 }
@@ -1354,7 +1380,8 @@ section {
   margin-bottom: 15px;
   background: white;
   color: #2f4d5a;
-  border-top: 4px solid #67b0d1;
+  /* border-top: 4px solid #67b0d1; */
+  border-top: 4px solid #6f9920;
   text-align: center;
   padding: 30px 20px;
 }
@@ -1390,7 +1417,8 @@ section {
 }
 
 #footer .footer-top .social-links a:hover {
-  background: #67b0d1;
+  /* background: #67b0d1; */
+  background: rgba(111, 153, 32, 0.9);
   color: #fff;
   text-decoration: none;
 }
@@ -1475,7 +1503,8 @@ section {
 }
 
 #footer .copyright {
-  border-top: 1px solid #385b6b;
+  /* border-top: 1px solid #385b6b; */
+  border-top: 1px solid #6f9920;
   text-align: center;
   padding-top: 30px;
 }
