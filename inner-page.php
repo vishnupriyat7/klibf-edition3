@@ -6,7 +6,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <?php include "header.php"; ?>
+  <?php include "header-inner.php"; ?>
   <!-- End Header -->
 
   <main id="main">
