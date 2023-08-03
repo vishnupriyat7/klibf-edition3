@@ -1,5 +1,5 @@
 <?php
-$con = new mysqli("localhost", "bookfest", "dbuser#bookfest22@KLA", "bookfest");
+$con = new mysqli("localhost", "root", "root", "klibf2");
 if ($con->connect_errno) {
     echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 }

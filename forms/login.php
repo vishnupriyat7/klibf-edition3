@@ -1,13 +1,13 @@
-<form>
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"], ENT_QUOTES, "utf-8"); ?>" method="post">
       <!-- Email input -->
       <div class="form-outline mb-4">
-        <input type="email" id="loginName" class="form-control" />
-        <label class="form-label" for="loginName">Email or username</label>
+        <input type="text" id="username" name="username" class="form-control" />
+        <label class="form-label" for="username">Email or username</label>
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
-        <input type="password" id="loginPassword" class="form-control" />
+        <input type="password" id="password-input" class="form-control" name="password" />
         <label class="form-label" for="loginPassword">Password</label>
       </div>
 
