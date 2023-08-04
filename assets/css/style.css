@@ -124,10 +124,50 @@ h6 {
   margin: 0;
   max-height: 80px;
 }
+#header .count {
+  font-size: 200%;
+  color: white;
+  font-weight: bold;
+  margin-left: -18%;
+  
+  animation: fadeInX 1s infinite alternate;
+}
+@keyframes fadeInX { 
+  from { opacity: 0; } 
+}
+
+
+
+#header p {
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  margin-top: -15px;
+}
 
 @media (max-width: 768px) {
   #header.header-scrolled {
     padding: 15px 0;
+  }
+}
+@media (max-width: 414px) {
+  #header.header-scrolled {
+    padding: 15px 0;
+  }
+  #header .logo img {
+    padding: 0;
+    margin: 0;
+    max-height: 56px;
+}
+  #header .count {
+    font-size: 109%;
+    font-weight: bold;
+    margin-left: -4%;
+  }
+  #header p {
+    font-size: 10px;
+    font-weight: bold;
+    margin-top: -6px;
   }
 }
 
@@ -566,8 +606,8 @@ section {
 }
 
 .breadcrumbs h2 {
-  font-size: 24px;
-  font-weight: 300;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .breadcrumbs ol {
@@ -853,10 +893,7 @@ section {
       rgba(103, 176, 209, 0.8)
     ),
     url("../img/Middle.jpg") fixed center center; */
-    background: linear-gradient(
-      rgb(110 201 98 / 80%),
-      rgb(126 87 135 / 80%)
-    ),
+  background: linear-gradient(rgb(110 201 98 / 80%), rgb(126 87 135 / 80%)),
     url(../img/Middle.jpg) fixed center center;
   background-size: cover;
   padding: 60px 0;
@@ -1064,7 +1101,7 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Testimonials
+# Publishers
 --------------------------------------------------------------*/
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {

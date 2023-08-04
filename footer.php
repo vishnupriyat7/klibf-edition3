@@ -80,7 +80,7 @@
  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
  <script src="assets/vendor/php-email-form/validate.js"></script>
- <script type="text/javascript" src="assets/vendor/mdb-ui-kit3.6.0/js/mdb.min.js"></script>
+ <!-- <script type="text/javascript" src="assets/vendor/mdb-ui-kit6.4.1/js/mdb.min.js"></script> -->
 
  <!-- Template Main JS File -->
  <script src="assets/js/main.js"></script>
