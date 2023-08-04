@@ -1,7 +1,7 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between position-relative">
+    <div class="container-fluid d-flex align-items-center justify-content-between position-relative">
 
       <div class="logo">
         <h1 class="text-light"><a href="index.html"><span>KLIBF</span></a></h1>
