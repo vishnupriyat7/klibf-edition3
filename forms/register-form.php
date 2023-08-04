@@ -1,4 +1,4 @@
-<form id="register_user" action="forms/register.php" method="post" onsubmit="return validateRegister()">
+<form id="register_user" action="register.php" method="post" onsubmit="return validateRegister();">
   <!-- Name input -->
   <div class="form-outline mb-4">
     <input type="text" id="registerName" class="form-control" name="registerName" required />
@@ -31,7 +31,7 @@
 
   <!-- Repeat Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="registerRepeatPassword" name="registerRepeatPassword" class="form-control" required />
+    <input type="password" id="registerRepeatPassword" name="registerRepeatPassword" class="form-control" />
     <label class="form-label" for="registerRepeatPassword">Confirm Password</label>
   </div>
 
@@ -45,5 +45,5 @@
   </div> -->
 
   <!-- Submit button -->
-  <button type="submit" class="btn btn-primary btn-block mb-3" name="register">Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-3" name="register" id="register">Register</button>
 </form>
