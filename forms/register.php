@@ -60,7 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                             </div>";
         } else {
-            echo "Error: " . $stmt->error;
+            $errormsg = "
+                <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                           Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                           </div>";
         }
     }
     $stmt->close();
