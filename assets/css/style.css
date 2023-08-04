@@ -130,6 +130,22 @@ h6 {
     padding: 15px 0;
   }
 }
+#header .count{
+  font-size: 200%; 
+  color: white; 
+  font-weight: bold;
+  margin-left: -140px;
+
+}
+
+#header p{
+  font-size: 15px; 
+  color: white; 
+  font-weight: bold;
+  margin-top: -11px;
+
+}
+
 
 /*--------------------------------------------------------------
 # Navigation Menu

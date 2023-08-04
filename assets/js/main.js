@@ -260,3 +260,9 @@
   new PureCounter();
 
 })()
+
+ // :: 12.0 CIRCLE ANIMATION ACTIVE CODE
+ $(window).on("load", function () {
+  $(".profile-circle-wrapper").addClass("circle-animation");
+  $(".profile-icon").fadeIn();
+});

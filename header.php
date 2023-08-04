@@ -1,7 +1,7 @@
  <!-- ======= Header ======= -->
  <header id="header" class="fixed-top header-transparent">
    <div class="container d-flex align-items-center justify-content-between position-relative">
-   <?php
+     <?php
       $targetDate = '2023-11-01';
 
       // Get the current date and time
@@ -19,7 +19,7 @@
       $minutesRemaining = $timeRemaining->i;
       $secondsRemaining = $timeRemaining->s;
 
-     
+
       ?>
 
      <div class="logo">
@@ -29,15 +29,22 @@
      </div>
      <!-- <div class="animated flipInX infinite slower text-center">
        <span style="font-size: 35px; color: white; font-weight: 900;">
-         <?php echo  $daysRemaining ; ?><br>
+         <?php echo  $daysRemaining; ?><br>
          <p style="font-size: 15px; color: white; font-weight: 500;">Days to Go</p>
           <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> 
        </span>
      </div> -->
+     <div class="animated flipInY infinite slower text-center count">
+       
+         <?php echo  $daysRemaining; ?><br>
+         <p>Days to Go</p>
+         <!-- <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> -->
+      
+     </div>
 
 
-    
-    
+
+
      <?php include "menu.php"; ?>
 
 
