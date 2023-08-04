@@ -261,7 +261,7 @@
 
 })()
 
-function validateForm() {
+function validateRegister() {
   var nameInput = document.getElementById('registerName');
   var emailInput = document.getElementById('registerEmail');
   var contactInput = document.getElementById('contactNo');
@@ -276,8 +276,8 @@ function validateForm() {
   }
 
   // Validate Email
-  if (emailInput.value.trim() === '') {
-    alert('Please enter your email address.');
+  if (!isValidEmail(emailInput.value.trim())) {
+    alert('Please enter a valid email address.');
     emailInput.focus();
     return false;
   }
@@ -292,27 +292,28 @@ function validateForm() {
 
   if (passwordInput.value.trim() === '') {
     alert('Please enter your password.');
-    emailInput.focus();
+    passwordInput.focus();
     return false;
   }
 
   if (repeatPasswordInput.value.trim() === '') {
     alert('Please confirm your password.');
-    emailInput.focus();
+    repeatPasswordInput.focus();
     return false;
   }
 
-  if (repeatPasswordInput.value.trim() === passwordInput.value.trim()) {
-    alert('PasswordYour password and confirmation password must be the same.');
-    emailInput.focus();
+  if (repeatPasswordInput.value.trim() !== passwordInput.value.trim()) {
+    alert('Your password and confirmation password must be the same.');
+    repeatPasswordInput.focus();
     return false;
   }
 
   return true; // Form submission will proceed if all validations pass
 }
-// AOS Animation
 
-$( document ).ready(function() {
-  new WOW().init();
-});
+function isValidEmail(email) {
+  // Regular expression for email validation
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}
 
