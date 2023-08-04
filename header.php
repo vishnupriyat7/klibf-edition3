@@ -1,6 +1,6 @@
  <!-- ======= Header ======= -->
  <header id="header" class="fixed-top header-transparent">
-   <div class="container d-flex align-items-center justify-content-between position-relative">
+   <div class="container-fluid d-flex align-items-center justify-content-between position-relative">
      <?php
       $targetDate = '2023-11-01';
 
@@ -34,13 +34,13 @@
           <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> 
        </span>
      </div> -->
-     <div class="animated flipInY infinite slower text-center count">
+     <nav class="text-center count" >
        
          <?php echo  $daysRemaining; ?><br>
          <p>Days to Go</p>
          <!-- <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> -->
       
-     </div>
+</nav>
 
 
 

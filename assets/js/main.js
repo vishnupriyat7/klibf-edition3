@@ -5,7 +5,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -114,7 +114,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -123,7 +123,7 @@
   /**
    * Mobile nav dropdowns activate
    */
-  on('click', '.navbar .dropdown > a', function(e) {
+  on('click', '.navbar .dropdown > a', function (e) {
     if (select('#navbar').classList.contains('navbar-mobile')) {
       e.preventDefault()
       this.nextElementSibling.classList.toggle('dropdown-active')
@@ -133,7 +133,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -172,9 +172,9 @@
 
       let galleryFilters = select('#gallery-flters li', true);
 
-      on('click', '#gallery-flters li', function(e) {
+      on('click', '#gallery-flters li', function (e) {
         e.preventDefault();
-        galleryFilters.forEach(function(el) {
+        galleryFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -182,7 +182,7 @@
         galleryIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        galleryIsotope.on('arrangeComplete', function() {
+        galleryIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
@@ -261,8 +261,58 @@
 
 })()
 
- // :: 12.0 CIRCLE ANIMATION ACTIVE CODE
- $(window).on("load", function () {
-  $(".profile-circle-wrapper").addClass("circle-animation");
-  $(".profile-icon").fadeIn();
+function validateForm() {
+  var nameInput = document.getElementById('registerName');
+  var emailInput = document.getElementById('registerEmail');
+  var contactInput = document.getElementById('contactNo');
+  var passwordInput = document.getElementById('registerPassword');
+  var repeatPasswordInput = document.getElementById('registerRepeatPassword');
+
+  // Validate Name
+  if (nameInput.value.trim() === '') {
+    alert('Please enter your name.');
+    nameInput.focus();
+    return false;
+  }
+
+  // Validate Email
+  if (emailInput.value.trim() === '') {
+    alert('Please enter your email address.');
+    emailInput.focus();
+    return false;
+  }
+
+  // Validate Contact Number
+  var contactPattern = /^[0-9]+$/;
+  if (!contactPattern.test(contactInput.value.trim())) {
+    alert('Please enter a valid contact number.');
+    contactInput.focus();
+    return false;
+  }
+
+  if (passwordInput.value.trim() === '') {
+    alert('Please enter your password.');
+    emailInput.focus();
+    return false;
+  }
+
+  if (repeatPasswordInput.value.trim() === '') {
+    alert('Please confirm your password.');
+    emailInput.focus();
+    return false;
+  }
+
+  if (repeatPasswordInput.value.trim() === passwordInput.value.trim()) {
+    alert('PasswordYour password and confirmation password must be the same.');
+    emailInput.focus();
+    return false;
+  }
+
+  return true; // Form submission will proceed if all validations pass
+}
+// AOS Animation
+
+$( document ).ready(function() {
+  new WOW().init();
 });
+
