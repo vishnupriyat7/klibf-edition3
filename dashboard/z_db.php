@@ -5,7 +5,7 @@ if ($con->connect_errno) {
 }
 
 //Your Website URL Goes Here
-$url = "http://localhost/kla-bookfest";
+// $url = "http://localhost/kla-bookfest";
 
 
 //Set Blog Activation Bonus Here (It must be only Number)
