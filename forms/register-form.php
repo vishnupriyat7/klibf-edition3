@@ -1,4 +1,5 @@
-<form id="register_user" action="register.php" method="post" onsubmit="return validateRegister();">
+<div id="responseMessage"></div>
+<form id="register_user" method="post" onsubmit="return validateRegister();">
   <!-- Name input -->
   <div class="form-outline mb-4">
     <input type="text" id="registerName" class="form-control" name="registerName" required />
@@ -47,3 +48,5 @@
   <!-- Submit button -->
   <button type="submit" class="btn btn-primary btn-block mb-3" name="register" id="register">Register</button>
 </form>
+
+<script type="text/javascript" src="assets/js/forms.js"></script>

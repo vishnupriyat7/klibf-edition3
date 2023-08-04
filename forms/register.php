@@ -1,4 +1,5 @@
 <?php include_once("../dashboard/z_db.php");
+var_dump('hello');
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     $registerName =
         mysqli_real_escape_string($con, $_POST['registerName']);
@@ -6,10 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         mysqli_real_escape_string($con, $_POST['registerEmail']);
     $contactNo =
         mysqli_real_escape_string($con, $_POST['contactNo']);
+        $cnctNo = intval($contactNo);
     $registerPassword =
         mysqli_real_escape_string($con, $_POST['registerPassword']);
     $registerRepeatPassword =
         mysqli_real_escape_string($con, $_POST['registerRepeatPassword']);
+        var_dump($registerName);
     if (strlen($registerName) < 3) {
         $msg = $msg . "Organisation name must be more than 3 characters length.<BR>";
         $status = "NOTOK";
@@ -18,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         $msg = $msg . "Invalid email address.<BR>";
         $status = "NOTOK";
     }
-    if (!isValidContactNumber($contactNumber)) {
+    if (!isValidContactNumber($cnctNo)){
         // Invalid contact number format
         $msg = $msg . "Invalid contact number.<BR>";
         $status = "NOTOK";
@@ -68,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
         }
     }
     $stmt->close();
+    print $errormsg;
 
 
 
