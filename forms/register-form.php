@@ -1,5 +1,5 @@
-<div id="responseMessage"></div>
-<form id="register_user" method="post" onsubmit="return validateRegister();">
+<?php include "forms/register.php"; ?>
+<form id="register_user" method="post" action="" onsubmit="return validateRegister();">
   <!-- Name input -->
   <div class="form-outline mb-4">
     <input type="text" id="registerName" class="form-control" name="registerName" required />
@@ -19,14 +19,14 @@
   </div>
   <!-- Email input -->
   <div class="form-outline mb-4">
-  <input type="tel" class="form-control" name="contactNo" id="contactNo" pattern="[0-9]+" required>
+    <input type="tel" class="form-control" name="contactNo" id="contactNo" pattern="[0-9]+" required>
     <!-- <input type="number" id="contactNo" name="contactNo" class="form-control" required="required" min="0" /> -->
     <label class="form-label" for="contactNo">Contact No</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" id="registerPassword" name="registerPassword" class="form-control" required/>
+    <input type="password" id="registerPassword" name="registerPassword" class="form-control" required />
     <label class="form-label" for="registerPassword">Password</label>
   </div>
 
@@ -48,5 +48,3 @@
   <!-- Submit button -->
   <button type="submit" class="btn btn-primary btn-block mb-3" name="register" id="register">Register</button>
 </form>
-
-<script type="text/javascript" src="assets/js/forms.js"></script>
