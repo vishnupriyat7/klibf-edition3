@@ -14,10 +14,10 @@
                <strong>Email:</strong> klibf.kla@gmail.com<br>
              </p>
              <div class="social-links mt-3">
-               <a href="https://youtube.com/@KLIBF" class="youtube"><i class="bx bxl-youtube"></i></a>
-               <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-               <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-               <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+               <a href="https://youtube.com/@KLIBF" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
+               <a href="https://www.facebook.com/KLIBF" target="_blank"  class="facebook"><i class="bx bxl-facebook"></i></a>
+               <a href="https://twitter.com/IbfKla" target="_blank" class="twitter" ><i class="bx bxl-twitter"></i></a>
+               <a href="https://www.instagram.com/klibf2022/" target="_blank" class="instagram" ><i class="bx bxl-instagram"></i></a>
                <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
                <!-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
              </div>
@@ -80,7 +80,7 @@
  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
  <script src="assets/vendor/php-email-form/validate.js"></script>
- <!-- <script type="text/javascript" src="assets/vendor/mdb-ui-kit6.4.1/js/mdb.min.js"></script> -->
+ <script type="text/javascript" src="assets/vendor/mdb-ui-kit6.4.1/js/mdb.min.js"></script>
 
  <!-- Template Main JS File -->
  <script src="assets/js/main.js"></script>
