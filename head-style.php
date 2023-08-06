@@ -34,7 +34,7 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- <link href="assets/vendor/mdb-ui-kit6.4.1/css/mdb.min.css" rel="stylesheet"> -->
+  <link href="assets/vendor/mdb-ui-kit6.4.1/css/mdb.min.css" rel="stylesheet">
 
 
   <!-- Template Main CSS File -->
