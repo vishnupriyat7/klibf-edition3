@@ -64,7 +64,7 @@
                         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                     }
                     echo "</div>";
-                    $msg = "<div class='alert alert-info'>We've send a verification link on your email address.</div>";
+                    $msg = "<div class='alert alert-info'>You have Successfully registered. Your Login Credentials sent to your Email</div>";
                 } else {
                     $msg = "<div class='alert alert-danger'>Something wrong went.</div>";
                 }
