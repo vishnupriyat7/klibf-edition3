@@ -28,9 +28,9 @@ if (isset($_POST['submit'])) {
         $query = mysqli_query($conn, "UPDATE users SET code='{$code}' WHERE email='{$email}'");
 
         if ($query) {        
-            // echo "<div style='display: none;'>";
+            echo "<div style='display: none;'>";
             //Create an instance; passing `true` enables exceptions
-            $mail = new PHPMailer(true);var_dump($mail);
+            $mail = new PHPMailer(true);
 
             try {
                 //Server settings
