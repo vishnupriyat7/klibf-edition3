@@ -1,6 +1,6 @@
 <?php
 include "../z_db.php";
-$username = $_SESSION['username'];
+// $username = $_SESSION['username'];
 ?>
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
@@ -48,7 +48,7 @@ $username = $_SESSION['username'];
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarB" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="profile_add_edit.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
                     <!-- <div class="menu-dropdown collapse" id="sidebarB" style="">

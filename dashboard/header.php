@@ -15,8 +15,15 @@ if (!isset($_SESSION['SESSION_EMAIL'])) {
 
 // Check, if username session is NOT set then this page will jump to login page
 if (isset($_SESSION['SESSION_EMAIL'])) {
-
     $username = $_SESSION['SESSION_EMAIL'];
+    $sql1 = "SELECT * FROM users WHERE email = ?;";
+$stmt1 = $con->prepare($sql1);
+$stmt1->bind_param("s", $username);
+$stmt1->execute();
+$result1 = $stmt1->get_result();
+$user = $result1->fetch_assoc();
+
+    
 } else {
     print "
 				<script language='javascript'>
@@ -141,14 +148,14 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
                                 <span class="d-flex align-items-center">
 
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php print $username; ?></span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php print $user['name']; ?></span>
 
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome <?php print $username; ?>!</h6>
+                                <h6 class="dropdown-header">Welcome <?php print $user['name']; ?>!</h6>
 
                                 <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </div>
