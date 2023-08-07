@@ -92,7 +92,7 @@
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="images/image2.svg" alt="">
+                            <img src="assets/img/images/image2.svg" alt="">
                         </div>
                     </div>
                     <div class="content-wthree">

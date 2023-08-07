@@ -91,7 +91,8 @@ h6 {
   transition: all 0.5s;
   padding: 24px 0;
   /* background: rgba(103, 176, 209, 0.8); */
-  background: rgba(92, 39, 128, 0.8);
+  /* background: rgba(125, 32, 153, 0.9); */
+  background: #00c16e;
 }
 
 #header.header-transparent {
@@ -1611,7 +1612,7 @@ section {
   min-height: 100vh;
   z-index: 0;
   background: rgba(99, 194, 110, 0.1);
-  padding: 190px 60px;
+  padding: 190px 270px;
   /* margin-top: 7%; */
 }
 
@@ -1625,12 +1626,21 @@ section {
   flex-basis: 50%;
   -webkit-flex-basis: 50%;
   background: #00c16e;
+  /* background: #117525; */
+  /* background: rgba(111, 153, 32, 0.9); */
+  
   padding: 100px 50px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.w3l_form img{
+  /* height: 25%; */
+  width: 93%;
+  position: relative;
+
 }
 
 .content-wthree {
@@ -1658,7 +1668,7 @@ section {
   margin: 40px 0;
 }
 
-.w3l-mockup-form .alert-close {
+/* .w3l-mockup-form .alert-close {
   cursor: pointer;
   height: 35px;
   width: 35px;
@@ -1670,7 +1680,7 @@ section {
   border-radius: 50px;
   color: #fff;
   text-align: center;
-}
+} */
 
 .w3l-mockup-form form {
   margin-top: 30px;
@@ -1715,14 +1725,19 @@ section {
 }
 
 .w3l-mockup-form input:focus {
-  border-color: #00c16e;
+  /* border-color: #00c16e; */
+  border-color:#117525;
 }
 
 .w3l-mockup-form button {
   font-size: 18px;
   color: #fff;
   width: 100%;
-  background: #00c16e;
+  /* background: #00c16e; */
+  /* background: #117525; */
+  /* background: rgba(111, 153, 32, 0.9); */
+  background:#00c16e;
+  
   border: none;
   padding: 14px 15px;
   font-weight: 500;
@@ -1734,7 +1749,8 @@ section {
 }
 
 .w3l-mockup-form button:hover {
-  background: #4ca356;
+  /* background:#00c16e; */
+  background: rgba(111, 153, 32, 0.9);
 }
 
 .w3l-mockup-form .social-icons ul li {

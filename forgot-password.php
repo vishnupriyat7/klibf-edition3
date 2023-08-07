@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE email='{$email}'")) > 0) {
         $query = mysqli_query($conn, "UPDATE users SET code='{$code}' WHERE email='{$email}'");
 
-        if ($query) {        
+        if ($query) {
             echo "<div style='display: none;'>";
             //Create an instance; passing `true` enables exceptions
             $mail = new PHPMailer(true);
@@ -50,14 +50,14 @@ if (isset($_POST['submit'])) {
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'no reply';
-                $mail->Body    = 'You have successfully registered in KLIBF Edition 2.<br>Here is the login credentials.<br>Usename: '.$email.'<br>Password:'.$_POST['password'].'</b>';
+                $mail->Body    = 'You have successfully registered in KLIBF Edition 2.<br>Here is the login credentials.<br>Usename: ' . $email . '<br>Password:' . $_POST['password'] . '</b>';
 
                 $mail->send();
                 echo 'Message has been sent';
             } catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
-            echo "</div>";        
+            echo "</div>";
             $msg = "<div class='alert alert-info'> Your Login Credentials sent to your Email</div>";
         }
     } else {
@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
 <?php include "head-style.php"; ?>
 
 <body>
-<?php include "header-inner.php"; ?>
+    <?php include "header-inner.php"; ?>
     <!-- form section start -->
     <section class="w3l-mockup-form">
         <div class="container">
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="images/image3.svg" alt="">
+                            <img src="assets/img/images/image3.svg" alt="">
                         </div>
                     </div>
                     <div class="content-wthree">
@@ -109,9 +109,9 @@ if (isset($_POST['submit'])) {
 
     <script src="assets/js/jquery.min.js"></script>
     <script>
-        $(document).ready(function (c) {
-            $('.alert-close').on('click', function (c) {
-                $('.main-mockup').fadeOut('slow', function (c) {
+        $(document).ready(function(c) {
+            $('.alert-close').on('click', function(c) {
+                $('.main-mockup').fadeOut('slow', function(c) {
                     $('.main-mockup').remove();
                 });
             });
@@ -119,5 +119,6 @@ if (isset($_POST['submit'])) {
     </script>
 
 </body>
+<?php include "footer.php" ?>
 
 </html>
