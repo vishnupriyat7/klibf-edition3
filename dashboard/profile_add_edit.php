@@ -1,5 +1,5 @@
-<?php include "header.php"; 
-include "sidebar_publisher.php"; 
+<?php include "header.php";
+include "sidebar_publisher.php";
 $user_id = $user['id'];
 ?>
 
@@ -48,133 +48,211 @@ $user_id = $user['id'];
 
 
 
-                                <?php
-                    $status = "OK";
-                    $msg = "";
-                    if (isset($_POST['save'])) {
-                        $comp_name =
-                            mysqli_real_escape_string($con, $_POST['comp_name']);
-                        $estb_year =
-                            mysqli_real_escape_string($con, $_POST['estb_year']);
-                        $reg_no =
-                            mysqli_real_escape_string($con, $_POST['reg_no']);
-                        $gst_no =
-                            mysqli_real_escape_string($con, $_POST['gst_no']);
-                        $book_lang =
-                            mysqli_real_escape_string($con, $_POST['book_lang']);
-                        $title_no =
-                            mysqli_real_escape_string($con, $_POST['title_no']);
-                        $org_nature =
-                            mysqli_real_escape_string($con, $_POST['org_nature']);
-                        $mgr_pub_hse =
-                            mysqli_real_escape_string($con, $_POST['mjr_pub_val']);
-                        $head_name =
-                            mysqli_real_escape_string($con, $_POST['head_name']);
-                        $head_addr =
-                            mysqli_real_escape_string($con, $_POST['head_addr']);
-                        $head_mobile =
-                            mysqli_real_escape_string($con, $_POST['head_mobile']);
-                        $head_email =
-                            mysqli_real_escape_string($con, $_POST['head_email']);
-                        $head_site =
-                            mysqli_real_escape_string($con, $_POST['head_site']);
-                        $prsn_name =
-                            mysqli_real_escape_string($con, $_POST['prsn_name']);
-                        $prsn_addr =
-                            mysqli_real_escape_string($con, $_POST['prsn_addr']);
-                        $prsn_mobile =
-                            mysqli_real_escape_string($con, $_POST['prsn_mobile']);
-                        $prsn_email =
-                            mysqli_real_escape_string($con, $_POST['prsn_email']);
-                        $whatsapp =
-                            mysqli_real_escape_string($con, $_POST['whatsapp']);
-                        $stall3x3 =
-                            mysqli_real_escape_string($con, $_POST['stall3x3']);
-                        $stall3x2 =
-                            mysqli_real_escape_string($con, $_POST['stall3x2']);
-                        $fascia =
-                            mysqli_real_escape_string($con, $_POST['fascia']);
-                        $remark =
-                            mysqli_real_escape_string($con, $_POST['remark']);
-                        $current_date =
-                            date("d-m-y");
-                            // var_dump($comp_name);
-                        // $uploads_dir = 'logo-upload';
-                        // $tmp_name = $_FILES["logo"]["tmp_name"];
-                        // // basename() may prevent filesystem traversal attacks;
-                        // // further validation/sanitation of the filename may be appropriate
-                        // $name = basename($_FILES["logo"]["name"]);
-                        // $random_digit = rand(0000, 9999);
-                        // $new_file_name = "";
-                        // $new_file_name = $random_digit . $name;
-                        // move_uploaded_file($tmp_name, "$uploads_dir/$new_file_name");
-                        if (strlen($comp_name) < 5) {
-                            $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_name) < 5) {
-                            $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_mobile) < 8) {
-                            $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_email) < 9) {
-                            $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_site) < 9) {
-                            $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($prsn_name) < 5) {
-                            $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
-                        }
-                        if (strlen($prsn_mobile) < 8) {
-                            $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($prsn_email) < 9) {
-                            $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($whatsapp) < 8) {
-                            $msg = $msg . "WhatsApp Number Must Be More Than 8 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($book_lang) < 3) {
-                            $msg = $msg . "Please mention language(s) in which books are published.<BR>";
-                            $status = "NOTOK";
-                        }
-                        $errormsg = "";
-                        if ($status == "NOTOK") {
-                            $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
-                                $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                               </div>"; //printing error if found in validation
+                        <?php
+                        $status = "OK";
+                        $msg = "";
+                        if ($user_id) {
+                            $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                            $stmt1 = $con->prepare($sql1);
+                            $stmt1->bind_param("s", $user_id);
+                            $stmt1->execute();
+                            $result1 = $stmt1->get_result();
+                            $user_profile = $result1->fetch_assoc();
+                            $comp_name = $user_profile['org_name'];
+                            $estb_year = $user_profile['estb_year'];
+                            $reg_no = $user_profile['reg_no'];
+                            $gst_no = $user_profile['gst_no'];
+                            $book_lang = $user_profile['book_lang'];
+                            $title_no = $user_profile['title_no'];
+                            $org_nature = $user_profile['org_nature'];
+                            $mgr_pub_hse = $user_profile['mgr_house_name'];
+                            $head_name = $user_profile['head_org_name'];
+                            $head_addr = $user_profile['head_org_addr'];
+                            $head_mobile = $user_profile['head_org_mobile'];
+                            $head_email = $user_profile['head_org_email'];
+                            $head_site = $user_profile['head_org_website'];
+                            $prsn_name = $user_profile['cntct_prsn_name'];
+                            $prsn_addr = $user_profile['cntct_prsn_addr'];
+                            $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                            $prsn_email = $user_profile['cntct_prsn_email'];
+                            $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                            $stall3x3 = $user_profile['stalls_3x3'];
+                            $stall3x2 = $user_profile['stalls_3x2'];
+                            $fascia = $user_profile['fascia'];
+                            $remark = $user_profile['remarks'];
+                            $amt3x3 = 10000;
+                            $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
+                            $amt3x2 = 7500;
+                            $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
+                            $total_amt = $tot_amt3x3 + $tot_amt3x2;
+                            if($org_nature == 'A') {
+                                $select0 = '';
+                                $selecta = 'selected';
+                                $selectp = '';
+                            } else if ($org_nature == 'P') {
+                                $select0 = '';
+                                $selecta = '';
+                                $selectp = 'selected';
+                            } else {
+                                $select0 = 'selected';
+                                $selecta = '';
+                                $selectp = '';
+                            }
                         } else {
-                            $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, stalls_3x3, stalls_3x2, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', '$stall3x2', '$stall3x3', 'E', '$current_date', '$fascia', '$remark', '$user_id')";
-                            $result = mysqli_query($con, $query);
-                            if ($result) {
-                                $errormsg = "
+                            $tot_amt3x3 = $tot_amt3x2 = $total_amt = 0;
+                            $comp_name = '';
+                            $estb_year = '';
+                            $reg_no = '';
+                            $gst_no = '';
+                            $book_lang = '';
+                            $title_no = '';
+                            $org_nature = '';
+                            $mgr_pub_hse = '';
+                            $head_name = '';
+                            $head_addr = '';
+                            $head_mobile = '';
+                            $head_email = '';
+                            $head_site = '';
+                            $prsn_name = '';
+                            $prsn_addr = '';
+                            $prsn_mobile = '';
+                            $prsn_email = '';
+                            $whatsapp = '';
+                            $stall3x3 = 0;
+                            $stall3x2 = 0;
+                            $fascia = '';
+                            $remark = '';
+                        }
+                        if (isset($_POST['save'])) {
+
+                            $comp_name =
+                                mysqli_real_escape_string($con, $_POST['comp_name']);
+                            $estb_year =
+                                mysqli_real_escape_string($con, $_POST['estb_year']);
+                            $reg_no =
+                                mysqli_real_escape_string($con, $_POST['reg_no']);
+                            $gst_no =
+                                mysqli_real_escape_string($con, $_POST['gst_no']);
+                            $book_lang =
+                                mysqli_real_escape_string($con, $_POST['book_lang']);
+                            $title_no =
+                                mysqli_real_escape_string($con, $_POST['title_no']);
+                            $org_nature =
+                                mysqli_real_escape_string($con, $_POST['org_nature']);
+                            $mgr_pub_hse =
+                                mysqli_real_escape_string($con, $_POST['mjr_pub_val']);
+                            $head_name =
+                                mysqli_real_escape_string($con, $_POST['head_name']);
+                            $head_addr =
+                                mysqli_real_escape_string($con, $_POST['head_addr']);
+                            $head_mobile =
+                                mysqli_real_escape_string($con, $_POST['head_mobile']);
+                            $head_email =
+                                mysqli_real_escape_string($con, $_POST['head_email']);
+                            $head_site =
+                                mysqli_real_escape_string($con, $_POST['head_site']);
+                            $prsn_name =
+                                mysqli_real_escape_string($con, $_POST['prsn_name']);
+                            $prsn_addr =
+                                mysqli_real_escape_string($con, $_POST['prsn_addr']);
+                            $prsn_mobile =
+                                mysqli_real_escape_string($con, $_POST['prsn_mobile']);
+                            $prsn_email =
+                                mysqli_real_escape_string($con, $_POST['prsn_email']);
+                            $whatsapp =
+                                mysqli_real_escape_string($con, $_POST['whatsapp']);
+                            $stall3x3 =
+                                mysqli_real_escape_string($con, $_POST['stall3x3']);
+                            $stall3x2 =
+                                mysqli_real_escape_string($con, $_POST['stall3x2']);
+                            $fascia =
+                                mysqli_real_escape_string($con, $_POST['fascia']);
+                            $remark =
+                                mysqli_real_escape_string($con, $_POST['remark']);
+                            // }
+                            $current_date =
+                                date("d-m-y");
+                            // var_dump($comp_name);
+                            // $uploads_dir = 'logo-upload';
+                            // $tmp_name = $_FILES["logo"]["tmp_name"];
+                            // // basename() may prevent filesystem traversal attacks;
+                            // // further validation/sanitation of the filename may be appropriate
+                            // $name = basename($_FILES["logo"]["name"]);
+                            // $random_digit = rand(0000, 9999);
+                            // $new_file_name = "";
+                            // $new_file_name = $random_digit . $name;
+                            // move_uploaded_file($tmp_name, "$uploads_dir/$new_file_name");
+                            if (strlen($comp_name) < 5) {
+                                $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_name) < 5) {
+                                $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_mobile) < 8) {
+                                $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_email) < 9) {
+                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_site) < 9) {
+                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($prsn_name) < 5) {
+                                $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
+                            }
+                            if (strlen($prsn_mobile) < 8) {
+                                $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($prsn_email) < 9) {
+                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($whatsapp) < 8) {
+                                $msg = $msg . "WhatsApp Number Must Be More Than 8 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($book_lang) < 3) {
+                                $msg = $msg . "Please mention language(s) in which books are published.<BR>";
+                                $status = "NOTOK";
+                            }
+                            $errormsg = "";
+                            if ($status == "NOTOK") {
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
+                                    $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>"; //printing error if found in validation
+                            } else {
+                                if ($user_id) {
+                                    $query = "UPDATE users_profile set org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_mobile', cntct_prsn_watsapp = '$prsn_mobile', stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_at = '$current_date', fascia = '$fascia', remarks = '$remark', user_id = '$user_id'";
+                                } else {
+                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, stalls_3x3, stalls_3x2, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', '$stall3x2', '$stall3x3', 'E', '$current_date', '$fascia', '$remark', '$user_id')";
+                                }
+                                $result = mysqli_query($con, $query);
+                                if ($result) {
+                                    $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Registered Successfully. We shall get back to you ASAP.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                ";
-                            } else {
-                                $errormsg = "
+                                } else {
+                                    $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
+                                }
                             }
+                            // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            //     print $errormsg;
+                            // }
                         }
-                        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                        //     print $errormsg;
-                        // }
-                    }
-                    ?>
+                        ?>
 
 
                         <div class="card-body p-4">
@@ -192,22 +270,22 @@ $user_id = $user['id'];
                                                 <label><b>Publishing House / Organization</b></label>
                                             </div>
                                             <div class="form-group col-8">
-                                                <input type="text" class="form-control" name="comp_name" placeholder="*Name" id="comp_name" onchange="termName();">
+                                                <input type="text" class="form-control" name="comp_name" placeholder="*Name" id="comp_name" value="<?= $comp_name; ?>">
                                             </div>
                                             <div class="form-group col-4">
-                                                <input type="text" class="form-control" name="estb_year" id="estb_year" placeholder="*Year of Establishment" required="required">
+                                                <input type="text" class="form-control" name="estb_year" id="estb_year" placeholder="*Year of Establishment" required="required" value="<?= $estb_year; ?>">
                                             </div>
                                             <div class="form-group col-6">
-                                                <input type="text" class="form-control" name="reg_no" id="reg_no" placeholder="Register No.">
+                                                <input type="text" class="form-control" name="reg_no" id="reg_no" placeholder="Register No." value="<?= $reg_no; ?>">
                                             </div>
                                             <div class="form-group col-6">
-                                                <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="GST No.">
+                                                <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="GST No." value="<?= $gst_no; ?>">
                                             </div>
                                             <div class="form-group col-4">
-                                                <input type="number" class="form-control" name="title_no" id="title_no" placeholder="*No.of Titles Published" required="required" min="0">
+                                                <input type="number" class="form-control" name="title_no" id="title_no" placeholder="*No.of Titles Published" required="required" min="0" value="<?= $title_no; ?>">
                                             </div>
                                             <div class="form-group col-8">
-                                                <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required">
+                                                <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required" value="<?= $book_lang; ?>">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label><b>Nature of Organization</b></label>
@@ -215,13 +293,13 @@ $user_id = $user['id'];
                                             <div class="row col-12">
                                                 <div class="form-group col-4">
                                                     <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;">
-                                                        <option value="0">Select</option>
-                                                        <option value="P">Publisher</option>
-                                                        <option value="A">Publisher & Distributor</option>
+                                                        <option value="0" <?= $select0; ?>>Select</option>
+                                                        <option value="P" <?= $selectp; ?>>Publisher</option>
+                                                        <option value="A" <?= $selecta; ?>>Publisher & Distributor</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-8" id="mjr_pub_hse" style="display: none">
-                                                    <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed">
+                                                    <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed" value="<?= $mgr_pub_hse; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -229,20 +307,19 @@ $user_id = $user['id'];
                                                     <label><b>Head of the Publishing House / Organization</b></label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="head_name" id="head_name" placeholder="*Name" required="required">
+                                                    <input type="text" class="form-control" name="head_name" id="head_name" placeholder="*Name" required="required" value="<?= $head_name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea class="form-control" name="head_addr" id="head_addr" placeholder="*Address" required="required"></textarea>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Email" required="required">
+                                                    <textarea class="form-control" name="head_addr" id="head_addr" placeholder="*Address" required="required"><?= $head_addr; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="head_site" id="head_site" placeholder="*Website" required="required">
+                                                    <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Email" required="required" value="<?= $head_email; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="head_mobile" id="head_mobile" placeholder="*Mobile" required="required" min="0">
+                                                    <input type="text" class="form-control" name="head_site" id="head_site" placeholder="*Website" required="required" value="<?= $head_site; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" name="head_mobile" id="head_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $head_mobile; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -252,20 +329,20 @@ $user_id = $user['id'];
                                                     <label for="same-check"> Same as House</label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Name" required="required">
+                                                    <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Name" required="required" value="<?= $prsn_name; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea class="form-control" name="prsn_addr" id="prsn_addr" placeholder="*Address" required="required"></textarea>
+                                                    <textarea class="form-control" name="prsn_addr" id="prsn_addr" placeholder="*Address" required="required"><?= $prsn_addr; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required">
+                                                    <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" value="<?= $prsn_email; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="prsn_mobile" id="prsn_mobile" placeholder="*Mobile" required="required" min="0">
+                                                    <input type="number" class="form-control" name="prsn_mobile" id="prsn_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $prsn_mobile; ?>">
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-8">
-                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0">
+                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?= $prsn_mobile; ?>">
                                                     </div>
                                                     <div class="col-4">
                                                         <input type="checkbox" name="same-mobile" id="same-mobile" onclick="sameCheckMob();">
@@ -299,10 +376,10 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="10000" id="amt3x3" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x3" placeholder="00" value="0" id="stall3x3" onchange="amount();">
+                                                        <input type="text" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>">
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled>
+                                                        <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled value="<?= $tot_amt3x3; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -313,10 +390,10 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="7500" id="amt3x2" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" value="0" onchange="amount();">
+                                                        <input type="text" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>">
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="rate_amt3x2" id="rate_amt3x2" placeholder="00" disabled>
+                                                        <input type="text" class="form-control text-right" name="rate_amt3x2" id="rate_amt3x2" placeholder="00" disabled value="<?= $tot_amt3x2; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -324,7 +401,7 @@ $user_id = $user['id'];
                                                         <input class="form-control font-weight-bold text-right" value="Total amount payable (in ₹  )." disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled>
+                                                        <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled value="<?= $total_amt; ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -335,10 +412,10 @@ $user_id = $user['id'];
                                 <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo">
                             </div> -->
                                             <div class="form-group col-4">
-                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA" required="required">
+                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA" required="required" value="<?= $fascia; ?>">
                                             </div>
                                             <div class="form-group col-8">
-                                                <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information">
+                                                <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>">
                                             </div>
                                         </div>
                                         <div class="col-12">
