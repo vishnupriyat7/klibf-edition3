@@ -1,5 +1,5 @@
-<?php include "header.php"; 
-include "sidebar_publisher.php"; 
+<?php include "header.php";
+include "sidebar_publisher.php";
 $user_id = $user['id'];
 ?>
 
@@ -48,133 +48,133 @@ $user_id = $user['id'];
 
 
 
-                                <?php
-                    $status = "OK";
-                    $msg = "";
-                    if (isset($_POST['save'])) {
-                        $comp_name =
-                            mysqli_real_escape_string($con, $_POST['comp_name']);
-                        $estb_year =
-                            mysqli_real_escape_string($con, $_POST['estb_year']);
-                        $reg_no =
-                            mysqli_real_escape_string($con, $_POST['reg_no']);
-                        $gst_no =
-                            mysqli_real_escape_string($con, $_POST['gst_no']);
-                        $book_lang =
-                            mysqli_real_escape_string($con, $_POST['book_lang']);
-                        $title_no =
-                            mysqli_real_escape_string($con, $_POST['title_no']);
-                        $org_nature =
-                            mysqli_real_escape_string($con, $_POST['org_nature']);
-                        $mgr_pub_hse =
-                            mysqli_real_escape_string($con, $_POST['mjr_pub_val']);
-                        $head_name =
-                            mysqli_real_escape_string($con, $_POST['head_name']);
-                        $head_addr =
-                            mysqli_real_escape_string($con, $_POST['head_addr']);
-                        $head_mobile =
-                            mysqli_real_escape_string($con, $_POST['head_mobile']);
-                        $head_email =
-                            mysqli_real_escape_string($con, $_POST['head_email']);
-                        $head_site =
-                            mysqli_real_escape_string($con, $_POST['head_site']);
-                        $prsn_name =
-                            mysqli_real_escape_string($con, $_POST['prsn_name']);
-                        $prsn_addr =
-                            mysqli_real_escape_string($con, $_POST['prsn_addr']);
-                        $prsn_mobile =
-                            mysqli_real_escape_string($con, $_POST['prsn_mobile']);
-                        $prsn_email =
-                            mysqli_real_escape_string($con, $_POST['prsn_email']);
-                        $whatsapp =
-                            mysqli_real_escape_string($con, $_POST['whatsapp']);
-                        $stall3x3 =
-                            mysqli_real_escape_string($con, $_POST['stall3x3']);
-                        $stall3x2 =
-                            mysqli_real_escape_string($con, $_POST['stall3x2']);
-                        $fascia =
-                            mysqli_real_escape_string($con, $_POST['fascia']);
-                        $remark =
-                            mysqli_real_escape_string($con, $_POST['remark']);
-                        $current_date =
-                            date("d-m-y");
+                        <?php
+                        $status = "OK";
+                        $msg = "";
+                        if (isset($_POST['save'])) {
+                            $comp_name =
+                                mysqli_real_escape_string($con, $_POST['comp_name']);
+                            $estb_year =
+                                mysqli_real_escape_string($con, $_POST['estb_year']);
+                            $reg_no =
+                                mysqli_real_escape_string($con, $_POST['reg_no']);
+                            $gst_no =
+                                mysqli_real_escape_string($con, $_POST['gst_no']);
+                            $book_lang =
+                                mysqli_real_escape_string($con, $_POST['book_lang']);
+                            $title_no =
+                                mysqli_real_escape_string($con, $_POST['title_no']);
+                            $org_nature =
+                                mysqli_real_escape_string($con, $_POST['org_nature']);
+                            $mgr_pub_hse =
+                                mysqli_real_escape_string($con, $_POST['mjr_pub_val']);
+                            $head_name =
+                                mysqli_real_escape_string($con, $_POST['head_name']);
+                            $head_addr =
+                                mysqli_real_escape_string($con, $_POST['head_addr']);
+                            $head_mobile =
+                                mysqli_real_escape_string($con, $_POST['head_mobile']);
+                            $head_email =
+                                mysqli_real_escape_string($con, $_POST['head_email']);
+                            $head_site =
+                                mysqli_real_escape_string($con, $_POST['head_site']);
+                            $prsn_name =
+                                mysqli_real_escape_string($con, $_POST['prsn_name']);
+                            $prsn_addr =
+                                mysqli_real_escape_string($con, $_POST['prsn_addr']);
+                            $prsn_mobile =
+                                mysqli_real_escape_string($con, $_POST['prsn_mobile']);
+                            $prsn_email =
+                                mysqli_real_escape_string($con, $_POST['prsn_email']);
+                            $whatsapp =
+                                mysqli_real_escape_string($con, $_POST['whatsapp']);
+                            $stall3x3 =
+                                mysqli_real_escape_string($con, $_POST['stall3x3']);
+                            $stall3x2 =
+                                mysqli_real_escape_string($con, $_POST['stall3x2']);
+                            $fascia =
+                                mysqli_real_escape_string($con, $_POST['fascia']);
+                            $remark =
+                                mysqli_real_escape_string($con, $_POST['remark']);
+                            $current_date =
+                                date("d-m-y");
                             // var_dump($comp_name);
-                        // $uploads_dir = 'logo-upload';
-                        // $tmp_name = $_FILES["logo"]["tmp_name"];
-                        // // basename() may prevent filesystem traversal attacks;
-                        // // further validation/sanitation of the filename may be appropriate
-                        // $name = basename($_FILES["logo"]["name"]);
-                        // $random_digit = rand(0000, 9999);
-                        // $new_file_name = "";
-                        // $new_file_name = $random_digit . $name;
-                        // move_uploaded_file($tmp_name, "$uploads_dir/$new_file_name");
-                        if (strlen($comp_name) < 5) {
-                            $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_name) < 5) {
-                            $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_mobile) < 8) {
-                            $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_email) < 9) {
-                            $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($head_site) < 9) {
-                            $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($prsn_name) < 5) {
-                            $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
-                        }
-                        if (strlen($prsn_mobile) < 8) {
-                            $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($prsn_email) < 9) {
-                            $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($whatsapp) < 8) {
-                            $msg = $msg . "WhatsApp Number Must Be More Than 8 Char Length.<BR>";
-                            $status = "NOTOK";
-                        }
-                        if (strlen($book_lang) < 3) {
-                            $msg = $msg . "Please mention language(s) in which books are published.<BR>";
-                            $status = "NOTOK";
-                        }
-                        $errormsg = "";
-                        if ($status == "NOTOK") {
-                            $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
-                                $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            // $uploads_dir = 'logo-upload';
+                            // $tmp_name = $_FILES["logo"]["tmp_name"];
+                            // // basename() may prevent filesystem traversal attacks;
+                            // // further validation/sanitation of the filename may be appropriate
+                            // $name = basename($_FILES["logo"]["name"]);
+                            // $random_digit = rand(0000, 9999);
+                            // $new_file_name = "";
+                            // $new_file_name = $random_digit . $name;
+                            // move_uploaded_file($tmp_name, "$uploads_dir/$new_file_name");
+                            if (strlen($comp_name) < 5) {
+                                $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_name) < 5) {
+                                $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_mobile) < 8) {
+                                $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_email) < 9) {
+                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($head_site) < 9) {
+                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($prsn_name) < 5) {
+                                $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
+                            }
+                            if (strlen($prsn_mobile) < 8) {
+                                $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($prsn_email) < 9) {
+                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($whatsapp) < 8) {
+                                $msg = $msg . "WhatsApp Number Must Be More Than 8 Char Length.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if (strlen($book_lang) < 3) {
+                                $msg = $msg . "Please mention language(s) in which books are published.<BR>";
+                                $status = "NOTOK";
+                            }
+                            $errormsg = "";
+                            if ($status == "NOTOK") {
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
+                                    $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
-                        } else {
-                            $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, stalls_3x3, stalls_3x2, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', '$stall3x2', '$stall3x3', 'E', '$current_date', '$fascia', '$remark', '$user_id')";
-                            $result = mysqli_query($con, $query);
-                            if ($result) {
-                                $errormsg = "
+                            } else {
+                                $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, stalls_3x3, stalls_3x2, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', '$stall3x2', '$stall3x3', 'E', '$current_date', '$fascia', '$remark', '$user_id')";
+                                $result = mysqli_query($con, $query);
+                                if ($result) {
+                                    $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Registered Successfully. We shall get back to you ASAP.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                ";
-                            } else {
-                                $errormsg = "
+                                } else {
+                                    $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
+                                }
                             }
+                            // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            //     print $errormsg;
+                            // }
                         }
-                        // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                        //     print $errormsg;
-                        // }
-                    }
-                    ?>
+                        ?>
 
 
                         <div class="card-body p-4">
@@ -340,10 +340,17 @@ $user_id = $user['id'];
                                             <div class="form-group col-8">
                                                 <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information">
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_btn" onclick="checkTerm();"><span class="text-white pr-3"><i class="fa fa-eye"></i></span>Preview</button> -->
+                                        </div><br>
+                                        <!-- <div class="col-12">
+                                            <button class="btn btn-bordered active btn-block mt-3" id="preview_btn" onclick="checkTerm();"><span class="text-white pr-3"><i class="fa fa-eye"></i></span>Preview</button>
                                             <button type="submit" class="btn btn-bordered active btn-block mt-3" name="save" id="save"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>Save</button>
+                                        </div> -->
+                                        <div class="col-lg-12">
+
+                                            <button type="submit" name="save" class="btn btn-primary"  id="save">Save</button>
+                                            <!-- <button type="submit" class="btn btn-bordered active btn-block mt-3" name="save" id="save"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span></button> -->
+
+
                                         </div>
                                     </form>
                                 </div>
