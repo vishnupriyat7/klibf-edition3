@@ -5,22 +5,22 @@ include "z_db.php";
 session_start();
 // Check, if username session is NOT set then this page will jump to login page
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['SESSION_EMAIL'])) {
     print "
 				<script language='javascript'>
-					window.location = 'login.php';
+					window.location = '../index.php';
 				</script>
 			";
 }
 
 // Check, if username session is NOT set then this page will jump to login page
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['SESSION_EMAIL'])) {
 
-    $username = $_SESSION['username'];
+    $username = $_SESSION['SESSION_EMAIL'];
 } else {
     print "
 				<script language='javascript'>
-					window.location = 'login.php';
+					window.location = '../index.php';
 				</script>
 			";
 }
@@ -150,7 +150,7 @@ if (isset($_SESSION['username'])) {
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome <?php print $username; ?>!</h6>
 
-                                <a class="dropdown-item" href="logout"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </div>
                         </div>
                     </div>

@@ -1,12 +1,15 @@
 <?php
 include "header.php";
-$username = $_SESSION['username'];
-$sql1 = "SELECT a.user_type FROM users_profile a JOIN admin b WHERE a.admin_id = b.id AND b.username = ?;";
+
+$username = $_SESSION['SESSION_EMAIL'];
+
+$sql1 = "SELECT user_type FROM users WHERE email = ?;";
 $stmt1 = $con->prepare($sql1);
 $stmt1->bind_param("s", $username);
 $stmt1->execute();
 $result1 = $stmt1->get_result();
 $user_type = $result1->fetch_assoc();
+
 // var_dump($user_type);die;
 if ($user_type['user_type'] == 'S') {
     include "sidebar.php";

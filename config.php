@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("localhost", "root", "Root@123", "login");
+$conn = mysqli_connect("localhost", "root", "root", "klibf2");
 
 if (!$conn) {
     echo "Connection Failed";
