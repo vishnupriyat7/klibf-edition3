@@ -44,9 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
                     </div>"; //printing error if found in validation
   }
 }
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && ($errormsg != "")) {
-  print $errormsg;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,21 +71,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && ($errormsg != "")) {
         <!-- Pills navs -->
         <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
           <li class="nav-item" role="presentation">
-            <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+            <a class="nav-link active" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="true">Register</a>
           </li>
           <li class="nav-item" role="presentation">
-            <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab" aria-controls="pills-register" aria-selected="false">Register</a>
+            <a class="nav-link " id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab" aria-controls="pills-login" aria-selected="false">Login</a>
           </li>
         </ul>
         <!-- Pills navs -->
         <!-- Pills content -->
         <div class="tab-content">
-          <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-            <?php include "forms/login.php"; ?>
-          </div>
-          <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+          <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
             <?php include "forms/register-form.php"; ?>
           </div>
+          <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+            <?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && ($errormsg != "")) {
+              print $errormsg;
+            } ?>
+            <?php include "forms/login.php"; ?>
+          </div>
+
         </div>
         <!-- Pills content -->
       </div>

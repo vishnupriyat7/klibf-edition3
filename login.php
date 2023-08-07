@@ -1,12 +1,15 @@
 <?php
 session_start();
 if (isset($_SESSION['SESSION_EMAIL'])) {
-    header("Location: welcome.php");
+
+    header("Location: dashboard/index.php");
+
     die();
 }
 
 include 'config.php';
 $msg = "";
+
 
 if (isset($_GET['verification'])) {
     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE code='{$_GET['verification']}'")) > 0) {
@@ -20,6 +23,7 @@ if (isset($_GET['verification'])) {
     }
 }
 
+
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, md5($_POST['password']));
@@ -32,7 +36,10 @@ if (isset($_POST['submit'])) {
 
         if (empty($row['code'])) {
             $_SESSION['SESSION_EMAIL'] = $email;
-            header("Location: welcome.php");
+
+            // header("Location: welcome.php");
+            header("Location: dashboard/index.php");
+
         } else {
             $msg = "<div class='alert alert-info'>First verify your account and try again.</div>";
         }

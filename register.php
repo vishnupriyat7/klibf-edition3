@@ -9,7 +9,10 @@
 
     session_start();
     if (isset($_SESSION['SESSION_EMAIL'])) {
-        header("Location: welcome.php");
+
+        // header("Location: welcome.php");
+        header("Location: dashboard/index.php");
+
         die();
     }
 
@@ -24,14 +27,21 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, md5($_POST['password']));
         $confirm_password = mysqli_real_escape_string($conn, md5($_POST['confirm-password']));
+
+        $contactno = mysqli_real_escape_string($conn, $_POST['contactno']);
+        $user_type = 'P';
         // $code = mysqli_real_escape_string($conn, md5(rand()));
+$code="";
 
         if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE email='{$email}'")) > 0) {
             $msg = "<div class='alert alert-danger'>{$email} - This email address has been already exists.</div>";
         } else {
             if ($password === $confirm_password) {
-                $sql = "INSERT INTO users (name, email, password, code) VALUES ('{$name}', '{$email}', '{$password}', '{$code}')";
+
+                $sql = "INSERT INTO users (name, email, password, code, contact_no, user_type) VALUES ('{$name}', '{$email}', '{$password}', '{$code}', '{$contactno}', '{$user_type}')";
                 $result = mysqli_query($conn, $sql);
+                // var_dump($sql);
+
 
                 if ($result) {
                     echo "<div style='display: none;'>";
@@ -102,6 +112,9 @@
                         <form action="" method="post">
                             <input type="text" class="name" name="name" placeholder="Enter Your Name" value="<?php if (isset($_POST['submit'])) { echo $name; } ?>" required>
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" value="<?php if (isset($_POST['submit'])) { echo $email; } ?>" required>
+
+                            <input type="number" class="contactno" name="contactno" placeholder="Enter Your Contact No" value="<?php if (isset($_POST['submit'])) { echo $contactno; } ?>" required>
+
                             <input type="password" class="password" name="password" placeholder="Enter Your Password" required>
                             <input type="password" class="confirm-password" name="confirm-password" placeholder="Enter Your Confirm Password" required>
                             <button name="submit" class="btn" type="submit">Register</button>
