@@ -35,7 +35,7 @@ $code="";
             if ($password === $confirm_password) {
                 $sql = "INSERT INTO users (name, email, password, code, contact_no, user_type) VALUES ('{$name}', '{$email}', '{$password}', '{$code}', '{$contactno}', '{$user_type}')";
                 $result = mysqli_query($conn, $sql);
-                // var_dump($sql);
+                
 
                 if ($result) {
                     echo "<div style='display: none;'>";
