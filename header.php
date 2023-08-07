@@ -25,7 +25,7 @@
      <div class="logo">
        <!-- <h1 class="text-light"><a href="index.html"><span>KLIBF</span></a></h1> -->
        <!-- Uncomment below if you prefer to use an image logo -->
-       <a href="index.html"><img src="assets/img/Logo_02.png" alt="" class="img-fluid"></a>
+       <a href="index.php"><img src="assets/img/Logo_02.png" alt="" class="img-fluid"></a>
      </div>
      <!-- <div class="animated flipInX infinite slower text-center">
        <span style="font-size: 35px; color: white; font-weight: 900;">
@@ -34,16 +34,13 @@
           <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> 
        </span>
      </div> -->
-     <nav class="text-center count" >
-       
-         <?php echo  $daysRemaining; ?><br>
-         <p>Days to Go</p>
-         <!-- <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> -->
-      
-</nav>
+     <nav class="text-center count">
 
+       <?php echo  $daysRemaining; ?><br>
+       <p>Days to Go</p>
+       <!-- <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> -->
 
-
+     </nav>
 
      <?php include "menu.php"; ?>
 
