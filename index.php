@@ -47,7 +47,6 @@
     <!-- ======= Contact Section ======= -->
     <?php include "./components/contact.php"; ?>
     <!-- End Contact Section -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
