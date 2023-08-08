@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" required>
                             <input type="password" class="password" name="password" placeholder="Enter Your Password" style="margin-bottom: 2px;" required>
                             <p><a href="forgot-password.php" style="margin-bottom: 15px; display: block; text-align: right;">Forgot Password?</a></p>
-                            <button name="submit" name="submit" class="btn" type="submit">Login</button>
+                            <button name="submit" class="btn" type="submit">Login</button>
                         </form>
                         <div class="social-icons">
                             <p>Create Account! <a href="register.php">Register</a>.</p>
