@@ -24,8 +24,10 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     // $code = mysqli_real_escape_string($conn, md5(rand()));
     $code = "";
-
-    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE email='{$email}'")) > 0) {
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='{$email}'");
+    if (mysqli_num_rows($result) > 0) {
+        $user = mysqli_fetch_assoc($result);
+        $user_pass = md5($user['password']);
         $query = mysqli_query($conn, "UPDATE users SET code='{$code}' WHERE email='{$email}'");
 
         if ($query) {
@@ -52,7 +54,7 @@ if (isset($_POST['submit'])) {
                 //Content
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'no reply';
-                $mail->Body    = 'Here is the login credentials.<br>Usename: ' . $email . '<br>Password:' . $_POST['password'] . '</b>';
+                $mail->Body    = 'Here is the login credentials.<br>Usename: ' . $email . '<br>Password:' . $user_pass . '</b>';
 
                 $mail->send();
                 echo 'Message has been sent';
