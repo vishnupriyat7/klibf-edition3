@@ -6,7 +6,7 @@
 
          <div class="col-lg-4 col-md-6">
            <div class="footer-info">
-             <h3>Connect...</h3>
+             <h3>Contact</h3>
              <p class="pb-3"><em>KLIBF</em></p>
              <p>
                Kerala Legislature Secretariat, Legislature Complex, Palayam, Vikasbhavan PO, Thiruvananthapuram<br><br>
