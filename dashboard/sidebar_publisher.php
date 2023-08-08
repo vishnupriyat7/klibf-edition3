@@ -12,23 +12,23 @@ include "../z_db.php";
         $ufile = $r[0];
         ?>
 
-        <a href="index.html" class="logo logo-dark">
+        <!-- <a href="index.html" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="uploads/logo/<?php print $ufile ?>" alt="" height="100">
             </span>
             <span class="logo-lg">
                 <img src="uploads/logo/<?php print $ufile ?>" alt="" height="90">
             </span>
-        </a>
+        </a> -->
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <!-- <a href="index.html" class="logo logo-light">
             <span class="logo-sm">
                 <img src="uploads/logo/<?php print $ufile ?>" alt="" height="100">
             </span>
             <span class="logo-lg">
                 <img src="uploads/logo/<?php print $ufile ?>" alt="" height="90">
             </span>
-        </a>
+        </a> -->
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
@@ -46,6 +46,13 @@ include "../z_db.php";
                 <li class="nav-item">
                     <a href="index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards"> Dashboard </span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="rules-regulation.php" class="nav-link" data-key="t-one-page">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
+                    </a>
+                   
+                </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="profile_add_edit.php" class="nav-link" data-key="t-one-page">
