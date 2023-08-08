@@ -20,6 +20,8 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
+                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+
                             </ol>
                         </div>
 
@@ -417,10 +419,17 @@ $user_id = $user['id'];
                                             <div class="form-group col-8">
                                                 <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>">
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_btn" onclick="checkTerm();"><span class="text-white pr-3"><i class="fa fa-eye"></i></span>Preview</button> -->
+                                        </div><br>
+                                        <!-- <div class="col-12">
+                                            <button class="btn btn-bordered active btn-block mt-3" id="preview_btn" onclick="checkTerm();"><span class="text-white pr-3"><i class="fa fa-eye"></i></span>Preview</button>
                                             <button type="submit" class="btn btn-bordered active btn-block mt-3" name="save" id="save"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>Save</button>
+                                        </div> -->
+                                        <div class="col-lg-12">
+
+                                            <button type="submit" name="save" class="btn btn-primary"  id="save">Save</button>
+                                            <!-- <button type="submit" class="btn btn-bordered active btn-block mt-3" name="save" id="save"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span></button> -->
+
+
                                         </div>
                                     </form>
                                 </div>

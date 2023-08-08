@@ -1,24 +1,28 @@
 <?php
 session_start();
 if (isset($_SESSION['SESSION_EMAIL'])) {
+
     header("Location: dashboard/index.php");
+
     die();
 }
 
 include 'config.php';
 $msg = "";
 
-// if (isset($_GET['verification'])) {
-//     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE code='{$_GET['verification']}'")) > 0) {
-//         $query = mysqli_query($conn, "UPDATE users SET code='' WHERE code='{$_GET['verification']}'");
 
-//         if ($query) {
-//             $msg = "<div class='alert alert-success'>Account verification has been successfully completed.</div>";
-//         }
-//     } else {
-//         header("Location: index.php");
-//     }
-// }
+if (isset($_GET['verification'])) {
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM users WHERE code='{$_GET['verification']}'")) > 0) {
+        $query = mysqli_query($conn, "UPDATE users SET code='' WHERE code='{$_GET['verification']}'");
+
+        if ($query) {
+            $msg = "<div class='alert alert-success'>Account verification has been successfully completed.</div>";
+        }
+    } else {
+        header("Location: index.php");
+    }
+}
+
 
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -32,8 +36,10 @@ if (isset($_POST['submit'])) {
 
         if (empty($row['code'])) {
             $_SESSION['SESSION_EMAIL'] = $email;
+
             // header("Location: welcome.php");
             header("Location: dashboard/index.php");
+
         } else {
             $msg = "<div class='alert alert-info'>First verify your account and try again.</div>";
         }
@@ -71,7 +77,7 @@ if (isset($_POST['submit'])) {
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" required>
                             <input type="password" class="password" name="password" placeholder="Enter Your Password" style="margin-bottom: 2px;" required>
                             <p><a href="forgot-password.php" style="margin-bottom: 15px; display: block; text-align: right;">Forgot Password?</a></p>
-                            <button name="submit" name="submit" class="btn" type="submit">Login</button>
+                            <button name="submit" class="btn" type="submit">Login</button>
                         </form>
                         <div class="social-icons">
                             <p>Create Account! <a href="register.php">Register</a>.</p>

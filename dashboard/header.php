@@ -42,12 +42,13 @@ $user = $result1->fetch_assoc();
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | BookFest</title>
+    <title>Dashboard | KLIBF 2 | 2023</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="assets/images/Logo_title.png">
+    <!-- <link href="assets/img/Logo_title.png" rel="icon"> -->
 
     <!-- jsvectormap css -->
     <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
@@ -157,7 +158,7 @@ $user = $result1->fetch_assoc();
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome <?php print $user['name']; ?>!</h6>
 
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <!-- <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a> -->
                             </div>
                         </div>
                     </div>
