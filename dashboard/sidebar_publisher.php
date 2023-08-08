@@ -49,7 +49,7 @@ include "../z_db.php";
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="profile_add_edit.php" class="nav-link" data-key="t-one-page">
-                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Profile</span>
+                        <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
                     <!-- <div class="menu-dropdown collapse" id="sidebarB" style="">
                         <ul class="nav nav-sm flex-column">

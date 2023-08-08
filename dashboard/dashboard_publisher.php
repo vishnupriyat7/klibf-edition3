@@ -54,15 +54,19 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <?php
-                                    $result = mysqli_query($con, "SELECT count(*) FROM book_stall");
-                                    $row = mysqli_fetch_row($result);
-                                    $numrows = $row[0];
+                                <?php
+                                    $sql ="SELECT stalls_3x3, stalls_3x2 FROM users_profile WHERE user_id='{$user['id']}'";
+                                     $result = mysqli_query($con, $sql);
+                                     $stall = mysqli_fetch_assoc($result);
+                                    //  var_dump($stall);
+                                    // $row = mysqli_fetch_row($result);
+                                    // $numrows = $row[0];
 
                                     ?>
 
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Stalls Approved</p>
-                                    <!-- <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $numrows; ?>"></span></h4> -->
+                                    <h4 class=" mb-0">0</h4>
+                                    <!-- <h4 class=" mb-0"><span class="counter-value" data-target="<?php print 0; ?>"></span></h4> -->
                                 </div>
 
                             </div>
@@ -81,15 +85,18 @@
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <?php
-                                    $result = mysqli_query($con, "SELECT SUM(stalls_3x3 + stalls_3x2) FROM book_stall");
-                                    $row = mysqli_fetch_row($result);
-                                    $numrows = $row[0];
+                                    <!-- <?php
+                                    // $sql
+                                    //  $result = mysqli_query($conn, $sql);
+                                    // $result = mysqli_query($con, "SELECT stalls_3x3, stalls_3x2 FROM users_profile WHERE user_id='{$user['id']}'");
+                                    // $row = mysqli_fetch_row($result);
+                                    // $numrows = $row[0];
 
-                                    ?>
+                                    ?> -->
 
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Stalls Booked</p>
                                     <!-- <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $numrows; ?>"></span></h4> -->
+                                    <h4 class=" mb-0">3X3: <?php print $stall['stalls_3x3']; ?>&emsp;3X2: <?php print $stall['stalls_3x2']; ?></h4>
                                 </div>
 
                             </div>

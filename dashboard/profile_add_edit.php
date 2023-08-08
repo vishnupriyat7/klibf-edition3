@@ -196,8 +196,8 @@ $user_id = $user['id'];
                                 $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($head_email) < 9) {
-                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                            if (strlen($head_email) < 3) {
+                                $msg = $msg . "Email Must Be More Than 3 Char Length.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($head_site) < 9) {
@@ -207,16 +207,16 @@ $user_id = $user['id'];
                             if (strlen($prsn_name) < 5) {
                                 $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
                             }
-                            if (strlen($prsn_mobile) < 8) {
-                                $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
+                            if (strlen($prsn_mobile) < 10) {
+                                $msg = $msg . "Phone Must Be More Than 10 Char Length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($prsn_email) < 9) {
-                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                            if (strlen($prsn_email) < 3) {
+                                $msg = $msg . "Email Must Be More Than 3 Char Length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($whatsapp) < 8) {
-                                $msg = $msg . "WhatsApp Number Must Be More Than 8 Char Length.<BR>";
+                            if (strlen($whatsapp) < 10) {
+                                $msg = $msg . "WhatsApp Number Must Be More Than 10 Char Length.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($book_lang) < 3) {
@@ -427,7 +427,8 @@ $user_id = $user['id'];
                                         <div class="col-lg-12">
 
                                             <button type="submit" name="save" class="btn btn-primary"  id="save">Save</button>
-                                            <!-- <button type="submit" class="btn btn-bordered active btn-block mt-3" name="save" id="save"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span></button> -->
+                                            <button type="submit" class="btn btn-bordered active btn-block mt-3" name="submit" id="submit">Submit</button>
+                                                <!-- <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span> -->
 
 
                                         </div>
