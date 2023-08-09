@@ -6,7 +6,7 @@ $user_id = $user['id'];
 <style>
     .card {
         max-width: 100%;
-        
+
     }
 
     .card table {
@@ -16,7 +16,7 @@ $user_id = $user['id'];
         width: 70%;
         border: 1px solid #ddd;
         margin-left: 5%;
-        margin-top: 1%;
+        margin-top: 3%;
         font-family: Arial, Helvetica, sans-serif;
         color: black;
     }
@@ -138,8 +138,8 @@ $user_id = $user['id'];
                     $amt3x2 = 7500;
                     $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
                     $total_amt = $tot_amt3x3 + $tot_amt3x2;
-                    $prof_reg_date= $user_profile['updated_at'];
-                    $stall_reg_date= $user_profile['updated_date'];
+                    $prof_reg_date = $user_profile['updated_at'];
+                    $stall_reg_date = $user_profile['updated_date'];
                     if ($org_nature == 'A') {
                         $name_org = 'Publisher and Distributer';
                     } else if ($org_nature == 'P') {
@@ -182,7 +182,13 @@ $user_id = $user['id'];
                             <table id="preview">
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label>House / Organization</label>
+                                        <label><h3><b>KLIBF EDITION 2</b></h3></label>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="td-head" colspan="2">
+                                        <label><h5><b>House / Organization</h5></b></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -246,7 +252,7 @@ $user_id = $user['id'];
 
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label>Head of the Publishing House / Organization</label>
+                                        <label><h5><b>Head of the Publishing House / Organization</h5></b></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -291,7 +297,7 @@ $user_id = $user['id'];
                                 </tr>
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label>Contact (In-charge) person for the fair</label>
+                                        <label><h5><b>Contact (In-charge) person for the fair</h5></b></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -387,7 +393,7 @@ $user_id = $user['id'];
                                         <label> Profile Registration Date</label>
                                     </td>
                                     <td>
-                                        <label id="logo_lab"><?=  $prof_reg_date; ?></label>
+                                        <label id="logo_lab"><?= $prof_reg_date; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -395,7 +401,7 @@ $user_id = $user['id'];
                                         <label> Stall Booking Date</label>
                                     </td>
                                     <td>
-                                        <label id="logo_lab"><?=  $stall_reg_date; ?></label>
+                                        <label id="logo_lab"><?= $stall_reg_date; ?></label>
                                     </td>
                                 </tr>
 
@@ -419,3 +425,16 @@ $user_id = $user['id'];
     <!-- End Page-content -->
 
     <?php include "footer.php"; ?>
+
+    <script>
+        function printData() {
+            var divToPrint = document.getElementById("preview");
+            newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+
+        const btn = document.getElementById("print");
+        btn.addEventListener('click', () => printData())
+    </script>

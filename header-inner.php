@@ -43,7 +43,7 @@
 
      </nav>
 
-     <?php include "menu.php"; ?>
+     <?php include "menu-inner.php"; ?>
 
 
    </div>
