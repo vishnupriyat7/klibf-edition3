@@ -49,7 +49,7 @@ include "../z_db.php";
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="profile-menu">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="profile_add_edit.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
