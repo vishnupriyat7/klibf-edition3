@@ -383,7 +383,7 @@ h6 {
 }
 
 .navbar-mobile ul {
-  display: block !important;
+  /* display: block !important;
   position: absolute !important;
   top: 55px !important;
   right: 15px !important;
@@ -392,7 +392,18 @@ h6 {
   padding: 10px 0 !important;
   background-color: #fff !important;
   overflow-y: auto !important;
-  transition: 0.3s !important;
+  transition: 0.3s !important; */
+  display: block !important;
+    position: absolute !important;
+    top: 63px !important;
+    right: 15px !important;
+    bottom: 12px !important;
+    left: 15px !important;
+    padding: 14px 6px !important;
+    background-color: #fff !important;
+    overflow-y: auto !important;
+    transition: 0.3s !important;
+
 }
 
 .navbar-mobile a,
@@ -416,7 +427,9 @@ h6 {
 .navbar-mobile .dropdown ul {
   position: static;
   display: none;
-  margin: 10px 20px;
+  /* margin: 10px 20px; */
+  
+  margin: -33px 56px;
   padding: 10px 0;
   z-index: 99;
   opacity: 1;
