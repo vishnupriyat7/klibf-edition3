@@ -189,10 +189,15 @@ $user_id = $user['id'];
                                     $image = $_FILES['logo']['tmp_name'];
                                     $imgContent = addslashes(file_get_contents($image));
                                 } else {
-                                    $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
+                                    $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
+                                    $status = "NOTOK";
                                 }
                             } else {
-                                $statusMsg = 'Please select an image file to upload.';
+                                if (!$logo) {
+                                    $msg = 'Please select an image file to upload.';
+                                    $status = "NOTOK";
+                                }
+                                // }
                             }
                             if (strlen($comp_name) < 5) {
                                 $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
@@ -203,7 +208,7 @@ $user_id = $user['id'];
                                 $status = "NOTOK";
                             }
                             if (strlen($head_mobile) < 8) {
-                                $msg = $msg . "Phone Must Be More Than 8 Char Length.<BR>";
+                                $msg = $msg . "Phone Must Be More Than 10 Char Length.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($head_email) < 3) {
@@ -240,7 +245,11 @@ $user_id = $user['id'];
                                                </div>"; //printing error if found in validation
                             } else {
                                 if ($user_id && $user_profile['id']) {
-                                    $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$prsn_mobile', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$imgContent' WHERE user_id = '$user_id'";
+                                    if ((!$imgContent) && $logo) {
+                                        $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark' WHERE user_id = '$user_id'";
+                                    } else {
+                                    $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$imgContent' WHERE user_id = '$user_id'";
+                                    }
                                 } else {
                                     $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$imgContent')";
                                 }
