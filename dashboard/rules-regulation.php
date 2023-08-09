@@ -143,7 +143,7 @@ $user_id = $user['id'];
                                             <ul>
                                                 <li>&emsp;<b>&emsp;2.1</b>&emsp; The process for booking of space at the Fair is on first-cum-first-serve basis</li><br>
                                                 <li>&emsp;<b>&emsp;2.2</b>&emsp; No application will be entertained after the last date of booking
-                                                    i.e.<span> 10th September 2023<span></span></li><br>
+                                                    i.e.<span> 20th August 2023.<span></span></li><br>
                                                 <li>&emsp;<b>&emsp;2.3</b>&emsp; In case Stall(s) is allotted to an exhibitor, the Organizer will provide duly
                                                     constructed Stall(s) having provision for display of books.</li><br>
                                                 <li>&emsp;<b>&emsp;2.4</b>&emsp; Exhibitors are obliged to allow the Organizer to see and check the Stall(s)
@@ -192,7 +192,7 @@ $user_id = $user['id'];
                                                 responsible for the cleanliness of their respective Stalls during the Fair.
                                             </li><br>
                                             <li>
-                                                <b><span>11.&emsp; Timings for Exhibition :</b> </span>Exhibition time - <b>10.00 a.m. to 08.00 p.m .</b> Exhibitors will
+                                                <b><span>11.&emsp; Timings for Exhibition :</b> </span>Exhibition time - <b>10.00 a.m. to 10.00 p.m .</b> Exhibitors will
                                                 be allowed entry into the Stalls from <b>9.00 a.m.</b> and they have to vacate the Stalls
                                                 latest by <b></b>11.00 p.m .</b> e very day during the Fair.
                                             </li><br>
