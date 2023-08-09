@@ -99,7 +99,7 @@ $user_id = $user['id'];
                             $prsn_addr = '';
                             $prsn_mobile = '';
                             $prsn_email = '';
-                            $whatsapp = '';                           
+                            $whatsapp = '';
                             $fascia = '';
                             $remark = '';
                         }
@@ -139,23 +139,29 @@ $user_id = $user['id'];
                             $prsn_email =
                                 mysqli_real_escape_string($con, $_POST['prsn_email']);
                             $whatsapp =
-                                mysqli_real_escape_string($con, $_POST['whatsapp']);                           
+                                mysqli_real_escape_string($con, $_POST['whatsapp']);
                             $fascia =
                                 mysqli_real_escape_string($con, $_POST['fascia']);
                             $remark =
-                                mysqli_real_escape_string($con, $_POST['remark']);                            
+                                mysqli_real_escape_string($con, $_POST['remark']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-                            // var_dump($comp_name);
-                            // $uploads_dir = 'logo-upload';
-                            // $tmp_name = $_FILES["logo"]["tmp_name"];
-                            // // basename() may prevent filesystem traversal attacks;
-                            // // further validation/sanitation of the filename may be appropriate
-                            // $name = basename($_FILES["logo"]["name"]);
-                            // $random_digit = rand(0000, 9999);
-                            // $new_file_name = "";
-                            // $new_file_name = $random_digit . $name;
-                            // move_uploaded_file($tmp_name, "$uploads_dir/$new_file_name");
+                            if (!empty($_FILES["logo"]["name"])) {
+                                // Get file info 
+                                $fileName = basename($_FILES["logo"]["name"]);
+                                $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                                // Allow certain file formats 
+                                $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+                                if (in_array($fileType, $allowTypes)) {
+                                    $image = $_FILES['logo']['tmp_name'];
+                                    $imgContent = addslashes(file_get_contents($image)); 
+                                } else {
+                                    $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
+                                }
+                            } else {
+                                $statusMsg = 'Please select an image file to upload.';
+                            }
                             if (strlen($comp_name) < 5) {
                                 $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
                                 $status = "NOTOK";
@@ -202,9 +208,9 @@ $user_id = $user['id'];
                                                </div>"; //printing error if found in validation
                             } else {
                                 if ($user_id && $user_profile['id']) {
-                                    $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$prsn_mobile', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', WHERE user_id = '$user_id'";
+                                    $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$prsn_mobile', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$imgContent' WHERE user_id = '$user_id'";
                                 } else {
-                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id')";
+                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$imgContent')";
                                 }
                                 $result = mysqli_query($con, $query);
                                 if ($result) {
@@ -257,6 +263,7 @@ $user_id = $user['id'];
                                                 <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required" value="<?= $book_lang; ?>">
                                             </div>
                                             <div class="form-group col-12">
+                                            <br>
                                                 <label><b>Nature of Organization</b></label>
                                             </div>
                                             <div class="row col-12">
@@ -271,7 +278,9 @@ $user_id = $user['id'];
                                                     <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed" value="<?= $mgr_pub_hse; ?>">
                                                 </div>
                                             </div>
+                                
                                             <div class="col-6">
+                                            </br>
                                                 <div>
                                                     <label><b>Head of the Publishing House / Organization</b></label>
                                                 </div>
@@ -292,6 +301,7 @@ $user_id = $user['id'];
                                                 </div>
                                             </div>
                                             <div class="col-6">
+                                            </br>
                                                 <div>
                                                     <label><b>Single Point of Contact</b></label>
                                                     <input type="checkbox" name="same-check" id="same-check" onclick="sameCheck();">
@@ -373,17 +383,22 @@ $user_id = $user['id'];
                                                         <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled value="<?= $total_amt; ?>">
                                                     </div>
                                                 </div>
-                                            </div> -->
+                                            </div> -->                                            
                                             <div class="col-6">
-                                <label>*Please upload Logo of Publishing House / Organization</label>
-                            </div>
+                                            </br>
+                                                <label>*Please upload Logo of Publishing House / Organization</label>
+                                            </div>
                                             <div class="form-group col-6">
-                                <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo">
-                            </div>
+                                            </br>
+                                                <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo">
+                                                <!-- <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo"> -->
+                                            </div>
                                             <div class="form-group col-4">
+                                            </br>
                                                 <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA / Display Text" required="required" value="<?= $fascia; ?>">
                                             </div>
                                             <div class="form-group col-8">
+                                            </br>
                                                 <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>">
                                             </div>
                                         </div><br>

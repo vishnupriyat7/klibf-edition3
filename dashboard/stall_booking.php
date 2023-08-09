@@ -38,7 +38,7 @@ $user_id = $user['id'];
                         $status = "OK";
                         $msg = "";
                         if ($user_id) {
-                            $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                            $sql1 = "SELECT * FROM stall_booking WHERE user_id = ?;";
                             $stmt1 = $con->prepare($sql1);
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
@@ -56,7 +56,7 @@ $user_id = $user['id'];
                             $stall3x3 = 0;
                             $stall3x2 = 0;
                         }
-                        if (isset($_POST['save'])) {
+                        if (isset($_POST['save_stall'])) {
                             $stall3x3 =
                                 mysqli_real_escape_string($con, $_POST['stall3x3']);
                             $stall3x2 =
@@ -65,9 +65,9 @@ $user_id = $user['id'];
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $errormsg = "";
                             if ($user_id) {
-                                $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_at = '$date', WHERE user_id = '$user_id'";
+                                $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
                             } else {
-                                $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, stalls_3x3, stalls_3x2, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', '$stall3x2', '$stall3x3', 'E', '$date', '$fascia', '$remark', '$user_id')";
+                                $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
                             }
                             $result = mysqli_query($con, $query);
                             if ($result) {
@@ -86,8 +86,6 @@ $user_id = $user['id'];
                             }
                         }
                         ?>
-
-
                         <div class="card-body p-4">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="personalDetails" role="tabpanel">
@@ -158,13 +156,8 @@ $user_id = $user['id'];
                                         </div><br>
 
                                         <div class="col-lg-12">
-
                                             <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
-                                            <!-- <button type="submit" class="btn btn-bordered active btn-block mt-3" name="submit" id="submit">Submit</button> -->
-                                            <!-- <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span> -->
-
-
-                                        </div>
+                                                                </div>
                                     </form>
                                 </div>
                                 <!--end tab-pane-->
