@@ -1,6 +1,12 @@
+<?php include "header.php";
+include "sidebar_publisher.php";
+$user_id = $user['id'];
+// var_dump($user_id );die;
+?>
 <style>
     .card {
         max-width: 100%;
+        
     }
 
     .card table {
@@ -10,7 +16,7 @@
         width: 70%;
         border: 1px solid #ddd;
         margin-left: 5%;
-        margin-top: 2%;
+        margin-top: 1%;
         font-family: Arial, Helvetica, sans-serif;
         color: black;
     }
@@ -49,6 +55,7 @@
         margin-top: 1%;
         text-align: start;
         margin-left: 6%;
+        margin-bottom: 3%;
 
     }
 </style>
@@ -57,10 +64,7 @@
 
 
 
-<?php include "header.php";
-include "sidebar_publisher.php";
-$user_id = $user['id'];
-?>
+
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -96,67 +100,76 @@ $user_id = $user['id'];
             if ($user_id) {
                 // $sql1 = "SELECT * FROM users_profile WHERE user_id = ?; ";
                 $sql1 =  "SELECT up.*, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
+                // var_dump($sql1);
                 $stmt1 = $con->prepare($sql1);
-                $stmt1->bind_param("s", $user_id);
+
+                $stmt1->bind_param("i", $user_id);
+                // var_dump($stmt1);
                 $stmt1->execute();
                 $result1 = $stmt1->get_result();
                 $user_profile = $result1->fetch_assoc();
-                $comp_name = $user_profile['org_name'];
-                $estb_year = $user_profile['estb_year'];
-                $reg_no = $user_profile['reg_no'];
-                $gst_no = $user_profile['gst_no'];
-                $book_lang = $user_profile['book_lang'];
-                $title_no = $user_profile['title_no'];
-                $org_nature = $user_profile['org_nature'];
-                $mgr_pub_hse = $user_profile['mgr_house_name'];
-                $head_name = $user_profile['head_org_name'];
-                $head_addr = $user_profile['head_org_addr'];
-                $head_mobile = $user_profile['head_org_mobile'];
-                $head_email = $user_profile['head_org_email'];
-                $head_site = $user_profile['head_org_website'];
-                $prsn_name = $user_profile['cntct_prsn_name'];
-                $prsn_addr = $user_profile['cntct_prsn_addr'];
-                $prsn_mobile = $user_profile['cntct_prsn_mobile'];
-                $prsn_email = $user_profile['cntct_prsn_email'];
-                $whatsapp = $user_profile['cntct_prsn_watsapp'];
-                $stall3x3 = $user_profile['stalls_3x3'];
-                $stall3x2 = $user_profile['stalls_3x2'];
-                $fascia = $user_profile['fascia'];
-                $remark = $user_profile['remarks'];
-                $amt3x3 = 10000;
-                $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
-                $amt3x2 = 7500;
-                $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
-                $total_amt = $tot_amt3x3 + $tot_amt3x2;
-                if ($org_nature == 'A') {
-                    $name_org = 'Publisher and Distributer';
-                } else if ($org_nature == 'P') {
-                    $name_org = 'Publisher';
+                // var_dump($user_profile);
+                if ($user_profile) {
+                    $comp_name = $user_profile['org_name'];
+                    $estb_year = $user_profile['estb_year'];
+                    $reg_no = $user_profile['reg_no'];
+                    $gst_no = $user_profile['gst_no'];
+                    $book_lang = $user_profile['book_lang'];
+                    $title_no = $user_profile['title_no'];
+                    $org_nature = $user_profile['org_nature'];
+                    $mgr_pub_hse = $user_profile['mgr_house_name'];
+                    $head_name = $user_profile['head_org_name'];
+                    $head_addr = $user_profile['head_org_addr'];
+                    $head_mobile = $user_profile['head_org_mobile'];
+                    $head_email = $user_profile['head_org_email'];
+                    $head_site = $user_profile['head_org_website'];
+                    $prsn_name = $user_profile['cntct_prsn_name'];
+                    $prsn_addr = $user_profile['cntct_prsn_addr'];
+                    $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                    $prsn_email = $user_profile['cntct_prsn_email'];
+                    $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                    $stall3x3 = $user_profile['stalls_3x3'];
+                    $stall3x2 = $user_profile['stalls_3x2'];
+                    $fascia = $user_profile['fascia'];
+                    $remark = $user_profile['remarks'];
+                    $logo = base64_encode($user_profile['logo']);
+                    $amt3x3 = 10000;
+                    $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
+                    $amt3x2 = 7500;
+                    $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
+                    $total_amt = $tot_amt3x3 + $tot_amt3x2;
+                    $prof_reg_date= $user_profile['updated_at'];
+                    $stall_reg_date= $user_profile['updated_date'];
+                    if ($org_nature == 'A') {
+                        $name_org = 'Publisher and Distributer';
+                    } else if ($org_nature == 'P') {
+                        $name_org = 'Publisher';
+                    }
+                } else {
+                    $tot_amt3x3 = $tot_amt3x2 = $total_amt = 0;
+                    $comp_name = '';
+                    $estb_year = '';
+                    $reg_no = '';
+                    $gst_no = '';
+                    $book_lang = '';
+                    $title_no = '';
+                    $org_nature = '';
+                    $mgr_pub_hse = '';
+                    $head_name = '';
+                    $head_addr = '';
+                    $head_mobile = '';
+                    $head_email = '';
+                    $head_site = '';
+                    $prsn_name = '';
+                    $prsn_addr = '';
+                    $prsn_mobile = '';
+                    $prsn_email = '';
+                    $whatsapp = '';
+                    $stall3x3 = 0;
+                    $stall3x2 = 0;
+                    $fascia = '';
+                    $remark = '';
                 }
-            } else {
-                $tot_amt3x3 = $tot_amt3x2 = $total_amt = 0;
-                $comp_name = '';
-                $estb_year = '';
-                $reg_no = '';
-                $gst_no = '';
-                $book_lang = '';
-                $title_no = '';
-                $org_nature = '';
-                $mgr_pub_hse = '';
-                $head_name = '';
-                $head_addr = '';
-                $head_mobile = '';
-                $head_email = '';
-                $head_site = '';
-                $prsn_name = '';
-                $prsn_addr = '';
-                $prsn_mobile = '';
-                $prsn_email = '';
-                $whatsapp = '';
-                $stall3x3 = 0;
-                $stall3x2 = 0;
-                $fascia = '';
-                $remark = '';
             }
             ?>
 
@@ -177,7 +190,7 @@ $user_id = $user['id'];
                                         <label>Name:</label>
                                     </td>
                                     <td>
-                                        <label id="org_name_lab">'<?= $comp_name; ?>'</label>
+                                        <label id="org_name_lab"><?= $comp_name; ?></label>
                                         <input type="text" id="org_name_prv" hidden>
                                     </td>
                                 </tr>
@@ -186,7 +199,7 @@ $user_id = $user['id'];
                                         <label>Year of Establishment</label>
                                     </td>
                                     <td>
-                                        <label id="yers_lab"></label>
+                                        <label id="yers_lab"><?= $estb_year; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -194,7 +207,7 @@ $user_id = $user['id'];
                                         <label>Registration No.</label>
                                     </td>
                                     <td>
-                                        <label id="reg_lab"></label>
+                                        <label id="reg_lab"><?= $reg_no; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -202,7 +215,7 @@ $user_id = $user['id'];
                                         <label>GST No.</label>
                                     </td>
                                     <td>
-                                        <label id="gst_lab"></label>
+                                        <label id="gst_lab"><?= $gst_no; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -210,7 +223,7 @@ $user_id = $user['id'];
                                         <label>Language(s) in which books are published:</label>
                                     </td>
                                     <td>
-                                        <label id="lang_lab"></label>
+                                        <label id="lang_lab"><?= $book_lang; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -218,7 +231,7 @@ $user_id = $user['id'];
                                         <label>No.of Titles Published</label>
                                     </td>
                                     <td>
-                                        <label id="titl_lab"></label>
+                                        <label id="titl_lab"><?= $title_no; ?></label>
                                     </td>
                                 </tr>
                                 <tr id="nature_row">
@@ -226,7 +239,7 @@ $user_id = $user['id'];
                                         <label>Nature of Organization</label>
                                     </td>
                                     <td>
-                                        <label id="natr_lab"></label>
+                                        <label id="natr_lab"><?= $name_org; ?></label>
                                     </td>
                                 </tr>
                                 <tr id="nature_new"></tr>
@@ -241,7 +254,7 @@ $user_id = $user['id'];
                                         <label>Name</label>
                                     </td>
                                     <td>
-                                        <label id="head_nam_lab"></label>
+                                        <label id="head_nam_lab"><?= $head_name; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -249,7 +262,7 @@ $user_id = $user['id'];
                                         <label>Address</label>
                                     </td>
                                     <td>
-                                        <label id="head_addr_lab"></label>
+                                        <label id="head_addr_lab"><?= $head_addr; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -257,7 +270,7 @@ $user_id = $user['id'];
                                         <label>Mobile</label>
                                     </td>
                                     <td>
-                                        <label id="head_mob_lab"></label>
+                                        <label id="head_mob_lab"><?= $head_mobile; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -265,7 +278,7 @@ $user_id = $user['id'];
                                         <label>Email</label>
                                     </td>
                                     <td>
-                                        <label id="head_email_lab"></label>
+                                        <label id="head_email_lab"><?= $head_email; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -273,7 +286,7 @@ $user_id = $user['id'];
                                         <label>Website</label>
                                     </td>
                                     <td>
-                                        <label id="head_site_lab"></label>
+                                        <label id="head_site_lab"><?= $head_site; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -286,7 +299,7 @@ $user_id = $user['id'];
                                         <label>Name</label>
                                     </td>
                                     <td>
-                                        <label id="prsn_nam_lab"></label>
+                                        <label id="prsn_nam_lab"><?= $prsn_name; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -294,7 +307,7 @@ $user_id = $user['id'];
                                         <label>Address</label>
                                     </td>
                                     <td>
-                                        <label id="prsn_addr_lab"></label>
+                                        <label id="prsn_addr_lab"><?= $prsn_addr; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -302,7 +315,7 @@ $user_id = $user['id'];
                                         <label>Mobile</label>
                                     </td>
                                     <td>
-                                        <label id="prsn_mob_lab"></label>
+                                        <label id="prsn_mob_lab"><?= $prsn_mobile; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -310,7 +323,7 @@ $user_id = $user['id'];
                                         <label>Email</label>
                                     </td>
                                     <td>
-                                        <label id="prsn_email_lab"></label>
+                                        <label id="prsn_email_lab"><?= $prsn_email; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -318,15 +331,15 @@ $user_id = $user['id'];
                                         <label>Whatsapp No.</label>
                                     </td>
                                     <td>
-                                        <label id="prsn_wp_lab"></label>
+                                        <label id="prsn_wp_lab"><?= $whatsapp; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label>Facia</label>
+                                        <label>Facia / Display Text</label>
                                     </td>
                                     <td>
-                                        <label id="fascia_lab"></label>
+                                        <label id="fascia_lab"><?= $fascia; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -334,7 +347,23 @@ $user_id = $user['id'];
                                         <label>Remarks</label>
                                     </td>
                                     <td>
-                                        <label id="rmrk_lab"></label>
+                                        <label id="rmrk_lab"><?= $remark; ?></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Stalls Booked 3*3</label>
+                                    </td>
+                                    <td>
+                                        <label id="rmrk_lab"><?= $stall3x3; ?></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Stalls Booked 3*2</label>
+                                    </td>
+                                    <td>
+                                        <label id="rmrk_lab"><?= $stall3x2; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -342,7 +371,7 @@ $user_id = $user['id'];
                                         Estimated amount for stall booking</td>
                                     </td>
                                     <td>
-                                        <label id="3x3amt_lab"></label>
+                                        <label id="3x3amt_lab"><?= $total_amt; ?></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -350,9 +379,26 @@ $user_id = $user['id'];
                                         <label> Logo of Publishing House / Organization</label>
                                     </td>
                                     <td>
-                                        <label id="logo_lab"></label>
+                                        <label id="logo_lab"><img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh"></label>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <label> Profile Registration Date</label>
+                                    </td>
+                                    <td>
+                                        <label id="logo_lab"><?=  $prof_reg_date; ?></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label> Stall Booking Date</label>
+                                    </td>
+                                    <td>
+                                        <label id="logo_lab"><?=  $stall_reg_date; ?></label>
+                                    </td>
+                                </tr>
+
                             </table>
                             <div class="button">
                                 <button type="submit" name="print" class="btn btn-primary" id="print">Print</button>
