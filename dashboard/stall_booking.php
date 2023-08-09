@@ -122,7 +122,7 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="10000" id="amt3x3" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>">
+                                                        <input type="number" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>" max="5">
                                                     </div>
                                                     <div class="col-3">
                                                         <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled value="<?= $tot_amt3x3; ?>">
@@ -136,7 +136,7 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="7500" id="amt3x2" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>">
+                                                        <input type="number" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>" max="5">
                                                     </div>
                                                     <div class="col-3">
                                                         <input type="text" class="form-control text-right" name="rate_amt3x2" id="rate_amt3x2" placeholder="00" disabled value="<?= $tot_amt3x2; ?>">
@@ -239,6 +239,23 @@ $user_id = $user['id'];
             $("#rate_amt3x2").val(tot_amt3x2);
             var total_amt = tot_amt3x3 + tot_amt3x2;
             $("#totamt").val(total_amt);
+            var tot_stall = stall_count3x3 + stall_count3x2;
+            if(stall_count3x3 > 5) {
+                alert("You can't choose more than 5 stalls");
+                $("#stall3x3").val("");
+            } 
+            if (stall_count3x2 > 5){
+                alert("You can't choose more than 5 stalls");
+                $("#stall3x2").val("");
+            } 
+            if(tot_stall > 5) {
+                alert("You can select only 5 stalls altogether");
+                $("#stall3x3").val("");
+                $("#stall3x2").val("");
+                $("#rate_amt").val("");
+                $("#rate_amt3x2").val("");
+                $("#totamt").val("");
+            }
         }
 
         // function checkTerm() {
