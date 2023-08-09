@@ -147,12 +147,32 @@ h6 {
   font-weight: bold;
   margin-top: -15px;
 }
-
+@media (max-width: 1024px) {
+  #header.header-scrolled {
+    padding: 12px 0;
+  }
+  #header .logo img {
+    padding: 0;
+    margin: 0;
+    max-height: 40px;
+}
+  #header .count {
+    font-size: 109%;
+    font-weight: bold;
+    margin-left: -2%;
+  }
+  #header p {
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: -2px;
+  }
+}
 @media (max-width: 768px) {
   #header.header-scrolled {
     padding: 15px 0;
   }
 }
+
 @media (max-width: 414px) {
   #header.header-scrolled {
     padding: 15px 0;
