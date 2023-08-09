@@ -26,7 +26,7 @@ if (isset($_GET['verification'])) {
 
 if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     $sql = "SELECT * FROM users WHERE email='{$email}' AND password='{$password}'";
     $result = mysqli_query($conn, $sql);
@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="content-wthree">
                         <h2>Login Now</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <p>Welcome to Kerala Legislature International Book Festival Edition II.</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" required>

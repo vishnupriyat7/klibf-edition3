@@ -2,37 +2,30 @@
 include "sidebar_publisher.php";
 $user_id = $user['id'];
 ?>
-
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Profile</h4>
-
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
                                 <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
-
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>
             <!-- end page title -->
-
             <br><br>
             <div class="row">
-
                 <!--end col-->
                 <div class="col-xxl-9">
                     <div class="card mt-xxl-n5">
@@ -43,13 +36,8 @@ $user_id = $user['id'];
                                                 <i class="fas fa-home"></i> New Blog
                                             </a>
                                         </li>
-
-
                                     </ul>
                                 </div> -->
-
-
-
                         <?php
                         $status = "OK";
                         $msg = "";
@@ -78,16 +66,9 @@ $user_id = $user['id'];
                             $prsn_mobile = $user_profile['cntct_prsn_mobile'];
                             $prsn_email = $user_profile['cntct_prsn_email'];
                             $whatsapp = $user_profile['cntct_prsn_watsapp'];
-                            $stall3x3 = $user_profile['stalls_3x3'];
-                            $stall3x2 = $user_profile['stalls_3x2'];
                             $fascia = $user_profile['fascia'];
                             $remark = $user_profile['remarks'];
-                            $amt3x3 = 10000;
-                            $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
-                            $amt3x2 = 7500;
-                            $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
-                            $total_amt = $tot_amt3x3 + $tot_amt3x2;
-                            if($org_nature == 'A') {
+                            if ($org_nature == 'A') {
                                 $select0 = '';
                                 $selecta = 'selected';
                                 $selectp = '';
@@ -101,7 +82,6 @@ $user_id = $user['id'];
                                 $selectp = '';
                             }
                         } else {
-                            $tot_amt3x3 = $tot_amt3x2 = $total_amt = 0;
                             $comp_name = '';
                             $estb_year = '';
                             $reg_no = '';
@@ -119,14 +99,11 @@ $user_id = $user['id'];
                             $prsn_addr = '';
                             $prsn_mobile = '';
                             $prsn_email = '';
-                            $whatsapp = '';
-                            $stall3x3 = 0;
-                            $stall3x2 = 0;
+                            $whatsapp = '';                           
                             $fascia = '';
                             $remark = '';
                         }
                         if (isset($_POST['save'])) {
-
                             $comp_name =
                                 mysqli_real_escape_string($con, $_POST['comp_name']);
                             $estb_year =
@@ -162,18 +139,13 @@ $user_id = $user['id'];
                             $prsn_email =
                                 mysqli_real_escape_string($con, $_POST['prsn_email']);
                             $whatsapp =
-                                mysqli_real_escape_string($con, $_POST['whatsapp']);
-                            $stall3x3 =
-                                mysqli_real_escape_string($con, $_POST['stall3x3']);
-                            $stall3x2 =
-                                mysqli_real_escape_string($con, $_POST['stall3x2']);
+                                mysqli_real_escape_string($con, $_POST['whatsapp']);                           
                             $fascia =
                                 mysqli_real_escape_string($con, $_POST['fascia']);
                             $remark =
-                                mysqli_real_escape_string($con, $_POST['remark']);
-                            // }
+                                mysqli_real_escape_string($con, $_POST['remark']);                            
                             $current_date = new DateTime();
-                            $date = date_format($current_date,"Y-m-d H:i:s");
+                            $date = date_format($current_date, "Y-m-d H:i:s");
                             // var_dump($comp_name);
                             // $uploads_dir = 'logo-upload';
                             // $tmp_name = $_FILES["logo"]["tmp_name"];
@@ -229,10 +201,10 @@ $user_id = $user['id'];
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                if ($user_id) {
-                                    $query = "UPDATE users_profile set org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$prsn_mobile', stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', user_id = '$user_id'";
+                                if ($user_id && $user_profile['id']) {
+                                    $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$prsn_mobile', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', WHERE user_id = '$user_id'";
                                 } else {
-                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, stalls_3x3, stalls_3x2, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', '$stall3x2', '$stall3x3', 'E', '$date', '$fascia', '$remark', '$user_id')";
+                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id')";
                                 }
                                 $result = mysqli_query($con, $query);
                                 if ($result) {
@@ -250,13 +222,8 @@ $user_id = $user['id'];
                                                </div>";
                                 }
                             }
-                            // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                            //     print $errormsg;
-                            // }
                         }
                         ?>
-
-
                         <div class="card-body p-4">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="personalDetails" role="tabpanel">
@@ -352,7 +319,7 @@ $user_id = $user['id'];
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-12">
+                                            <!-- <div class="form-group col-12">
                                                 <label><b>Choose your cubicle</b></label>
                                             </div>
                                             <div class="form-group col-12">
@@ -406,15 +373,15 @@ $user_id = $user['id'];
                                                         <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled value="<?= $total_amt; ?>">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- <div class="col-6">
+                                            </div> -->
+                                            <div class="col-6">
                                 <label>*Please upload Logo of Publishing House / Organization</label>
-                            </div> -->
-                                            <!-- <div class="form-group col-6">
+                            </div>
+                                            <div class="form-group col-6">
                                 <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo">
-                            </div> -->
+                            </div>
                                             <div class="form-group col-4">
-                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA" required="required" value="<?= $fascia; ?>">
+                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA / Display Text" required="required" value="<?= $fascia; ?>">
                                             </div>
                                             <div class="form-group col-8">
                                                 <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>">
@@ -426,9 +393,9 @@ $user_id = $user['id'];
                                         </div> -->
                                         <div class="col-lg-12">
 
-                                            <button type="submit" name="save" class="btn btn-primary"  id="save">Save</button>
+                                            <button type="submit" name="save" class="btn btn-primary" id="save">Save</button>
                                             <button type="submit" class="btn btn-bordered active btn-block mt-3" name="submit" id="submit">Submit</button>
-                                                <!-- <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span> -->
+                                            <!-- <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span> -->
 
 
                                         </div>

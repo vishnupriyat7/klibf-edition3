@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm-password']);
     $contactno = mysqli_real_escape_string($conn, $_POST['contactno']);
-    $user_type = 'P';
+    $user_type = mysqli_real_escape_string($conn, $_POST['userType']);
     // $code = mysqli_real_escape_string($conn, md5(rand()));
     $code = "";
 
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
                 echo "</div>";
-                $msg = "<div class='alert alert-info'>You have Successfully registered. Your Login Credentials sent to your Email</div>";
+                $msg = "<div class='alert alert-info'>You have Successfully registered. Your Login Credentials sent to your Email. You can <b><a href='login.php'>Login</a></b> here</div>";
             } else {
                 $msg = "<div class='alert alert-danger'>Something wrong went.</div>";
             }
@@ -109,14 +109,17 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="content-wthree">
                         <h2>Register Now</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                        <p>Welcome to Kerala Legislature International Book Festival Edition II.</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
-                            <input type="radio" id="publisher" name="user_type" value="P">
-                            <label for="publisher">Publisher / Distributer</label><br>
-                            <input type="radio" id="individual" name="user_type" value="I">
-                            <label for="individual">Individual</label><br>
-
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="publisher" value="P" name="userType" required>
+                                <label class="form-check-label" for="publisher">Publisher</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="inividual" value="I" name="userType" required>
+                                <label class="form-check-label" for="inividual">Inividual</label>
+                            </div>
                             <input type="text" class="name" name="name" placeholder="Enter Your Name" value="<?php if (isset($_POST['submit'])) {
                                                                                                                     echo $name;
                                                                                                                 } ?>" required>

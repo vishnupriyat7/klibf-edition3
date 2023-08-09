@@ -41,8 +41,6 @@ include "../z_db.php";
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-
-
                 <li class="nav-item">
                     <a href="index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards"> Dashboard </span></a>
                 </li>
@@ -50,41 +48,17 @@ include "../z_db.php";
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="rules-regulation.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
                     </a>
-                   
                 </li>
-
-
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="profile_add_edit.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
-                    <!-- <div class="menu-dropdown collapse" id="sidebarB" style="">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="add-blog.php" class="nav-link" data-key="t-one-page"> Add New </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="bloglist.php" class="nav-link" data-key="t-nft-landing">Blog lists </a>
-                            </li>
-                        </ul>
-                    </div> -->
                 </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
-                        <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Manage Services</span>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="stall_booking.php">
+                        <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Booking</span>
                     </a>
-                    <div class="menu-dropdown collapse" id="sidebarLanding" style="">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="add-service.php" class="nav-link" data-key="t-one-page"> Add Service </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="services.php" class="nav-link" data-key="t-nft-landing"> Services List </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li> -->
+                </li>
 
 
                 <!-- <li class="nav-item">
