@@ -3,7 +3,54 @@
         max-width: 100%;
     }
 
-    
+    .card table {
+
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 70%;
+        border: 1px solid #ddd;
+        margin-left: 5%;
+        margin-top: 2%;
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+    }
+
+    #preview td,
+    th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        width: 50%;
+    }
+
+    #preview th {
+        text-align: center;
+        /* font-size: xx-large; */
+        color: black;
+        /* font-weight: bold; */
+    }
+
+
+    #preview tr:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
+
+    #preview tr:hover {
+        background-color: #ddd;
+    }
+
+    .td-head {
+        text-align: center;
+        font-size: medium;
+        color: black;
+        font-weight: bold;
+    }
+
+    .button {
+        margin-top: 1%;
+        text-align: start;
+        margin-left: 6%;
+
+    }
 </style>
 
 
@@ -26,7 +73,7 @@ $user_id = $user['id'];
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h5 class="mb-sm-0">Terms & Conditions</h5>
+                        <h5 class="mb-sm-0">Report</h5>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
@@ -43,13 +90,278 @@ $user_id = $user['id'];
             <!-- end page title -->
 
 
+            <?php
+            $status = "OK";
+            $msg = "";
+            if ($user_id) {
+                // $sql1 = "SELECT * FROM users_profile WHERE user_id = ?; ";
+                $sql1 =  "SELECT up.*, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
+                $stmt1 = $con->prepare($sql1);
+                $stmt1->bind_param("s", $user_id);
+                $stmt1->execute();
+                $result1 = $stmt1->get_result();
+                $user_profile = $result1->fetch_assoc();
+                $comp_name = $user_profile['org_name'];
+                $estb_year = $user_profile['estb_year'];
+                $reg_no = $user_profile['reg_no'];
+                $gst_no = $user_profile['gst_no'];
+                $book_lang = $user_profile['book_lang'];
+                $title_no = $user_profile['title_no'];
+                $org_nature = $user_profile['org_nature'];
+                $mgr_pub_hse = $user_profile['mgr_house_name'];
+                $head_name = $user_profile['head_org_name'];
+                $head_addr = $user_profile['head_org_addr'];
+                $head_mobile = $user_profile['head_org_mobile'];
+                $head_email = $user_profile['head_org_email'];
+                $head_site = $user_profile['head_org_website'];
+                $prsn_name = $user_profile['cntct_prsn_name'];
+                $prsn_addr = $user_profile['cntct_prsn_addr'];
+                $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                $prsn_email = $user_profile['cntct_prsn_email'];
+                $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                $stall3x3 = $user_profile['stalls_3x3'];
+                $stall3x2 = $user_profile['stalls_3x2'];
+                $fascia = $user_profile['fascia'];
+                $remark = $user_profile['remarks'];
+                $amt3x3 = 10000;
+                $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
+                $amt3x2 = 7500;
+                $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
+                $total_amt = $tot_amt3x3 + $tot_amt3x2;
+                if ($org_nature == 'A') {
+                    $name_org = 'Publisher and Distributer';
+                } else if ($org_nature == 'P') {
+                    $name_org = 'Publisher';
+                }
+            } else {
+                $tot_amt3x3 = $tot_amt3x2 = $total_amt = 0;
+                $comp_name = '';
+                $estb_year = '';
+                $reg_no = '';
+                $gst_no = '';
+                $book_lang = '';
+                $title_no = '';
+                $org_nature = '';
+                $mgr_pub_hse = '';
+                $head_name = '';
+                $head_addr = '';
+                $head_mobile = '';
+                $head_email = '';
+                $head_site = '';
+                $prsn_name = '';
+                $prsn_addr = '';
+                $prsn_mobile = '';
+                $prsn_email = '';
+                $whatsapp = '';
+                $stall3x3 = 0;
+                $stall3x2 = 0;
+                $fascia = '';
+                $remark = '';
+            }
+            ?>
+
+
             <div class="row">
                 <div class="col-xxl-12 mt-0">
                     <!-- Terms-Condition Start-->
                     <div class="card">
+                        <form>
+                            <table id="preview">
+                                <tr>
+                                    <td class="td-head" colspan="2">
+                                        <label>House / Organization</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Name:</label>
+                                    </td>
+                                    <td>
+                                        <label id="org_name_lab">'<?= $comp_name; ?>'</label>
+                                        <input type="text" id="org_name_prv" hidden>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Year of Establishment</label>
+                                    </td>
+                                    <td>
+                                        <label id="yers_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Registration No.</label>
+                                    </td>
+                                    <td>
+                                        <label id="reg_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>GST No.</label>
+                                    </td>
+                                    <td>
+                                        <label id="gst_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Language(s) in which books are published:</label>
+                                    </td>
+                                    <td>
+                                        <label id="lang_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>No.of Titles Published</label>
+                                    </td>
+                                    <td>
+                                        <label id="titl_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr id="nature_row">
+                                    <td>
+                                        <label>Nature of Organization</label>
+                                    </td>
+                                    <td>
+                                        <label id="natr_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr id="nature_new"></tr>
 
-                       
+                                <tr>
+                                    <td class="td-head" colspan="2">
+                                        <label>Head of the Publishing House / Organization</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Name</label>
+                                    </td>
+                                    <td>
+                                        <label id="head_nam_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Address</label>
+                                    </td>
+                                    <td>
+                                        <label id="head_addr_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Mobile</label>
+                                    </td>
+                                    <td>
+                                        <label id="head_mob_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Email</label>
+                                    </td>
+                                    <td>
+                                        <label id="head_email_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Website</label>
+                                    </td>
+                                    <td>
+                                        <label id="head_site_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-head" colspan="2">
+                                        <label>Contact (In-charge) person for the fair</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Name</label>
+                                    </td>
+                                    <td>
+                                        <label id="prsn_nam_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Address</label>
+                                    </td>
+                                    <td>
+                                        <label id="prsn_addr_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Mobile</label>
+                                    </td>
+                                    <td>
+                                        <label id="prsn_mob_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Email</label>
+                                    </td>
+                                    <td>
+                                        <label id="prsn_email_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Whatsapp No.</label>
+                                    </td>
+                                    <td>
+                                        <label id="prsn_wp_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Facia</label>
+                                    </td>
+                                    <td>
+                                        <label id="fascia_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Remarks</label>
+                                    </td>
+                                    <td>
+                                        <label id="rmrk_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Estimated amount for stall booking</td>
+                                    </td>
+                                    <td>
+                                        <label id="3x3amt_lab"></label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label> Logo of Publishing House / Organization</label>
+                                    </td>
+                                    <td>
+                                        <label id="logo_lab"></label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="button">
+                                <button type="submit" name="print" class="btn btn-primary" id="print">Print</button>
+                            </div>
+
+                        </form>
+
                     </div>
+
                 </div>
                 <!-- Terms-Condition End-->
             </div>
