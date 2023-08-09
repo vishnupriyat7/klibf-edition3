@@ -43,9 +43,9 @@ $user_id = $user['id'];
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
                             $result1 = $stmt1->get_result();
-                            $user_profile = $result1->fetch_assoc();
-                            $stall3x3 = $user_profile['stalls_3x3'];
-                            $stall3x2 = $user_profile['stalls_3x2'];
+                            $user_stall = $result1->fetch_assoc();
+                            $stall3x3 = $user_stall['stalls_3x3'];
+                            $stall3x2 = $user_stall['stalls_3x2'];
                             $amt3x3 = 10000;
                             $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
                             $amt3x2 = 7500;
@@ -64,7 +64,7 @@ $user_id = $user['id'];
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $errormsg = "";
-                            if ($user_id) {
+                            if ($user_id && $user_stall) {
                                 $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
                             } else {
                                 $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
@@ -73,7 +73,7 @@ $user_id = $user['id'];
                             if ($result) {
                                 $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your Profile Details is Successfully Saved.
+                                                Your booking is Successfully Saved.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                ";

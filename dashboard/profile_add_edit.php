@@ -69,6 +69,7 @@ $user_id = $user['id'];
                             $whatsapp = $user_profile['cntct_prsn_watsapp'];
                             $fascia = $user_profile['fascia'];
                             $remark = $user_profile['remarks'];
+                            $logo = base64_encode($user_profile['logo']);
                             if ($org_nature == 'A') {
                                 $select0 = '';
                                 $selecta = 'selected';
@@ -81,6 +82,17 @@ $user_id = $user['id'];
                                 $select0 = 'selected';
                                 $selecta = '';
                                 $selectp = '';
+                            }
+                            if (!$logo) {
+                                $hide = "";
+                            } else {
+                                $hide = "hidden";
+                            }
+                            $sub_status = $user_profile['submitted'];
+                            if ($sub_status == 0) {
+                                $edit = '';
+                            } else {
+                                $edit = 'disabled';
                             }
                         } else {
                             $comp_name = '';
@@ -103,6 +115,25 @@ $user_id = $user['id'];
                             $whatsapp = '';
                             $fascia = '';
                             $remark = '';
+                        }
+                        if (isset($_POST['submit-form'])) {
+                            $query = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
+                            $resultSub = mysqli_query($con, $query);
+                            if ($resultSub) {
+                                $errormsg = "
+                          <div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                            Your Profile Details is Successfully Submitted. Further edit is not possible.
+                                            <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                            </div>
+                                          
+                           ";
+                            } else {
+                                $errormsg = "
+                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>";
+                            }
                         }
                         if (isset($_POST['save'])) {
                             $comp_name =
@@ -156,7 +187,7 @@ $user_id = $user['id'];
                                 $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
                                     $image = $_FILES['logo']['tmp_name'];
-                                    $imgContent = addslashes(file_get_contents($image)); 
+                                    $imgContent = addslashes(file_get_contents($image));
                                 } else {
                                     $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
                                 }
@@ -220,7 +251,53 @@ $user_id = $user['id'];
                                                 Your Profile Details is Successfully Saved.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
+                                              
                                ";
+                                    $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                                    $stmt1 = $con->prepare($sql1);
+                                    $stmt1->bind_param("s", $user_id);
+                                    $stmt1->execute();
+                                    $result1 = $stmt1->get_result();
+                                    $user_profile = $result1->fetch_assoc();
+                                    $comp_name = $user_profile['org_name'];
+                                    $estb_year = $user_profile['estb_year'];
+                                    $reg_no = $user_profile['reg_no'];
+                                    $gst_no = $user_profile['gst_no'];
+                                    $book_lang = $user_profile['book_lang'];
+                                    $title_no = $user_profile['title_no'];
+                                    $org_nature = $user_profile['org_nature'];
+                                    $mgr_pub_hse = $user_profile['mgr_house_name'];
+                                    $head_name = $user_profile['head_org_name'];
+                                    $head_addr = $user_profile['head_org_addr'];
+                                    $head_mobile = $user_profile['head_org_mobile'];
+                                    $head_email = $user_profile['head_org_email'];
+                                    $head_site = $user_profile['head_org_website'];
+                                    $prsn_name = $user_profile['cntct_prsn_name'];
+                                    $prsn_addr = $user_profile['cntct_prsn_addr'];
+                                    $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                                    $prsn_email = $user_profile['cntct_prsn_email'];
+                                    $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                                    $fascia = $user_profile['fascia'];
+                                    $remark = $user_profile['remarks'];
+                                    $logo = base64_encode($user_profile['logo']);
+                                    if ($org_nature == 'A') {
+                                        $select0 = '';
+                                        $selecta = 'selected';
+                                        $selectp = '';
+                                    } else if ($org_nature == 'P') {
+                                        $select0 = '';
+                                        $selecta = '';
+                                        $selectp = 'selected';
+                                    } else {
+                                        $select0 = 'selected';
+                                        $selecta = '';
+                                        $selectp = '';
+                                    }
+                                    if (!$logo) {
+                                        $hide = "";
+                                    } else {
+                                        $hide = "hidden";
+                                    }
                                 } else {
                                     $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -246,86 +323,86 @@ $user_id = $user['id'];
                                                 <label><b>Publishing House / Organization</b></label>
                                             </div>
                                             <div class="form-group col-8">
-                                                <input type="text" class="form-control" name="comp_name" placeholder="*Name" id="comp_name" value="<?= $comp_name; ?>">
+                                                <input type="text" class="form-control" name="comp_name" placeholder="*Name" id="comp_name" value="<?= $comp_name; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-4">
-                                                <input type="text" class="form-control" name="estb_year" id="estb_year" placeholder="*Year of Establishment" required="required" value="<?= $estb_year; ?>">
+                                                <input type="text" class="form-control" name="estb_year" id="estb_year" placeholder="*Year of Establishment" required="required" value="<?= $estb_year; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-6">
-                                                <input type="text" class="form-control" name="reg_no" id="reg_no" placeholder="Register No." value="<?= $reg_no; ?>">
+                                                <input type="text" class="form-control" name="reg_no" id="reg_no" placeholder="Register No." value="<?= $reg_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-6">
-                                                <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="GST No." value="<?= $gst_no; ?>">
+                                                <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="GST No." value="<?= $gst_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-4">
-                                                <input type="number" class="form-control" name="title_no" id="title_no" placeholder="*No.of Titles Published" required="required" min="0" value="<?= $title_no; ?>">
+                                                <input type="number" class="form-control" name="title_no" id="title_no" placeholder="*No.of Titles Published" required="required" min="0" value="<?= $title_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-8">
-                                                <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required" value="<?= $book_lang; ?>">
+                                                <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required" value="<?= $book_lang; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12">
-                                            <br>
+                                                <br>
                                                 <label><b>Nature of Organization</b></label>
                                             </div>
                                             <div class="row col-12">
                                                 <div class="form-group col-4">
-                                                    <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;">
+                                                    <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
                                                         <option value="0" <?= $select0; ?>>Select</option>
                                                         <option value="P" <?= $selectp; ?>>Publisher</option>
                                                         <option value="A" <?= $selecta; ?>>Publisher & Distributor</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-8" id="mjr_pub_hse" style="display: none">
-                                                    <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed" value="<?= $mgr_pub_hse; ?>">
+                                                    <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed" value="<?= $mgr_pub_hse; ?>" <?= $edit; ?>>
                                                 </div>
                                             </div>
-                                
+
                                             <div class="col-6">
-                                            </br>
+                                                </br>
                                                 <div>
                                                     <label><b>Head of the Publishing House / Organization</b></label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="head_name" id="head_name" placeholder="*Name" required="required" value="<?= $head_name; ?>">
+                                                    <input type="text" class="form-control" name="head_name" id="head_name" placeholder="*Name" required="required" value="<?= $head_name; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea class="form-control" name="head_addr" id="head_addr" placeholder="*Address" required="required"><?= $head_addr; ?></textarea>
+                                                    <textarea class="form-control" name="head_addr" id="head_addr" placeholder="*Address" required="required" <?= $edit; ?>><?= $head_addr; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Email" required="required" value="<?= $head_email; ?>">
+                                                    <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Email" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="head_site" id="head_site" placeholder="*Website" required="required" value="<?= $head_site; ?>">
+                                                    <input type="text" class="form-control" name="head_site" id="head_site" placeholder="*Website" required="required" value="<?= $head_site; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="head_mobile" id="head_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $head_mobile; ?>">
+                                                    <input type="number" class="form-control" name="head_mobile" id="head_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $head_mobile; ?>" <?= $edit; ?>>
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                            </br>
+                                                </br>
                                                 <div>
                                                     <label><b>Single Point of Contact</b></label>
-                                                    <input type="checkbox" name="same-check" id="same-check" onclick="sameCheck();">
+                                                    <input type="checkbox" name="same-check" id="same-check" onclick="sameCheck();" <?= $edit; ?>>
                                                     <label for="same-check"> Same as House</label>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Name" required="required" value="<?= $prsn_name; ?>">
+                                                    <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Name" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
-                                                    <textarea class="form-control" name="prsn_addr" id="prsn_addr" placeholder="*Address" required="required"><?= $prsn_addr; ?></textarea>
+                                                    <textarea class="form-control" name="prsn_addr" id="prsn_addr" placeholder="*Address" required="required" <?= $edit; ?>><?= $prsn_addr; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" value="<?= $prsn_email; ?>">
+                                                    <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" name="prsn_mobile" id="prsn_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $prsn_mobile; ?>">
+                                                    <input type="number" class="form-control" name="prsn_mobile" id="prsn_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-8">
-                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?= $prsn_mobile; ?>">
+                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
                                                     </div>
                                                     <div class="col-4">
-                                                        <input type="checkbox" name="same-mobile" id="same-mobile" onclick="sameCheckMob();">
+                                                        <input type="checkbox" name="same-mobile" id="same-mobile" onclick="sameCheckMob();" <?= $edit; ?>>
                                                         <label for="same-mobile">Same as mobile</label>
                                                     </div>
                                                 </div>
@@ -384,23 +461,28 @@ $user_id = $user['id'];
                                                         <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled value="<?= $total_amt; ?>">
                                                     </div>
                                                 </div>
-                                            </div> -->                                            
+                                            </div> -->
                                             <div class="col-6">
-                                            </br>
+                                                </br>
                                                 <label>*Please upload Logo of Publishing House / Organization</label>
                                             </div>
                                             <div class="form-group col-6">
-                                            </br>
-                                                <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo">
+                                                </br>
+                                                <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>>
+                                                <label id="logo_lab">
+                                                    <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh" id="logo_img" <?= $edit; ?>>
+                                                </label>
+                                                <span id="changelogo" onclick="changeLogo();" <?= $edit; ?>><u>Change Logo</u></span>
+
                                                 <!-- <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo"> -->
                                             </div>
                                             <div class="form-group col-4">
-                                            </br>
-                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA / Display Text" required="required" value="<?= $fascia; ?>">
+                                                </br>
+                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA / Display Text" required="required" value="<?= $fascia; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-8">
-                                            </br>
-                                                <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>">
+                                                </br>
+                                                <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>" <?= $edit; ?>>
                                             </div>
                                         </div><br>
                                         <!-- <div class="col-12">
@@ -410,10 +492,10 @@ $user_id = $user['id'];
                                         <div class="col-lg-12">
 
                                             <button type="submit" name="save" class="btn btn-primary" id="save">Save</button>
-                                            <button type="submit" class="btn btn-bordered active btn-block mt-3" name="submit" id="submit">Submit</button>
+                                            <?php if ($user_profile) { ?>
+                                                <button type="submit" class="btn btn-success" name="submit-form" id="submit-form">Submit</button>
+                                            <?php } ?>
                                             <!-- <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span> -->
-
-
                                         </div>
                                     </form>
                                 </div>
@@ -451,6 +533,11 @@ $user_id = $user['id'];
         //     }
 
         // });
+
+        function changeLogo() {
+            $("#logo").removeAttr('hidden');
+            $("#logo_img").remove();
+        }
 
         function sameCheck() {
             var sameval = document.getElementById("same-check").checked;
