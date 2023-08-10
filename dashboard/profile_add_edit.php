@@ -332,21 +332,27 @@ $user_id = $user['id'];
                                                 <label><b>Publishing House / Organization</b></label>
                                             </div>
                                             <div class="form-group col-8">
+                                            *Name
                                                 <input type="text" class="form-control" name="comp_name" placeholder="*Name" id="comp_name" value="<?= $comp_name; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-4">
+                                            *Year of Establishment
                                                 <input type="text" class="form-control" name="estb_year" id="estb_year" placeholder="*Year of Establishment" required="required" value="<?= $estb_year; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-6">
+                                            Register No.
                                                 <input type="text" class="form-control" name="reg_no" id="reg_no" placeholder="Register No." value="<?= $reg_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-6">
+                                            GST No.
                                                 <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="GST No." value="<?= $gst_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-4">
+                                            *No.of Titles Published
                                                 <input type="number" class="form-control" name="title_no" id="title_no" placeholder="*No.of Titles Published" required="required" min="0" value="<?= $title_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-8">
+                                            *Language(s) in which books are published
                                                 <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required" value="<?= $book_lang; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12">
@@ -354,14 +360,20 @@ $user_id = $user['id'];
                                                 <label><b>Nature of Organization</b></label>
                                             </div>
                                             <div class="row col-12">
-                                                <div class="form-group col-4">
+                                                <div class="form-group col-4">Select 
                                                     <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
-                                                        <option value="0" <?= $select0; ?>>Select</option>
+                                                        <!-- <option value="0" <?= $select0; ?>>Select</option> -->
                                                         <option value="P" <?= $selectp; ?>>Publisher</option>
                                                         <option value="A" <?= $selecta; ?>>Publisher & Distributor</option>
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-8" id="mjr_pub_hse" style="display: none">
+                                                <?php if($user_profile) {
+                                                    $dispaly = "block" ; 
+                                                } else {
+                                                    $dispaly = "none";
+                                                } ?>
+                                                <div class="form-group col-8" id="mjr_pub_hse" style="display: <?= $dispaly; ?>">
+                                                Mention the name of the major Publishing House(s) which are distributed
                                                     <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed" value="<?= $mgr_pub_hse; ?>" <?= $edit; ?>>
                                                 </div>
                                             </div>
@@ -372,18 +384,23 @@ $user_id = $user['id'];
                                                     <label><b>Head of the Publishing House / Organization</b></label>
                                                 </div>
                                                 <div class="form-group">
+                                                *Name
                                                     <input type="text" class="form-control" name="head_name" id="head_name" placeholder="*Name" required="required" value="<?= $head_name; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
+                                                *Address
                                                     <textarea class="form-control" name="head_addr" id="head_addr" placeholder="*Address" required="required" <?= $edit; ?>><?= $head_addr; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
+                                                *Email
                                                     <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Email" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
+                                                *Website
                                                     <input type="text" class="form-control" name="head_site" id="head_site" placeholder="*Website" required="required" value="<?= $head_site; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
+                                                *Mobile
                                                     <input type="number" class="form-control" name="head_mobile" id="head_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $head_mobile; ?>" <?= $edit; ?>>
                                                 </div>
                                             </div>
@@ -395,19 +412,24 @@ $user_id = $user['id'];
                                                     <label for="same-check"> Same as House</label>
                                                 </div>
                                                 <div class="form-group">
+                                                *Name
                                                     <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Name" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
+                                                *Address
                                                     <textarea class="form-control" name="prsn_addr" id="prsn_addr" placeholder="*Address" required="required" <?= $edit; ?>><?= $prsn_addr; ?></textarea>
                                                 </div>
                                                 <div class="form-group">
+                                                *Email
                                                     <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="form-group">
+                                                *Mobile
                                                     <input type="number" class="form-control" name="prsn_mobile" id="prsn_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-8">
+                                                    *WhatsApp No.
                                                         <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?=  $whatsapp; ?>" <?= $edit; ?>>
                                                     </div>
                                                     <div class="col-4">
@@ -487,10 +509,12 @@ $user_id = $user['id'];
                                             </div>
                                             <div class="form-group col-4">
                                                 </br>
+                                                *FASCIA / Display Text
                                                 <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA / Display Text" required="required" value="<?= $fascia; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-8">
                                                 </br>
+                                                Remarks / Other information
                                                 <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>" <?= $edit; ?>>
                                             </div>
                                         </div><br>

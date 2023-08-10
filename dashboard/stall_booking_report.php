@@ -1,5 +1,5 @@
 <?php include "header.php"; ?>
-<?php include "sidebar.php"; ?>
+<?php include "sidebar_pgmcmtee.php"; ?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -14,12 +14,12 @@
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Report</h4>
 
-                        <div class="page-title-right">
+                        <!-- <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">All</a></li>
                                 <li class="breadcrumb-item active">Stall Booking </li>
                             </ol>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'stallbookingreport-data')" class="btn btn-primary">Export Table Data To Excel File</button>
-                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="width:100%; font-style:normal; font-size: 12px;">
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
                                 <thead>
                                     <tr>
                                         <th data-ordering="false">Sl.No</th>
@@ -70,8 +70,10 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT * FROM  book_stall ORDER BY id DESC";
+                                    $query = "SELECT up.*, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id ORDER BY up.id DESC";
+                                    // var_dump($query);
                                     $bookstall = mysqli_query($con, $query);
+                                    // var_dump(mysqli_fetch_array($bookstall));
                                     $counter = 0;
                                     while ($book = mysqli_fetch_array($bookstall)) {
                                         $id = "$book[id]";
@@ -101,8 +103,8 @@
                                         $stalls_3x3 = "$book[stalls_3x3]";
                                         $stalls_3x2 = "$book[stalls_3x2]";
                                         $status = "$book[status]";
-                                        $date = "$book[date]";
-                                        $logo = "$book[logo]";
+                                        $date = "$book[updated_at]";
+                                        $logo = base64_encode($book['logo']);
                                         $fascia = "$book[fascia]";
                                         $remarks = "$book[remarks]";
                                     ?>
@@ -178,8 +180,8 @@
                                             </td>
                                             <td>
 
-                                                <img src="/logo-upload/<?= $logo; ?>" width="500" height="300">
-                                                <?= $logo; ?>
+                                            <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh">
+                                                <!-- <?= $logo; ?> -->
 
                                             </td>
                                             <td>
