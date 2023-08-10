@@ -48,20 +48,18 @@ $user_id = $user['id'];
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h5 class="mb-sm-0">Terms & Conditions</h5>
-
+                        <h4 class="mb-sm-0">Terms & Conditions</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
                                 <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
-
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>
+
             <!-- end page title -->
 
 
@@ -108,11 +106,11 @@ $user_id = $user['id'];
                                                                         <label>For Individuals</label>
                                                                     </td>
                                                                     <td style="text-align: center;">
-                                                                        <label>20%</label>
+                                                                        <label>35%</label>
 
                                                                     </td>
                                                                     <td style="text-align: center;">
-                                                                        <label>10%</label>
+                                                                        <label>35%</label>
 
                                                                     </td>
                                                                 </tr>
@@ -148,7 +146,7 @@ $user_id = $user['id'];
                                                     constructed Stall(s) having provision for display of books.</li><br>
                                                 <li>&emsp;<b>&emsp;2.4</b>&emsp; Exhibitors are obliged to allow the Organizer to see and check the Stall(s)
                                                     and items at any time during the fair.</li><br>
-                                                <li>&emsp;<b>&emsp;2.5</b>&emsp; The maximum number of stalls one can register is limited to 5.</li>
+                                                <li>&emsp;<b>&emsp;2.5</b>&emsp; The maximum number of stalls, one can register and that can be clubbed together is limited to 5.</li>
                                             </ul>
                                             <h5> <b><span>3.&emsp; Withdrawal/Cancellation : </span></b></h5>
                                             <ul>
@@ -194,7 +192,7 @@ $user_id = $user['id'];
                                             <li>
                                                 <b><span>11.&emsp; Timings for Exhibition :</b> </span>Exhibition time - <b>10.00 a.m. to 10.00 p.m .</b> Exhibitors will
                                                 be allowed entry into the Stalls from <b>9.00 a.m.</b> and they have to vacate the Stalls
-                                                latest by <b></b>11.00 p.m .</b> e very day during the Fair.
+                                                latest by <b></b>11.00 p.m .</b> every day during the Fair.
                                             </li><br>
                                             <li>
                                                 <b><span>12.&emsp;Modification of Terms and Conditions :</b></span> Any of the terms and conditions
