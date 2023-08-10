@@ -39,13 +39,23 @@ $user_id = $user['id'];
                         $msg = "";
                         $current_date = new DateTime();
                         $date = date_format($current_date, "Y-m-d H:i:s");
+                        // var_dump($user_id);
                         if ($user_id) {
-                            $sql1 = "SELECT up.org_name, sb.*, up.id as profileid  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
+                            $sql_profile = "SELECT id, org_name FROM users_profile WHERE user_id = ?";
+                            // var_dump($sql_profile);
+                            $stmt_prof = $con->prepare($sql_profile);
+                            $stmt_prof->bind_param("s", $user_id);
+                            $stmt_prof->execute();
+                            $res_prof = $stmt_prof->get_result();
+                            $user_prof = $res_prof->fetch_assoc();
+                            // var_dump($user_prof);
+                            $sql1 = "SELECT * FROM stall_booking WHERE user_id = ?";
                             $stmt1 = $con->prepare($sql1);
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
                             $result1 = $stmt1->get_result();
                             $user_stall = $result1->fetch_assoc();
+                            // var_dump($user_stall);
                             $stall3x3 = $user_stall['stalls_3x3'];
                             $stall3x2 = $user_stall['stalls_3x2'];
                             $amt3x3 = 10000;
@@ -64,7 +74,10 @@ $user_id = $user['id'];
                             $stall3x3 = 0;
                             $stall3x2 = 0;
                         }
-                        if (!$user_stall['profileid']) {
+                        // var_dump($user_prof['id']);
+                        // var_dump("here");
+                        if (!$user_prof) {
+                            // var_dump("xmnbbf");
                             $errormsg = "
                                 <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                 Kindly update your profile and proceed with stall(s) booking.
@@ -85,13 +98,11 @@ $user_id = $user['id'];
                           <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Stall Booking is Successfully Submitted. Further edit is not possible.
                                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                                            </div>
-                                          
-                           ";
+                                            </div>";
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Helpghjg.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
@@ -106,12 +117,18 @@ $user_id = $user['id'];
                                         mysqli_real_escape_string($con, $_POST['stall3x3']);
                                     $stall3x2 =
                                         mysqli_real_escape_string($con, $_POST['stall3x2']);
-
+                                    if ($stall3x2 == "") {
+                                        $stall3x2 = 0;
+                                    } 
+                                    if ($stall3x2 == "") {
+                                        $stall3x2 = 0;
+                                    }
                                     $errormsg = "";
                                     if ($user_id && $user_stall) {
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
                                     } else {
                                         $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
+                                        // var_dump($query);
                                     }
                                     $result = mysqli_query($con, $query);
                                     if ($result) {
@@ -124,7 +141,7 @@ $user_id = $user['id'];
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
@@ -204,8 +221,9 @@ $user_id = $user['id'];
                                         <div class="col-md-12">
                                             <br>
                                             <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
-                                            <br><br> <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
-                                           <br>
+                                            <br><br>
+                                            <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
+                                            <br>
                                         </div>
                                         <div class="col-lg-12">
                                             <?php if ($stall_status != 'S') { ?>
