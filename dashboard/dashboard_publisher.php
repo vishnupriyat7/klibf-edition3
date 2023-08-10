@@ -16,16 +16,21 @@
     </div>
 </div>
 <!-- end page title -->
-<?php $profile_sql = "SELECT up.id, sb.stalls_3x3, sb.stalls_3x2, u.name FROM users_profile up JOIN users u on up.user_id = u.id JOIN stall_booking sb on sb.user_id = u.id WHERE u.email = ?;";
+<?php 
+$profile_sql = "select * from users_profile where user_id=?";
 $profile_stmt = $con->prepare($profile_sql);
-$profile_stmt->bind_param("s", $username);
-// var_dump($username);
+$profile_stmt->bind_param("s", $user['id']);
 $profile_stmt->execute();
 $profile_result = $profile_stmt->get_result();
 $user_profile_check = $profile_result->fetch_assoc();
+// var_dump($user_profile_check);
+$stall_sql = "SELECT stalls_3x3, stalls_3x2 FROM stall_booking WHERE user_id = ?;";
+$stall_stmt = $con->prepare($stall_sql);
+$stall_stmt->bind_param("s", $user['id']);
+$stall_stmt->execute();
+$stall_result = $stall_stmt->get_result();
+$stall_result_count = $stall_result->fetch_assoc();
 ?>
-
-
 
 <div class="row">
     <div class="col">
@@ -35,7 +40,7 @@ $user_profile_check = $profile_result->fetch_assoc();
                 <div class="col-12">
                     <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                         <div class="flex-grow-1">
-                            <h4 class="fs-16 mb-1">Hai, <?php print $user_profile_check['name']; ?>!</h4>
+                            <h4 class="fs-16 mb-1">Hai, <?php print $user['name']; ?>!</h4>
                             <?php if (!$user_profile_check) { ?>
                                 <p class="text-muted mb-0"><b class="text-danger">Kindly update your profile and proceed with stall(s) booking.</b>
                                 <p>
@@ -89,7 +94,7 @@ $user_profile_check = $profile_result->fetch_assoc();
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Stalls Booked</p>
                                     <!-- <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $numrows; ?>"></span></h4> -->
-                                    <h4 class=" mb-0">3X3: <?= $user_profile_check['stalls_3x3'] ? $user_profile_check['stalls_3x3'] : 0; ?>&emsp;3X2: <?= $user_profile_check['stalls_3x2'] ? $user_profile_check['stalls_3x2'] : 0; ?></h4>
+                                    <h4 class=" mb-0">3X3: <?= $stall_result_count['stalls_3x3'] ? $stall_result_count['stalls_3x3'] : 0; ?>&emsp;3X2: <?= $stall_result_count['stalls_3x2'] ? $stall_result_count['stalls_3x2'] : 0; ?></h4>
                                 </div>
 
                             </div>
