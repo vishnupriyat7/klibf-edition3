@@ -91,9 +91,9 @@ h6 {
   transition: all 0.5s;
   padding: 24px 0;
   /* background: rgba(103, 176, 209, 0.8); */
-  /* background: rgba(125, 32, 153, 0.9); */
+  background: rgba(95, 45, 110, 0.9);
   /* background: #592963; */
-  background: #00c16e;
+  /* background: #00c16e; */
 }
 
 #header.header-transparent {
@@ -132,14 +132,14 @@ h6 {
   color: white;
   font-weight: bold;
   margin-left: -18%;
-  
+
   animation: fadeInX 1s infinite alternate;
 }
-@keyframes fadeInX { 
-  from { opacity: 0; } 
+@keyframes fadeInX {
+  from {
+    opacity: 0;
+  }
 }
-
-
 
 #header p {
   font-size: 15px;
@@ -155,7 +155,7 @@ h6 {
     padding: 0;
     margin: 0;
     max-height: 40px;
-}
+  }
   #header .count {
     font-size: 109%;
     font-weight: bold;
@@ -181,7 +181,7 @@ h6 {
     padding: 0;
     margin: 0;
     max-height: 56px;
-}
+  }
   #header .count {
     font-size: 109%;
     font-weight: bold;
@@ -414,16 +414,15 @@ h6 {
   overflow-y: auto !important;
   transition: 0.3s !important; */
   display: block !important;
-    position: absolute !important;
-    top: 63px !important;
-    right: 15px !important;
-    bottom: 12px !important;
-    left: 15px !important;
-    padding: 14px 6px !important;
-    background-color: #fff !important;
-    overflow-y: auto !important;
-    transition: 0.3s !important;
-
+  position: absolute !important;
+  top: 63px !important;
+  right: 15px !important;
+  bottom: 12px !important;
+  left: 15px !important;
+  padding: 14px 6px !important;
+  background-color: #fff !important;
+  overflow-y: auto !important;
+  transition: 0.3s !important;
 }
 
 .navbar-mobile a,
@@ -448,7 +447,7 @@ h6 {
   position: static !important;
   display: none !important;
   margin: 10px 20px !important;
-  
+
   /* margin: -33px 56px !important; */
   padding: 10px 0 !important;
   z-index: 99;
@@ -553,6 +552,31 @@ h6 {
   font-weight: 700;
   text-shadow: -1px 0 2px #051014;
 }
+#hero .horizontal-shake {
+  color: #81bb24;
+  display: inline-block; /* Make sure the span is inline-block to apply transforms */
+  animation: shake 2s infinite;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
 
 #hero .btn-get-started {
   font-size: 36px;
@@ -597,12 +621,17 @@ h6 {
     margin-bottom: -90px;
   }
   #hero h1 {
-    font-size: 28px;
+    font-size: 26px;
     line-height: 36px;
   }
 
   #hero h2 {
     font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+  #hero h4 {
+    font-size: 13px;
     line-height: 24px;
     margin-bottom: 30px;
   }
@@ -1645,8 +1674,6 @@ section {
   }
 }
 
-
-
 /* New style */
 
 /*-- form styling --*/
@@ -1668,10 +1695,11 @@ section {
   padding: 0px;
   flex-basis: 50%;
   -webkit-flex-basis: 50%;
-  background: #00c16e;
+  /* background: #00c16e; */
   /* background: #117525; */
   /* background: rgba(111, 153, 32, 0.9); */
-  
+  background: #7da71b;
+
   padding: 100px 50px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -1679,11 +1707,10 @@ section {
   justify-content: center;
   align-items: center;
 }
-.w3l_form img{
+.w3l_form img {
   /* height: 25%; */
-  width: 93%;
+  width: 30vw;
   position: relative;
-
 }
 
 .content-wthree {
@@ -1769,7 +1796,7 @@ section {
 
 .w3l-mockup-form input:focus {
   /* border-color: #00c16e; */
-  border-color:#117525;
+  border-color: #117525;
 }
 
 .w3l-mockup-form button {
@@ -1779,16 +1806,17 @@ section {
   /* background: #00c16e; */
   /* background: #117525; */
   /* background: rgba(111, 153, 32, 0.9); */
-  background:#00c16e;
-  
+  /* background: #00c16e; */
+  background: rgba(95, 45, 110, 0.9);
+
   border: none;
   padding: 14px 15px;
   font-weight: 500;
-  transition: .3s ease;
-  -webkit-transition: .3s ease;
-  -moz-transition: .3s ease;
-  -ms-transition: .3s ease;
-  -o-transition: .3s ease;
+  transition: 0.3s ease;
+  -webkit-transition: 0.3s ease;
+  -moz-transition: 0.3s ease;
+  -ms-transition: 0.3s ease;
+  -o-transition: 0.3s ease;
 }
 
 .w3l-mockup-form button:hover {
@@ -1817,7 +1845,7 @@ section {
 .w3l-mockup-form .social-icons ul span.fa {
   color: #696687;
   font-size: 18px;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .w3l-mockup-form .social-icons ul li a.facebook span {
@@ -1831,7 +1859,6 @@ section {
 .w3l-mockup-form .social-icons ul li a.pinterest span {
   color: #e60023;
 }
-
 
 .copyright p {
   text-align: center;
@@ -1854,7 +1881,7 @@ p.copy-footer-29 a:hover {
   -moz-transition: 0.5s ease;
 }
 
-.alert {    
+.alert {
   padding: 1rem;
   border-radius: 5px;
   color: white;
@@ -1870,7 +1897,7 @@ p.copy-footer-29 a:hover {
 }
 
 .alert-info {
-  background-color: #2E9AFE;
+  background-color: #2e9afe;
 }
 
 .alert-warning {
@@ -1879,68 +1906,67 @@ p.copy-footer-29 a:hover {
 
 /*-- responsive design --*/
 
-@media (max-width:736px) {
+@media (max-width: 736px) {
   .w3l-mockup-form .main-mockup {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .w3l_form {
-      order: 2;
-      padding: 50px;
-      border-radius: 0;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+    order: 2;
+    padding: 50px;
+    border-radius: 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .content-wthree {
-      order: 1;
-      border-radius: 0;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
+    order: 1;
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 }
 
-@media (max-width:568px) {
+@media (max-width: 568px) {
   .w3l-mockup-form h1 {
-      font-size: 30px;
+    font-size: 30px;
   }
 
   .w3l-mockup-form .main-mockup {
-      margin: 30px 0;
+    margin: 30px 0;
   }
 
   .content-wthree {
-      padding: 2.5em;
+    padding: 2.5em;
   }
 }
 
 @media (max-width: 415px) {
   .w3l-mockup-form {
-      padding: 40px 30px;
+    padding: 40px 30px;
   }
-
 }
 
-@media (max-width:384px) {
+@media (max-width: 384px) {
   .w3l-mockup-form {
-      padding: 30px 15px;
+    padding: 30px 15px;
   }
 
   .content-wthree {
-      padding: 2em;
+    padding: 2em;
   }
 
   .w3l-mockup-form h1 {
-      font-size: 28px;
+    font-size: 28px;
   }
 
   .w3l-mockup-form h2 {
-      font-size: 22px;
-      line-height: 32px;
+    font-size: 22px;
+    line-height: 32px;
   }
 
   .copyright p {
-      font-size: 16px;
+    font-size: 16px;
   }
 }
 

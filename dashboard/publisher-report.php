@@ -195,7 +195,7 @@ $user_id = $user['id'];
                                 <tr>
                                     <td class="td-head" colspan="2">
                                         <label>
-                                            <h5><b>House / Organization</h5></b>
+                                            <h5><b>Publishing House / Organization</h5></b>
                                         </label>
                                     </td>
                                 </tr>

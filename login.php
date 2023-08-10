@@ -66,11 +66,11 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="assets/img/images/image.svg" alt="">
+                            <img src="assets/img/images/Login.svg" alt="">
                         </div>
                     </div>
                     <div class="content-wthree">
-                        <h2>Login Now</h2>
+                        <h2>Login</h2>
                         <p>Welcome to Kerala Legislature International Book Festival Edition II.</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
                             <button name="submit" class="btn" type="submit">Login</button>
                         </form>
                         <div class="social-icons">
-                            <p>Create Account! <a href="register.php">Register</a>.</p>
+                            <p>Create Account! <a href="register.php"><b>Register</b></a>.</p>
                         </div>
                     </div>
                 </div>
