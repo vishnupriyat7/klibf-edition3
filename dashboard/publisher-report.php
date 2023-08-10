@@ -107,6 +107,7 @@ $user_id = $user['id'];
                 $user_profile = $result1->fetch_assoc();
                 // var_dump($user_profile);
                 if ($user_profile) {
+                    $klaid = $user_profile['id'];
                     $comp_name = $user_profile['org_name'];
                     $estb_year = $user_profile['estb_year'];
                     $reg_no = $user_profile['reg_no'];
@@ -177,21 +178,33 @@ $user_id = $user['id'];
                     <div class="card">
                         <form>
                             <table id="preview">
-                            <tr>
+                                <tr>
                                     <td class="td-head" colspan="2">
                                         <label><img src="assets/images/Logo_01.png" height="70vh" class="text-left"></label>
-                                       
+
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="td-head" colspan="2">
+                                    <td class="td-head">
                                         <!-- <label><img src="assets/images/Logo_01.png" height="70vh"></label> -->
                                         <label>
                                             <h3><b>STALL BOOKING REPORT</b></h3>
                                         </label>
                                     </td>
+                                <!-- </tr>
+                                <tr> -->
+                                    <td class="td-head" colspan="2">
+                                        <?php if ($klaid > 99) { ?>
+                                            <label>
+                                                <h5><b>KLA-IBF00<?= $klaid; ?></h5></b>
+                                            </label>
+                                        <?php } else { ?>
+                                            <label>
+                                                <h5><b>KLA-IBF000<?= $klaid; ?></h5></b>
+                                            </label>
+                                        <?php } ?>
+                                    </td>
                                 </tr>
-
                                 <tr>
                                     <td class="td-head" colspan="2">
                                         <label>
