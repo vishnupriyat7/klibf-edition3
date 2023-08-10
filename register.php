@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
                     $mail->isSMTP();                                            //Send using SMTP
                     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
                     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    $mail->Username   = 'Klibf.kla@gmail.com';                     //SMTP username
+                    $mail->Username   = 'klibf.kla@gmail.com';                     //SMTP username
                     // $mail->Password   = 'akdamxborrvlmqjv';   
                     // $mail->Password   = 'nxjynhzxvqigqpbn';                             //SMTP password
                     $mail->Password = 'xbmeccqvahrxxdbm';
@@ -63,7 +63,7 @@ if (isset($_POST['submit'])) {
                     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
                     //Recipients
-                    $mail->setFrom('Klibf.kla@gmail.com');
+                    $mail->setFrom('klibf.kla@gmail.com');
                     $mail->addAddress($email);
 
                     //Content
@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                     <div class="content-wthree">
-                        <h2>Register Now</h2>
+                        <h2>Register</h2>
                         <p>Welcome to Kerala Legislature International Book Festival Edition II</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
