@@ -16,7 +16,7 @@ $user_id = $user['id'];
         width: 70%;
         border: 1px solid #ddd;
         margin-left: 5%;
-        margin-top: 3%;
+        margin-top: 4%;
         font-family: Arial, Helvetica, sans-serif;
         color: black;
     }
@@ -77,17 +77,14 @@ $user_id = $user['id'];
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h5 class="mb-sm-0">Report</h5>
-
+                        <h4 class="mb-sm-0">Report</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
                                 <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
-
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -180,15 +177,26 @@ $user_id = $user['id'];
                     <div class="card">
                         <form>
                             <table id="preview">
+                            <tr>
+                                    <td class="td-head" colspan="2">
+                                        <label><img src="assets/images/Logo_01.png" height="70vh" class="text-left"></label>
+                                       
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label><h3><b>KLIBF EDITION 2</b></h3></label>
+                                        <!-- <label><img src="assets/images/Logo_01.png" height="70vh"></label> -->
+                                        <label>
+                                            <h3><b>STALL BOOKING REPORT</b></h3>
+                                        </label>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label><h5><b>House / Organization</h5></b></label>
+                                        <label>
+                                            <h5><b>Publishing House / Organization</h5></b>
+                                        </label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -252,7 +260,9 @@ $user_id = $user['id'];
 
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label><h5><b>Head of the Publishing House / Organization</h5></b></label>
+                                        <label>
+                                            <h5><b>Head of the Publishing House / Organization</h5></b>
+                                        </label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -297,7 +307,9 @@ $user_id = $user['id'];
                                 </tr>
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label><h5><b>Contact (In-charge) person for the fair</h5></b></label>
+                                        <label>
+                                            <h5><b>Contact (In-charge) person for the fair</h5></b>
+                                        </label>
                                     </td>
                                 </tr>
                                 <tr>

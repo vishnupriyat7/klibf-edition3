@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
                 echo "</div>";
-                $msg = "<div class='alert alert-info'>You have Successfully registered. Your Login Credentials sent to your Email. You can <b><a href='login.php'>Login</a></b> here</div>";
+                $msg = "<div class='alert alert-info'>Registration Successful ! Kindly <b><a href='login.php' style='color : red';>Login</a></b></h3> to update your profile with stall(s) booking.</div>";
             } else {
                 $msg = "<div class='alert alert-danger'>Something wrong went.</div>";
             }
@@ -105,22 +105,22 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="assets/img/images/image2.svg" alt="">
+                            <img src="assets/img/images/Reg.svg" alt="">
                         </div>
                     </div>
                     <div class="content-wthree">
                         <h2>Register Now</h2>
-                        <p>Welcome to Kerala Legislature International Book Festival Edition II.</p>
+                        <p>Welcome to Kerala Legislature International Book Festival Edition II</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="publisher" value="P" name="userType" required>
+                                <input class="form-check-input" type="radio" id="publisher" value="P" name="userType" required checked>
                                 <label class="form-check-label" for="publisher">Publisher</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <!-- <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" id="inividual" value="I" name="userType" required>
                                 <label class="form-check-label" for="inividual">Inividual</label>
-                            </div>
+                            </div> -->
                             <input type="text" class="name" name="name" placeholder="Enter Your Name" value="<?php if (isset($_POST['submit'])) {
                                                                                                                     echo $name;
                                                                                                                 } ?>" required>
@@ -135,7 +135,7 @@ if (isset($_POST['submit'])) {
                             <button name="submit" class="btn" type="submit">Register</button>
                         </form>
                         <div class="social-icons">
-                            <p>Have an account! <a href="login.php">Login</a>.</p>
+                            <p>Have an account! <a href="login.php"><b>Login</b></a>.</p>
                         </div>
                     </div>
                 </div>
