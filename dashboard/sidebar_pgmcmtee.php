@@ -43,9 +43,9 @@ $username = $_SESSION['username'];
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
 
 
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards"> Dashboard </span></a>
-                </li> -->
+                </li>
 
                 <!-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarB" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
@@ -191,6 +191,9 @@ $username = $_SESSION['username'];
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarX">
                         <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                                <a href="profile_report.php" class="nav-link" data-key="t-nft-landing">Profile Created </a>
+                            </li>
 
                             <li class="nav-item">
                                 <a href="stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall Booking </a>

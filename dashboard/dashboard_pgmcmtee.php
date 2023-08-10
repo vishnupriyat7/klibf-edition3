@@ -5,8 +5,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
+                            <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
 
@@ -14,6 +13,17 @@
                 </div>
             </div>
             <!-- end page title -->
+            <?php $user_sql = "SELECT * FROM users WHERE email = ?;";
+            // var_dump($_SESSION['username']);
+            // var_dump($user_sql);
+$user_stmt = $con->prepare($user_sql);
+$user_stmt->bind_param("s", $username);
+$user_stmt->execute();
+$user_result = $user_stmt->get_result();
+$user = $user_result->fetch_assoc();
+// var_dump($user);
+?>
+
 
             <div class="row">
                 <div class="col">
@@ -23,7 +33,7 @@
                             <div class="col-12">
                                 <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                                     <div class="flex-grow-1">
-                                        <h4 class="fs-16 mb-1">Howdy, <?php print $username; ?>!</h4>
+                                        <h4 class="fs-16 mb-1">Howdy, <?php print $user['name']; ?>!</h4>
                                         <p class="text-muted mb-0">Welcome back to your dashboard.</p>
                                     </div>
                                     <div class="mt-3 mt-lg-0">
