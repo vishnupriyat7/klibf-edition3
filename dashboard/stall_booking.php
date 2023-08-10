@@ -38,7 +38,7 @@ $user_id = $user['id'];
                         $status = "OK";
                         $msg = "";
                         if ($user_id) {
-                            $sql1 = "SELECT * FROM stall_booking WHERE user_id = ?;";
+                            $sql1 = "SELECT up.org_name, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
                             $stmt1 = $con->prepare($sql1);
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
@@ -122,7 +122,7 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="10000" id="amt3x3" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="number" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>" max="5">
+                                                        <input type="number" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>" max="5" min="0">
                                                     </div>
                                                     <div class="col-3">
                                                         <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled value="<?= $tot_amt3x3; ?>">
@@ -151,13 +151,17 @@ $user_id = $user['id'];
                                                     </div>
                                                 </div>
                                             </div>
-
-
-                                        </div><br>
-
+                                        </div><br> 
                                         <div class="col-lg-12">
                                             <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
-                                                                </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <br>
+                                            <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
+                                       <br><br>
+                                                <button type="submit" class="btn btn-success" name="submit-stall" id="submit-stall">Submit</button>
+                                        </div>
+                                      
                                     </form>
                                 </div>
                                 <!--end tab-pane-->
@@ -240,15 +244,15 @@ $user_id = $user['id'];
             var total_amt = tot_amt3x3 + tot_amt3x2;
             $("#totamt").val(total_amt);
             var tot_stall = stall_count3x3 + stall_count3x2;
-            if(stall_count3x3 > 5) {
+            if (stall_count3x3 > 5) {
                 alert("You can't choose more than 5 stalls");
                 $("#stall3x3").val("");
-            } 
-            if (stall_count3x2 > 5){
+            }
+            if (stall_count3x2 > 5) {
                 alert("You can't choose more than 5 stalls");
                 $("#stall3x2").val("");
-            } 
-            if(tot_stall > 5) {
+            }
+            if (tot_stall > 5) {
                 alert("You can select only 5 stalls altogether");
                 $("#stall3x3").val("");
                 $("#stall3x2").val("");
