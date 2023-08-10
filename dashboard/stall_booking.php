@@ -37,8 +37,10 @@ $user_id = $user['id'];
                         <?php
                         $status = "OK";
                         $msg = "";
+                        $current_date = new DateTime();
+                        $date = date_format($current_date, "Y-m-d H:i:s");
                         if ($user_id) {
-                            $sql1 = "SELECT up.org_name, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
+                            $sql1 = "SELECT up.org_name, sb.*, up.id as profileid  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
                             $stmt1 = $con->prepare($sql1);
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
@@ -62,56 +64,71 @@ $user_id = $user['id'];
                             $stall3x3 = 0;
                             $stall3x2 = 0;
                         }
-                        if (isset($_POST['submit-stall'])) {
-                            $term =
-                                mysqli_real_escape_string($con, $_POST['terms']);
-                            if ($term == "on") {
-                                $query = "UPDATE stall_booking SET status = 'S' WHERE user_id = '$user_id'";
-                                $resultSub = mysqli_query($con, $query);
-                                if ($resultSub) {
-                                    $errormsg = "
+                        if (!$user_stall['profileid']) {
+                            $errormsg = "
+                                <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                Kindly update your profile and proceed with stall(s) booking.
+                                           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                           </div>";
+                        } else {
+                            if (isset($_POST['submit-stall'])) {
+
+                                $term =
+                                    mysqli_real_escape_string($con, $_POST['terms']);
+                                if ($term == "on") {
+                                    $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    $resultSub = mysqli_query($con, $query);
+                                    $profile_sub = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
+                                    $profSubres = mysqli_query($con, $profile_sub);
+                                    if ($resultSub && $profSubres) {
+                                        $errormsg = "
                           <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Stall Booking is Successfully Submitted. Further edit is not possible.
                                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                             </div>
                                           
                            ";
-                                } else {
-                                    $errormsg = "
+                                    } else {
+                                        $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
+                                    }
                                 }
                             }
-                        }
-                        if (isset($_POST['save_stall'])) {
-                            $stall3x3 =
-                                mysqli_real_escape_string($con, $_POST['stall3x3']);
-                            $stall3x2 =
-                                mysqli_real_escape_string($con, $_POST['stall3x2']);
-                            $current_date = new DateTime();
-                            $date = date_format($current_date, "Y-m-d H:i:s");
-                            $errormsg = "";
-                            if ($user_id && $user_stall) {
-                                $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
-                            } else {
-                                $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
-                            }
-                            $result = mysqli_query($con, $query);
-                            if ($result) {
-                                $errormsg = "
+                            // }
+                            if (isset($_POST['save_stall'])) {
+                                $term =
+                                    mysqli_real_escape_string($con, $_POST['terms']);
+                                if ($term == "on") {
+                                    $stall3x3 =
+                                        mysqli_real_escape_string($con, $_POST['stall3x3']);
+                                    $stall3x2 =
+                                        mysqli_real_escape_string($con, $_POST['stall3x2']);
+
+                                    $errormsg = "";
+                                    if ($user_id && $user_stall) {
+                                        $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    } else {
+                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
+                                    }
+                                    $result = mysqli_query($con, $query);
+                                    if ($result) {
+                                        $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Your booking is Successfully Saved.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                ";
-                            } else {
-                                $errormsg = "
+                                    } else {
+                                        $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
+                                    }
+                                }
                             }
                         }
                         ?>
@@ -187,8 +204,10 @@ $user_id = $user['id'];
                                         <div class="col-md-12">
                                             <br>
                                             <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
-                                            <br><br>
-                                            <!-- <div class="col-lg-12"> -->
+                                            <br><br> <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
+                                           <br>
+                                        </div>
+                                        <div class="col-lg-12">
                                             <?php if ($stall_status != 'S') { ?>
                                                 <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
                                                 <!-- </div> -->
@@ -232,6 +251,11 @@ $user_id = $user['id'];
         //     }
 
         // });
+
+        // function showAlert() {
+        //     alert("Do you want to submit? Once you submit, you cannot edit further.")
+        //     return 1;
+        // }
 
         function sameCheck() {
             var sameval = document.getElementById("same-check").checked;

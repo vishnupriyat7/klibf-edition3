@@ -116,25 +116,25 @@ $user_id = $user['id'];
                             $fascia = '';
                             $remark = '';
                         }
-                        if (isset($_POST['submit-form'])) {
-                            $query = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
-                            $resultSub = mysqli_query($con, $query);
-                            if ($resultSub) {
-                                $errormsg = "
-                          <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                            Your Profile Details is Successfully Submitted. Further edit is not possible.
-                                            <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                                            </div>
+                        // if (isset($_POST['submit-form'])) {
+                        //     $query = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
+                        //     $resultSub = mysqli_query($con, $query);
+                        //     if ($resultSub) {
+                        //         $errormsg = "
+                        //   <div class='alert alert-success alert-dismissible alert-outline fade show'>
+                        //                     Your Profile Details is Successfully Submitted. Further edit is not possible.
+                        //                     <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                        //                     </div>
                                           
-                           ";
-                            } else {
-                                $errormsg = "
-                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
-                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                               </div>";
-                            }
-                        }
+                        //    ";
+                        //     } else {
+                        //         $errormsg = "
+                        //             <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                        //                        Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                        //                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                        //                        </div>";
+                        //     }
+                        // }
                         if (isset($_POST['save'])) {
                             $comp_name =
                                 mysqli_real_escape_string($con, $_POST['comp_name']);
@@ -495,7 +495,8 @@ $user_id = $user['id'];
                                             </div> -->
                                             <div class="col-6">
                                                 </br>
-                                                <label>*Please upload Logo of Publishing House / Organization</label>
+                                                <label>*Please upload Logo of Publishing House / Organization<br>
+                                                (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
@@ -525,9 +526,9 @@ $user_id = $user['id'];
                                         <div class="col-lg-12">
 
                                             <button type="submit" name="save" class="btn btn-primary" id="save">Save</button>
-                                            <?php if ($user_profile) { ?>
+                                            <!-- <?php if ($user_profile) { ?>
                                                 <button type="submit" class="btn btn-success" name="submit-form" id="submit-form">Submit</button>
-                                            <?php } ?>
+                                            <?php } ?> -->
                                             <!-- <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span> -->
                                         </div>
                                     </form>
