@@ -408,7 +408,7 @@ $user_id = $user['id'];
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-8">
-                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
+                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?=  $whatsapp; ?>" <?= $edit; ?>>
                                                     </div>
                                                     <div class="col-4">
                                                         <input type="checkbox" name="same-mobile" id="same-mobile" onclick="sameCheckMob();" <?= $edit; ?>>
