@@ -50,11 +50,40 @@ $user_id = $user['id'];
                             $tot_amt3x3 = ($stall3x3 * $amt3x3) + ($amt3x3 * $stall3x3 * 18) / 100;
                             $amt3x2 = 7500;
                             $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
+                            $stall_status = $user_stall['status'];
+                            if ($stall_status != 'S') {
+                                $edit_count = '';
+                            } else {
+                                $edit_count = 'disabled';
+                            }
                             $total_amt = $tot_amt3x3 + $tot_amt3x2;
                         } else {
                             $tot_amt3x3 = $tot_amt3x2 = $total_amt = 0;
                             $stall3x3 = 0;
                             $stall3x2 = 0;
+                        }
+                        if (isset($_POST['submit-stall'])) {
+                            $term =
+                                mysqli_real_escape_string($con, $_POST['terms']);
+                            if ($term == "on") {
+                                $query = "UPDATE stall_booking SET status = 'S' WHERE user_id = '$user_id'";
+                                $resultSub = mysqli_query($con, $query);
+                                if ($resultSub) {
+                                    $errormsg = "
+                          <div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                            Your Stall Booking is Successfully Submitted. Further edit is not possible.
+                                            <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                            </div>
+                                          
+                           ";
+                                } else {
+                                    $errormsg = "
+                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>";
+                                }
+                            }
                         }
                         if (isset($_POST['save_stall'])) {
                             $stall3x3 =
@@ -122,7 +151,7 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="10000" id="amt3x3" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="number" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>" max="5" min="0">
+                                                        <input type="number" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>" max="5" min="0" <?= $edit_count; ?>>
                                                     </div>
                                                     <div class="col-3">
                                                         <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled value="<?= $tot_amt3x3; ?>">
@@ -136,7 +165,7 @@ $user_id = $user['id'];
                                                         <input class="form-control text-right" value="7500" id="amt3x2" disabled>
                                                     </div>
                                                     <div class="col-3">
-                                                        <input type="number" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>" max="5">
+                                                        <input type="number" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>" max="5" <?= $edit_count; ?>>
                                                     </div>
                                                     <div class="col-3">
                                                         <input type="text" class="form-control text-right" name="rate_amt3x2" id="rate_amt3x2" placeholder="00" disabled value="<?= $tot_amt3x2; ?>">
@@ -151,17 +180,22 @@ $user_id = $user['id'];
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><br> 
-                                        <div class="col-lg-12">
+                                        </div><br>
+                                        <!-- <div class="col-lg-12">
                                             <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-12">
                                             <br>
                                             <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
-                                       <br><br>
+                                            <br><br>
+                                            <!-- <div class="col-lg-12"> -->
+                                            <?php if ($stall_status != 'S') { ?>
+                                                <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
+                                                <!-- </div> -->
                                                 <button type="submit" class="btn btn-success" name="submit-stall" id="submit-stall">Submit</button>
+                                            <?php  } ?>
                                         </div>
-                                      
+
                                     </form>
                                 </div>
                                 <!--end tab-pane-->
@@ -243,7 +277,7 @@ $user_id = $user['id'];
             $("#rate_amt3x2").val(tot_amt3x2);
             var total_amt = tot_amt3x3 + tot_amt3x2;
             $("#totamt").val(total_amt);
-            var tot_stall = stall_count3x3 + stall_count3x2;
+            var tot_stall = (stall_count3x3 * 1) + (stall_count3x2 * 1);
             if (stall_count3x3 > 5) {
                 alert("You can't choose more than 5 stalls");
                 $("#stall3x3").val("");

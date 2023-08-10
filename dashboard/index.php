@@ -15,7 +15,10 @@ if ($user['user_type'] == 'S') {
     include "sidebar.php";
 } elseif ($user['user_type'] == 'P') {
     include "sidebar_publisher.php";
-} ?>
+}  elseif ($user['user_type'] == 'PC') {
+    include "sidebar_pgmcmtee.php";
+}
+?>
 
 
 
