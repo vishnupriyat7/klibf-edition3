@@ -1,5 +1,5 @@
-<?php 
-ini_set('display_errors', '0'); 
+<?php
+ini_set('display_errors', '0');
 include "header.php";
 include "sidebar_publisher.php";
 $user_id = $user['id'];
@@ -84,7 +84,11 @@ $user_id = $user['id'];
                                 $term =
                                     mysqli_real_escape_string($con, $_POST['terms']);
                                 if ($term == "on") {
-                                    $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    if ($user_id && $user_stall) {
+                                        $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    } else {
+                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
+                                    }
                                     $resultSub = mysqli_query($con, $query);
                                     $profile_sub = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
                                     $profSubres = mysqli_query($con, $profile_sub);
@@ -113,7 +117,7 @@ $user_id = $user['id'];
                                         mysqli_real_escape_string($con, $_POST['stall3x2']);
                                     if ($stall3x2 == "") {
                                         $stall3x2 = 0;
-                                    } 
+                                    }
                                     if ($stall3x2 == "") {
                                         $stall3x2 = 0;
                                     }
@@ -211,20 +215,22 @@ $user_id = $user['id'];
                                         <!-- <div class="col-lg-12">
                                             <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
                                         </div> -->
-                                        <div class="col-md-12">
-                                            <br>
-                                            <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
-                                            <br><br>
-                                            <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
-                                            <br>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <?php if ($stall_status != 'S') { ?>
+                                        <?php if ($stall_status != 'S') { ?>
+                                            <div class="col-md-12">
+                                                <br>
+                                                <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
+                                                <br><br>
+                                                <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
+                                                <br>
+                                            </div>
+                                            <div class="col-lg-12">
+
                                                 <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
                                                 <!-- </div> -->
                                                 <button type="submit" class="btn btn-success" name="submit-stall" id="submit-stall">Submit</button>
-                                            <?php  } ?>
-                                        </div>
+
+                                            </div>
+                                        <?php  } ?>
 
                                     </form>
                                 </div>
