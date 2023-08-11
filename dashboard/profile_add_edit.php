@@ -260,7 +260,7 @@ $user_id = $user['id'];
                                 if ($result) {
                                     $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your Profile Details is Successfully Saved.  Proceed with stall(s) booking.
+                                                Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                               

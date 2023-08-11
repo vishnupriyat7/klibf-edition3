@@ -103,12 +103,12 @@ $user = $result1->fetch_assoc();
                             </a>
                         </div>
 
-                        <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
-                            <span class="hamburger-icon">
+                        <button type="button" class="btn btn-sm px-3 fs-16 header-item horizontal-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                            <!-- <span class="hamburger-icon"> -->
+                                <span>MENU</span>
                                 <span></span>
                                 <span></span>
-                                <span></span>
-                            </span>
+                            <!-- </span> -->
                         </button>
 
                         <!-- App Search-->
