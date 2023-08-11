@@ -63,14 +63,13 @@
                                         <th data-ordering="false">Logo</th>
                                         <th data-ordering="false">FASIA</th>
                                         <th data-ordering="false">Remarks</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                         <!-- <th></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $query = "SELECT up.*, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id ORDER BY up.id DESC";
-                                    // var_dump($query);
                                     $bookstall = mysqli_query($con, $query);
                                     // var_dump(mysqli_fetch_array($bookstall));
                                     $counter = 0;
@@ -189,12 +188,12 @@
                                             <td>
                                                 <?= $remarks; ?>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <div class='dropdown d-inline-block'>
                                                     <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                                         <i class='ri-more-fill align-middle'></i>
                                                     </button>
-                                                    <ul class='dropdown-menu dropdown-menu-end'>
+                                                    <ul class='dropdown-menu dropdown-menu-end'> -->
                                                         <!-- <li>
                                                             <a href='editstall_registration.php?id=$id' class='dropdown-item edit-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
@@ -205,14 +204,14 @@
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Approve
                                                             </a>
                                                         </li> -->
-                                                        <li>
+                                                        <!-- <li>
                                                             <a href='deletestall_registration.php?id=<?= $id ?>' class='dropdown-item remove-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Delete
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php  }
                                     ?>

@@ -101,7 +101,7 @@ $user_id = $user['id'];
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Save your stall booking initially the submit.
+                                               Save your stall booking initially then submit.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
