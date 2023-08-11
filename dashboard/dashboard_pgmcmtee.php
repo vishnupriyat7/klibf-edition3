@@ -13,15 +13,16 @@
                 </div>
             </div>
             <!-- end page title -->
-            <?php $user_sql = "SELECT * FROM users WHERE email = ?;";
-            // var_dump($_SESSION['username']);
-            // var_dump($user_sql);
-$user_stmt = $con->prepare($user_sql);
-$user_stmt->bind_param("s", $username);
-$user_stmt->execute();
-$user_result = $user_stmt->get_result();
-$user = $user_result->fetch_assoc();
-// var_dump($user);
+            <?php 
+//             $user_sql = "SELECT * FROM users WHERE email = ?;";
+//             // var_dump($_SESSION['username']);
+//             // var_dump($user_sql);
+// $user_stmt = $con->prepare($user_sql);
+// $user_stmt->bind_param("s", $username);
+// $user_stmt->execute();
+// $user_result = $user_stmt->get_result();
+// $user = $user_result->fetch_assoc();
+// // var_dump($user);
 ?>
 
 

@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', '0');
 include "header.php";
 
 $username = $_SESSION['SESSION_EMAIL'];

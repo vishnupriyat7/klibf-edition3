@@ -1,4 +1,6 @@
-<?php include "header.php";
+<?php 
+ini_set('display_errors', '0'); 
+include "header.php";
 include "sidebar_publisher.php";
 $user_id = $user['id'];
 ?>
@@ -39,23 +41,19 @@ $user_id = $user['id'];
                         $msg = "";
                         $current_date = new DateTime();
                         $date = date_format($current_date, "Y-m-d H:i:s");
-                        // var_dump($user_id);
                         if ($user_id) {
                             $sql_profile = "SELECT id, org_name FROM users_profile WHERE user_id = ?";
-                            // var_dump($sql_profile);
                             $stmt_prof = $con->prepare($sql_profile);
                             $stmt_prof->bind_param("s", $user_id);
                             $stmt_prof->execute();
                             $res_prof = $stmt_prof->get_result();
                             $user_prof = $res_prof->fetch_assoc();
-                            // var_dump($user_prof);
                             $sql1 = "SELECT * FROM stall_booking WHERE user_id = ?";
                             $stmt1 = $con->prepare($sql1);
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
                             $result1 = $stmt1->get_result();
                             $user_stall = $result1->fetch_assoc();
-                            // var_dump($user_stall);
                             $stall3x3 = $user_stall['stalls_3x3'];
                             $stall3x2 = $user_stall['stalls_3x2'];
                             $amt3x3 = 10000;
@@ -74,10 +72,7 @@ $user_id = $user['id'];
                             $stall3x3 = 0;
                             $stall3x2 = 0;
                         }
-                        // var_dump($user_prof['id']);
-                        // var_dump("here");
                         if (!$user_prof) {
-                            // var_dump("xmnbbf");
                             $errormsg = "
                                 <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                 Kindly update your profile and proceed with stall(s) booking.
@@ -108,7 +103,6 @@ $user_id = $user['id'];
                                     }
                                 }
                             }
-                            // }
                             if (isset($_POST['save_stall'])) {
                                 $term =
                                     mysqli_real_escape_string($con, $_POST['terms']);
@@ -128,7 +122,6 @@ $user_id = $user['id'];
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
                                     } else {
                                         $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
-                                        // var_dump($query);
                                     }
                                     $result = mysqli_query($con, $query);
                                     if ($result) {

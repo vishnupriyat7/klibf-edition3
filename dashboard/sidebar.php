@@ -1,5 +1,5 @@
 <?php
-include "../z_db.php";
+include "z_db.php";
 $username = $_SESSION['username'];
 ?>
 <div class="app-menu navbar-menu">
