@@ -10,7 +10,7 @@
              <p class="pb-3"><em>KLIBF</em></p>
              <p>
                Kerala Legislature Secretariat, Legislature Complex, Palayam, Vikasbhavan PO, Thiruvananthapuram<br><br>
-               <strong>Phone:</strong> +9188380058<br>0471-2512310<br>
+               <strong>Phone:</strong> 9188380058<br>0471-2512310<br>
                <strong>Email:</strong> klibf.kla@gmail.com<br>
              </p>
              <div class="social-links mt-3">
@@ -18,7 +18,7 @@
                <a href="https://www.facebook.com/KLIBF" target="_blank"  class="facebook"><i class="bx bxl-facebook"></i></a>
                <a href="https://twitter.com/IbfKla" target="_blank" class="twitter" ><i class="bx bxl-twitter"></i></a>
                <a href="https://www.instagram.com/klibf2022/" target="_blank" class="instagram" ><i class="bx bxl-instagram"></i></a>
-               <a href="" target="_blank" class="whatsapp" ><i class="bx bxl-whatsapp"></i></a>
+               <a href="https://chat.whatsapp.com/KeDHXQQT5FT13Vc7hbHzWW" target="_blank" class="whatsapp" ><i class="bx bxl-whatsapp"></i></a>
                <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
                <!-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
              </div>
