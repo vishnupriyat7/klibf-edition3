@@ -1709,7 +1709,7 @@ section {
 }
 .w3l_form img {
   /* height: 25%; */
-  width: 30vw;
+  width: 100%;
   position: relative;
 }
 
