@@ -92,7 +92,7 @@ $user_id = $user['id'];
                                     $resultSub = mysqli_query($con, $query);
                                     $profile_sub = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
                                     $profSubres = mysqli_query($con, $profile_sub);
-                                    if ($resultSub && $profSubres) {
+                                    if ($resultSub) {
                                         $errormsg = "
                           <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Stall Booking is Successfully Submitted. Further edit is not possible.
