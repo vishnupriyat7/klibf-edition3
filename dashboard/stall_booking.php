@@ -86,8 +86,8 @@ $user_id = $user['id'];
                                 if ($term == "on") {
                                     if ($user_id) {
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
-                                    } else {
-                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
+                                    // } else {
+                                    //     $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
                                     }
                                     $resultSub = mysqli_query($con, $query);
                                     $profile_sub = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
