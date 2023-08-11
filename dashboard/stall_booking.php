@@ -84,7 +84,7 @@ $user_id = $user['id'];
                                 $term =
                                     mysqli_real_escape_string($con, $_POST['terms']);
                                 if ($term == "on") {
-                                    if ($user_id && $user_stall) {
+                                    if ($user_id) {
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
                                     } else {
                                         $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
@@ -101,7 +101,7 @@ $user_id = $user['id'];
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Helpghjg.
+                                               First you have to save and then click submit button.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
@@ -124,8 +124,6 @@ $user_id = $user['id'];
                                     $errormsg = "";
                                     if ($user_id && $user_stall) {
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
-                                    } else {
-                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
                                     }
                                     $result = mysqli_query($con, $query);
                                     if ($result) {
