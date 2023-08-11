@@ -42,7 +42,7 @@ $stall_result_count = $stall_result->fetch_assoc();
                         <div class="flex-grow-1">
                             <h4 class="fs-16 mb-1">Hai, <?php print $user['name']; ?>!</h4>
                             <?php if (!$user_profile_check) { ?>
-                                <p class="text-muted mb-0"><b class="text-danger">Kindly update your profile and proceed with stall(s) booking.</b>
+                                <p class="text-muted mb-0"><b class="text-success">Welcome to your Dasboard ! Kindly update your profile and proceed with stall(s) booking.</b>
                                 <p>
                                 <?php } else { ?>
                                 <p class="text-muted mb-0">Welcome Back to your dashboard.</p>

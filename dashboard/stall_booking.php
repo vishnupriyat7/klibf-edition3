@@ -101,7 +101,7 @@ $user_id = $user['id'];
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Save your stall booking initially the submit.
+                                               Save your stall booking initially then submit.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
@@ -157,7 +157,7 @@ $user_id = $user['id'];
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
                                             <div class="form-group col-12">
-                                                <label><b>Choose your cubicle</b></label>
+                                                <label><b>Choose your Stall</b></label>
                                             </div>
                                             <div class="form-group col-12">
                                                 <div class="row">
