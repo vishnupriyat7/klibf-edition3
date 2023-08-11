@@ -84,15 +84,15 @@ $user_id = $user['id'];
                                 $term =
                                     mysqli_real_escape_string($con, $_POST['terms']);
                                 if ($term == "on") {
-                                    if ($user_id) {
+                                    if ($user_id && $user_stall) {
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
-                                    // } else {
-                                    //     $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
+                                    } else {
+                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
                                     }
                                     $resultSub = mysqli_query($con, $query);
                                     $profile_sub = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
                                     $profSubres = mysqli_query($con, $profile_sub);
-                                    if ($resultSub) {
+                                    if ($resultSub && $profSubres) {
                                         $errormsg = "
                           <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Stall Booking is Successfully Submitted. Further edit is not possible.
@@ -101,7 +101,7 @@ $user_id = $user['id'];
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               First you have to save and then click submit button.
+                                               Save your stall booking initially the submit.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
@@ -124,6 +124,8 @@ $user_id = $user['id'];
                                     $errormsg = "";
                                     if ($user_id && $user_stall) {
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    } else {
+                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
                                     }
                                     $result = mysqli_query($con, $query);
                                     if ($result) {
