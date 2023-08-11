@@ -8,8 +8,8 @@
     <div class="page-content">
         <div class="container-fluid">
 
-              <!-- start page title -->
-              <div class="row">
+            <!-- start page title -->
+            <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Report</h4>
@@ -27,13 +27,13 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card" style="width: 250%;">
+                    <div class="card">
                         <div class="card-header">
                             <h5 class="card-title mb-0">Stall Booking Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'publisher_profile_report-data')" class="btn btn-primary">Export Table Data To Excel File</button>
+                            <button onclick="exportTableToExcel('example', 'stallbookingreport-data')" class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
                                 <thead>
                                     <tr>
@@ -63,16 +63,14 @@
                                         <th data-ordering="false">Logo</th>
                                         <th data-ordering="false">FASIA</th>
                                         <th data-ordering="false">Remarks</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                         <!-- <th></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $query = "SELECT * FROM users_profile ORDER BY id DESC";
-                                    // var_dump($query);
                                     $bookstall = mysqli_query($con, $query);
-                                    // var_dump(mysqli_fetch_array($bookstall));
                                     $counter = 0;
                                     while ($book = mysqli_fetch_array($bookstall)) {
                                         $id = "$book[id]";
@@ -179,7 +177,7 @@
                                             </td>
                                             <td>
 
-                                            <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh">
+                                                <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh">
                                                 <!-- <?= $logo; ?> -->
 
                                             </td>
@@ -189,13 +187,13 @@
                                             <td>
                                                 <?= $remarks; ?>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <div class='dropdown d-inline-block'>
                                                     <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                                         <i class='ri-more-fill align-middle'></i>
                                                     </button>
-                                                    <ul class='dropdown-menu dropdown-menu-end'>
-                                                        <!-- <li>
+                                                    <ul class='dropdown-menu dropdown-menu-end'> -->
+                                            <!-- <li>
                                                             <a href='editstall_registration.php?id=$id' class='dropdown-item edit-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
                                                             </a>
@@ -205,14 +203,14 @@
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Approve
                                                             </a>
                                                         </li> -->
-                                                        <li>
+                                            <!-- <li>
                                                             <a href='deletestall_registration.php?id=<?= $id ?>' class='dropdown-item remove-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Delete
                                                             </a>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     <?php  }
                                     ?>
