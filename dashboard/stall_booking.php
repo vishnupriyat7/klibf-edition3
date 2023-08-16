@@ -115,8 +115,8 @@ $user_id = $user['id'];
                                         mysqli_real_escape_string($con, $_POST['stall3x3']);
                                     $stall3x2 =
                                         mysqli_real_escape_string($con, $_POST['stall3x2']);
-                                    if ($stall3x2 == "") {
-                                        $stall3x2 = 0;
+                                    if ($stall3x3 == "") {
+                                        $stall3x3 = 0;
                                     }
                                     if ($stall3x2 == "") {
                                         $stall3x2 = 0;
