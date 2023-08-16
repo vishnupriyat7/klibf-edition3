@@ -115,8 +115,8 @@ $user_id = $user['id'];
                                         mysqli_real_escape_string($con, $_POST['stall3x3']);
                                     $stall3x2 =
                                         mysqli_real_escape_string($con, $_POST['stall3x2']);
-                                    if ($stall3x2 == "") {
-                                        $stall3x2 = 0;
+                                    if ($stall3x3 == "") {
+                                        $stall3x3 = 0;
                                     }
                                     if ($stall3x2 == "") {
                                         $stall3x2 = 0;
@@ -157,7 +157,7 @@ $user_id = $user['id'];
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
                                             <div class="form-group col-12">
-                                                <label><b>Choose your cubicle</b></label>
+                                                <label><b>Choose your Stall</b></label>
                                             </div>
                                             <div class="form-group col-12">
                                                 <div class="row">
