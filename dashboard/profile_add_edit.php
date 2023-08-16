@@ -310,7 +310,7 @@ $user_id = $user['id'];
                                     } else {
                                         $hide = "hidden";
                                     }
-                                } else {
+                                }  else {
                                     $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.

@@ -35,6 +35,13 @@ $user_profile_result = $user_profile_stmt->get_result();
 // $users = $users_result->fetch_assoc();
 $user_profile_count = mysqli_num_rows($user_profile_result);
 
+
+// $testqry_stall = "select up.user_id from users_profile up join stall_booking sb where sb.user_id = up.user_id and up.status = 'E'";
+// $bookstall = mysqli_query($con, $testqry_stall);
+// $users_stall = mysqli_fetch_all($bookstall);
+// var_dump($users_stall);die;
+// $testqry_stall_count = mysqli_num_rows($testqry_stall_result);
+
 ?>
 
 
