@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', '0'); 
+ini_set('display_errors', '0');
 include "header.php";
 include "sidebar_publisher.php";
 $user_id = $user['id'];
@@ -41,7 +41,7 @@ $user_id = $user['id'];
                                         </li>
                                     </ul>
                                 </div> -->
-                        
+
                         <div class="card-body p-4">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="personalDetails" role="tabpanel">
@@ -52,197 +52,111 @@ $user_id = $user['id'];
                                     ?>
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
-                                            <div class="form-group col-12"></div>
-                                            <div class="form-group col-12">
-                                                <label><b>Book</b></label>
-                                            </div>
-                                            <div class="form-group col-8">
-                                            *Name
-                                                <input type="text" class="form-control" name="comp_name" placeholder="*Name" id="comp_name" value="<?= $comp_name; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-4">
-                                            *Year of Establishment
-                                                <input type="text" class="form-control" name="estb_year" id="estb_year" placeholder="*Year of Establishment" required="required" value="<?= $estb_year; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-6">
-                                            Register No.
-                                                <input type="text" class="form-control" name="reg_no" id="reg_no" placeholder="Register No." value="<?= $reg_no; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-6">
-                                            GST No.
-                                                <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="GST No." value="<?= $gst_no; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-4">
-                                            *No.of Titles Published
-                                                <input type="number" class="form-control" name="title_no" id="title_no" placeholder="*No.of Titles Published" required="required" min="0" value="<?= $title_no; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-8">
-                                            *Language(s) in which books are published
-                                                <input type="text" class="form-control" name="book_lang" id="book_lang" placeholder="*Language(s) in which books are published" required="required" value="<?= $book_lang; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <br>
-                                                <label><b>Nature of Organization</b></label>
-                                            </div>
-                                            <div class="row col-12">
-                                                <div class="form-group col-4">Select 
-                                                    <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
-                                                        <!-- <option value="0" <?= $select0; ?>>Select</option> -->
-                                                        <option value="P" <?= $selectp; ?>>Publisher</option>
-                                                        <option value="A" <?= $selecta; ?>>Publisher & Distributor</option>
-                                                    </select>
-                                                </div>
-                                                <?php if($user_profile) {
-                                                    $dispaly = "block" ; 
-                                                } else {
-                                                    $dispaly = "none";
-                                                } ?>
-                                                <div class="form-group col-8" id="mjr_pub_hse" style="display: <?= $dispaly; ?>">
-                                                Mention the name of the major Publishing House(s) which are distributed
-                                                    <input id="mjr_pub_val" class="form-control" name="mjr_pub_val" placeholder="Mention the name of the major Publishing House(s) which are distributed" value="<?= $mgr_pub_hse; ?>" <?= $edit; ?>>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-6">
-                                                </br>
-                                                <div>
-                                                    <label><b>Head of the Publishing House / Organization</b></label>
-                                                </div>
-                                                <div class="form-group">
-                                                *Name
-                                                    <input type="text" class="form-control" name="head_name" id="head_name" placeholder="*Name" required="required" value="<?= $head_name; ?>" <?= $edit; ?>>
-                                                </div>
-                                                <div class="form-group">
-                                                *Address
-                                                    <textarea class="form-control" name="head_addr" id="head_addr" placeholder="*Address" required="required" <?= $edit; ?>><?= $head_addr; ?></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                *Email
-                                                    <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Email" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                                </div>
-                                                <div class="form-group">
-                                                *Website
-                                                    <input type="text" class="form-control" name="head_site" id="head_site" placeholder="*Website" required="required" value="<?= $head_site; ?>" <?= $edit; ?>>
-                                                </div>
-                                                <div class="form-group">
-                                                *Mobile
-                                                    <input type="number" class="form-control" name="head_mobile" id="head_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $head_mobile; ?>" <?= $edit; ?>>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                </br>
-                                                <div>
-                                                    <label><b>Single Point of Contact</b></label>
-                                                    <input type="checkbox" name="same-check" id="same-check" onclick="sameCheck();" <?= $edit; ?>>
-                                                    <label for="same-check"> Same as House</label>
-                                                </div>
-                                                <div class="form-group">
-                                                *Name
-                                                    <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Name" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
-                                                </div>
-                                                <div class="form-group">
-                                                *Address
-                                                    <textarea class="form-control" name="prsn_addr" id="prsn_addr" placeholder="*Address" required="required" <?= $edit; ?>><?= $prsn_addr; ?></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                *Email
-                                                    <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
-                                                </div>
-                                                <div class="form-group">
-                                                *Mobile
-                                                    <input type="number" class="form-control" name="prsn_mobile" id="prsn_mobile" placeholder="*Mobile" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="form-group col-8">
-                                                    *WhatsApp No.
-                                                        <input type="number" class="form-control" name="whatsapp" id="whatsapp" placeholder="*WhatsApp No." required="required" min="0" value="<?=  $whatsapp; ?>" <?= $edit; ?>>
+                                            <h2 class="text-center">Sample Form</h2>
+                                            <form class="form-horizontal">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4">Partner Name</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <input type="checkbox" name="same-mobile" id="same-mobile" onclick="sameCheckMob();" <?= $edit; ?>>
-                                                        <label for="same-mobile">Same as mobile</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="form-group col-12">
-                                                <label><b>Choose your cubicle</b></label>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="Size of Stall" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="Fare / Unit + 18% GST Extra (in ₹  )" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="No. Required " disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="Total (in ₹  )" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <input class="form-control" value="3m X 3m" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control text-right" value="10000" id="amt3x3" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled value="<?= $tot_amt3x3; ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <input class="form-control" value="3m X 2m" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control text-right" value="7500" id="amt3x2" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="rate_amt3x2" id="rate_amt3x2" placeholder="00" disabled value="<?= $tot_amt3x2; ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <input class="form-control font-weight-bold text-right" value="Total amount payable (in ₹  )." disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled value="<?= $total_amt; ?>">
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                            <div class="col-6">
-                                                </br>
-                                                <label>*Please upload Logo of Publishing House / Organization<br>
-                                                (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
-                                            </div>
-                                            <div class="form-group col-6">
-                                                </br>
-                                                <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>>
-                                                <label id="logo_lab">
-                                                    <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh" id="logo_img" <?= $edit; ?>>
-                                                </label>
-                                                <span id="changelogo" onclick="changeLogo();" <?= $edit; ?>><u>Change Logo</u></span>
 
-                                                <!-- <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo"> -->
-                                            </div>
-                                            <div class="form-group col-4">
-                                                </br>
-                                                *FASCIA / Display Text
-                                                <input type="text" class="form-control" name="fascia" id="fascia" placeholder="*FASCIA / Display Text" required="required" value="<?= $fascia; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-8">
-                                                </br>
-                                                Remarks / Other information
-                                                <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>" <?= $edit; ?>>
-                                            </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4">Partner Legal Name</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4">Partner Email ID</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-4">Partner Mobile</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2">Partner Address</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea type="text" class="form-control" rows="2"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Contract Start Date</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="date-start ml-5 form-control datepicker" placeholder="Date Start">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Contract Expiry Date</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="date-end ml-5 form-control datepicker col-sm-8" placeholder="Date End">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Minimum Loan Amount</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Maximum Loan Amount</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Interest Rate</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-4 control-label">Deposit Amount</label>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <div class="text-center">
+                                                    <button class="btn btn-primary waves-effect waves-light " id="btn-submit">Save</button>
+                                                </div> -->
+                                                <input type="hidden" name="action" id="action" value="event_dialog_add_newpartnerdata" />
+                                            </form>
                                         </div><br>
                                         <!-- <div class="col-12">
                                             <button class="btn btn-bordered active btn-block mt-3" id="preview_btn" onclick="checkTerm();"><span class="text-white pr-3"><i class="fa fa-eye"></i></span>Preview</button>
