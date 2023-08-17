@@ -47,7 +47,6 @@ $user_profile_count = mysqli_num_rows($user_profile_result);
 
 <div class="row">
     <div class="col">
-
         <div class="h-100">
             <div class="row mb-3 pb-1">
                 <div class="col-12">
@@ -68,7 +67,6 @@ $user_profile_count = mysqli_num_rows($user_profile_result);
             <!--end row-->
 
             <div class="row h-100">
-
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
