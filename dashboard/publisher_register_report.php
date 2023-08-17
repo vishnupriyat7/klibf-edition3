@@ -8,8 +8,8 @@
     <div class="page-content">
         <div class="container-fluid">
 
-              <!-- start page title -->
-              <div class="row">
+            <!-- start page title -->
+            <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Report</h4>
@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Stall Booking Report</h5>
+                            <h5 class="card-title mb-0">Registered Publisher Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
@@ -41,7 +41,7 @@
                                         <th data-ordering="false">Name</th>
                                         <th data-ordering="false">Email Id</th>
                                         <th data-ordering="false">Contact Number</th>
-                                        <!-- <th>Action</th> -->
+                                        <th>Delete</th>
                                         <!-- <th></th> -->
                                     </tr>
                                 </thead>
@@ -69,13 +69,13 @@
                                             <td>
                                                 <?= $contactno; ?>
                                             </td>
-                                            <!-- <td>
-                                                <div class='dropdown d-inline-block'>
+                                            <td>
+                                                <!-- <div class='dropdown d-inline-block'>
                                                     <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
                                                         <i class='ri-more-fill align-middle'></i>
-                                                    </button>
-                                                    <ul class='dropdown-menu dropdown-menu-end'> -->
-                                                        <!-- <li>
+                                                    </button> -->
+                                                <!-- <ul class='dropdown-menu dropdown-menu-end'> -->
+                                                <!-- <li>
                                                             <a href='editstall_registration.php?id=$id' class='dropdown-item edit-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
                                                             </a>
@@ -85,14 +85,24 @@
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Approve
                                                             </a>
                                                         </li> -->
-                                                        <!-- <li>
-                                                            <a href='#' class='dropdown-item remove-item-btn'>
-                                                                <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Delete
-                                                            </a>
-                                                        </li> -->
-                                                    <!-- </ul>
-                                                </div>
-                                            </td> -->
+                                                <!-- <li> -->
+                                                <?php
+                                                $query = "SELECT * FROM users_profile where user_id='$id'";
+                                                $profileusers = mysqli_query($con, $query);
+                                                $user_profile_row = mysqli_fetch_row($profileusers);
+                                                if ($user_profile_row) {
+                                                    $btnenbl = "hidden";
+                                                } else {
+                                                    $btnenbl = "";
+                                                }
+                                                ?>
+                                                <a href='delete_reg_pblshr.php?id=<?= $id; ?>' class='dropdown-item remove-item-btn' <?= $btnenbl; ?>>
+                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i><?= $user_profile_row; ?>Delete
+                                                </a>
+                                                <!-- </li> -->
+                                                <!-- </ul> -->
+                                                <!-- </div> -->
+                                            </td>
                                         </tr>
                                     <?php  }
                                     ?>
