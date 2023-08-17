@@ -59,10 +59,26 @@ include "../z_db.php";
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Booking</span>
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher-report.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
+                        <i class="ri-rhythm-fill"></i> <span data-key="t-landing">Event Proposal</span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarPot" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="publisher_bookrelease.php" class="nav-link" data-key="t-one-page"> Book Release </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="publisher_bookdiscussion.php" class="nav-link" data-key="t-nft-landing"> Book Discussion </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 
 
