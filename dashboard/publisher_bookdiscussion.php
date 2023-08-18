@@ -91,10 +91,84 @@ $user_id = $user['id'];
                                 if (!$logo) {
                                     $msg = 'Please select an image file to upload.';
                                     $status = "NOTOK";
-                                }
-                                // }
+                                }                                
                             }
-                            var_dump($disc_sub);
+                            $errormsg = "";
+                            if ($status == "NOTOK") {
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
+                                    $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>"; //printing error if found in validation
+                            } else {
+                                // if ($user_id) {
+                                   
+                                    // $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$imgContent' WHERE user_id = '$user_id'";
+                                    
+                                // } else {
+                                    $query = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, moderator, participant1, participant2, participant3, participant4, date_prefering, time_prefering, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, submitted) VALUES ('$user_id', '$disc_sub', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day', '$time_slot', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', '0')";
+                                    var_dump($query);
+                                // }
+                                $result = mysqli_query($con, $query);
+                                if ($result) {
+                                    $errormsg = "
+                              <div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                                Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
+                                                <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                                </div>
+                                              
+                               ";
+                                    $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                                    $stmt1 = $con->prepare($sql1);
+                                    $stmt1->bind_param("s", $user_id);
+                                    $stmt1->execute();
+                                    $result1 = $stmt1->get_result();
+                                    $user_profile = $result1->fetch_assoc();
+                                    $comp_name = $user_profile['org_name'];
+                                    $estb_year = $user_profile['estb_year'];
+                                    $reg_no = $user_profile['reg_no'];
+                                    $gst_no = $user_profile['gst_no'];
+                                    $book_lang = $user_profile['book_lang'];
+                                    $title_no = $user_profile['title_no'];
+                                    $org_nature = $user_profile['org_nature'];
+                                    $mgr_pub_hse = $user_profile['mgr_house_name'];
+                                    $head_name = $user_profile['head_org_name'];
+                                    $head_addr = $user_profile['head_org_addr'];
+                                    $head_mobile = $user_profile['head_org_mobile'];
+                                    $head_email = $user_profile['head_org_email'];
+                                    $head_site = $user_profile['head_org_website'];
+                                    $prsn_name = $user_profile['cntct_prsn_name'];
+                                    $prsn_addr = $user_profile['cntct_prsn_addr'];
+                                    $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                                    $prsn_email = $user_profile['cntct_prsn_email'];
+                                    $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                                    $fascia = $user_profile['fascia'];
+                                    $remark = $user_profile['remarks'];
+                                    $logo = base64_encode($user_profile['logo']);
+                                    if ($org_nature == 'A') {
+                                        $select0 = '';
+                                        $selecta = 'selected';
+                                        $selectp = '';
+                                    } else if ($org_nature == 'P') {
+                                        $select0 = '';
+                                        $selecta = '';
+                                        $selectp = 'selected';
+                                    } else {
+                                        $select0 = 'selected';
+                                        $selecta = '';
+                                        $selectp = '';
+                                    }
+                                    if (!$logo) {
+                                        $hide = "";
+                                    } else {
+                                        $hide = "hidden";
+                                    }
+                                }  else {
+                                    $errormsg = "
+                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>";
+                                }
+                            }
                         }
                         ?>
 
@@ -118,32 +192,32 @@ $user_id = $user['id'];
                                             </div>
                                             <div class="form-group col-6">
                                                 *Name of Book
-                                                <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="*Name of Book" required="required">
+                                                <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="*Name of Book">
                                             </div>
                                             <div class="form-group col-12">
                                                 <br>
                                                 *Moderator
-                                                <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="*Moderator" required="required">
+                                                <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="*Moderator">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 1
-                                                <input type="text" class="form-control" name="prtcpnt1" id="prtcpnt1" placeholder="Particiapant 1" required="required">
+                                                <input type="text" class="form-control" name="prtcpnt1" id="prtcpnt1" placeholder="Particiapant 1">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 2
-                                                <input type="text" class="form-control" name="prtcpnt2" id="prtcpnt2" placeholder="Particiapant 2" required="required">
+                                                <input type="text" class="form-control" name="prtcpnt2" id="prtcpnt2" placeholder="Particiapant 2">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 3
-                                                <input type="text" class="form-control" name="prtcpnt3" id="prtcpnt3" placeholder="Particiapant 3" required="required">
+                                                <input type="text" class="form-control" name="prtcpnt3" id="prtcpnt3" placeholder="Particiapant 3">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 4
-                                                <input type="text" class="form-control" name="prtcpnt4" id="prtcpnt4" placeholder="Particiapant 4" required="required">
+                                                <input type="text" class="form-control" name="prtcpnt4" id="prtcpnt4" placeholder="Particiapant 4">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
@@ -155,7 +229,7 @@ $user_id = $user['id'];
                                                 $event_days = $day_result->fetch_all();
                                                 ?>
                                                 Proposed Event Date
-                                                <select class="form-control form-group" name="evnt_day" id="evnt_day" required="required" style="height:35px;">
+                                                <select class="form-control form-group" name="evnt_day" id="evnt_day" style="height:35px;">
                                                     <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) { ?>
                                                         <option value="<?= $event_day[0] ?>"><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
@@ -172,7 +246,7 @@ $user_id = $user['id'];
                                                 $event_slots = $slot_result->fetch_all();
                                                 ?>
                                                 Proposed Time Slot
-                                                <select class="form-control form-group" name="time_slot" id="time_slot" required="required" style="height:35px;">
+                                                <select class="form-control form-group" name="time_slot" id="time_slot" style="height:35px;">
                                                     <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php foreach ($event_slots as $event_slot) { ?>
                                                         <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
@@ -200,7 +274,7 @@ $user_id = $user['id'];
                                             <div class="form-group col-6">
                                                 </br>
                                                 *Contact Person Name
-                                                <input type="text" class="form-control" name="cntct_name" id="cntct_name" placeholder="*Contact Person Name" required="required">
+                                                <input type="text" class="form-control" name="cntct_name" id="cntct_name" placeholder="*Contact Person Name">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
