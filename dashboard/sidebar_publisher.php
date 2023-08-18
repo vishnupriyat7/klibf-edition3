@@ -67,7 +67,7 @@ include "../z_db.php";
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
-                        <i class="ri-rhythm-fill"></i> <span data-key="t-landing">Event Proposal</span>
+                        <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarPot" style="">
                         <ul class="nav nav-sm flex-column">
@@ -76,6 +76,9 @@ include "../z_db.php";
                             </li>
                             <li class="nav-item">
                                 <a href="publisher_bookdiscussion.php" class="nav-link" data-key="t-nft-landing"> Book Discussion </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="special_event_proposal.php" class="nav-link" data-key="t-nft-landing"> Special Event Proposal </a>
                             </li>
                         </ul>
                     </div>

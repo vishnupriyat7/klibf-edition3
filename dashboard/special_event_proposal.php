@@ -15,7 +15,7 @@ $user_id = $user['id'];
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Book Release Proposal</h4>
+                        <h4 class="mb-sm-0">Special Event Proposal</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
@@ -45,57 +45,43 @@ $user_id = $user['id'];
                         <div class="card-body p-4">
                             <div class="tab-content">
                                 <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="row bg-grey">
+                                    <div class="row d-flex bg-grey">
                                       
                                         <div class="col-6">
                                        
-                                            <label> *Book Title</label>
+                                            <label> *Name of Event</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="book_title" id="book_title" placeholder="*Book Title" required="required" value="<?= $book_title; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="event_name" id="event_name" placeholder="*Name of Event" required="required" value="<?= $event_name; ?>" <?= $edit; ?>>
                                             </div>
                                             <br>
-                                            <label>Book Genere</label>
+                                            <label> *Dignitaries / celebrities / Guests</label>
                                             <div class="form-group">
-                                                <select class="form-control form-group" name="book_genere" id="book_genere" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
-                                                    <option value="0" <?= $select0; ?>>Select</option>
-                                                    <option value="P" <?= $selectp; ?>>Novel</option>
-                                                    <option value="A" <?= $selecta; ?>>Drama</option>
-                                                    <option value="P" <?= $selectp; ?>>Short Story</option>
-                                                    <option value="A" <?= $selecta; ?>>Poetry</option>
-                                                    <option value="P" <?= $selectp; ?>>Non-Fiction</option>
-                                                    <option value="A" <?= $selecta; ?>>Essay</option>
-                                                    <option value="P" <?= $selectp; ?>>History</option>
-                                                    <option value="A" <?= $selecta; ?>>Childrens Literature</option>
-                                                    <option value="P" <?= $selectp; ?>>Biography</option>
-                                                    <option value="A" <?= $selecta; ?>>Auto Biography</option>
-                                                    <option value="P" <?= $selectp; ?>>Others</option>
-
-                                                </select>
-                                            </div><br><br>
-                                            <label>*Releasing by</label>
+                                                <textarea class="form-control" name="dignitaries" id="dignitaries" placeholder="*Dignitaries / celebrities / Guests" required="required" <?= $edit; ?>><?= $dignitaries; ?></textarea>
+                                            </div><br>
+                                            <!-- <label>*Releasing by</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="*Releasing by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Releasing by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Guest 1</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="*Guest 1" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Guest 1" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Guest 3</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 3" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br>
+                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Guest 3" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                            </div><br> -->
                                             <label> *Mobile</label>
                                             <div class="form-group">
 
                                                 <input type="text" class="form-control" name="mobile" id="mobile" placeholder="*Mobile" required="required" value="<?= $head_site; ?>" <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Date Preferring</label>
+                                            <!-- <label>*Date Preferring</label>
                                             <div class="form-group">
 
-                                                <select class="form-control form-group" name="date_prefering" id="date_prefering" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
+                                                <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
                                                     <option value="0" <?= $select0; ?>>Select</option>
                                                     <option value="P" <?= $selectp; ?>>Novel</option>
                                                     <option value="A" <?= $selecta; ?>>Drama</option>
@@ -109,43 +95,44 @@ $user_id = $user['id'];
                                                     <option value="A" <?= $selecta; ?>>Auto Biography</option>
                                                     <option value="P" <?= $selectp; ?>>Others</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="col-6">
-                                            <label>*Author</label>
+                                            <!-- <label>*Author</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="author" id="author" placeholder="*Author" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Author" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
                                             </div>
-                                            <br><label> *Brief Description</label>
+                                            <br> -->
+                                            <label> *Brief Description</label>
                                             <div class="form-group">
-                                                <textarea class="form-control" name="brief_descrptn" id="brief_descrptn" placeholder="*Description" required="required" <?= $edit; ?>><?= $brief_descrptn; ?></textarea>
+                                                <textarea class="form-control" name="brf_descrptn" id="brf_descrptn" placeholder="*Description" required="required" <?= $edit; ?>><?= $dignitaries; ?></textarea>
                                             </div><br>
-                                            <label>*Received by</label>
+                                            <!-- <label>*Received by</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="*Received by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Received by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Guest 2</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 2" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br>
+                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Guest 2" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                            </div><br> -->
                                             <label> *Contact Person</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="bkrls_contact" id="bkrls_contact" placeholder="*Contact Person" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="prsn_cntct" id="prsn_cntct" placeholder="*Contact Person" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Email</label>
                                             <div class="form-group">
 
-                                                <input type="email" class="form-control" name="bkrls_email" id="bkrls_email" placeholder="*Email" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
+                                                <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
                                             </div><br>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <label> *Time Preferring</label>
                                                 <div class="form-group">
 
-                                                    <select class="form-control form-group" name="time_prefer" id="time_prefer" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
+                                                    <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
                                                         <option value="0" <?= $select0; ?>>Select</option>
                                                         <option value="P" <?= $selectp; ?>>Novel</option>
                                                         <option value="A" <?= $selecta; ?>>Drama</option>
@@ -162,15 +149,15 @@ $user_id = $user['id'];
                                                     </select>
                                                 </div>
 
-                                            </div>
+                                            </div> -->
                                         </div>
 
-                                        <div class="col-6">
+                                        <!-- <div class="col-6">
                                             </br>
                                             <label>*Please upload Book Cover<br>
                                                 (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
-                                        </div>
-                                        <div class="form-group col-6">
+                                        </div> -->
+                                        <!-- <div class="form-group col-6">
                                             </br>
                                             <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>><br>
                                             <label id="book_cover_lab">
@@ -179,8 +166,8 @@ $user_id = $user['id'];
                                            
                                             <span id="changebook_cover" onclick="changeLogo();" <?= $edit; ?>><u>Change Book Cover</u></span>
 
-                                            <!-- <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo"> -->
-                                        </div>
+                                            <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo">
+                                        </div> -->
                                        <label>Remarks / Other information</label>
                                         <div class="form-group col-8">
                                            
@@ -241,13 +228,13 @@ $user_id = $user['id'];
     function sameCheck() {
         var sameval = document.getElementById("same-check").checked;
         if (sameval === true) {
-            $("#prsn_name").val($("#book_title").val());
-            $("#brief_descrptn").val($("#head_addr").val());
+            $("#prsn_name").val($("#event_name").val());
+            $("#dignitaries").val($("#head_addr").val());
             $("#prsn_mobile").val($("#head_mobile").val());
             $("#prsn_email").val($("#head_email").val());
         } else {
             $("#prsn_name").val("");
-            $("#brief_descrptn").val("");
+            $("#dignitaries").val("");
             $("#prsn_mobile").val("");
             $("#prsn_email").val("");
         }
@@ -263,7 +250,7 @@ $user_id = $user['id'];
     }
 
     function enterPublisher() {
-        var orgNature = $("#book_genere").val();
+        var orgNature = $("#org_nature").val();
         if (orgNature !== 'P') {
             $("#mjr_pub_hse").show();
         } else {
@@ -293,20 +280,20 @@ $user_id = $user['id'];
     //     document.getElementById("lang_lab").innerHTML = $("#book_lang").val();
     //     document.getElementById("titl_lab").innerHTML = $("#title_no").val();
     //     document.getElementById("nature_new").innerHTML = "";
-    //     var orgnature = $("#book_genere").val();
+    //     var orgnature = $("#org_nature").val();
     //     if (orgnature === "P") {
     //         document.getElementById("natr_lab").innerHTML = "Publisher";
     //     } else if (orgnature === "A") {
     //         document.getElementById("natr_lab").innerHTML = "Publisher & Distributer";
     //         $('#preview-tab').find('#nature_new').append("<td><label>Major Publishing House(s) which are distributed</label></td><td colspan='2'><label>" + $('#mjr_pub_val').val() + "</label></td>");
     //     }
-    //     document.getElementById("head_nam_lab").innerHTML = $("#book_title").val();
+    //     document.getElementById("head_nam_lab").innerHTML = $("#event_name").val();
     //     document.getElementById("head_addr_lab").innerHTML = $("#head_addr").val();
     //     document.getElementById("head_mob_lab").innerHTML = $("#head_mobile").val();
     //     document.getElementById("head_email_lab").innerHTML = $("#head_email").val();
     //     document.getElementById("head_site_lab").innerHTML = $("#head_site").val();
     //     document.getElementById("prsn_nam_lab").innerHTML = $("#prsn_name").val();
-    //     document.getElementById("brief_descrptn_lab").innerHTML = $("#brief_descrptn").val();
+    //     document.getElementById("dignitaries_lab").innerHTML = $("#dignitaries").val();
     //     document.getElementById("prsn_email_lab").innerHTML = $("#prsn_email").val();
     //     document.getElementById("prsn_mob_lab").innerHTML = $("#prsn_mobile").val();
     //     document.getElementById("prsn_wp_lab").innerHTML = $("#whatsapp").val();
@@ -357,15 +344,15 @@ $user_id = $user['id'];
         printWindow.document.write('</td></tr><tr><td>Number of Titles Published  </td><td>');
         printWindow.document.write($("#title_no").val());
         printWindow.document.write('</td></tr><tr><td>Nature of Organization  </td><td>');
-        var book_genere = $("#book_genere").val();
-        if (book_genere == 'P') {
+        var org_nature = $("#org_nature").val();
+        if (org_nature == 'P') {
             printWindow.document.write('Publisher');
         } else {
             printWindow.document.write('Publisher & Distributer</td></tr><tr><td>Major Publishing House(s) which are distributed  </td><td>');
             printWindow.document.write($("#mjr_pub_val").val());
         }
         printWindow.document.write('</td></tr><tr><th colspan="2">Head of the Publishing House / Organization</th></tr><tr><td>Name  </td><td>');
-        printWindow.document.write($("#book_title").val());
+        printWindow.document.write($("#event_name").val());
         printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
         printWindow.document.write($("#head_addr").val());
         printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
@@ -377,7 +364,7 @@ $user_id = $user['id'];
         printWindow.document.write('</td></tr><tr><th colspan="2">Contact (In-charge) Person for the Fair</th></tr><tr><td>Name  </td><td>');
         printWindow.document.write($("#prsn_name").val());
         printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
-        printWindow.document.write($("#brief_descrptn").val());
+        printWindow.document.write($("#dignitaries").val());
         printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
         printWindow.document.write($("#prsn_email").val());
         printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
