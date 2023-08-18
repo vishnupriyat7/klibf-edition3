@@ -27,6 +27,14 @@ $stall_count_result = mysqli_query($con, "SELECT SUM(stalls_3x3 + stalls_3x2) FR
 $stall_count_row = mysqli_fetch_row($stall_count_result);
 $stall_count_numrows = $stall_count_row[0];
 
+$stall3x3_count_result = mysqli_query($con, "SELECT SUM(stalls_3x3) FROM stall_booking");
+$stall3x3_count_row = mysqli_fetch_row($stall3x3_count_result);
+$stall3x3_count_numrows = $stall3x3_count_row[0];
+
+$stall3x2_count_result = mysqli_query($con, "SELECT SUM(stalls_3x2) FROM stall_booking");
+$stall3x2_count_row = mysqli_fetch_row($stall3x2_count_result);
+$stall3x2_count_numrows = $stall3x2_count_row[0];
+
 $user_profile_sql = "SELECT up.id, u.id, u.user_type, up.user_id FROM users u JOIN users_profile up on up.user_id = u.id WHERE u.user_type = ?;";
 $user_profile_stmt = $con->prepare($user_profile_sql);
 $user_profile_stmt->bind_param("s", $user_type);
@@ -116,6 +124,42 @@ $user_profile_count = mysqli_num_rows($user_profile_result);
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Stalls Booked Alltogether</p>
                                     <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $stall_count_numrows; ?>"></span></h4>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> 3X3 Stalls Booked</p>
+                                    <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $stall3x3_count_numrows; ?>"></span></h4>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> 3X2 Stalls Booked</p>
+                                    <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $stall3x2_count_numrows; ?>"></span></h4>
                                 </div>
                             </div>
                         </div><!-- end card body -->
