@@ -231,9 +231,9 @@ $user_id = $user['id'];
                                                 <!-- <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo"> -->
                                             </div>
                                             <div class="form-group col-6">
-                                            </br></br>
+                                                </br></br>
                                                 <label>
-                                                    <?= $fileName; ?>
+                                                    <!-- <?= $fileName; ?> -->
                                                 </label>
                                             </div>
                                             <div class="form-group col-6">
