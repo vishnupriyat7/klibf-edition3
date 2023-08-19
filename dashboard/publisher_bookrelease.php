@@ -96,126 +96,78 @@ $user_id = $user['id'];
                                     $msg = 'Please select an image file to upload.';
                                     $status = "NOTOK";
                                 }
-                                // }
                             }
-                            if (strlen($comp_name) < 3) {
-                                $msg = $msg . "Organisation name must be more than 3 characters length.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($head_name) < 3) {
-                                $msg = $msg . "Name must be more than 3 characters length.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($head_mobile) < 10) {
-                                $msg = $msg . "Phone No. should be 10 digits.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($head_email) < 3) {
-                                $msg = $msg . "Email must be more than 3 characters length.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($head_site) < 5) {
-                                $msg = $msg . "Website address should be more than 5 characters length.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($prsn_name) < 3) {
-                                $msg = $msg . "Contact person name must be more than 3 char length.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($prsn_mobile) < 10) {
-                                $msg = $msg . "Contact person phone No. should 10 digits.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($prsn_email) < 3) {
-                                $msg = $msg . "Contact person email must be more than 3 characters length.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($whatsapp) < 10) {
-                                $msg = $msg . "WhatsApp No. should be 10 digits.<BR>";
-                                $status = "NOTOK";
-                            }
-                            if (strlen($book_lang) < 3) {
-                                $msg = $msg . "Please mention language(s) in which books are published.<BR>";
-                                $status = "NOTOK";
-                            }
-                            $errormsg = "";
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                if ($user_id && $user_profile['id']) {
-                                    if ((!$imgContent) && $logo) {
-                                        $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark' WHERE user_id = '$user_id'";
-                                    } else {
-                                        $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$imgContent' WHERE user_id = '$user_id'";
-                                    }
-                                } else {
-                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$imgContent')";
-                                }
-                                $result = mysqli_query($con, $query);
-                                if ($result) {
-                                    $errormsg = "
+
+                                $query = "INSERT INTO event_propsl_bkrls (book_title, author, book_genere, brf_description, released_by, recived_by, guest1, guest2, guest3, contact_persn, email, mobile, book_cover, date_prefering, time_prefering, updated_at, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$imgContent')";
+                            }
+                            $result = mysqli_query($con, $query);
+                            if ($result) {
+                                $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                               
                                ";
-                                    $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
-                                    $stmt1 = $con->prepare($sql1);
-                                    $stmt1->bind_param("s", $user_id);
-                                    $stmt1->execute();
-                                    $result1 = $stmt1->get_result();
-                                    $user_profile = $result1->fetch_assoc();
-                                    $comp_name = $user_profile['org_name'];
-                                    $estb_year = $user_profile['estb_year'];
-                                    $reg_no = $user_profile['reg_no'];
-                                    $gst_no = $user_profile['gst_no'];
-                                    $book_lang = $user_profile['book_lang'];
-                                    $title_no = $user_profile['title_no'];
-                                    $org_nature = $user_profile['org_nature'];
-                                    $mgr_pub_hse = $user_profile['mgr_house_name'];
-                                    $head_name = $user_profile['head_org_name'];
-                                    $head_addr = $user_profile['head_org_addr'];
-                                    $head_mobile = $user_profile['head_org_mobile'];
-                                    $head_email = $user_profile['head_org_email'];
-                                    $head_site = $user_profile['head_org_website'];
-                                    $prsn_name = $user_profile['cntct_prsn_name'];
-                                    $prsn_addr = $user_profile['cntct_prsn_addr'];
-                                    $prsn_mobile = $user_profile['cntct_prsn_mobile'];
-                                    $prsn_email = $user_profile['cntct_prsn_email'];
-                                    $whatsapp = $user_profile['cntct_prsn_watsapp'];
-                                    $fascia = $user_profile['fascia'];
-                                    $remark = $user_profile['remarks'];
-                                    $logo = base64_encode($user_profile['logo']);
-                                    if ($org_nature == 'A') {
-                                        $select0 = '';
-                                        $selecta = 'selected';
-                                        $selectp = '';
-                                    } else if ($org_nature == 'P') {
-                                        $select0 = '';
-                                        $selecta = '';
-                                        $selectp = 'selected';
-                                    } else {
-                                        $select0 = 'selected';
-                                        $selecta = '';
-                                        $selectp = '';
-                                    }
-                                    if (!$logo) {
-                                        $hide = "";
-                                    } else {
-                                        $hide = "hidden";
-                                    }
+                                $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                                $stmt1 = $con->prepare($sql1);
+                                $stmt1->bind_param("s", $user_id);
+                                $stmt1->execute();
+                                $result1 = $stmt1->get_result();
+                                $user_profile = $result1->fetch_assoc();
+                                $comp_name = $user_profile['org_name'];
+                                $estb_year = $user_profile['estb_year'];
+                                $reg_no = $user_profile['reg_no'];
+                                $gst_no = $user_profile['gst_no'];
+                                $book_lang = $user_profile['book_lang'];
+                                $title_no = $user_profile['title_no'];
+                                $org_nature = $user_profile['org_nature'];
+                                $mgr_pub_hse = $user_profile['mgr_house_name'];
+                                $head_name = $user_profile['head_org_name'];
+                                $head_addr = $user_profile['head_org_addr'];
+                                $head_mobile = $user_profile['head_org_mobile'];
+                                $head_email = $user_profile['head_org_email'];
+                                $head_site = $user_profile['head_org_website'];
+                                $prsn_name = $user_profile['cntct_prsn_name'];
+                                $prsn_addr = $user_profile['cntct_prsn_addr'];
+                                $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                                $prsn_email = $user_profile['cntct_prsn_email'];
+                                $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                                $fascia = $user_profile['fascia'];
+                                $remark = $user_profile['remarks'];
+                                $logo = base64_encode($user_profile['logo']);
+                                if ($org_nature == 'A') {
+                                    $select0 = '';
+                                    $selecta = 'selected';
+                                    $selectp = '';
+                                } else if ($org_nature == 'P') {
+                                    $select0 = '';
+                                    $selecta = '';
+                                    $selectp = 'selected';
                                 } else {
-                                    $errormsg = "
+                                    $select0 = 'selected';
+                                    $selecta = '';
+                                    $selectp = '';
+                                }
+                                if (!$logo) {
+                                    $hide = "";
+                                } else {
+                                    $hide = "hidden";
+                                }
+                            } else {
+                                $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
-                                }
                             }
                         }
+
                         ?>
 
                         <div class="card-body p-4">
