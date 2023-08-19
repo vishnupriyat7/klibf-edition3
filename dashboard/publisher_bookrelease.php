@@ -44,7 +44,8 @@ $user_id = $user['id'];
                         <?php
                         $status = "OK";
                         $msg = "";
-                        if (isset($_POST['save'])) {
+                        if (isset($_POST['bkrls_save'])) {
+                            
                             $book_title =
                                 mysqli_real_escape_string($con, $_POST['book_title']);
                             $author =
@@ -97,13 +98,21 @@ $user_id = $user['id'];
                                     $status = "NOTOK";
                                 }
                             }
+                            if ($time_preffer == '0') {
+                                $msg = $msg . "Please select proposed time slot.<BR>";
+                                $status = "NOTOK";
+                            }
+                            if ($date_preffer == '0') {
+                                $msg = $msg . "Please select proposed date.<BR>";
+                                $status = "NOTOK";
+                            }
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
 
-                                $query = "INSERT INTO event_propsl_bkrls (book_title, author, book_genere, brf_description, released_by, recived_by, guest1, guest2, guest3, contact_persn, email, mobile, book_cover, date_prefering, time_prefering, updated_at, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$imgContent')";
+                                $query = "INSERT INTO event_propsl_bkrls (users_id,book_title, author, book_genere, brf_description, released_by, recived_by, guest1, guest2, guest3, contact_persn, email, mobile, date_prefering, time_prefering, updated_at, remarks, book_cover, status) VALUES ('$user_id','$book_title', '$author', '$book_genere', '$brief_descrptn', '$release_by', '$recvd_by', '$guest1', '$guest2', '$guest3', '$bkrls_contact', '$bkrls_email','$bkrls_mobile', '$date_preffer', '$time_preffer', '$date','$remark',  '$imgContent','0')";
                             }
                             $result = mysqli_query($con, $query);
                             if ($result) {
@@ -114,51 +123,51 @@ $user_id = $user['id'];
                                                 </div>
                                               
                                ";
-                                $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
-                                $stmt1 = $con->prepare($sql1);
-                                $stmt1->bind_param("s", $user_id);
-                                $stmt1->execute();
-                                $result1 = $stmt1->get_result();
-                                $user_profile = $result1->fetch_assoc();
-                                $comp_name = $user_profile['org_name'];
-                                $estb_year = $user_profile['estb_year'];
-                                $reg_no = $user_profile['reg_no'];
-                                $gst_no = $user_profile['gst_no'];
-                                $book_lang = $user_profile['book_lang'];
-                                $title_no = $user_profile['title_no'];
-                                $org_nature = $user_profile['org_nature'];
-                                $mgr_pub_hse = $user_profile['mgr_house_name'];
-                                $head_name = $user_profile['head_org_name'];
-                                $head_addr = $user_profile['head_org_addr'];
-                                $head_mobile = $user_profile['head_org_mobile'];
-                                $head_email = $user_profile['head_org_email'];
-                                $head_site = $user_profile['head_org_website'];
-                                $prsn_name = $user_profile['cntct_prsn_name'];
-                                $prsn_addr = $user_profile['cntct_prsn_addr'];
-                                $prsn_mobile = $user_profile['cntct_prsn_mobile'];
-                                $prsn_email = $user_profile['cntct_prsn_email'];
-                                $whatsapp = $user_profile['cntct_prsn_watsapp'];
-                                $fascia = $user_profile['fascia'];
-                                $remark = $user_profile['remarks'];
-                                $logo = base64_encode($user_profile['logo']);
-                                if ($org_nature == 'A') {
-                                    $select0 = '';
-                                    $selecta = 'selected';
-                                    $selectp = '';
-                                } else if ($org_nature == 'P') {
-                                    $select0 = '';
-                                    $selecta = '';
-                                    $selectp = 'selected';
-                                } else {
-                                    $select0 = 'selected';
-                                    $selecta = '';
-                                    $selectp = '';
-                                }
-                                if (!$logo) {
-                                    $hide = "";
-                                } else {
-                                    $hide = "hidden";
-                                }
+                                // $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                                // $stmt1 = $con->prepare($sql1);
+                                // $stmt1->bind_param("s", $user_id);
+                                // $stmt1->execute();
+                                // $result1 = $stmt1->get_result();
+                                // $user_profile = $result1->fetch_assoc();
+                                // $comp_name = $user_profile['org_name'];
+                                // $estb_year = $user_profile['estb_year'];
+                                // $reg_no = $user_profile['reg_no'];
+                                // $gst_no = $user_profile['gst_no'];
+                                // $book_lang = $user_profile['book_lang'];
+                                // $title_no = $user_profile['title_no'];
+                                // $org_nature = $user_profile['org_nature'];
+                                // $mgr_pub_hse = $user_profile['mgr_house_name'];
+                                // $head_name = $user_profile['head_org_name'];
+                                // $head_addr = $user_profile['head_org_addr'];
+                                // $head_mobile = $user_profile['head_org_mobile'];
+                                // $head_email = $user_profile['head_org_email'];
+                                // $head_site = $user_profile['head_org_website'];
+                                // $prsn_name = $user_profile['cntct_prsn_name'];
+                                // $prsn_addr = $user_profile['cntct_prsn_addr'];
+                                // $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                                // $prsn_email = $user_profile['cntct_prsn_email'];
+                                // $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                                // $fascia = $user_profile['fascia'];
+                                // $remark = $user_profile['remarks'];
+                                // $logo = base64_encode($user_profile['logo']);
+                                // if ($org_nature == 'A') {
+                                //     $select0 = '';
+                                //     $selecta = 'selected';
+                                //     $selectp = '';
+                                // } else if ($org_nature == 'P') {
+                                //     $select0 = '';
+                                //     $selecta = '';
+                                //     $selectp = 'selected';
+                                // } else {
+                                //     $select0 = 'selected';
+                                //     $selecta = '';
+                                //     $selectp = '';
+                                // }
+                                // if (!$logo) {
+                                //     $hide = "";
+                                // } else {
+                                //     $hide = "hidden";
+                                // }
                             } else {
                                 $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -190,37 +199,58 @@ $user_id = $user['id'];
                                             <br>
                                             <label>Book Genere</label>
                                             <div class="form-group">
-                                                <select class="form-control form-group" name="book_genere" id="book_genere" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
-                                                    <option value="0" <?= $select0; ?>>Select</option>
-                                                    <option value="P" <?= $selectp; ?>>Novel</option>
-                                                    <option value="A" <?= $selecta; ?>>Drama</option>
-                                                    <option value="P" <?= $selectp; ?>>Short Story</option>
-                                                    <option value="A" <?= $selecta; ?>>Poetry</option>
-                                                    <option value="P" <?= $selectp; ?>>Non-Fiction</option>
-                                                    <option value="A" <?= $selecta; ?>>Essay</option>
-                                                    <option value="P" <?= $selectp; ?>>History</option>
-                                                    <option value="A" <?= $selecta; ?>>Childrens Literature</option>
-                                                    <option value="P" <?= $selectp; ?>>Biography</option>
-                                                    <option value="A" <?= $selecta; ?>>Auto Biography</option>
-                                                    <option value="P" <?= $selectp; ?>>Others</option>
+                                                <?php
+                                                $bookgenere_query = "SELECT * FROM book_genere";
+                                                $bookgenere_stmt = $con->prepare($bookgenere_query);
+                                                $bookgenere_stmt->execute();
+                                                $bookgenere_result = $bookgenere_stmt->get_result();
+                                                $book_genere = $bookgenere_result->fetch_all();
+                                                // var_dump($book_genere);
+                                                ?>
+
+                                                <select class="form-control form-group" name="book_genere" id="book_genere" required="required">
+                                                    <option value="0">Select Book Genere</option>
+                                                    <?php foreach ($book_genere as $genere) { ?>
+                                                        <option value="<?= $genere[0] ?>"><?= $genere[1]; ?>  <?= $genere[2]; ?></option>
+                                                    <?php } ?>
                                                 </select>
+
+
+
+
+
+
+                                                <!-- <select class="form-control form-group" name="book_genere" id="book_genere" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
+                                                    <option value="0" <?= $select0; ?>>Select</option>
+                                                    <option value="Novel" <?= $selectp; ?>>Novel</option>
+                                                    <option value="Drama" <?= $selecta; ?>>Drama</option>
+                                                    <option value="Short Story" <?= $selectp; ?>>Short Story</option>
+                                                    <option value="Poetry" <?= $selecta; ?>>Poetry</option>
+                                                    <option value="Non-Fiction" <?= $selectp; ?>>Non-Fiction</option>
+                                                    <option value="Essay" <?= $selecta; ?>>Essay</option>
+                                                    <option value="History" <?= $selectp; ?>>History</option>
+                                                    <option value="Childrens Literature" <?= $selecta; ?>>Childrens Literature</option>
+                                                    <option value="Biography" <?= $selectp; ?>>Biography</option>
+                                                    <option value="Auto Biography" <?= $selecta; ?>>Auto Biography</option>
+                                                    <option value="Others" <?= $selectp; ?>>Others</option>
+                                                </select> -->
                                             </div><br><br>
                                             <label>*Releasing by</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="*Releasing by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="*Releasing by" required="required" value="<?= $book_title; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Guest 1</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="*Guest 1" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="*Guest 1" required="required" value="<?= $guest1; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Guest 3</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="guest3" id="guest3" placeholder="*Guest 3" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest3" id="guest3" placeholder="*Guest 3" required="required" value="<?= $guest3; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label> *Mobile</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="*Mobile" required="required" value="<?= $head_site; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="*Mobile" required="required" value="<?= $bkrls_mobile; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Date Preferring</label>
                                             <div class="form-group">
@@ -229,12 +259,12 @@ $user_id = $user['id'];
                                                 $day_stmt = $con->prepare($day_query);
                                                 $day_stmt->execute();
                                                 $day_result = $day_stmt->get_result();
-                                                $event_days = $day_result->fetch_all();
+                                                $generes = $day_result->fetch_all();
                                                 ?>
                                                 <select class="form-control form-group" name="date_prefering" id="date_prefering" required="required" style="height:35px;">
                                                     <option value="0" <?= $select0; ?>>Select Date Preferring</option>
-                                                    <?php foreach ($event_days as $event_day) { ?>
-                                                        <option value="<?= $event_day[0] ?>"><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
+                                                    <?php foreach ($generes as $genere) { ?>
+                                                        <option value="<?= $genere[0] ?>"><?= $genere[1]; ?> - <?= $genere[2]; ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -243,7 +273,7 @@ $user_id = $user['id'];
                                             <label>*Author</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="author" id="author" placeholder="*Author" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="author" id="author" placeholder="*Author" required="required" value="<?= $author; ?>" <?= $edit; ?>>
                                             </div>
                                             <br><label> *Brief Description</label>
                                             <div class="form-group">
@@ -252,22 +282,22 @@ $user_id = $user['id'];
                                             <label>*Received by</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="*Received by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="*Received by" required="required" value="<?= $recvd_by; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Guest 2</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 2" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 2" required="required" value="<?= $guest2; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label> *Contact Person</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="bkrls_contact" id="bkrls_contact" placeholder="*Contact Person" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="bkrls_contact" id="bkrls_contact" placeholder="*Contact Person" required="required" value="<?= $bkrls_contact; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <label>*Email</label>
                                             <div class="form-group">
 
-                                                <input type="email" class="form-control" name="bkrls_email" id="bkrls_email" placeholder="*Email" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
+                                                <input type="email" class="form-control" name="bkrls_email" id="bkrls_email" placeholder="*Email" required="required" min="0" value="<?= $bkrls_email; ?>" <?= $edit; ?>>
                                             </div><br>
                                             <div class="row">
                                                 <label> *Time Preferring</label>
@@ -298,7 +328,7 @@ $user_id = $user['id'];
                                         </div>
                                         <div class="form-group col-6">
                                             </br>
-                                            <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>><br>
+                                            <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Book Cover" <?= $hide; ?> <?= $edit; ?>><br>
                                             <label id="book_cover_lab">
                                                 <img src="data:image/jpg;charset=utf8;base64,<?= $book_cover; ?>" height="70vh" id="book_cover_img" <?= $edit; ?>>
                                             </label>
@@ -316,10 +346,10 @@ $user_id = $user['id'];
 
                                     <div class="col-lg-12">
 
-                                        <button type="submit" name="save" class="btn btn-primary" id="save">Save</button>
-                                        <?php if ($user_profile) { ?>
+                                        <button type="submit" name="bkrls_save" class="btn btn-primary" id="save">Save</button>
+                                        <!-- <?php if ($user_profile) { ?>
                                             <button type="submit" class="btn btn-success" name="submit-form" id="submit-form">Submit</button>
-                                        <?php } ?>
+                                        <?php } ?> -->
                                         <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>
                                     </div>
                                 </form>
