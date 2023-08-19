@@ -7,10 +7,10 @@ include "../z_db.php";
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
         <!-- <?php
-        $rr = mysqli_query($con, "SELECT ufile FROM logo");
-        $r = mysqli_fetch_row($rr);
-        $ufile = $r[0];
-        ?>
+                $rr = mysqli_query($con, "SELECT ufile FROM logo");
+                $r = mysqli_fetch_row($rr);
+                $ufile = $r[0];
+                ?>
 
         <a href="index.html" class="logo logo-dark">
             <span class="logo-sm">
@@ -59,11 +59,32 @@ include "../z_db.php";
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Booking</span>
                     </a>
                 </li>
-                
-                <li class="nav-item">
+
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher-report.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="#sidebarPot" data-bs-toggle="collapse">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
+                    </a>
+                    <!-- <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
+                        <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
+                    </a> -->
+                    <div class="menu-dropdown collapse" id="sidebarPot" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="publisher-report.php" class="nav-link" data-key="t-one-page"> Profile Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link" data-key="t-nft-landing"> Book Release Proposal </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="publisher_book_discussion_report.php" class="nav-link" data-key="t-nft-landing"> Book Discussion Proposal </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
@@ -83,7 +104,7 @@ include "../z_db.php";
                         </ul>
                     </div>
                 </li>
-                
+
 
                 <!-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLanding" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
