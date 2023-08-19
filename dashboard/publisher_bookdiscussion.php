@@ -93,6 +93,13 @@ $user_id = $user['id'];
                                     $status = "NOTOK";
                                 }                                
                             }
+                            if($time_slot == '0') {
+                                $msg = $msg . "Please select proposed time slot.<BR>";
+                                $status = "NOTOK";
+                            } if($evnt_day == '0') {
+                                $msg = $msg . "Please select proposed date.<BR>";
+                                $status = "NOTOK";
+                            }
                             $errormsg = "";
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
@@ -105,7 +112,6 @@ $user_id = $user['id'];
                                     
                                 // } else {
                                     $query = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, moderator, participant1, participant2, participant3, participant4, date_prefering, time_prefering, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, submitted) VALUES ('$user_id', '$disc_sub', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day', '$time_slot', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', '0')";
-                                    var_dump($query);
                                 // }
                                 $result = mysqli_query($con, $query);
                                 if ($result) {
@@ -116,51 +122,51 @@ $user_id = $user['id'];
                                                 </div>
                                               
                                ";
-                                    $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
-                                    $stmt1 = $con->prepare($sql1);
-                                    $stmt1->bind_param("s", $user_id);
-                                    $stmt1->execute();
-                                    $result1 = $stmt1->get_result();
-                                    $user_profile = $result1->fetch_assoc();
-                                    $comp_name = $user_profile['org_name'];
-                                    $estb_year = $user_profile['estb_year'];
-                                    $reg_no = $user_profile['reg_no'];
-                                    $gst_no = $user_profile['gst_no'];
-                                    $book_lang = $user_profile['book_lang'];
-                                    $title_no = $user_profile['title_no'];
-                                    $org_nature = $user_profile['org_nature'];
-                                    $mgr_pub_hse = $user_profile['mgr_house_name'];
-                                    $head_name = $user_profile['head_org_name'];
-                                    $head_addr = $user_profile['head_org_addr'];
-                                    $head_mobile = $user_profile['head_org_mobile'];
-                                    $head_email = $user_profile['head_org_email'];
-                                    $head_site = $user_profile['head_org_website'];
-                                    $prsn_name = $user_profile['cntct_prsn_name'];
-                                    $prsn_addr = $user_profile['cntct_prsn_addr'];
-                                    $prsn_mobile = $user_profile['cntct_prsn_mobile'];
-                                    $prsn_email = $user_profile['cntct_prsn_email'];
-                                    $whatsapp = $user_profile['cntct_prsn_watsapp'];
-                                    $fascia = $user_profile['fascia'];
-                                    $remark = $user_profile['remarks'];
-                                    $logo = base64_encode($user_profile['logo']);
-                                    if ($org_nature == 'A') {
-                                        $select0 = '';
-                                        $selecta = 'selected';
-                                        $selectp = '';
-                                    } else if ($org_nature == 'P') {
-                                        $select0 = '';
-                                        $selecta = '';
-                                        $selectp = 'selected';
-                                    } else {
-                                        $select0 = 'selected';
-                                        $selecta = '';
-                                        $selectp = '';
-                                    }
-                                    if (!$logo) {
-                                        $hide = "";
-                                    } else {
-                                        $hide = "hidden";
-                                    }
+                                    // $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
+                                    // $stmt1 = $con->prepare($sql1);
+                                    // $stmt1->bind_param("s", $user_id);
+                                    // $stmt1->execute();
+                                    // $result1 = $stmt1->get_result();
+                                    // $user_profile = $result1->fetch_assoc();
+                                    // $comp_name = $user_profile['org_name'];
+                                    // $estb_year = $user_profile['estb_year'];
+                                    // $reg_no = $user_profile['reg_no'];
+                                    // $gst_no = $user_profile['gst_no'];
+                                    // $book_lang = $user_profile['book_lang'];
+                                    // $title_no = $user_profile['title_no'];
+                                    // $org_nature = $user_profile['org_nature'];
+                                    // $mgr_pub_hse = $user_profile['mgr_house_name'];
+                                    // $head_name = $user_profile['head_org_name'];
+                                    // $head_addr = $user_profile['head_org_addr'];
+                                    // $head_mobile = $user_profile['head_org_mobile'];
+                                    // $head_email = $user_profile['head_org_email'];
+                                    // $head_site = $user_profile['head_org_website'];
+                                    // $prsn_name = $user_profile['cntct_prsn_name'];
+                                    // $prsn_addr = $user_profile['cntct_prsn_addr'];
+                                    // $prsn_mobile = $user_profile['cntct_prsn_mobile'];
+                                    // $prsn_email = $user_profile['cntct_prsn_email'];
+                                    // $whatsapp = $user_profile['cntct_prsn_watsapp'];
+                                    // $fascia = $user_profile['fascia'];
+                                    // $remark = $user_profile['remarks'];
+                                    // $logo = base64_encode($user_profile['logo']);
+                                    // if ($org_nature == 'A') {
+                                    //     $select0 = '';
+                                    //     $selecta = 'selected';
+                                    //     $selectp = '';
+                                    // } else if ($org_nature == 'P') {
+                                    //     $select0 = '';
+                                    //     $selecta = '';
+                                    //     $selectp = 'selected';
+                                    // } else {
+                                    //     $select0 = 'selected';
+                                    //     $selecta = '';
+                                    //     $selectp = '';
+                                    // }
+                                    // if (!$logo) {
+                                    //     $hide = "";
+                                    // } else {
+                                    //     $hide = "hidden";
+                                    // }
                                 }  else {
                                     $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -187,17 +193,17 @@ $user_id = $user['id'];
                                                 <label><b>Publishing House / Organization</b></label>
                                             </div> -->
                                             <div class="form-group col-6">
-                                                *Subject
-                                                <input type="text" class="form-control" name="disc_sub" placeholder="*Subject" id="disc_sub" value="">
+                                                Subject
+                                                <input type="text" class="form-control" name="disc_sub" placeholder="Subject" id="disc_sub" value="">
                                             </div>
                                             <div class="form-group col-6">
-                                                *Name of Book
-                                                <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="*Name of Book">
+                                                Name of Book
+                                                <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="Name of Book">
                                             </div>
                                             <div class="form-group col-12">
                                                 <br>
-                                                *Moderator
-                                                <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="*Moderator">
+                                                Moderator
+                                                <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="Moderator">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
@@ -229,8 +235,8 @@ $user_id = $user['id'];
                                                 $event_days = $day_result->fetch_all();
                                                 ?>
                                                 Proposed Event Date
-                                                <select class="form-control form-group" name="evnt_day" id="evnt_day" style="height:35px;">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
+                                                <select class="form-control form-group" name="evnt_day" id="evnt_day" style="height:35px;" required="required">
+                                                    <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) { ?>
                                                         <option value="<?= $event_day[0] ?>"><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
                                                     <?php } ?>
@@ -246,8 +252,8 @@ $user_id = $user['id'];
                                                 $event_slots = $slot_result->fetch_all();
                                                 ?>
                                                 Proposed Time Slot
-                                                <select class="form-control form-group" name="time_slot" id="time_slot" style="height:35px;">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
+                                                <select class="form-control form-group" name="time_slot" id="time_slot" style="height:35px;" required="required">
+                                                    <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_slots as $event_slot) { ?>
                                                         <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
                                                     <?php } ?>
@@ -262,7 +268,7 @@ $user_id = $user['id'];
                                             <div class="form-group col-6">
                                                 </br>
                                                 Book Cover (Only JPG, JPEG, PNG files are allowed for uploads.)
-                                                <input type="file" class="form-control" name="disc_book_cover" id="disc_book_cover" placeholder="*Upload Book Cover">
+                                                <input type="file" class="form-control" name="disc_book_cover" id="disc_book_cover" placeholder="Upload Book Cover">
                                                 <!-- <label id="logo_lab">
                                                     <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh" id="logo_img" <?= $edit; ?>>
                                                 </label>
@@ -273,18 +279,18 @@ $user_id = $user['id'];
                                             <div class="form-group col-6"></div>
                                             <div class="form-group col-6">
                                                 </br>
-                                                *Contact Person Name
-                                                <input type="text" class="form-control" name="cntct_name" id="cntct_name" placeholder="*Contact Person Name">
+                                                Contact Person Name
+                                                <input type="text" class="form-control" name="cntct_name" id="cntct_name" placeholder="Contact Person Name">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
-                                                *Contact Phone No.
-                                                <input type="text" class="form-control" name="cntct_phno" id="cntct_phno" placeholder="*Contact Phone No.">
+                                                Contact Phone No.
+                                                <input type="text" class="form-control" name="cntct_phno" id="cntct_phno" placeholder="Contact Phone No.">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
-                                                *Contact Email Id.
-                                                <input type="email" class="form-control" name="cntct_mail" id="cntct_mail" placeholder="*Contact Email Id.">
+                                                Contact Email Id.
+                                                <input type="email" class="form-control" name="cntct_mail" id="cntct_mail" placeholder="Contact Email Id.">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
