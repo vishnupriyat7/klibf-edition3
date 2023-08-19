@@ -142,36 +142,36 @@ $user_id = $user['id'];
                                             </div> -->
                                             <div class="form-group col-6">
                                                 Subject
-                                                <input type="text" class="form-control" name="disc_sub" placeholder="Subject" id="disc_sub" value="<?= $disc_sub; ?>">
+                                                <input type="text" class="form-control" name="disc_sub" placeholder="Subject" id="disc_sub">
                                             </div>
                                             <div class="form-group col-6">
                                                 Name of Book
-                                                <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="Name of Book" value="<?= $disc_book; ?>">
+                                                <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="Name of Book">
                                             </div>
                                             <div class="form-group col-12">
                                                 <br>
                                                 Moderator
-                                                <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="Moderator" value="<?= $modrtr; ?>">
+                                                <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="Moderator">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 1
-                                                <input type="text" class="form-control" name="prtcpnt1" id="prtcpnt1" placeholder="Particiapant 1" value="<?= $prtcpnt1; ?>">
+                                                <input type="text" class="form-control" name="prtcpnt1" id="prtcpnt1" placeholder="Particiapant 1">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 2
-                                                <input type="text" class="form-control" name="prtcpnt2" id="prtcpnt2" placeholder="Particiapant 2" value="<?= $prtcpnt2; ?>">
+                                                <input type="text" class="form-control" name="prtcpnt2" id="prtcpnt2" placeholder="Particiapant 2">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 3
-                                                <input type="text" class="form-control" name="prtcpnt3" id="prtcpnt3" placeholder="Particiapant 3" value="<?= $prtcpnt3; ?>">
+                                                <input type="text" class="form-control" name="prtcpnt3" id="prtcpnt3" placeholder="Particiapant 3">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
                                                 Particiapant 4
-                                                <input type="text" class="form-control" name="prtcpnt4" id="prtcpnt4" placeholder="Particiapant 4" value="<?= $prtcpnt4; ?>">
+                                                <input type="text" class="form-control" name="prtcpnt4" id="prtcpnt4" placeholder="Particiapant 4">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
@@ -186,12 +186,12 @@ $user_id = $user['id'];
                                                 <select class="form-control form-group" name="evnt_day" id="evnt_day" style="height:35px;" required="required">
                                                     <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) {
-                                                        $evntDaySelect = "";
-                                                        if ($event_day[0] == $evnt_day) {
-                                                            $evntDaySelect = 'selected';
-                                                        }
+                                                        // $evntDaySelect = "";
+                                                        // if ($event_day[0] == $evnt_day) {
+                                                        //     $evntDaySelect = 'selected';
+                                                        // }
                                                     ?>
-                                                        <option value="<?= $event_day[0] ?>" <?= $evntDaySelect; ?>><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
+                                                        <option value="<?= $event_day[0] ?>"><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -208,12 +208,12 @@ $user_id = $user['id'];
                                                 <select class="form-control form-group" name="time_slot" id="time_slot" style="height:35px;" required="required">
                                                     <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_slots as $event_slot) {
-                                                        $evntTmeSelect = "";
-                                                        if ($event_slot[0] == $time_slot) {
-                                                            $evntTmeSelect = 'selected';
-                                                        }
+                                                        // $evntTmeSelect = "";
+                                                        // if ($event_slot[0] == $time_slot) {
+                                                        //     $evntTmeSelect = 'selected';
+                                                        // }
                                                     ?>
-                                                        <option value="<?= $event_slot[0] ?>" <?= $evntTmeSelect; ?>><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
+                                                        <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -224,7 +224,7 @@ $user_id = $user['id'];
                                             <div class="form-group col-6">
                                                 </br>
                                                 Book Cover (Only JPG, JPEG, PNG files are allowed for uploads.)
-                                                <input type="file" class="form-control" name="disc_book_cover" id="disc_book_cover" placeholder="Upload Book Cover" value="<?= $fileName; ?>">
+                                                <input type="file" class="form-control" name="disc_book_cover" id="disc_book_cover" placeholder="Upload Book Cover">
 
                                                 <!--<span id="changelogo" onclick="changeLogo();" <?= $edit; ?>><u>Change Logo</u></span> -->
 
@@ -239,22 +239,22 @@ $user_id = $user['id'];
                                             <div class="form-group col-6">
                                                 </br>
                                                 Contact Person Name
-                                                <input type="text" class="form-control" name="cntct_name" id="cntct_name" placeholder="Contact Person Name" value="<?= $cntct_name; ?>">
+                                                <input type="text" class="form-control" name="cntct_name" id="cntct_name" placeholder="Contact Person Name">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
                                                 Contact Phone No.
-                                                <input type="text" class="form-control" name="cntct_phno" id="cntct_phno" placeholder="Contact Phone No." value="<?= $cntct_phno; ?>">
+                                                <input type="text" class="form-control" name="cntct_phno" id="cntct_phno" placeholder="Contact Phone No.">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
                                                 Contact Email Id.
-                                                <input type="email" class="form-control" name="cntct_mail" id="cntct_mail" placeholder="Contact Email Id." value="<?= $cntct_mail; ?>">
+                                                <input type="email" class="form-control" name="cntct_mail" id="cntct_mail" placeholder="Contact Email Id.">
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
                                                 Remarks
-                                                <input type="text" class="form-control" name="disc_remark" id="disc_remark" placeholder="Remarks" value="<?= $disc_remark; ?>">
+                                                <input type="text" class="form-control" name="disc_remark" id="disc_remark" placeholder="Remarks">
                                             </div>
                                         </div><br>
                                         <!-- <div class="col-12">
