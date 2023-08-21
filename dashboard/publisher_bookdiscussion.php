@@ -183,7 +183,7 @@ $user_id = $user['id'];
                                                 $event_days = $day_result->fetch_all();
                                                 ?>
                                                 Proposed Event Date
-                                                <select class="form-control form-group" name="evnt_day" id="evnt_day" style="height:35px;" required="required">
+                                                <select class="form-control form-group" name="evnt_day[]" id="evnt_day" style="height:35px;" required="required">
                                                     <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) {
                                                         // $evntDaySelect = "";
