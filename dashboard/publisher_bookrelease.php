@@ -20,7 +20,7 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="book_coverut.php"><i class="mdi mdi-book_coverut text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-book_coverut">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-book_coverut text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-book_coverut">Logout</span></a>
                             </ol>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ $user_id = $user['id'];
 
                         ?>
 
-                        <div class="card-body p-4">
+                        <div class="card-body p-4 ">
                             <div class="tab-content">
                                 <?php
                                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -187,7 +187,7 @@ $user_id = $user['id'];
                                 }
                                 ?>
                                 <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="row bg-grey">
+                                    <div class="row bg-grey d-lg-flex d-sm-grid ">
 
                                         <div class="col-6">
 
