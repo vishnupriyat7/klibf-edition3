@@ -3,7 +3,6 @@ ini_set('display_errors', '0');
 include "header.php";
 include "sidebar_publisher.php";
 $user_id = $user['id'];
-// var_dump($user_id);die;
 ?>
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -51,18 +50,36 @@ $user_id = $user['id'];
                                 mysqli_real_escape_string($con, $_POST['disc_book']);
                             $modrtr =
                                 mysqli_real_escape_string($con, $_POST['modrtr']);
+                            $modrtr_cntct =
+                                mysqli_real_escape_string($con, $_POST['modrtr_cntct']);
                             $prtcpnt1 =
                                 mysqli_real_escape_string($con, $_POST['prtcpnt1']);
+                            $prtcpnt1_cntct =
+                                mysqli_real_escape_string($con, $_POST['prtcpnt1_cntct']);
                             $prtcpnt2 =
                                 mysqli_real_escape_string($con, $_POST['prtcpnt2']);
+                            $prtcpnt2_cntct =
+                                mysqli_real_escape_string($con, $_POST['prtcpnt2_cntct']);
                             $prtcpnt3 =
                                 mysqli_real_escape_string($con, $_POST['prtcpnt3']);
+                            $prtcpnt3_cntct =
+                                mysqli_real_escape_string($con, $_POST['prtcpnt3_cntct']);
                             $prtcpnt4 =
                                 mysqli_real_escape_string($con, $_POST['prtcpnt4']);
-                            $evnt_day =
-                                mysqli_real_escape_string($con, $_POST['evnt_day']);
-                            $time_slot =
-                                mysqli_real_escape_string($con, $_POST['time_slot']);
+                            $prtcpnt4_cntct =
+                                mysqli_real_escape_string($con, $_POST['prtcpnt4_cntct']);
+                            $evnt_day1 =
+                                mysqli_real_escape_string($con, $_POST['evnt_day1']);
+                            $time_slot1 =
+                                mysqli_real_escape_string($con, $_POST['time_slot1']);
+                            $evnt_day2 =
+                                mysqli_real_escape_string($con, $_POST['evnt_day2']);
+                            $time_slot2 =
+                                mysqli_real_escape_string($con, $_POST['time_slot2']);
+                            $evnt_day3 =
+                                mysqli_real_escape_string($con, $_POST['evnt_day3']);
+                            $time_slot3 =
+                                mysqli_real_escape_string($con, $_POST['time_slot3']);
                             $cntct_name =
                                 mysqli_real_escape_string($con, $_POST['cntct_name']);
                             $cntct_phno =
@@ -93,13 +110,23 @@ $user_id = $user['id'];
                                     $status = "NOTOK";
                                 }
                             }
-                            if ($time_slot == '0') {
-                                $msg = $msg . "Please select proposed time slot.<BR>";
-                                $status = "NOTOK";
+                            if ($time_slot1 == '0') {
+                                $time_slot1 = '5';
                             }
-                            if ($evnt_day == '0') {
-                                $msg = $msg . "Please select proposed date.<BR>";
-                                $status = "NOTOK";
+                            if ($evnt_day1 == '0') {
+                                $evnt_day1 = '8';
+                            }
+                            if ($time_slot2 == '0') {
+                                $time_slot2 = '5';
+                            }
+                            if ($evnt_day2 == '0') {
+                                $evnt_day2 = '8';
+                            }
+                            if ($time_slot3 == '0') {
+                                $time_slot3 = '5';
+                            }
+                            if ($evnt_day3 == '0') {
+                                $evnt_day3 = '8';
                             }
                             $errormsg = "";
                             if ($status == "NOTOK") {
@@ -107,9 +134,15 @@ $user_id = $user['id'];
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                $query = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, moderator, participant1, participant2, participant3, participant4, date_prefering, time_prefering, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, book_cover) VALUES ('$user_id', '$disc_sub', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day', '$time_slot', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$imgContent')";
-                                $result = mysqli_query($con, $query);
-                                if ($result) {
+                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, moderator, participant1, participant2, participant3, participant4, date_prfrng1, time_prfrng1, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct, date_prfrng2, time_prfrng2, date_prfrng3, time_prfrng3, book_cover) VALUES ('$user_id', '$disc_sub', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day1', '$time_slot1', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct', '$evnt_day2', '$time_slot2', '$evnt_day3', '$time_slot3', '$imgContent')";
+                                $result1 = mysqli_query($con, $query1);
+                                $querySelectDscn = "SELECT id FROM evnt_propsl_bkdscn WHERE user_id = '$user_id' ORDER BY id DESC LIMIT 1";
+                                $resultSelect = mysqli_query($con, $querySelectDscn);
+                                $book_dscn_id = $resultSelect->fetch_all();
+                                var_dump(($resultSelect->fetch_assoc()));
+                                // $query2 = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, book_spcl_prop_id, date_prfr1, date_prfr2, date_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id', '$book_dscn_id[0][0]', '', '', '', '', '', '', '', '')";
+                                // $result = mysqli_query($con, $query2);
+                                if ($result1) {
                                     $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
@@ -148,10 +181,15 @@ $user_id = $user['id'];
                                                 Name of Book
                                                 <input type="text" class="form-control" name="disc_book" id="disc_book" placeholder="Name of Book">
                                             </div>
-                                            <div class="form-group col-12">
+                                            <div class="form-group col-6">
                                                 <br>
                                                 Moderator
                                                 <input type="text" class="form-control" name="modrtr" id="modrtr" placeholder="Moderator">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Contact No.
+                                                <input type="text" class="form-control" name="modrtr_cntct" id="modrtr_cntct" placeholder="Moderator Contact No.">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
@@ -160,8 +198,18 @@ $user_id = $user['id'];
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
+                                                Contact No.
+                                                <input type="text" class="form-control" name="prtcpnt1_cntct" id="prtcpnt1_cntct" placeholder="Particiapant 1 Contact No.">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
                                                 Particiapant 2
                                                 <input type="text" class="form-control" name="prtcpnt2" id="prtcpnt2" placeholder="Particiapant 2">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Contact No.
+                                                <input type="text" class="form-control" name="prtcpnt2_cntct" id="prtcpnt2_cntct" placeholder="Particiapant 2 Contact No.">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
@@ -170,20 +218,57 @@ $user_id = $user['id'];
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
+                                                Contact No.
+                                                <input type="text" class="form-control" name="prtcpnt3_cntct" id="prtcpnt3_cntct" placeholder="Particiapant 3 Contact No.">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
                                                 Particiapant 4
                                                 <input type="text" class="form-control" name="prtcpnt4" id="prtcpnt4" placeholder="Particiapant 4">
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
-                                                <?php
-                                                $day_query = "SELECT * FROM event_date";
-                                                $day_stmt = $con->prepare($day_query);
-                                                $day_stmt->execute();
-                                                $day_result = $day_stmt->get_result();
-                                                $event_days = $day_result->fetch_all();
+                                                Contact No.
+                                                <input type="text" class="form-control" name="prtcpnt4_cntct" id="prtcpnt4_cntct" placeholder="Particiapant 4 Contact No.">
+                                            </div>
+                                            <?php
+                                            $day_query = "SELECT * FROM event_date";
+                                            $day_stmt = $con->prepare($day_query);
+                                            $day_stmt->execute();
+                                            $day_result = $day_stmt->get_result();
+                                            $event_days = $day_result->fetch_all();
+                                            $slot_query = "SELECT * FROM time_slot";
+                                            $slot_stmt = $con->prepare($slot_query);
+                                            $slot_stmt->execute();
+                                            $slot_result = $slot_stmt->get_result();
+                                            $event_slots = $slot_result->fetch_all();
+                                            ?>
+                                            <!-- <div class="col-6">
+                                                <br>
+                                                <b>Choose any 3 preferable days</b>
+                                                <br><br>                                            
+                                                <?php foreach ($event_days as $event_day) { ?>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" name="day[]" value="<?php $event_day[0]; ?>"><?= $event_day[2]; ?>                                                        
+                                                    </div>
+                                                <?php }
                                                 ?>
-                                                Proposed Event Date
-                                                <select class="form-control form-group" name="evnt_day[]" id="evnt_day" style="height:35px;" required="required">
+                                            </div>
+                                            <div class="col-6">
+                                                <br>
+                                                <b>Choose any 3 preferable time</b>
+                                                <br><br>                                            
+                                                <?php foreach ($event_slots as $event_slot) { ?>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="checkbox" name="time[]" value="<?php $event_slot[0]; ?>"><?= $event_slot[1]; ?>
+                                                    </div>
+                                                <?php }
+                                                ?>
+                                            </div> -->
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Event Date Preference 1
+                                                <select class="form-control form-group" name="evnt_day1" id="evnt_day1" style="height:35px;" required="required">
                                                     <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) {
                                                         // $evntDaySelect = "";
@@ -197,15 +282,68 @@ $user_id = $user['id'];
                                             </div>
                                             <div class="form-group col-6">
                                                 <br>
-                                                <?php
-                                                $slot_query = "SELECT * FROM time_slot";
-                                                $slot_stmt = $con->prepare($slot_query);
-                                                $slot_stmt->execute();
-                                                $slot_result = $slot_stmt->get_result();
-                                                $event_slots = $slot_result->fetch_all();
-                                                ?>
-                                                Proposed Time Slot
-                                                <select class="form-control form-group" name="time_slot" id="time_slot" style="height:35px;" required="required">
+                                                Time Slot Preference 1
+                                                <select class="form-control form-group" name="time_slot1" id="time_slot1" style="height:35px;" required="required">
+                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <?php foreach ($event_slots as $event_slot) {
+                                                        // $evntTmeSelect = "";
+                                                        // if ($event_slot[0] == $time_slot) {
+                                                        //     $evntTmeSelect = 'selected';
+                                                        // }
+                                                    ?>
+                                                        <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Event Date Preference 2
+                                                <select class="form-control form-group" name="evnt_day2" id="evnt_day2" style="height:35px;" required="required">
+                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <?php foreach ($event_days as $event_day) {
+                                                        // $evntDaySelect = "";
+                                                        // if ($event_day[0] == $evnt_day) {
+                                                        //     $evntDaySelect = 'selected';
+                                                        // }
+                                                    ?>
+                                                        <option value="<?= $event_day[0] ?>"><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Time Slot Preference 2
+                                                <select class="form-control form-group" name="time_slot2" id="time_slot2" style="height:35px;" required="required">
+                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <?php foreach ($event_slots as $event_slot) {
+                                                        // $evntTmeSelect = "";
+                                                        // if ($event_slot[0] == $time_slot) {
+                                                        //     $evntTmeSelect = 'selected';
+                                                        // }
+                                                    ?>
+                                                        <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Event Date Preference 3
+                                                <select class="form-control form-group" name="evnt_day3" id="evnt_day3" style="height:35px;" required="required">
+                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <?php foreach ($event_days as $event_day) {
+                                                        // $evntDaySelect = "";
+                                                        // if ($event_day[0] == $evnt_day) {
+                                                        //     $evntDaySelect = 'selected';
+                                                        // }
+                                                    ?>
+                                                        <option value="<?= $event_day[0] ?>"><?= $event_day[1]; ?> - <?= $event_day[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <br>
+                                                Time Slot Preference 3
+                                                <select class="form-control form-group" name="time_slot3" id="time_slot3" style="height:35px;" required="required">
                                                     <option value="0">Select Proposed Event Day</option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         // $evntTmeSelect = "";

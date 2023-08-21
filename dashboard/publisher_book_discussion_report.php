@@ -33,7 +33,7 @@
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'publisher_profile_report-data')" class="btn btn-primary">Export Table Data To Excel File</button>
+                            <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report-data')" class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
                                 <thead>
                                     <tr>
@@ -77,7 +77,7 @@
                                                     </button>
                                                     <ul class='dropdown-menu dropdown-menu-end'>
                                                         <li>
-                                                            <a href='editstall_registration.php?id=$id' class='dropdown-item edit-item-btn'>
+                                                            <a href='publisher_bookdiscussion.php?pubid=$id' class='dropdown-item edit-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
                                                             </a>
                                                         </li>
