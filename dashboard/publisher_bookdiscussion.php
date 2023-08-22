@@ -144,7 +144,7 @@ $user_id = $user['id'];
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, book_name, moderator, participant1, participant2, participant3, participant4, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct) VALUES ('$user_id', '$disc_sub', '$disc_book', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct')";
+                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, book_name, moderator, participant1, participant2, participant3, participant4, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct, book_cover) VALUES ('$user_id', '$disc_sub', '$disc_book', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct', '$imgContent')";
                                 $result1 = mysqli_query($con, $query1);
                                 if ($result1) {
                                     $querySelectDscn = "SELECT id FROM evnt_propsl_bkdscn WHERE user_id = '$user_id' ORDER BY id DESC LIMIT 1";
