@@ -135,27 +135,35 @@ $user_id = $user['id'];
                                                </div>"; //printing error if found in validation
                             } else {
                                 // var_dump($user_id);die;
-                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, book_name, moderator, participant1, participant2, participant3, participant4, date_prfrng1, time_prfrng1, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct, date_prfrng2, time_prfrng2, date_prfrng3, time_prfrng3, book_cover) VALUES ('$user_id', '$disc_sub', '$disc_book', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day1', '$time_slot1', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct', '$evnt_day2', '$time_slot2', '$evnt_day3', '$time_slot3', '$imgContent')";
+                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, book_name, moderator, participant1, participant2, participant3, participant4, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct, book_cover) VALUES ('$user_id', '$disc_sub', '$disc_book', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day1', '$time_slot1', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct', '$evnt_day2', '$time_slot2', '$evnt_day3', '$time_slot3', '$imgContent')";
                                 $result1 = mysqli_query($con, $query1);
-                                $querySelectDscn = "SELECT id FROM evnt_propsl_bkdscn WHERE user_id = '$user_id' ORDER BY id DESC LIMIT 1";
-                                $resultSelect = mysqli_query($con, $querySelectDscn);
-                                $book_dscn_id = $resultSelect->fetch_array();
-                                // var_dump($book_dscn_id['id']);
-                                $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id', 'NULL', '$book_dscn_id[id]', 'NULL', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
-                                var_dump($querydaytime);
-                                $resultdaytime = mysqli_query($con, $querydaytime);
-                                if ($result1 && $resultdaytime) {
-                                    $errormsg = "
+                                if ($result1) {
+                                    $querySelectDscn = "SELECT id FROM evnt_propsl_bkdscn WHERE user_id = '$user_id' ORDER BY id DESC LIMIT 1";
+                                    $resultSelect = mysqli_query($con, $querySelectDscn);
+                                    $book_dscn_id = $resultSelect->fetch_array();
+                                    // var_dump($book_dscn_id['id']);
+                                    $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id', 'NULL', '$book_dscn_id[id]', 'NULL', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
+                                    // var_dump($querydaytime);
+                                    $resultdaytime = mysqli_query($con, $querydaytime);
+                                    if ($resultdaytime) {
+                                        $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
-                                } else {
-                                    $errormsg = "
+                                    } else {
+                                        $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
+                                    }
+                                } else {
+                                    $errormsg = "
+                                <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                           Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                           </div>";
                                 }
                             }
                         }
