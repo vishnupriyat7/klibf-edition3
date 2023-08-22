@@ -66,13 +66,13 @@ include "../z_db.php";
                     </a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="#sidebarPot" data-bs-toggle="collapse">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="#sidebarReport" data-bs-toggle="collapse">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a>
                     <!-- <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
                         <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
                     </a> -->
-                    <div class="menu-dropdown collapse" id="sidebarPot" style="">
+                    <div class="menu-dropdown collapse" id="sidebarReport" style="">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="publisher-report.php" class="nav-link" data-key="t-one-page"> Profile Report </a>
@@ -87,10 +87,10 @@ include "../z_db.php";
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
+                    <a class="nav-link menu-link" href="#sidebarEvent" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
                         <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
                     </a>
-                    <div class="menu-dropdown collapse" id="sidebarPot" style="">
+                    <div class="menu-dropdown collapse" id="sidebarEvent" style="">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="publisher_bookrelease.php" class="nav-link" data-key="t-one-page"> Book Release </a>
