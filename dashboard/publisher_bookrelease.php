@@ -20,7 +20,7 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="book_coverut.php"><i class="mdi mdi-book_coverut text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-book_coverut">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-book_coverut text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-book_coverut">Logout</span></a>
                             </ol>
                         </div>
                     </div>
@@ -48,34 +48,69 @@ $user_id = $user['id'];
 
                             $book_title =
                                 mysqli_real_escape_string($con, $_POST['book_title']);
-                            $author =
-                                mysqli_real_escape_string($con, $_POST['author']);
+
                             $book_genere =
                                 mysqli_real_escape_string($con, $_POST['book_genere']);
+
                             $brief_descrptn =
                                 mysqli_real_escape_string($con, $_POST['brief_descrptn']);
+
+                            $author =
+                                mysqli_real_escape_string($con, $_POST['author']);
+
                             $release_by =
                                 mysqli_real_escape_string($con, $_POST['release_by']);
+                            $releas_by_cntct =
+                                mysqli_real_escape_string($con, $_POST['releas_by_cntct']);
+
                             $recvd_by =
                                 mysqli_real_escape_string($con, $_POST['recvd_by']);
+
+                            $recvd_by_cntct =
+                                mysqli_real_escape_string($con, $_POST['recvd_by_cntct']);
+
                             $guest1 =
                                 mysqli_real_escape_string($con, $_POST['guest1']);
+                            $guest1_cntct =
+                                mysqli_real_escape_string($con, $_POST['guest1_cntct']);
+
                             $guest2 =
                                 mysqli_real_escape_string($con, $_POST['guest2']);
+                            $guest2_cntct =
+                                mysqli_real_escape_string($con, $_POST['guest2_cntct']);
+
                             $guest3 =
                                 mysqli_real_escape_string($con, $_POST['guest3']);
-                            $bkrls_contact =
-                                mysqli_real_escape_string($con, $_POST['bkrls_contact']);
-                            $bkrls_mobile =
-                                mysqli_real_escape_string($con, $_POST['mobile']);
-                            $bkrls_email =
-                                mysqli_real_escape_string($con, $_POST['bkrls_email']);
-                            $date_preffer =
-                                mysqli_real_escape_string($con, $_POST['date_prefering']);
-                            $time_preffer =
-                                mysqli_real_escape_string($con, $_POST['time_prefer']);
+                            $guest3_cntct =
+                                mysqli_real_escape_string($con, $_POST['guest3_cntct']);
+
+
+
+                            $evnt_day1 =
+                                mysqli_real_escape_string($con, $_POST['evnt_day1']);
+                            $time_slot1 =
+                                mysqli_real_escape_string($con, $_POST['time_slot1']);
+                            $evnt_day2 =
+                                mysqli_real_escape_string($con, $_POST['evnt_day2']);
+                            $time_slot2 =
+                                mysqli_real_escape_string($con, $_POST['time_slot2']);
+                            $evnt_day3 =
+                                mysqli_real_escape_string($con, $_POST['evnt_day3']);
+                            $time_slot3 =
+                                mysqli_real_escape_string($con, $_POST['time_slot3']);
+
+
+
+                            $bkrls_cntct_persn_name =
+                                mysqli_real_escape_string($con, $_POST['cntct_persn_name']);
+                            $bkrls_cntct_persn_mobile =
+                                mysqli_real_escape_string($con, $_POST['cntct_persn_mobile']);
+                            $bkrls_cntct_persn_email =
+                                mysqli_real_escape_string($con, $_POST['cntct_persn_email']);
+
                             $remark =
                                 mysqli_real_escape_string($con, $_POST['remark']);
+
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             if (!empty($_FILES["book_cover"]["name"])) {
@@ -93,93 +128,80 @@ $user_id = $user['id'];
                                     $status = "NOTOK";
                                 }
                             } else {
-                                if (!$logo) {
+                                if (!$book_cover_bkrls) {
                                     $msg = 'Please select an image file to upload.';
                                     $status = "NOTOK";
                                 }
                             }
-                            if ($time_preffer == '0') {
-                                $msg = $msg . "Please select proposed time slot.<BR>";
-                                $status = "NOTOK";
+                            if ($time_slot1 == '0') {
+                                $time_slot1 = '5';
                             }
-                            if ($date_preffer == '0') {
-                                $msg = $msg . "Please select proposed date.<BR>";
-                                $status = "NOTOK";
+                            if ($evnt_day1 == '0') {
+                                $evnt_day1 = '8';
                             }
+                            if ($time_slot2 == '0') {
+                                $time_slot2 = '5';
+                            }
+                            if ($evnt_day2 == '0') {
+                                $evnt_day2 = '8';
+                            }
+                            if ($time_slot3 == '0') {
+                                $time_slot3 = '5';
+                            }
+                            if ($evnt_day3 == '0') {
+                                $evnt_day3 = '8';
+                            }
+
+                            $errormsg = "";
+
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
 
-                                $query = "INSERT INTO event_propsl_bkrls (users_id,book_title, author, book_genere, brf_description, released_by, recived_by, guest1, guest2, guest3, contact_persn, email, mobile, date_prefering, time_prefering, updated_at, remarks, book_cover, status) VALUES ('$user_id','$book_title', '$author', '$book_genere', '$brief_descrptn', '$release_by', '$recvd_by', '$guest1', '$guest2', '$guest3', '$bkrls_contact', '$bkrls_email','$bkrls_mobile', '$date_preffer', '$time_preffer', '$date','$remark',  '$imgContent','0')";
-                            }
-                            $result = mysqli_query($con, $query);
-                            if ($result) {
-                                $errormsg = "
+                                $query = "INSERT INTO event_propsl_bkrls (users_id,book_title,book_genere,brf_description, author,  released_by, relcd_by_cntct, recived_by, recvd_by_contact, guest1, guest1_contct, guest2, guest2_contct, guest3, guest3_contct, contact_persn_name, contact_persn_mobile,contact_persn_email, remarks,  updated_at, status, book_cover) VALUES ('$user_id','$book_title',  '$book_genere','$brief_descrptn','$author',  '$release_by', '$releas_by_cntct','$recvd_by','$recvd_by_cntct', '$guest1','$guest1_cntct', '$guest2', '$guest2_cntct','$guest3','$guest3_cntct','$bkrls_cntct_persn_name', '$bkrls_cntct_persn_mobile', '$bkrls_cntct_persn_email','$remark', '$date','E','$imgContent')";
+
+                                // var_dump($query);
+                                $result1 = mysqli_query($con, $query);
+                                // var_dump($result1);
+                                if ($result1) {
+                                    // var_dump("fjkfdkj");
+                                    // var_dump($user_id);
+                                    $querySelectbookrls = "SELECT id FROM event_propsl_bkrls WHERE users_id = '$user_id' ORDER BY id DESC LIMIT 1";
+                                    var_dump($querySelectbookrls);
+                                    $resultSelectBookrls = mysqli_query($con, $querySelectbookrls);
+                                    // var_dump( $resultSelectBookrls);
+                                    $book_rls_id = $resultSelectBookrls->fetch_array();
+                                    // var_dump($book_rls_id['id']);
+                                    $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id','$book_rls_id[id]' ,'0' , '0', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
+                                    var_dump($querydaytime);
+                                    $resultdaytime = mysqli_query($con, $querydaytime);
+                                    if ($resultdaytime) {
+                                        $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your Book Release is Successfully Saved.
+                                                Your Event Proposal for Book Release is Successfully Saved. 
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                                                </div>
-                                              
-                               ";
-                                // $sql1 = "SELECT * FROM users_profile WHERE user_id = ?;";
-                                // $stmt1 = $con->prepare($sql1);
-                                // $stmt1->bind_param("s", $user_id);
-                                // $stmt1->execute();
-                                // $result1 = $stmt1->get_result();
-                                // $user_profile = $result1->fetch_assoc();
-                                // $comp_name = $user_profile['org_name'];
-                                // $estb_year = $user_profile['estb_year'];
-                                // $reg_no = $user_profile['reg_no'];
-                                // $gst_no = $user_profile['gst_no'];
-                                // $book_lang = $user_profile['book_lang'];
-                                // $title_no = $user_profile['title_no'];
-                                // $org_nature = $user_profile['org_nature'];
-                                // $mgr_pub_hse = $user_profile['mgr_house_name'];
-                                // $head_name = $user_profile['head_org_name'];
-                                // $head_addr = $user_profile['head_org_addr'];
-                                // $head_mobile = $user_profile['head_org_mobile'];
-                                // $head_email = $user_profile['head_org_email'];
-                                // $head_site = $user_profile['head_org_website'];
-                                // $prsn_name = $user_profile['cntct_prsn_name'];
-                                // $prsn_addr = $user_profile['cntct_prsn_addr'];
-                                // $prsn_mobile = $user_profile['cntct_prsn_mobile'];
-                                // $prsn_email = $user_profile['cntct_prsn_email'];
-                                // $whatsapp = $user_profile['cntct_prsn_watsapp'];
-                                // $fascia = $user_profile['fascia'];
-                                // $remark = $user_profile['remarks'];
-                                // $logo = base64_encode($user_profile['logo']);
-                                // if ($org_nature == 'A') {
-                                //     $select0 = '';
-                                //     $selecta = 'selected';
-                                //     $selectp = '';
-                                // } else if ($org_nature == 'P') {
-                                //     $select0 = '';
-                                //     $selecta = '';
-                                //     $selectp = 'selected';
-                                // } else {
-                                //     $select0 = 'selected';
-                                //     $selecta = '';
-                                //     $selectp = '';
-                                // }
-                                // if (!$logo) {
-                                //     $hide = "";
-                                // } else {
-                                //     $hide = "hidden";
-                                // }
-                            } else {
-                                $errormsg = "
+                                                </div>";
+                                    } else {
+                                        $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
+                                    }
+                                } else {
+                                    $errormsg = "
+                                <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                           Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                           </div>";
+                                }
                             }
                         }
-
                         ?>
 
-                        <div class="card-body p-4">
+                        <div class="card-body p-4 ">
                             <div class="tab-content">
                                 <?php
                                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -187,17 +209,130 @@ $user_id = $user['id'];
                                 }
                                 ?>
                                 <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="row bg-grey">
+                                    <div class="row bg-grey d-lg-flex d-sm-grid ">
 
                                         <div class="col-6">
 
                                             <label> *Book Title</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="book_title" id="book_title" placeholder="*Book Title" required="required" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="book_title" id="book_title" placeholder="*Book Title"  <?= $edit; ?>>
                                             </div>
-                                            <br>
-                                            <label>Book Genere</label>
+                                            <br><label> *Brief Description</label>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="brief_descrptn" id="brief_descrptn" placeholder="*Description"  <?= $edit; ?>></textarea>
+                                            </div><br>
+
+                                            <label>*Releasing by</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="*Releasing by"  <?= $edit; ?>>
+                                            </div><br>
+
+
+                                            <label>*Receiving by</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="*Received by"  <?= $edit; ?>>
+                                            </div><br>
+                                            <label>*Guest 1</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="*Guest 1"  <?= $edit; ?>>
+                                            </div><br>
+                                            <label>*Guest 2</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 2"  <?= $edit; ?>>
+                                            </div><br>
+                                            <label>*Guest 3</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="guest3" id="guest3" placeholder="*Guest 3"  <?= $edit; ?>>
+                                            </div><br>
+                                            <?php
+                                            $day_query = "SELECT * FROM event_date";
+                                            $day_stmt = $con->prepare($day_query);
+                                            $day_stmt->execute();
+                                            $day_result = $day_stmt->get_result();
+                                            $event_days = $day_result->fetch_all();
+                                            $slot_query = "SELECT * FROM time_slot";
+                                            $slot_stmt = $con->prepare($slot_query);
+                                            $slot_stmt->execute();
+                                            $slot_result = $slot_stmt->get_result();
+                                            $event_slots = $slot_result->fetch_all();
+                                            ?>
+
+
+
+                                            <label>*Event Date Preference 1</label>
+                                            <div class="form-group">
+
+                                                <select class="form-control form-group" name="evnt_day1" id="evnt_day1"  style="height:35px;">
+                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Time</option>
+                                                    <?php foreach ($event_days as $days) { ?>
+                                                        <option value="<?= $days[0] ?>"><?= $days[1]; ?> - <?= $days[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div><br>
+                                            <label>*Event Date Preference 2</label>
+                                            <div class="form-group">
+
+                                                <select class="form-control form-group" name="evnt_day2" id="evnt_day2"  style="height:35px;">
+                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Time</option>
+                                                    <?php foreach ($event_days as $days) { ?>
+                                                        <option value="<?= $days[0] ?>"><?= $days[1]; ?> - <?= $days[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div><br>
+                                            <label>*Event Date Preference 3</label>
+                                            <div class="form-group">
+
+                                                <select class="form-control form-group" name="evnt_day3" id="evnt_day3"  style="height:35px;">
+                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Time</option>
+                                                    <?php foreach ($event_days as $days) { ?>
+                                                        <option value="<?= $days[0] ?>"><?= $days[1]; ?> - <?= $days[2]; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div><br>
+
+
+
+                                            <label> *Contact Person Name</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" name="cntct_persn_name" id="cntct_persn_name" placeholder="*Contact Person Name"  <?= $edit; ?>>
+                                            </div><br>
+
+                                            <label>*Contact Person Email</label>
+                                            <div class="form-group">
+
+                                                <input type="email" class="form-control" name="cntct_persn_email" id="cntct_persn_email" placeholder="*Contact Person Email"  min="0" <?= $edit; ?>>
+                                            </div><br>
+
+
+                                            <label>*Please upload Book Cover<br>
+                                                (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
+                                            <!-- </div> -->
+
+
+                                            <div class="form-group">
+
+                                                <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Book Cover" <?= $hide; ?> <?= $edit; ?>><br>
+                                                <!-- <label id="book_cover_lab">
+                                                <img src="data:image/jpg;charset=utf8;base64,<?= $book_cover; ?>" height="70vh" id="book_cover_img" <?= $edit; ?>>
+                                            </label> -->
+
+                                                <!-- <span id="changebook_cover" onclick="changeLogo();" <?= $edit; ?>><u>Change Book Cover</u></span> -->
+
+                                                <!-- <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo"> -->
+                                            </div>
+
+                                            <div class="form-group col-6">
+                                                <label>
+                                                    <?= $fileName; ?>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label>*Book Genere</label>
                                             <div class="form-group">
                                                 <?php
                                                 $bookgenere_query = "SELECT * FROM book_genere";
@@ -208,19 +343,14 @@ $user_id = $user['id'];
                                                 // var_dump($book_genere);
                                                 ?>
 
-                                                <select class="form-control form-group" name="book_genere" id="book_genere" required="required">
-                                                    <option value="0">Select Book Genere</option>
+                                                <select class="form-control form-group" name="book_genere" id="book_genere" >
+                                                    <option value="0">*Select Book Genere</option>
                                                     <?php foreach ($book_genere as $genere) { ?>
                                                         <option value="<?= $genere[0] ?>"><?= $genere[1]; ?> <?= $genere[2]; ?></option>
                                                     <?php } ?>
                                                 </select>
 
-
-
-
-
-
-                                                <!-- <select class="form-control form-group" name="book_genere" id="book_genere" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
+                                                <!-- <select class="form-control form-group" name="book_genere" id="book_genere"  onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
                                                     <option value="0" <?= $select0; ?>>Select</option>
                                                     <option value="Novel" <?= $selectp; ?>>Novel</option>
                                                     <option value="Drama" <?= $selecta; ?>>Drama</option>
@@ -234,119 +364,103 @@ $user_id = $user['id'];
                                                     <option value="Auto Biography" <?= $selecta; ?>>Auto Biography</option>
                                                     <option value="Others" <?= $selectp; ?>>Others</option>
                                                 </select> -->
-                                            </div><br><br>
-                                            <label>*Releasing by</label>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="*Releasing by" required="required" <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Guest 1</label>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="*Guest 1" required="required" <?= $edit; ?>>
-                                            </div><br>
-                                            <label>*Guest 3</label>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="guest3" id="guest3" placeholder="*Guest 3" required="required" <?= $edit; ?>>
-                                            </div><br>
-                                            <label> *Mobile</label>
-                                            <div class="form-group">
-
-                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="*Mobile" required="required" <?= $edit; ?>>
-                                            </div><br>
-                                            <label>*Date Preferring</label>
-                                            <div class="form-group">
-                                                <?php
-                                                $day_query = "SELECT * FROM event_date";
-                                                $day_stmt = $con->prepare($day_query);
-                                                $day_stmt->execute();
-                                                $day_result = $day_stmt->get_result();
-                                                $generes = $day_result->fetch_all();
-                                                ?>
-                                                <select class="form-control form-group" name="date_prefering" id="date_prefering" required="required" style="height:35px;">
-                                                    <option value="0" <?= $select0; ?>>Select Date Preferring</option>
-                                                    <?php foreach ($generes as $genere) { ?>
-                                                        <option value="<?= $genere[0] ?>"><?= $genere[1]; ?> - <?= $genere[2]; ?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
                                             <label>*Author</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="author" id="author" placeholder="*Author" required="required" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="author" id="author" placeholder="*Author"  <?= $edit; ?>>
                                             </div>
-                                            <br><label> *Brief Description</label>
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="brief_descrptn" id="brief_descrptn" placeholder="*Description" required="required" <?= $edit; ?>></textarea>
-                                            </div><br>
-                                            <label>*Received by</label>
+                                            <br><br>
+
+                                            <label>*Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="*Received by" required="required" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="releas_by_cntct" id="releas_by_cntct" placeholder="*Releasing by Contact"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Guest 2</label>
+                                            <label>*Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 2" required="required" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="recvd_by_cntct" id="recvd_by_cntct" placeholder="*Receiving by Contact"  <?= $edit; ?>>
                                             </div><br>
-                                            <label> *Contact Person</label>
+                                            <label>*Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="bkrls_contact" id="bkrls_contact" placeholder="*Contact Person" required="required" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest1_cntct" id="guest1_cntct" placeholder="*Guest1 Contact"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Email</label>
+
+                                            <label> *Contact</label>
                                             <div class="form-group">
 
-                                                <input type="email" class="form-control" name="bkrls_email" id="bkrls_email" placeholder="*Email" required="required" min="0" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest2_cntct" id="guest2_cntct" placeholder="*Guest2 Contact"  <?= $edit; ?>>
+                                            </div><br>
+                                            <label> *Contact</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" name="guest3_cntct" id="guest3_cntct" placeholder="*Guest3 Contact"  <?= $edit; ?>>
                                             </div><br>
                                             <div class="row">
-                                                <label> *Time Preferring</label>
+                                                <label> * Time Slot Preference 1</label>
                                                 <div class="form-group">
-                                                    <?php
-                                                    $slot_query = "SELECT * FROM time_slot";
-                                                    $slot_stmt = $con->prepare($slot_query);
-                                                    $slot_stmt->execute();
-                                                    $slot_result = $slot_stmt->get_result();
-                                                    $event_slots = $slot_result->fetch_all();
-                                                    ?>
 
-                                                    <select class="form-control form-group" name="time_prefer" id="time_prefer" required="required" style="height:35px;">
-                                                        <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
+
+                                                    <select class="form-control form-group" name="time_slot1" id="time_slot1"  style="height:35px;">
+                                                        <option value="0" <?= $select0; ?>>Select Proposed Event Time</option>
                                                         <?php foreach ($event_slots as $event_slot) { ?>
                                                             <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
 
+                                            </div><br>
+                                            <div class="row">
+                                                <label> * Time Slot Preference 2</label>
+                                                <div class="form-group">
+
+
+                                                    <select class="form-control form-group" name="time_slot2" id="time_slot2"  style="height:35px;">
+                                                        <option value="0" <?= $select0; ?>>Select Proposed Event Time</option>
+                                                        <?php foreach ($event_slots as $event_slot) { ?>
+                                                            <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+
+                                            </div><br>
+                                            <div class="row">
+                                                <label> * Time Slot Preference 3</label>
+                                                <div class="form-group">
+
+
+                                                    <select class="form-control form-group" name="time_slot3" id="time_slot3"  style="height:35px;">
+                                                        <option value="0" <?= $select0; ?>>Select Proposed Event Time</option>
+                                                        <?php foreach ($event_slots as $event_slot) { ?>
+                                                            <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+
+                                            </div><br>
+                                            <label>*Contact Person Mobile</label>
+                                            <div class="form-group">
+
+                                                <input type="text" class="form-control" name="cntct_persn_mobile" id="cntct_persn_mobile" placeholder="*Contact Person Mobile"  min="0" <?= $edit; ?>>
+                                            </div><br>
+
+
+                                            <label>Remarks / Other information</label>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" <?= $edit; ?>></textarea>
+
+                                                <!-- <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" <?= $edit; ?>> -->
                                             </div>
+
+
                                         </div>
 
                                         <!-- <div class="col-6"> -->
                                         </br> </br> </br>
-                                        <label>*Please upload Book Cover<br>
-                                            (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
-                                        <!-- </div> -->
-                                        <div class="form-group col-6">
 
-                                            <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Book Cover" <?= $hide; ?> <?= $edit; ?>><br>
-                                            <!-- <label id="book_cover_lab">
-                                                <img src="data:image/jpg;charset=utf8;base64,<?= $book_cover; ?>" height="70vh" id="book_cover_img" <?= $edit; ?>>
-                                            </label> -->
 
-                                            <!-- <span id="changebook_cover" onclick="changeLogo();" <?= $edit; ?>><u>Change Book Cover</u></span> -->
-
-                                            <!-- <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo"> -->
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label>
-                                                <?= $fileName; ?>
-                                            </label>
-                                        </div>
-                                        <label>Remarks / Other information</label>
-                                        <div class="form-group col-8">
-
-                                            <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" <?= $edit; ?>>
-                                        </div>
                                     </div><br>
 
                                     <div class="col-lg-12">
