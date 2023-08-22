@@ -67,7 +67,16 @@
                                 <tbody>
                                     <?php
                                     $userId = $user['id'];
-                                    $querybookDiscProp = "SELECT * FROM evnt_propsl_bkdscn epb join day_time_prefer dtb on epb.id = dtb.book_dscn_id where epb.user_id = '$userId' ORDER BY epb.id DESC";
+                                    $querybookDiscProp = "SELECT epb.*, ed1.event_date as day1_date, ed1.event_day as day1, ed2.event_date as day2_date, ed2.event_day as day2, ed3.event_date as day3_date, ed3.event_day as day3, ts1.slot_time as slotime1, ts1.slot_name as slotname1, ts2.slot_time as slotime2, ts2.slot_name as slotname2, ts3.slot_time as slotime3, ts3.slot_name as slotname3  
+                                    FROM evnt_propsl_bkdscn epb 
+                                    join day_time_prefer dtp on epb.id = dtp.book_dscn_id 
+                                    join event_date ed1 on dtp.day_prfr1 = ed1.id 
+                                    join event_date ed2 on dtp.day_prfr2 = ed2.id 
+                                    join event_date ed3 on dtp.day_prfr3 = ed3.id
+                                    join time_slot ts1 on dtp.time_prfr1 = ts1.id
+                                    join time_slot ts2 on dtp.time_prfr2 = ts2.id
+                                    join time_slot ts3 on dtp.time_prfr3 = ts3.id
+                                    where epb.user_id = '$userId' ORDER BY epb.id DESC";
                                     $discDiscProps = mysqli_query($con, $querybookDiscProp);
                                     $counter = 0;
                                     while ($discDiscProp = mysqli_fetch_array($discDiscProps)) {
@@ -90,13 +99,18 @@
                                         $cntct_mail = $discDiscProp['cntct_mail'];
                                         $remarks = $discDiscProp['remarks'];
                                         $book_cover = base64_encode($discDiscProp['book_cover']);
-                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
-                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
-                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
-                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
-
-                                        // $email = "$bookuser[email]";
-                                        // $contactno = "$bookuser[contact_no]";
+                                        $day1_date = $discDiscProp['day1_date'];
+                                        $day1 = $discDiscProp['day1'];
+                                        $day2_date = $discDiscProp['day2_date'];
+                                        $day2 = $discDiscProp['day2'];
+                                        $day3_date = $discDiscProp['day3_date'];
+                                        $day3 = $discDiscProp['day3'];
+                                        $slotime1 = $discDiscProp['slotime1'];
+                                        $slotname1 = $discDiscProp['slotname1'];
+                                        $slotime2 = $discDiscProp['slotime2'];
+                                        $slotname2 = $discDiscProp['slotname2'];
+                                        $slotime3 = $discDiscProp['slotime3'];
+                                        $slotname3 = $discDiscProp['slotname3'];
                                     ?>
                                         <tr>
                                             <td>
@@ -109,7 +123,7 @@
                                                 <?= $bookName; ?>
                                             </td>
                                             <td>
-                                                <?= $book_cover; ?>
+                                                <img src="data:image/jpg;charset=utf8;base64,<?= $book_cover; ?>" height="70vh">
                                             </td>
                                             <td>
                                                 <?= $moderator; ?>
@@ -142,34 +156,34 @@
                                                 <?= $part4_cntct; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $modrtr_cntct; ?> -->
+                                                <?= $day1; ?> <br> <?= $day1_date; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $modrtr_cntct; ?> -->
+                                                <?= $slotname1; ?> <br> <?= $slotime1; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $modrtr_cntct; ?> -->
+                                                <?= $day2; ?> <br> <?= $day2_date; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $modrtr_cntct; ?> -->
+                                                <?= $slotname2; ?> <br> <?= $slotime2; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $modrtr_cntct; ?> -->
+                                                <?= $day3; ?> <br> <?= $day3_date; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $modrtr_cntct; ?> -->
+                                                <?= $slotname3; ?> <br> <?= $slotime3; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $cntct_name; ?> -->
+                                                <?= $cntct_name; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $cntct_phno; ?> -->
+                                                <?= $cntct_phno; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $cntct_mail; ?> -->
+                                                <?= $cntct_mail; ?>
                                             </td>
                                             <td>
-                                                <!-- <?= $remarks; ?> -->
+                                                <?= $remarks; ?>
                                             </td>
                                             <td>
                                                 <div class='dropdown d-inline-block'>
