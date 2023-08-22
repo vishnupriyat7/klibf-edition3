@@ -62,7 +62,7 @@
                                         <th data-ordering="false">Contact Person Name</th>
                                         <th data-ordering="false">Contact Person Mobile</th>
                                         <th data-ordering="false">Contact Person Email</th>
-                                        
+
                                         <th data-ordering="false">Remarks</th>
                                         <th>Action</th>
                                     </tr>
@@ -70,12 +70,33 @@
                                 <tbody>
                                     <?php
                                     $userId = $user['id'];
-                                    $query = "SELECT * FROM evnt_propsl_bkdscn epb join day_time_prefer dtb on epb.id = dtp.book_dscn_id where epb.user_id = '$userId' ORDER BY id DESC";
-                                    $discProps = mysqli_query($con, $query);
+                                    // $query = "SELECT * FROM evnt_propsl_bkdscn epb join day_time_prefer dtb on epb.id = dtp.book_dscn_id where epb.user_id = '$userId' ORDER BY id DESC";
+                                    //   var_dump($userId);
+                                    $querybookRls = "SELECT * FROM event_propsl_bkrls epb join day_time_prefer dtp on epb.id = dtp.book_rls_id where epb.users_id = '$userId' ORDER BY epb.id DESC";
+                                    var_dump($querybookRls);
+                                    $bookprps = mysqli_query($con, $querybookRls);
                                     $counter = 0;
-                                    while ($discProp = mysqli_fetch_array($discProps)) {
-                                        $id = "$discProp[id]";
-                                        $subject = "$discProp[subject]";
+                                    while ($bookprp = mysqli_fetch_array($bookprps)) {
+                                        $id = $bookprp['id'];
+                                        $booktitle = $bookprp['book_title'];
+                                        $author = $bookprp['author'];
+                                        $book_genere = $bookprp['book_genere'];
+                                        $book_cover = base64_encode($bookprp['book_cover']);
+                                        $brf_description = $bookprp['brf_description'];
+                                        $released_by = $bookprp['released_by'];
+                                        $relcd_by_cntct = $bookprp['relcd_by_cntct'];
+                                        $recived_by = $bookprp['recived_by'];
+                                        $recvd_by_contact = $bookprp['recvd_by_contact'];
+                                        $guest1 = $bookprp['guest1'];
+                                        $guest1_contct = $bookprp['guest1_contct'];
+                                        $guest2 = $bookprp['guest2'];
+                                        $guest2_contct = $bookprp['guest2_contct'];
+                                        $guest3 = $bookprp['guest3'];
+                                        $guest3_contct = $bookprp['guest3_contct'];
+                                        $contact_persn_name = $bookprp['contact_persn_name'];
+                                        $contact_persn_email = $bookprp['contact_persn_email'];
+                                        $contact_persn_mobile = $bookprp['contact_persn_mobile'];
+                                        $remark = $bookprp['remark'];
                                         // $email = "$bookuser[email]";
                                         // $contactno = "$bookuser[contact_no]";
                                     ?>
@@ -84,14 +105,66 @@
                                                 <?= ++$counter; ?>
                                             </td>
                                             <td>
-                                                <?= $subject; ?>
+                                                <?= $booktitle; ?>
                                             </td>
                                             <td>
-                                                <?= $email; ?>
+                                                <?= $author; ?>
                                             </td>
                                             <td>
-                                                <?= $contactno; ?>
+                                                <?= $book_genere; ?>
                                             </td>
+                                            <td>
+                                                <?= $book_cover; ?>
+                                            </td>
+                                            <td>
+                                                <?= $brf_description; ?>
+                                            </td>
+
+                                            <td>
+                                                <?= $released_by; ?>
+                                            </td>
+                                            <td>
+                                                <?= $relcd_by_cntct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $recived_by; ?>
+                                            </td>
+                                            <td>
+                                                <?= $recvd_by_contact; ?>
+                                            </td>
+                                            <td>
+                                                <?= $guest1; ?>
+                                            </td>
+                                            <td>
+                                                <?= $guest1_contct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $guest2; ?>
+                                            </td>
+                                            <td>
+                                                <?= $guest2_contct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $guest3; ?>
+                                            </td>
+                                            <td>
+                                                <?= $guest3_contct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $contact_persn_name; ?>
+                                            </td>
+                                            <td>
+                                                <?= $contact_persn_email; ?>
+                                            </td>
+                                            <td>
+                                                <?= $contact_persn_mobile; ?>
+                                            </td>
+                                            <td>
+                                                <?= $remark; ?>
+                                            </td>
+
+
+
                                             <td>
                                                 <div class='dropdown d-inline-block'>
                                                     <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
