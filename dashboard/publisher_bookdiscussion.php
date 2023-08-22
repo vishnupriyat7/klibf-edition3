@@ -43,6 +43,16 @@ $user_id = $user['id'];
                         <?php
                         $status = "OK";
                         $msg = "";
+                        if (isset($_GET['discid'])) {
+                            $bookDiscId = $_GET['discid'];
+                            $querySelectBookDscn = "SELECT * FROM evnt_propsl_bkdscn WHERE id = '$bookDiscId'";
+                            $resultBookDscn = mysqli_query($con, $querySelectBookDscn);
+                            $bookDscn = $resultBookDscn->fetch_array();
+                            if($bookDscn) {
+                                $disc_sub = $bookDscn['book_name'];
+                            // var_dump($book_dscn_id['id']);
+                        }
+                        }
                         if (isset($_POST['disc_save'])) {
                             $disc_sub =
                                 mysqli_real_escape_string($con, $_POST['disc_sub']);
@@ -134,16 +144,13 @@ $user_id = $user['id'];
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                // var_dump($user_id);die;
-                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, book_name, moderator, participant1, participant2, participant3, participant4, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct, book_cover) VALUES ('$user_id', '$disc_sub', '$disc_book', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$evnt_day1', '$time_slot1', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct', '$evnt_day2', '$time_slot2', '$evnt_day3', '$time_slot3', '$imgContent')";
+                                $query1 = "INSERT INTO evnt_propsl_bkdscn (user_id, subject, book_name, moderator, participant1, participant2, participant3, participant4, cntct_name, cntct_phno, cntct_mail, updated_at, remarks, status, modrtr_cntct, part1_cntct, part2_cntct, part3_cntct, part4_cntct) VALUES ('$user_id', '$disc_sub', '$disc_book', '$modrtr', '$prtcpnt1', '$prtcpnt2', '$prtcpnt3', '$prtcpnt4', '$cntct_name', '$cntct_phno', '$cntct_mail', '$date', '$disc_remark', 'E', '$modrtr_cntct', '$prtcpnt1_cntct', '$prtcpnt2_cntct', '$prtcpnt3_cntct', '$prtcpnt4_cntct')";
                                 $result1 = mysqli_query($con, $query1);
                                 if ($result1) {
                                     $querySelectDscn = "SELECT id FROM evnt_propsl_bkdscn WHERE user_id = '$user_id' ORDER BY id DESC LIMIT 1";
                                     $resultSelect = mysqli_query($con, $querySelectDscn);
                                     $book_dscn_id = $resultSelect->fetch_array();
-                                    // var_dump($book_dscn_id['id']);
-                                    $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id', 'NULL', '$book_dscn_id[id]', 'NULL', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
-                                    // var_dump($querydaytime);
+                                    $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id', '0', '$book_dscn_id[id]', '0', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
                                     $resultdaytime = mysqli_query($con, $querydaytime);
                                     if ($resultdaytime) {
                                         $errormsg = "
@@ -168,7 +175,6 @@ $user_id = $user['id'];
                             }
                         }
                         ?>
-
                         <div class="card-body p-4">
                             <div class="tab-content">
                                 <div class="tab-pane active" id="personalDetails" role="tabpanel">

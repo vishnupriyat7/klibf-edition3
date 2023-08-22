@@ -39,16 +39,34 @@
                                     <tr>
                                         <th data-ordering="false">Sl.No</th>
                                         <th data-ordering="false">Subject</th>
-                                        <!-- <th data-ordering="false">Email Id</th>
-                                        <th data-ordering="false">Contact Number</th> -->
+                                        <th data-ordering="false">Book Name</th>
+                                        <th data-ordering="false">Moderator</th>
+                                        <th data-ordering="false">Moderator Contact</th>
+                                        <th data-ordering="false">Participant 1</th>
+                                        <th data-ordering="false">Participant 1 Contact No</th>
+                                        <th data-ordering="false">Participant 2</th>
+                                        <th data-ordering="false">Participant 2 Contact No</th>
+                                        <th data-ordering="false">Participant 3</th>
+                                        <th data-ordering="false">Participant 3 Contact No</th>
+                                        <th data-ordering="false">Participant 4</th>
+                                        <th data-ordering="false">Participant 4 Contact No</th>
+                                        <th data-ordering="false">Date Proposed 1</th>
+                                        <th data-ordering="false">Time Proposed 1</th>
+                                        <th data-ordering="false">Date Proposed 2</th>
+                                        <th data-ordering="false">Time Proposed 2</th>
+                                        <th data-ordering="false">Date Proposed 3</th>
+                                        <th data-ordering="false">Time Proposed 3</th>
+                                        <th data-ordering="false">Contact Person Name</th>
+                                        <th data-ordering="false">Contact No</th>
+                                        <th data-ordering="false">Email Id</th>
+                                        <th data-ordering="false">Remarks</th>
                                         <th>Action</th>
-                                        <!-- <th></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $userId = $user['id'];
-                                    $query = "SELECT * FROM evnt_propsl_bkdscn where user_id='$userId' ORDER BY id DESC";
+                                    $query = "SELECT * FROM evnt_propsl_bkdscn epb join day_time_prefer dtb on epb.id = dtp.book_dscn_id where epb.user_id = '$userId' ORDER BY id DESC";
                                     $discProps = mysqli_query($con, $query);
                                     $counter = 0;
                                     while ($discProp = mysqli_fetch_array($discProps)) {
@@ -64,12 +82,12 @@
                                             <td>
                                                 <?= $subject; ?>
                                             </td>
-                                            <!-- <td>
+                                            <td>
                                                 <?= $email; ?>
                                             </td>
                                             <td>
                                                 <?= $contactno; ?>
-                                            </td> -->
+                                            </td>
                                             <td>
                                                 <div class='dropdown d-inline-block'>
                                                     <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
@@ -77,7 +95,7 @@
                                                     </button>
                                                     <ul class='dropdown-menu dropdown-menu-end'>
                                                         <li>
-                                                            <a href='publisher_bookdiscussion.php?pubid=$id' class='dropdown-item edit-item-btn'>
+                                                            <a href='publisher_bookdiscussion.php?discid=<?= $id; ?>' class='dropdown-item edit-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
                                                             </a>
                                                         </li>
