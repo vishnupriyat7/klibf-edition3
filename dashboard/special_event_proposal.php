@@ -46,141 +46,47 @@ $user_id = $user['id'];
                             <div class="tab-content">
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="row d-flex bg-grey">
-                                      
-                                        <div class="col-6">
-                                       
-                                            <label> *Name of Event</label>
-                                            <div class="form-group">
 
-                                                <input type="text" class="form-control" name="event_name" id="event_name" placeholder="*Name of Event" required="required" value="<?= $event_name; ?>" <?= $edit; ?>>
-                                            </div>
+                                        <div class="form-group col-6">
+                                            <label>Name of Event</label>
+                                            <input type="text" class="form-control" name="event_name" id="event_name" placeholder="Name of Event">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <label>Dignitaries / Celebrities / Guests</label>
+                                            <textarea class="form-control" name="dignitaries" id="dignitaries" placeholder="Dignitaries / Celebrities / Guests"></textarea>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label>Brief Description</label>
+                                            <textarea class="form-control" name="brf_descrptn" id="brf_descrptn" placeholder="Description"></textarea>
+                                        </div>
+                                        <div class="form-group col-6">
                                             <br>
-                                            <label> *Dignitaries / celebrities / Guests</label>
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="dignitaries" id="dignitaries" placeholder="*Dignitaries / celebrities / Guests" required="required" <?= $edit; ?>><?= $dignitaries; ?></textarea>
-                                            </div><br>
-                                            <!-- <label>*Releasing by</label>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Releasing by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br>
-                                            <label>*Guest 1</label>
-                                            <div class="form-group">
-
-                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Guest 1" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br>
-                                            <label>*Guest 3</label>
-                                            <div class="form-group">
-
-                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Guest 3" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br> -->
-                                            <label> *Mobile</label>
-                                            <div class="form-group">
-
-                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="*Mobile" required="required" value="<?= $head_site; ?>" <?= $edit; ?>>
-                                            </div><br>
-                                            <!-- <label>*Date Preferring</label>
-                                            <div class="form-group">
-
-                                                <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
-                                                    <option value="0" <?= $select0; ?>>Select</option>
-                                                    <option value="P" <?= $selectp; ?>>Novel</option>
-                                                    <option value="A" <?= $selecta; ?>>Drama</option>
-                                                    <option value="P" <?= $selectp; ?>>Short Story</option>
-                                                    <option value="A" <?= $selecta; ?>>Poetry</option>
-                                                    <option value="P" <?= $selectp; ?>>Non-Fiction</option>
-                                                    <option value="A" <?= $selecta; ?>>Essay</option>
-                                                    <option value="P" <?= $selectp; ?>>History</option>
-                                                    <option value="A" <?= $selecta; ?>>Childrens Literature</option>
-                                                    <option value="P" <?= $selectp; ?>>Biography</option>
-                                                    <option value="A" <?= $selecta; ?>>Auto Biography</option>
-                                                    <option value="P" <?= $selectp; ?>>Others</option>
-                                                </select>
-                                            </div> -->
+                                            <label>Contact Person Name</label>
+                                            <input type="text" class="form-control" name="prsn_cntct" id="prsn_cntct" placeholder="Contact Person Name">
                                         </div>
-                                        <div class="col-6">
-                                            <!-- <label>*Author</label>
-                                            <div class="form-group">
-
-                                                <input type="text" class="form-control" name="prsn_name" id="prsn_name" placeholder="*Author" required="required" value="<?= $prsn_name; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <br> -->
-                                            <label> *Brief Description</label>
-                                            <div class="form-group">
-                                                <textarea class="form-control" name="brf_descrptn" id="brf_descrptn" placeholder="*Description" required="required" <?= $edit; ?>><?= $dignitaries; ?></textarea>
-                                            </div><br>
-                                            <!-- <label>*Received by</label>
-                                            <div class="form-group">
-
-                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Received by" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br>
-                                            <label>*Guest 2</label>
-                                            <div class="form-group">
-
-                                                <input type="email" class="form-control" name="head_email" id="head_email" placeholder="*Guest 2" required="required" value="<?= $head_email; ?>" <?= $edit; ?>>
-                                            </div><br> -->
-                                            <label> *Contact Person</label>
-                                            <div class="form-group">
-
-                                                <input type="text" class="form-control" name="prsn_cntct" id="prsn_cntct" placeholder="*Contact Person" required="required" value="<?= $prsn_email; ?>" <?= $edit; ?>>
-                                            </div><br>
-                                            <label>*Email</label>
-                                            <div class="form-group">
-
-                                                <input type="email" class="form-control" name="prsn_email" id="prsn_email" placeholder="*Email" required="required" min="0" value="<?= $prsn_mobile; ?>" <?= $edit; ?>>
-                                            </div><br>
-                                            <!-- <div class="row">
-                                                <label> *Time Preferring</label>
-                                                <div class="form-group">
-
-                                                    <select class="form-control form-group" name="org_nature" id="org_nature" required="required" onchange="enterPublisher();" style="height:35px;" <?= $edit; ?>>
-                                                        <option value="0" <?= $select0; ?>>Select</option>
-                                                        <option value="P" <?= $selectp; ?>>Novel</option>
-                                                        <option value="A" <?= $selecta; ?>>Drama</option>
-                                                        <option value="P" <?= $selectp; ?>>Short Story</option>
-                                                        <option value="A" <?= $selecta; ?>>Poetry</option>
-                                                        <option value="P" <?= $selectp; ?>>Non-Fiction</option>
-                                                        <option value="A" <?= $selecta; ?>>Essay</option>
-                                                        <option value="P" <?= $selectp; ?>>History</option>
-                                                        <option value="A" <?= $selecta; ?>>Childrens Literature</option>
-                                                        <option value="P" <?= $selectp; ?>>Biography</option>
-                                                        <option value="A" <?= $selecta; ?>>Auto Biography</option>
-                                                        <option value="P" <?= $selectp; ?>>Others</option>
-
-                                                    </select>
-                                                </div>
-
-                                            </div> -->
+                                        <div class="form-group col-6">
+                                            <br>
+                                            <label>Contact No.</label>
+                                            <input type="text" class="form-control" name="spcl_mobile" id="spcl_mobile" placeholder="Contact No.">
                                         </div>
-
-                                        <!-- <div class="col-6">
-                                            </br>
-                                            <label>*Please upload Book Cover<br>
-                                                (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
-                                        </div> -->
-                                        <!-- <div class="form-group col-6">
-                                            </br>
-                                            <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>><br>
-                                            <label id="book_cover_lab">
-                                                <img src="data:image/jpg;charset=utf8;base64,<?= $book_cover; ?>" height="70vh" id="book_cover_img" <?= $edit; ?>>
-                                            </label>
-                                           
-                                            <span id="changebook_cover" onclick="changeLogo();" <?= $edit; ?>><u>Change Book Cover</u></span>
-
-                                            <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo">
-                                        </div> -->
-                                       <label>Remarks / Other information</label>
-                                        <div class="form-group col-8">
-                                           
-                                            <input class="form-control" name="remark" id="remark" placeholder="Remarks / Other information" value="<?= $remark; ?>" <?= $edit; ?>>
+                                        <div class="form-group col-6">
+                                            <br>
+                                            <label>Email Id</label>
+                                            <input type="email" class="form-control" name="spcl_email" id="spcl_email" placeholder="Email Id">
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <br>
+                                            <label>Remarks / Other information</label>
+                                            <input class="form-control" name="spcl_remark" id="spcl_remark" placeholder="Remarks / Other information">
                                         </div>
                                     </div><br>
 
                                     <div class="col-lg-12">
 
-                                        <button type="submit" name="save" class="btn btn-primary" id="save">Save</button>
+                                        <button type="submit" name="spcl_save" class="btn btn-primary" id="spcl_save">Save</button>
                                         <?php if ($user_profile) { ?>
-                                                <button type="submit" class="btn btn-success" name="submit-form" id="submit-form">Submit</button>
-                                            <?php } ?>
+                                            <button type="submit" class="btn btn-success" name="submit-form" id="submit-form">Submit</button>
+                                        <?php } ?>
                                         <span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>
                                     </div>
                                 </form>

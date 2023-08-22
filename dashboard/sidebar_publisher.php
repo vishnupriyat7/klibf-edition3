@@ -65,28 +65,9 @@ include "../z_db.php";
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a>
                 </li> -->
+                
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="#sidebarReport" data-bs-toggle="collapse">
-                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
-                    </a>
-                    <!-- <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
-                        <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
-                    </a> -->
-                    <div class="menu-dropdown collapse" id="sidebarReport" style="">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="publisher-report.php" class="nav-link" data-key="t-one-page"> Profile Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-key="t-nft-landing"> Book Release Proposal </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="publisher_book_discussion_report.php" class="nav-link" data-key="t-nft-landing"> Book Discussion Proposal </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
+                    
                     <a class="nav-link menu-link" href="#sidebarEvent" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
                         <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
                     </a>
@@ -100,6 +81,27 @@ include "../z_db.php";
                             </li>
                             <li class="nav-item">
                                 <a href="special_event_proposal.php" class="nav-link" data-key="t-nft-landing"> Special Event Proposal </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="#sidebarReport" data-bs-toggle="collapse">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
+                    </a>
+                    <!-- <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
+                        <i class="ri-profile-fill"></i> <span data-key="t-landing">Event Proposal</span>
+                    </a> -->
+                    <div class="menu-dropdown collapse" id="sidebarReport" style="">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="publisher-report.php" class="nav-link" data-key="t-one-page"> Profile Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="publisher_bookrelease_report.php" class="nav-link" data-key="t-nft-landing"> Book Release Proposal Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="publisher_book_discussion_report.php" class="nav-link" data-key="t-nft-landing"> Book Discussion Proposal Report </a>
                             </li>
                         </ul>
                     </div>
