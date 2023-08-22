@@ -100,7 +100,6 @@ $user_id = $user['id'];
                                 mysqli_real_escape_string($con, $_POST['time_slot3']);
 
 
-
                             $bkrls_cntct_persn_name =
                                 mysqli_real_escape_string($con, $_POST['cntct_persn_name']);
                             $bkrls_cntct_persn_mobile =
@@ -113,6 +112,7 @@ $user_id = $user['id'];
 
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
+
                             if (!empty($_FILES["book_cover"]["name"])) {
                                 // Get file info 
                                 $fileName = basename($_FILES["book_cover"]["name"]);
