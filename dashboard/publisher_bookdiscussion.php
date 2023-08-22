@@ -49,7 +49,29 @@ $user_id = $user['id'];
                             $resultBookDscn = mysqli_query($con, $querySelectBookDscn);
                             $bookDscn = $resultBookDscn->fetch_array();
                             if($bookDscn) {
-                                $disc_sub = $bookDscn['book_name'];
+                                $disc_sub = $bookDscn['subject'];
+                                $disc_book =$bookDscn['book_name'];
+                                $modrtr =$bookDscn['moderator'];
+                                $modrtr_cntct =$bookDscn['modrtr_cntct'];
+                                $prtcpnt1 =$bookDscn['participant1'];
+                                $prtcpnt1_cntct =$bookDscn['part1_cntct'];
+                                $prtcpnt2 =$bookDscn['participant2'];
+                                $prtcpnt2_cntct =$bookDscn['part2_cntct'];
+                                $prtcpnt3 =$bookDscn['participant3'];
+                                $prtcpnt3_cntct =$bookDscn['part3_cntct'];
+                                $prtcpnt4 =$bookDscn['participant4'];
+                                $prtcpnt4_cntct =$bookDscn['part4_cntct'];
+                                $evnt_day1 =$bookDscn[''];
+                                $time_slot1 $bookDscn['modrtr_cntct'];
+                                $bookDscn['modrtr_cntct'];
+                                $bookDscn['modrtr_cntct'];
+                                $bookDscn['modrtr_cntct'];
+                                $bookDscn['modrtr_cntct'];
+                                $bookDscn['modrtr_cntct'];
+                                $bookDscn['modrtr_cntct'];
+
+
+
                             // var_dump($book_dscn_id['id']);
                         }
                         }
