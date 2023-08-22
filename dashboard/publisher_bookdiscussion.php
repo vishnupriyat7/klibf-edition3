@@ -43,6 +43,16 @@ $user_id = $user['id'];
                         <?php
                         $status = "OK";
                         $msg = "";
+                        if (isset($_GET['discid'])) {
+                            $bookDiscId = $_GET['discid'];
+                            $querySelectBookDscn = "SELECT * FROM evnt_propsl_bkdscn WHERE id = '$bookDiscId'";
+                            $resultBookDscn = mysqli_query($con, $querySelectBookDscn);
+                            $bookDscn = $resultBookDscn->fetch_array();
+                            if($bookDscn) {
+                                $disc_sub = $bookDscn['book_name'];
+                            // var_dump($book_dscn_id['id']);
+                        }
+                        }
                         if (isset($_POST['disc_save'])) {
                             $disc_sub =
                                 mysqli_real_escape_string($con, $_POST['disc_sub']);
