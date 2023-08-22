@@ -27,19 +27,20 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card" style="width:150%">
                         <div class="card-header">
                             <h5 class="card-title mb-0">Book Discussion Proposal Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report-data')" class="btn btn-primary">Export Table Data To Excel File</button>
-                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped overflow-auto" style="font-style:normal; font-size: 12px;">
                                 <thead>
                                     <tr>
                                         <th data-ordering="false">Sl.No</th>
                                         <th data-ordering="false">Subject</th>
                                         <th data-ordering="false">Book Name</th>
+                                        <th data-ordering="false">Book Cover</th>
                                         <th data-ordering="false">Moderator</th>
                                         <th data-ordering="false">Moderator Contact</th>
                                         <th data-ordering="false">Participant 1</th>
@@ -66,12 +67,34 @@
                                 <tbody>
                                     <?php
                                     $userId = $user['id'];
-                                    $query = "SELECT * FROM evnt_propsl_bkdscn epb join day_time_prefer dtb on epb.id = dtp.book_dscn_id where epb.user_id = '$userId' ORDER BY id DESC";
-                                    $discProps = mysqli_query($con, $query);
+                                    $querybookDiscProp = "SELECT * FROM evnt_propsl_bkdscn epb join day_time_prefer dtb on epb.id = dtb.book_dscn_id where epb.user_id = '$userId' ORDER BY epb.id DESC";
+                                    $discDiscProps = mysqli_query($con, $querybookDiscProp);
                                     $counter = 0;
-                                    while ($discProp = mysqli_fetch_array($discProps)) {
-                                        $id = "$discProp[id]";
-                                        $subject = "$discProp[subject]";
+                                    while ($discDiscProp = mysqli_fetch_array($discDiscProps)) {
+                                        // var_dump($discDiscProp);die;
+                                        $id = $discDiscProp['id'];
+                                        $subject = $discDiscProp['subject'];
+                                        $bookName = $discDiscProp['book_name'];
+                                        $moderator = $discDiscProp['moderator'];
+                                        $modrtr_cntct = $discDiscProp['modrtr_cntct'];
+                                        $participant1 = $discDiscProp['participant1'];
+                                        $part1_cntct = $discDiscProp['part1_cntct'];
+                                        $participant2 = $discDiscProp['participant2'];
+                                        $part2_cntct = $discDiscProp['part2_cntct'];
+                                        $participant3 = $discDiscProp['participant3'];
+                                        $part3_cntct = $discDiscProp['part3_cntct'];
+                                        $participant4 = $discDiscProp['participant4'];
+                                        $part4_cntct = $discDiscProp['part4_cntct'];
+                                        $cntct_name = $discDiscProp['cntct_name'];
+                                        $cntct_phno = $discDiscProp['cntct_phno'];
+                                        $cntct_mail = $discDiscProp['cntct_mail'];
+                                        $remarks = $discDiscProp['remarks'];
+                                        $book_cover = base64_encode($discDiscProp['book_cover']);
+                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
+                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
+                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
+                                        // $modrtr_cntct = $discDiscProp['modrtr_cntct'];
+
                                         // $email = "$bookuser[email]";
                                         // $contactno = "$bookuser[contact_no]";
                                     ?>
@@ -83,10 +106,70 @@
                                                 <?= $subject; ?>
                                             </td>
                                             <td>
-                                                <?= $email; ?>
+                                                <?= $bookName; ?>
                                             </td>
                                             <td>
-                                                <?= $contactno; ?>
+                                                <?= $book_cover; ?>
+                                            </td>
+                                            <td>
+                                                <?= $moderator; ?>
+                                            </td>
+                                            <td>
+                                                <?= $modrtr_cntct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $participant1; ?>
+                                            </td>
+                                            <td>
+                                                <?= $part1_cntct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $participant2; ?>
+                                            </td>
+                                            <td>
+                                                <?= $part2_cntct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $participant3; ?>
+                                            </td>
+                                            <td>
+                                                <?= $part3_cntct; ?>
+                                            </td>
+                                            <td>
+                                                <?= $participant4; ?>
+                                            </td>
+                                            <td>
+                                                <?= $part4_cntct; ?>
+                                            </td>
+                                            <td>
+                                                <!-- <?= $modrtr_cntct; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $modrtr_cntct; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $modrtr_cntct; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $modrtr_cntct; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $modrtr_cntct; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $modrtr_cntct; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $cntct_name; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $cntct_phno; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $cntct_mail; ?> -->
+                                            </td>
+                                            <td>
+                                                <!-- <?= $remarks; ?> -->
                                             </td>
                                             <td>
                                                 <div class='dropdown d-inline-block'>
