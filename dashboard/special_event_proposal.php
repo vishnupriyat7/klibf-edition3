@@ -41,14 +41,56 @@ $user_id = $user['id'];
                                         </li>
                                     </ul>
                                 </div> -->
-<?php if (isset($_POST['disc_save'])) {
-     $status = "OK";
-     $msg = "";
-}?>
+                        <?php if (isset($_POST['spcl_save'])) {
+                            $status = "OK";
+                            $msg = "";
+                            $event_name =
+                                mysqli_real_escape_string($con, $_POST['event_name']);
+                            $dignitaries =
+                                mysqli_real_escape_string($con, $_POST['dignitaries']);
+                            $brf_descrptn =
+                                mysqli_real_escape_string($con, $_POST['brf_descrptn']);
+                            $spcl_prsn_cntct =
+                                mysqli_real_escape_string($con, $_POST['spcl_prsn_name']);
+                            $spcl_mobile =
+                                mysqli_real_escape_string($con, $_POST['spcl_mobile']);
+                            $spcl_email =
+                                mysqli_real_escape_string($con, $_POST['spcl_email']);
+                            $spcl_remark =
+                                mysqli_real_escape_string($con, $_POST['spcl_remark']);
+                            $current_date = new DateTime();
+                            $date = date_format($current_date, "Y-m-d H:i:s");
+                            if ($status == "NOTOK") {
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
+                                    $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                                   </div>"; //printing error if found in validation
+                            } else {
+                                $query1 = "INSERT INTO special_event_propsl (users_id, event_name, event_brf_description, digniteries_guests, event_contact_persn, email, mobile, updated_at, remarks) VALUES ('$user_id', '$event_name', '$brf_descrptn', '$dignitaries', '$spcl_prsn_cntct', '$spcl_mobile', '$spcl_email', '$date', '$spcl_remark')";
+                                $result1 = mysqli_query($con, $query1);
+                                if ($result1) {
+                                    $errormsg = "
+                                  <div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                                    Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
+                                                    <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                                    </div>";
+                                } else {
+                                    $errormsg = "
+                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>";
+                                }
+                            }
+                        } ?>
                         <div class="card-body p-4">
                             <div class="tab-content">
+                                <?php
+                                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                    print $errormsg;
+                                }
+                                ?>
                                 <form action="" method="post" enctype="multipart/form-data">
-                                   <div class="row d-flex bg-grey">
+                                    <div class="row d-flex bg-grey">
                                         <div class="form-group col-6">
                                             <label>Name of Event</label>
                                             <input type="text" class="form-control" name="event_name" id="event_name" placeholder="Name of Event">
@@ -64,7 +106,7 @@ $user_id = $user['id'];
                                         <div class="form-group col-6">
                                             <br>
                                             <label>Contact Person Name</label>
-                                            <input type="text" class="form-control" name="prsn_cntct" id="prsn_cntct" placeholder="Contact Person Name">
+                                            <input type="text" class="form-control" name="spcl_prsn_name" id="spcl_prsn_name" placeholder="Contact Person Name">
                                         </div>
                                         <div class="form-group col-6">
                                             <br>
@@ -78,13 +120,12 @@ $user_id = $user['id'];
                                         </div>
                                         <div class="form-group col-6">
                                             <br>
-                                            <label>Remarks / Other information</label>
+                                            <label>Remarks / Other Information</label>
                                             <input class="form-control" name="spcl_remark" id="spcl_remark" placeholder="Remarks / Other information">
                                         </div>
                                     </div><br>
                                     <div class="col-lg-12">
                                         <button type="submit" name="spcl_save" class="btn btn-primary" id="spcl_save">Save</button>
-                                        
                                     </div>
                                 </form>
                             </div>

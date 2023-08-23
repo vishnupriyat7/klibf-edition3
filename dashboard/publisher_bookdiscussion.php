@@ -62,7 +62,7 @@ $user_id = $user['id'];
                                 $prtcpnt4 =$bookDscn['participant4'];
                                 $prtcpnt4_cntct =$bookDscn['part4_cntct'];
                                 $evnt_day1 =$bookDscn[''];
-                                $time_slot1 $bookDscn['modrtr_cntct'];
+                                $time_slot1 = $bookDscn['modrtr_cntct'];
                                 $bookDscn['modrtr_cntct'];
                                 $bookDscn['modrtr_cntct'];
                                 $bookDscn['modrtr_cntct'];
@@ -126,7 +126,6 @@ $user_id = $user['id'];
                                 // Get file info 
                                 $fileName = basename($_FILES["disc_book_cover"]["name"]);
                                 $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-
                                 // Allow certain file formats 
                                 $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
