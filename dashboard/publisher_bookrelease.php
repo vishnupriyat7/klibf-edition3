@@ -169,13 +169,13 @@ $user_id = $user['id'];
                                     // var_dump("fjkfdkj");
                                     // var_dump($user_id);
                                     $querySelectbookrls = "SELECT id FROM event_propsl_bkrls WHERE users_id = '$user_id' ORDER BY id DESC LIMIT 1";
-                                    var_dump($querySelectbookrls);
+                                    // var_dump($querySelectbookrls);
                                     $resultSelectBookrls = mysqli_query($con, $querySelectbookrls);
                                     // var_dump( $resultSelectBookrls);
                                     $book_rls_id = $resultSelectBookrls->fetch_array();
                                     // var_dump($book_rls_id['id']);
                                     $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id','$book_rls_id[id]' ,'0' , '0', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
-                                    var_dump($querydaytime);
+                                    // var_dump($querydaytime);
                                     $resultdaytime = mysqli_query($con, $querydaytime);
                                     if ($resultdaytime) {
                                         $errormsg = "
@@ -209,43 +209,43 @@ $user_id = $user['id'];
                                 }
                                 ?>
                                 <form action="" method="post" enctype="multipart/form-data">
-                                    <div class="row bg-grey d-lg-flex d-sm-grid ">
+                                    <div class="row bg-grey d-flex ">
 
                                         <div class="col-6">
 
-                                            <label> *Book Title</label>
+                                            <label> Book Title</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="book_title" id="book_title" placeholder="*Book Title"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="book_title" id="book_title" placeholder="Book Title"  <?= $edit; ?>>
                                             </div>
-                                            <br><label> *Brief Description</label>
+                                            <br><label> Brief Description</label>
                                             <div class="form-group">
-                                                <textarea class="form-control" name="brief_descrptn" id="brief_descrptn" placeholder="*Description"  <?= $edit; ?>></textarea>
+                                                <textarea class="form-control" name="brief_descrptn" id="brief_descrptn" placeholder="Description"  <?= $edit; ?>></textarea>
                                             </div><br>
 
-                                            <label>*Releasing by</label>
+                                            <label>Releasing by</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="*Releasing by"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="release_by" id="release_by" placeholder="Releasing by"  <?= $edit; ?>>
                                             </div><br>
 
 
-                                            <label>*Receiving by</label>
+                                            <label>Receiving by</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="*Received by"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="recvd_by" id="recvd_by" placeholder="Received by"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Guest 1</label>
+                                            <label>Guest 1</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="*Guest 1"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest1" id="guest1" placeholder="Guest 1"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Guest 2</label>
+                                            <label>Guest 2</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="*Guest 2"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest2" id="guest2" placeholder="Guest 2"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Guest 3</label>
+                                            <label>Guest 3</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="guest3" id="guest3" placeholder="*Guest 3"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest3" id="guest3" placeholder="Guest 3"  <?= $edit; ?>>
                                             </div><br>
                                             <?php
                                             $day_query = "SELECT * FROM event_date";
@@ -262,7 +262,7 @@ $user_id = $user['id'];
 
 
 
-                                            <label>*Event Date Preference 1</label>
+                                            <label>Event Date Preference 1</label>
                                             <div class="form-group">
 
                                                 <select class="form-control form-group" name="evnt_day1" id="evnt_day1"  style="height:35px;">
@@ -272,7 +272,7 @@ $user_id = $user['id'];
                                                     <?php } ?>
                                                 </select>
                                             </div><br>
-                                            <label>*Event Date Preference 2</label>
+                                            <label>Event Date Preference 2</label>
                                             <div class="form-group">
 
                                                 <select class="form-control form-group" name="evnt_day2" id="evnt_day2"  style="height:35px;">
@@ -282,7 +282,7 @@ $user_id = $user['id'];
                                                     <?php } ?>
                                                 </select>
                                             </div><br>
-                                            <label>*Event Date Preference 3</label>
+                                            <label>Event Date Preference 3</label>
                                             <div class="form-group">
 
                                                 <select class="form-control form-group" name="evnt_day3" id="evnt_day3"  style="height:35px;">
@@ -294,35 +294,34 @@ $user_id = $user['id'];
                                             </div><br>
 
 
-
-                                            <label> *Contact Person Name</label>
+                                            <label> Contact Person Name</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="cntct_persn_name" id="cntct_persn_name" placeholder="*Contact Person Name"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="cntct_persn_name" id="cntct_persn_name" placeholder="Contact Person Name"  <?= $edit; ?>>
                                             </div><br>
 
-                                            <label>*Contact Person Email</label>
+                                            <label>Contact Person Email</label>
                                             <div class="form-group">
 
-                                                <input type="email" class="form-control" name="cntct_persn_email" id="cntct_persn_email" placeholder="*Contact Person Email"  min="0" <?= $edit; ?>>
+                                                <input type="email" class="form-control" name="cntct_persn_email" id="cntct_persn_email" placeholder="Contact Person Email"  min="0" <?= $edit; ?>>
                                             </div><br>
 
 
-                                            <label>*Please upload Book Cover<br>
+                                            <label>Please upload Book Cover<br>
                                                 (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
                                             <!-- </div> -->
 
 
                                             <div class="form-group">
 
-                                                <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Book Cover" <?= $hide; ?> <?= $edit; ?>><br>
+                                                <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="Upload Book Cover" <?= $hide; ?> <?= $edit; ?>><br>
                                                 <!-- <label id="book_cover_lab">
                                                 <img src="data:image/jpg;charset=utf8;base64,<?= $book_cover; ?>" height="70vh" id="book_cover_img" <?= $edit; ?>>
                                             </label> -->
 
                                                 <!-- <span id="changebook_cover" onclick="changeLogo();" <?= $edit; ?>><u>Change Book Cover</u></span> -->
 
-                                                <!-- <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="*Upload Logo"> -->
+                                                <!-- <input type="file" class="form-control" name="book_cover" id="book_cover" placeholder="Upload Logo"> -->
                                             </div>
 
                                             <div class="form-group col-6">
@@ -332,7 +331,7 @@ $user_id = $user['id'];
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label>*Book Genere</label>
+                                            <label>Book Genre</label>
                                             <div class="form-group">
                                                 <?php
                                                 $bookgenere_query = "SELECT * FROM book_genere";
@@ -344,7 +343,7 @@ $user_id = $user['id'];
                                                 ?>
 
                                                 <select class="form-control form-group" name="book_genere" id="book_genere" >
-                                                    <option value="0">*Select Book Genere</option>
+                                                    <option value="0">Select Book Genre</option>
                                                     <?php foreach ($book_genere as $genere) { ?>
                                                         <option value="<?= $genere[0] ?>"><?= $genere[1]; ?> <?= $genere[2]; ?></option>
                                                     <?php } ?>
@@ -365,41 +364,41 @@ $user_id = $user['id'];
                                                     <option value="Others" <?= $selectp; ?>>Others</option>
                                                 </select> -->
                                             </div><br>
-                                            <label>*Author</label>
+                                            <label>Author</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="author" id="author" placeholder="*Author"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="author" id="author" placeholder="Author"  <?= $edit; ?>>
                                             </div>
                                             <br><br>
 
-                                            <label>*Contact</label>
+                                            <label>Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="releas_by_cntct" id="releas_by_cntct" placeholder="*Releasing by Contact"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="releas_by_cntct" id="releas_by_cntct" placeholder="Releasing by Contact"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Contact</label>
+                                            <label>Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="recvd_by_cntct" id="recvd_by_cntct" placeholder="*Receiving by Contact"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="recvd_by_cntct" id="recvd_by_cntct" placeholder="Receiving by Contact"  <?= $edit; ?>>
                                             </div><br>
-                                            <label>*Contact</label>
+                                            <label>Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest1_cntct" id="guest1_cntct" placeholder="*Guest1 Contact"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest1_cntct" id="guest1_cntct" placeholder="Guest1 Contact"  <?= $edit; ?>>
                                             </div><br>
 
-                                            <label> *Contact</label>
+                                            <label> Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest2_cntct" id="guest2_cntct" placeholder="*Guest2 Contact"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest2_cntct" id="guest2_cntct" placeholder="Guest2 Contact"  <?= $edit; ?>>
                                             </div><br>
-                                            <label> *Contact</label>
+                                            <label> Contact</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="guest3_cntct" id="guest3_cntct" placeholder="*Guest3 Contact"  <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="guest3_cntct" id="guest3_cntct" placeholder="Guest3 Contact"  <?= $edit; ?>>
                                             </div><br>
                                             <div class="row">
-                                                <label> * Time Slot Preference 1</label>
+                                                <label>  Time Slot Preference 1</label>
                                                 <div class="form-group">
 
 
@@ -413,7 +412,7 @@ $user_id = $user['id'];
 
                                             </div><br>
                                             <div class="row">
-                                                <label> * Time Slot Preference 2</label>
+                                                <label>  Time Slot Preference 2</label>
                                                 <div class="form-group">
 
 
@@ -427,7 +426,7 @@ $user_id = $user['id'];
 
                                             </div><br>
                                             <div class="row">
-                                                <label> * Time Slot Preference 3</label>
+                                                <label>  Time Slot Preference 3</label>
                                                 <div class="form-group">
 
 
@@ -440,10 +439,10 @@ $user_id = $user['id'];
                                                 </div>
 
                                             </div><br>
-                                            <label>*Contact Person Mobile</label>
+                                            <label>Contact Person Mobile</label>
                                             <div class="form-group">
 
-                                                <input type="text" class="form-control" name="cntct_persn_mobile" id="cntct_persn_mobile" placeholder="*Contact Person Mobile"  min="0" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="cntct_persn_mobile" id="cntct_persn_mobile" placeholder="Contact Person Mobile"  min="0" <?= $edit; ?>>
                                             </div><br>
 
 

@@ -61,12 +61,12 @@ $username = $_SESSION['username'];
                             <li class="nav-item">
                                 <a href="stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall Booking </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="quiz_reg_report.php" class="nav-link" data-key="t-nft-landing">Quiz Contest Report </a>
+                            <li class="nav-item">
+                                <a href="pgmcmtee-evnt-bkrls-report.php" class="nav-link" data-key="t-nft-landing">Event Proposal Book Release Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="queue_report.php" class="nav-link" data-key="t-nft-landing">Virtual Queue Report </a>
-                            </li> -->
+                                <a href="pgmcmtee-evnt-bkdscn-report.php" class="nav-link" data-key="t-nft-landing">Event Proposal Book Discussion Report </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

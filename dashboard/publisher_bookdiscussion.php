@@ -321,7 +321,7 @@ $user_id = $user['id'];
                                                 <br>
                                                 Time Slot Preference 1
                                                 <select class="form-control form-group" name="time_slot1" id="time_slot1" style="height:35px;" required="required">
-                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <option value="0">Select Proposed Event Time</option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         // $evntTmeSelect = "";
                                                         // if ($event_slot[0] == $time_slot) {
@@ -351,7 +351,7 @@ $user_id = $user['id'];
                                                 <br>
                                                 Time Slot Preference 2
                                                 <select class="form-control form-group" name="time_slot2" id="time_slot2" style="height:35px;" required="required">
-                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <option value="0">Select Proposed Event Time</option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         // $evntTmeSelect = "";
                                                         // if ($event_slot[0] == $time_slot) {
@@ -366,7 +366,7 @@ $user_id = $user['id'];
                                                 <br>
                                                 Event Date Preference 3
                                                 <select class="form-control form-group" name="evnt_day3" id="evnt_day3" style="height:35px;" required="required">
-                                                    <option value="0">Select Proposed Event Day</option>
+                                                    <option value="0">Select Proposed Event Time</option>
                                                     <?php foreach ($event_days as $event_day) {
                                                         // $evntDaySelect = "";
                                                         // if ($event_day[0] == $evnt_day) {
