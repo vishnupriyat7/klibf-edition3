@@ -65,7 +65,7 @@ $user_id = $user['id'];
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                    </div>"; //printing error if found in validation
                             } else {
-                                $query1 = "INSERT INTO special_event_propsl (users_id, event_name, event_brf_description, digniteries_guests, event_contact_persn, email, mobile, updated_at, remarks) VALUES ('$user_id', '$event_name', '$brf_descrptn', '$dignitaries', '$spcl_prsn_cntct', '$spcl_mobile', '$spcl_email', '$date', '$spcl_remark')";
+                                $query1 = "INSERT INTO special_event_propsl (users_id, event_name, event_brf_description, digniteries_guests, event_contact_persn, email, mobile, updated_at, remarks) VALUES ('$user_id', '$event_name', '$brf_descrptn', '$dignitaries', '$spcl_prsn_cntct', '$spcl_email', '$spcl_mobile', '$date', '$spcl_remark')";
                                 $result1 = mysqli_query($con, $query1);
                                 if ($result1) {
                                     $errormsg = "
