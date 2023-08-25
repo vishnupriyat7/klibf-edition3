@@ -169,13 +169,13 @@ $user_id = $user['id'];
                                     // var_dump("fjkfdkj");
                                     // var_dump($user_id);
                                     $querySelectbookrls = "SELECT id FROM event_propsl_bkrls WHERE users_id = '$user_id' ORDER BY id DESC LIMIT 1";
-                                    var_dump($querySelectbookrls);
+                                    // var_dump($querySelectbookrls);
                                     $resultSelectBookrls = mysqli_query($con, $querySelectbookrls);
                                     // var_dump( $resultSelectBookrls);
                                     $book_rls_id = $resultSelectBookrls->fetch_array();
                                     // var_dump($book_rls_id['id']);
                                     $querydaytime = "INSERT INTO day_time_prefer (user_id, book_rls_id, book_dscn_id, spcl_event_id, day_prfr1, day_prfr2, day_prfr3, time_prfr1, time_prfr2, time_prfr3) VALUES ('$user_id','$book_rls_id[id]' ,'0' , '0', '$evnt_day1', '$evnt_day2', '$evnt_day3', '$time_slot1', '$time_slot2', '$time_slot3')";
-                                    var_dump($querydaytime);
+                                    // var_dump($querydaytime);
                                     $resultdaytime = mysqli_query($con, $querydaytime);
                                     if ($resultdaytime) {
                                         $errormsg = "
@@ -332,7 +332,7 @@ $user_id = $user['id'];
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label>*Book Genere</label>
+                                            <label>*Book Genre</label>
                                             <div class="form-group">
                                                 <?php
                                                 $bookgenere_query = "SELECT * FROM book_genere";
@@ -344,7 +344,7 @@ $user_id = $user['id'];
                                                 ?>
 
                                                 <select class="form-control form-group" name="book_genere" id="book_genere" >
-                                                    <option value="0">*Select Book Genere</option>
+                                                    <option value="0">*Select Book Genre</option>
                                                     <?php foreach ($book_genere as $genere) { ?>
                                                         <option value="<?= $genere[0] ?>"><?= $genere[1]; ?> <?= $genere[2]; ?></option>
                                                     <?php } ?>

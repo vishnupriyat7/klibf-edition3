@@ -1,5 +1,5 @@
 <?php include "header.php"; ?>
-<?php include "sidebar_publisher.php"; ?>
+<?php include "sidebar_pgmcmtee.php"; ?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="card" style="width: 170%;">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Book Discussion Release Report</h5>
+                            <h5 class="card-title mb-0">Book Release Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
@@ -38,6 +38,7 @@
                                 <thead>
                                     <tr>
                                         <th data-ordering="false">Sl.No</th>
+                                        <th data-ordering="false">Publisher Name</th>
                                         <th data-ordering="false">Book Title</th>
                                         <th data-ordering="false">Author</th>
                                         <th data-ordering="false">Book Genere</th>
@@ -64,17 +65,17 @@
                                         <th data-ordering="false">Contact Person Email</th>
 
                                         <th data-ordering="false">Remarks</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $userId = $user['id'];
+                                    // $userId = $user['id'];
 
                                     // $querybookRls = "SELECT * FROM event_propsl_bkrls epb join day_time_prefer dtp on epb.id = dtp.book_rls_id where epb.users_id = '$userId' ORDER BY epb.id DESC";
 
 
-                                    $querybookRls = "SELECT epb.*, ed1.event_date as day1_date, ed1.event_day as day1, ed2.event_date as day2_date, ed2.event_day as day2, ed3.event_date as day3_date, ed3.event_day as day3, ts1.slot_time as slotime1, ts1.slot_name as slotname1, ts2.slot_time as slotime2, ts2.slot_name as slotname2, ts3.slot_time as slotime3, ts3.slot_name as slotname3, bg.genere 
+                                    $querybookRls = "SELECT up.org_name, epb.*, ed1.event_date as day1_date, ed1.event_day as day1, ed2.event_date as day2_date, ed2.event_day as day2, ed3.event_date as day3_date, ed3.event_day as day3, ts1.slot_time as slotime1, ts1.slot_name as slotname1, ts2.slot_time as slotime2, ts2.slot_name as slotname2, ts3.slot_time as slotime3, ts3.slot_name as slotname3, bg.genere 
                                     FROM event_propsl_bkrls epb 
                                     join book_genere bg on epb.book_genere = bg.id
                                     join day_time_prefer dtp on epb.id = dtp.book_rls_id
@@ -84,13 +85,15 @@
                                     join time_slot ts1 on dtp.time_prfr1 = ts1.id
                                     join time_slot ts2 on dtp.time_prfr2 = ts2.id
                                     join time_slot ts3 on dtp.time_prfr3 = ts3.id
-                                    where epb.users_id = '$userId' ORDER BY epb.id DESC";
+                                    join users_profile up on epb.users_id = up.user_id
+                                    ORDER BY epb.id DESC";
                                     // var_dump($querybookRls);
 
                                     $bookprps = mysqli_query($con, $querybookRls);
                                     $counter = 0;
                                     while ($bookprp = mysqli_fetch_array($bookprps)) {
                                         $id = $bookprp['id'];
+                                        $org_name = $bookprp['org_name'];
                                         $booktitle = $bookprp['book_title'];
                                         $author = $bookprp['author'];
                                         $book_genere = $bookprp['genere'];
@@ -124,6 +127,9 @@
                                         $slotname3 = $bookprp['slotname3'];
                                     ?>
                                         <tr>
+                                            <td>
+                                                <?= ++$counter; ?>
+                                            </td>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
@@ -211,11 +217,11 @@
                                                         <i class='ri-more-fill align-middle'></i>
                                                     </button>
                                                     <ul class='dropdown-menu dropdown-menu-end'>
-                                                        <li>
+                                                        <!-- <li>
                                                             <a href='publisher_bookdiscussion.php?discid=<?= $id; ?>' class='dropdown-item edit-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
                                                             </a>
-                                                        </li>
+                                                        </li> -->
                                                         <!-- <li>
                                                             <a href='deletesocial.php?id=$id' class='dropdown-item remove-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Delete
@@ -232,9 +238,9 @@
                                                             //     $btnenbl = "";
                                                             // }
                                                             ?>
-                                                            <a href='' class='dropdown-item remove-item-btn'>
+                                                            <!-- <a href='' class='dropdown-item remove-item-btn'>
                                                                 <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i>Delete
-                                                            </a>
+                                                            </a> -->
                                                         </li>
                                                     </ul>
                                                 </div>
