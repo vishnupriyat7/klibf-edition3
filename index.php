@@ -15,7 +15,7 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    
+    <?php include "./components/about.php"; ?>
 
     <!-- End About Section -->
 
