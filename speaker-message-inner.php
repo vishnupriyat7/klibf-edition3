@@ -9,7 +9,7 @@
   <?php include "header-inner.php"; ?>
   <!-- End Header -->
 
-  <main id="main">
+  <main id="about-inner-main">
 
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
@@ -30,7 +30,7 @@
       <div class="container text-justify text-lg-justify">
         <div class="row">
         <div class="col-md-4">
-          <img src="assets/img/about-msg/spkr.jpg" alt="" class="img-fluid">
+          <img src="assets/img/about-msg/spkr.jpg" alt="" class="img-fluid"><br>
         </div>
         <div class="col-md-8">
           <p>
