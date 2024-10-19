@@ -26,7 +26,7 @@
      <div class="logo">
        <!-- <h1 class="text-light"><a href="index.html"><span>KLIBF</span></a></h1> -->
        <!-- Uncomment below if you prefer to use an image logo -->
-       <a href="index.php"><img src="assets/img/Logo_dummy.png" alt="" class="img-fluid"></a>
+       <a href="index.php"><img src="assets/img/Logo_KLIBF03.png" alt="" class="img-fluid"></a>
      </div>
      <!-- <div class="animated flipInX infinite slower text-center">
        <span style="font-size: 35px; color: white; font-weight: 900;">
