@@ -4,6 +4,7 @@
      <h1>Welcome to Kerala Legislature </h1>
      <h2>International Book Festival</h2>
      <h1>3rd Edition</h1>
+<<<<<<< HEAD
      <!-- <h3>2023 Nov 1-7</h3> -->
      <!-- <h4>Stall Registration is open for Publishers ! Last Date: 20th August 2023 <a href="register.php"> <span class="horizontal-shake">  Click here</span> </a> to Register</h4> -->
     
@@ -13,6 +14,11 @@
      <!-- <a href="#contests"> <span class="horizontal-shake">  Click here</span>    </a> to Register.. -->
   <!-- </h4></marquee> -->
 
+=======
+     <h3>2025 Jan 7-13</h3>
+     <!-- <h4>Stall Registration is open for Publishers ! Last Date: 20th August 2023 <a href="register.php"> <span class="horizontal-shake">  Click here</span> </a> to Register</h4> -->
+  
+>>>>>>> 3e0819b0d6a6124eea62eb4485fb9515e272fb5a
      <!-- <a href="#about" class="btn-get-started scrollto"><i class="bx bx-chevrons-down"></i></a> -->
    </div>
  </section>

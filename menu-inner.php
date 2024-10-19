@@ -69,6 +69,7 @@
               </li>
             </ul>
           </li> -->
+<<<<<<< HEAD
     <li><a class="nav-link scrollto" href="schedule-inner.php">Schedule</a></li>
     <li><a class="nav-link scrollto" href="publishers.php">Publishers</a></li>
     <li><a class="nav-link scrollto" href="virtual_queue.php">Virtual Queue</a></li>
@@ -84,3 +85,11 @@
   </ul>
   <i class="bi bi-list mobile-nav-toggle"></i>
 </nav>
+=======
+          <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
+          <li><a class="nav-link scrollto" href="contact-inner-page.php">Contact</a></li>
+          <!-- <li><a class="nav-link scrollto" href="login.php">Login / Register</a></li> -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+>>>>>>> 3e0819b0d6a6124eea62eb4485fb9515e272fb5a

@@ -659,8 +659,13 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
+<<<<<<< HEAD
   padding: 60px 0;
   /* overflow: hidden; */
+=======
+  padding: 0px 0;
+  overflow: hidden;
+>>>>>>> 3e0819b0d6a6124eea62eb4485fb9515e272fb5a
 }
 
 .section-bg {
@@ -716,6 +721,7 @@ section {
 .breadcrumbs h2 {
   font-size: 28px;
   font-weight: 700;
+  padding-top: 50px;
 }
 
 .breadcrumbs ol {

@@ -15,8 +15,12 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
+<<<<<<< HEAD
     <?php include "./components/about.php"; ?> 
    
+=======
+    <?php include "./components/about.php"; ?>
+>>>>>>> 3e0819b0d6a6124eea62eb4485fb9515e272fb5a
 
     <!-- End About Section -->
 
