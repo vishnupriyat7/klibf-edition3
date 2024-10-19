@@ -9,7 +9,8 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -31,27 +32,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 #main {
   margin-top: 7%;
 }
-#about-inner-main, #queue-inner-main {
+#about-inner-main,
+#queue-inner-main {
   margin-top: 7%;
 }
 @media (max-width: 1024px) {
-  #about-inner-main, #queue-inner-main {
+  #about-inner-main,
+  #queue-inner-main {
     margin-top: 15%;
   }
 }
 @media (max-width: 768px) {
-  #about-inner-main, #queue-inner-main {
+  #about-inner-main,
+  #queue-inner-main {
     margin-top: 20%;
   }
 }
 @media (max-width: 414px) {
-  #about-inner-main, #queue-inner-main {
+  #about-inner-main,
+  #queue-inner-main {
     margin-top: 26%;
   }
 }
@@ -68,7 +73,8 @@ h6 {
   z-index: 998;
   /* background: #67b0d1; */
   /* background: rgba(111, 153, 32, 0.9); */
-  background: rgba(235, 40, 82);
+  /* background: rgba(235, 40, 82); */
+  background: rgba(3, 61, 92);
   width: 60px;
   height: 60px;
   border-radius: 50px;
@@ -121,7 +127,7 @@ h6 {
 
 #header.header-scrolled {
   /* background: rgba(111, 153, 32, 0.9); */
-  background: rgba(227, 77, 100);
+  background: rgba(3, 61, 92);
 
   padding: 12px;
 }
@@ -132,7 +138,6 @@ h6 {
   line-height: 1;
   font-weight: 700;
   letter-spacing: 1px;
-  font-family: "Poppins", sans-serif;
   text-transform: uppercase;
 }
 
@@ -518,7 +523,7 @@ h6 {
 #hero {
   width: auto;
   height: 100vh;
-  background: url("../img/Banner_3rd_Main.jpg") top center;
+  background: url("../img/Banner_3rd_Main_01.jpg") top center;
   background-size: cover;
   position: relative;
   margin-bottom: -90px;
@@ -539,39 +544,39 @@ h6 {
 
 #hero h1 {
   margin: 0 0 10px 0;
-  font-size: 35px;
+  font-size: 65px;
   font-weight: 800;
-  line-height: 56px;
-  text-transform: uppercase;
-  /* color: #fff; */
+  /* line-height: 56px; */
+  text-transform: capitalize;
+  color: #fff;
   /* color: #eb4034; */
 
-  color: #1fde65;
+  /* color: #1fde65; */
   /* color: #0a0a8f; */
   /* color: #cc7a33; */
   text-shadow: -1px 0 2px #2f4d5a;
 }
 
 #hero h2 {
-  /* color: #feff; */
+  color: #fff;
   /* color: #1fde65; */
-  color:#ebcd28;
+  /* color:#ebcd28; */
   /* color:#8ae043; */
-   /* color: #dea740;
+  /* color: #dea740;
     */
   margin-bottom: 14px;
-  font-size: 45px;
-  text-transform: uppercase;
+  font-size: 35px;
+  text-transform: capitalize;
   font-weight: 700;
   text-shadow: -1px 0 2px #2f4d5a;
 }
 #hero h3 {
-  /* color: #fff; */
+  color: #fff;
   /* color:#ebcd28; */
-  color: #eb2852;
- 
-  margin-bottom: 20px;
-  margin-top: 1%;
+  /* color: #eb2852; */
+
+  margin-bottom: 14px;
+
   font-size: 20px;
   text-transform: uppercase;
   font-weight: 700;
@@ -675,13 +680,8 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-<<<<<<< HEAD
-  padding: 60px 0;
-  /* overflow: hidden; */
-=======
   padding: 0px 0;
   overflow: hidden;
->>>>>>> 3e0819b0d6a6124eea62eb4485fb9515e272fb5a
 }
 
 .section-bg {
@@ -825,7 +825,7 @@ section {
   display: inline-block;
   /* background: #67b0d1; */
   /* background: rgba(111, 153, 32, 0.9); */
-  background: rgba(33, 179, 219);
+  background: rgba(3, 61, 92);
   padding: 6px 44px 8px 30px;
   color: #fff;
   border-radius: 50px;
@@ -1699,7 +1699,8 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #263f49;
+  /* background: #263f49; */
+  background: rgba(3, 61, 92);
   padding: 0 0 30px 0;
   color: #fff;
   font-size: 14px;
