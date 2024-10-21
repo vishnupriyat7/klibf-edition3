@@ -20,6 +20,8 @@
     <!-- End About Section -->
 
     <!-- ======= Speaker Section ======= -->
+
+    <?php include "./components/depty-secr.php"; ?>
    
     <!-- End Speaker Section -->
 
