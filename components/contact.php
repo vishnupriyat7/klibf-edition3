@@ -12,7 +12,7 @@
           <div class="col-lg-6">
             <div class="info-box mb-4">
               <i class="bx bx-map"></i>
-              <h3>Our Address</h3>
+              <h3>Reach Us</h3>
               <p>Kerala Legislature Secretariat, Legislature Complex, Palayam, Vikasbhavan PO, Thiruvananthapuram</p>
             </div>
           </div>

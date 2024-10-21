@@ -1,6 +1,7 @@
  <!-- ======= Header ======= -->
  <header id="header" class="fixed-top header-transparent">
    <div class="container-fluid d-flex align-items-center justify-content-between position-relative">
+    
      <?php
       $targetDate = '2025-01-07';
 
@@ -34,12 +35,12 @@
           <p style="font-size: large; color: white; font-weight: 500;">09-01-2023</p> 
        </span>
      </div> -->
-     <!-- <nav class="text-center count">
+     <nav class="text-center count">
 
        <?php echo  $daysRemaining; ?><br>
        <p>Days to Go</p>
    
-     </nav> -->
+     </nav>
 
      <?php include "menu.php"; ?>
 
