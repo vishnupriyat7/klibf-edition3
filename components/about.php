@@ -3,18 +3,23 @@
   <div class="container">
     <div class="row no-gutters">
       <!-- KLIBF Logo Section (5 columns) -->
-      <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+      <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-right">
         <div class="content">
-          <h3>Inspiration Behind the Logo</h3>
+          <h3>About Us</h3>
           <p>
+          The Kerala Legislature International Book Festival is a coalescence of cultural economic and political developments. The Book Festival encompasses the world. Innovative ideas are discussed and shared to bring significant changes in our society. A retreat from the mundane is the trigger behind this event. Kerala is on the road to create more of its celebrated models. Our endeavor to create a better world will be futile unless our people are knowledgeable. Reading helps to refine our contemplation and perception. It is insignificant whether burgeoning thoughts come from a school kid, teenager or youth. Exhilarating visions soar from young minds and hence it is our prerogative to ensure the whole hearted participation of our youth.
+
+          </p> <a href="about-inner-page.php">Read More...</a>
+          </p>
+          <!-- <p>
             Majority birds and books in various languages share an intriguing similarity in their role as vessels of cultural exchange, transcending borders and enriching societies. Just as migratory birds travel vast distances, bringing traces of their unique habitats and behaviours into new ecosystems, books written in different languages carry stories, philosophies, and ways of life from diverse cultures. These books, like the birds, land in foreign territories, where they become windows into different worlds, offering
             inspiration and sparking curiosity. The give and take in both cases - birds share patterns of movement, survival skills and adaptability, and books provide insights into lifestyles, traditions, and beliefs - demonstrate a profound cultural exchange.
-          </p>
+          </p> -->
         </div>
       </div>
 
       <!-- Speaker's Words Section (7 columns) -->
-      <div class="col-md-6 row" data-aos="fade-up">
+      <div class="col-md-6 row" data-aos="fade-left">
         <div class="content">
           <h3>Speaker's Words</h3>
           <img src="assets/img/about-msg/spkr1.jpg" alt="" class="img-fluid">

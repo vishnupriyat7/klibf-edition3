@@ -1,6 +1,6 @@
  <!-- ======= Hero Section ======= -->
  <section id="hero">
-   <div class="hero-container" data-aos="flip-down">
+   <div class="hero-container" data-aos="zoom-out-up">
      <h1>Welcome to Kerala Legislature </h1>
      <h1>International Book Festival</h1>
      <h2>3rd Edition</h2>
