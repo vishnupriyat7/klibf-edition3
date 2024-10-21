@@ -625,11 +625,19 @@ h6 {
   border-radius: 50px;
   transition: 0.4s ease-in-out;
   margin: 10px;
+
   width: 64px;
   height: 64px;
   text-align: center;
   border: 2px solid #fff;
   color: #fff;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #hero .btn-get-started:hover {
