@@ -565,8 +565,8 @@ h6 {
   /* color:#8ae043; */
   /* color: #dea740;
     */
-  margin-bottom: 14px;
-  font-size: 35px;
+  margin-bottom: 50px;
+  font-size: 40px;
   text-transform: capitalize;
   font-weight: 700;
   text-shadow: -1px 0 2px #2f4d5a;
@@ -576,9 +576,9 @@ h6 {
   /* color:#ebcd28; */
   /* color: #eb2852; */
 
-  margin-bottom: 14px;
+  margin-bottom: 50px;
 
-  font-size: 20px;
+  font-size: 30px;
   text-transform: uppercase;
   font-weight: 700;
   text-shadow: -1px 0 2px #2f4d5a;
