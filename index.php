@@ -22,37 +22,37 @@
     <!-- ======= Speaker Section ======= -->
 
     <?php include "./components/depty-secr.php"; ?>
-   
+
     <!-- End Speaker Section -->
 
 
     <!-- ======= Contest Section ======= -->
-  
-    <?php /*include "./components/contests.php"; ?>
-    <?php include "./components/schedule.php"; ?>
-    <?php include "./components/reflections.php";*/ ?>
 
-     <!----- End Contest Section ------>
-   
+    <?php /*include "./components/contests.php"; ?>
+<?php include "./components/schedule.php"; ?>
+<?php include "./components/reflections.php";*/ ?>
+
+    <!----- End Contest Section ------>
+
     <!-- End Testimonials Section -->
 
     <!-- ======= Cta Section ======= -->
-   
+
     <!-- End Cta Section -->
 
     <!-- ======= Gallery Section ======= -->
-    
+
     <!-- End Gallery Section -->
 
     <!-- ======= Counts Section ======= -->
-   
+
     <!-- End Counts Section -->
 
     <!-- ======= Contest Section ======= -->
-   
+    <?php include "./components/logo-video.php"; ?>
     <!-- End Contest Section -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Contact Section ======= hh-->
     <?php include "./components/contact.php"; ?>
     <!-- End Contact Section -->
   </main><!-- End #main -->
