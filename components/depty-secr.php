@@ -29,9 +29,7 @@
                     <h3>Secretary's Words</h3>
                     <img src="assets/img/about-msg/sec.jpeg" alt="" class="img-fluid">
                     <p>
-                        The Kerala Legislature International Book Festival transcends socio-economic, cultural, and political
-                        barriers. The festival is a celebration of democracy incorporating novel thoughts from progressive thinkers
-                        across the globe.
+                    After the remarkable success of the first and second editions, the Kerala Legislative Assembly International Book Festival (KLIBF) now embarks on a vibrant journey towards its much-anticipated third edition. With the powerful slogan, "Vaayanayanu Lahari" at its heart,...
                         <!-- Legislatures are law-making bodies, and this new tradition of conducting book festivals by
             a legislature is a leap towards enhancement, the courage to think differently. Our society vouches for
             evolution and transformation at a fast pace to improve the lives of the marginalized. Ground-breaking ideas
