@@ -1,17 +1,16 @@
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-          <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
+<nav id="navbar" class="navbar">
+  <ul>
+    <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
+    <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
+    <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
           <li><a class="nav-link scrollto" href="#testimonials">Publishers</a></li>
           <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
           <li><a class="nav-link scrollto" href="#contests">Contests</a></li> -->
-          <!-- <li><a class="nav-link scrollto" href="#contests">Edition I</a></li> -->
-          <!-- <li class="dropdown"><a href="#"><span>Edition I</span> <i class="bi bi-chevron-down"></i></a>
+    <!-- <li><a class="nav-link scrollto" href="#contests">Edition I</a></li> -->
+    <!-- <li class="dropdown"><a href="#"><span>Edition I</span> <i class="bi bi-chevron-down"></i></a>
             <ul> -->
-              <!-- <li><a href="#">Drop Down 1</a></li> -->
-              <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+    <!-- <li><a href="#">Drop Down 1</a></li> -->
+    <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
                   <li><a href="#">Deep Drop Down 1</a></li>
                   <li><a href="#">Deep Drop Down 2</a></li>
@@ -20,12 +19,12 @@
                   <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
               </li> -->
-              <!-- <li><a href="http://klibf.niyamasabha.org/vision-speakers-new.php" target="_blank">Speakers</a></li>
+    <!-- <li><a href="http://klibf.niyamasabha.org/vision-speakers-new.php" target="_blank">Speakers</a></li>
               <li><a href="http://klibf.niyamasabha.org/publishers.php" target="_blank">Publishers</a></li>
               <li><a href="http://klibf.niyamasabha.org/gallery-new.php" target="_blank">Gallery</a></li>
             </ul>
           </li> -->
-          <!-- <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down"></i></a>
+    <!-- <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li>
                 <strong>Column 1</strong>
@@ -59,8 +58,14 @@
               </li>
             </ul>
           </li> -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="login.php">Login / Register </a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+    <li class="dropdown"><a href="#"><span>Previous KLIBF</span> <i class="bi bi-chevron-right"></i></a>
+      <ul>
+        <li><a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition I</a></li>
+        <li><a href="https://klibf.niyamasabha.org" target="_blank">Edition II</a></li>
+      </ul>
+    </li>
+    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+    <!-- <li><a class="nav-link scrollto" href="login.php">Login / Register </a></li> -->
+  </ul>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+</nav>

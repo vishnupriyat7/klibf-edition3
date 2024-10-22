@@ -1,4 +1,6 @@
-<?php include "header.php";
+<?php
+ini_set('display_errors', '0');
+include "header.php";
 include "sidebar_publisher.php";
 $user_id = $user['id'];
 ?>
@@ -39,23 +41,19 @@ $user_id = $user['id'];
                         $msg = "";
                         $current_date = new DateTime();
                         $date = date_format($current_date, "Y-m-d H:i:s");
-                        // var_dump($user_id);
                         if ($user_id) {
                             $sql_profile = "SELECT id, org_name FROM users_profile WHERE user_id = ?";
-                            // var_dump($sql_profile);
                             $stmt_prof = $con->prepare($sql_profile);
                             $stmt_prof->bind_param("s", $user_id);
                             $stmt_prof->execute();
                             $res_prof = $stmt_prof->get_result();
                             $user_prof = $res_prof->fetch_assoc();
-                            // var_dump($user_prof);
                             $sql1 = "SELECT * FROM stall_booking WHERE user_id = ?";
                             $stmt1 = $con->prepare($sql1);
                             $stmt1->bind_param("s", $user_id);
                             $stmt1->execute();
                             $result1 = $stmt1->get_result();
                             $user_stall = $result1->fetch_assoc();
-                            // var_dump($user_stall);
                             $stall3x3 = $user_stall['stalls_3x3'];
                             $stall3x2 = $user_stall['stalls_3x2'];
                             $amt3x3 = 10000;
@@ -74,10 +72,7 @@ $user_id = $user['id'];
                             $stall3x3 = 0;
                             $stall3x2 = 0;
                         }
-                        // var_dump($user_prof['id']);
-                        // var_dump("here");
                         if (!$user_prof) {
-                            // var_dump("xmnbbf");
                             $errormsg = "
                                 <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                 Kindly update your profile and proceed with stall(s) booking.
@@ -89,7 +84,11 @@ $user_id = $user['id'];
                                 $term =
                                     mysqli_real_escape_string($con, $_POST['terms']);
                                 if ($term == "on") {
-                                    $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    if ($user_id && $user_stall) {
+                                        $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'S', updated_date = '$date' WHERE user_id = '$user_id'";
+                                    } else {
+                                        $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'S', '$date', '$user_id')";
+                                    }
                                     $resultSub = mysqli_query($con, $query);
                                     $profile_sub = "UPDATE users_profile SET submitted = 1 WHERE user_id = '$user_id'";
                                     $profSubres = mysqli_query($con, $profile_sub);
@@ -102,13 +101,12 @@ $user_id = $user['id'];
                                     } else {
                                         $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Helpghjg.
+                                               Save your stall booking initially then submit.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
                                     }
                                 }
                             }
-                            // }
                             if (isset($_POST['save_stall'])) {
                                 $term =
                                     mysqli_real_escape_string($con, $_POST['terms']);
@@ -117,9 +115,9 @@ $user_id = $user['id'];
                                         mysqli_real_escape_string($con, $_POST['stall3x3']);
                                     $stall3x2 =
                                         mysqli_real_escape_string($con, $_POST['stall3x2']);
-                                    if ($stall3x2 == "") {
-                                        $stall3x2 = 0;
-                                    } 
+                                    if ($stall3x3 == "") {
+                                        $stall3x3 = 0;
+                                    }
                                     if ($stall3x2 == "") {
                                         $stall3x2 = 0;
                                     }
@@ -128,7 +126,6 @@ $user_id = $user['id'];
                                         $query = "UPDATE stall_booking SET stalls_3x3 = '$stall3x3', stalls_3x2 = '$stall3x2', status = 'E', updated_date = '$date' WHERE user_id = '$user_id'";
                                     } else {
                                         $query = "INSERT INTO stall_booking (stalls_3x3, stalls_3x2, status, updated_date, user_id) VALUES ('$stall3x3', '$stall3x2', 'E', '$date', '$user_id')";
-                                        // var_dump($query);
                                     }
                                     $result = mysqli_query($con, $query);
                                     if ($result) {
@@ -160,7 +157,7 @@ $user_id = $user['id'];
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
                                             <div class="form-group col-12">
-                                                <label><b>Choose your cubicle</b></label>
+                                                <label><b>Choose your Stall</b></label>
                                             </div>
                                             <div class="form-group col-12">
                                                 <div class="row">
@@ -218,20 +215,22 @@ $user_id = $user['id'];
                                         <!-- <div class="col-lg-12">
                                             <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
                                         </div> -->
-                                        <div class="col-md-12">
-                                            <br>
-                                            <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
-                                            <br><br>
-                                            <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
-                                            <br>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <?php if ($stall_status != 'S') { ?>
+                                        <?php if ($stall_status != 'S') { ?>
+                                            <div class="col-md-12">
+                                                <br>
+                                                <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_stall['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2023 2nd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
+                                                <br><br>
+                                                <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
+                                                <br>
+                                            </div>
+                                            <div class="col-lg-12">
+
                                                 <button type="submit" name="save_stall" class="btn btn-primary" id="save_stall">Save</button>
                                                 <!-- </div> -->
                                                 <button type="submit" class="btn btn-success" name="submit-stall" id="submit-stall">Submit</button>
-                                            <?php  } ?>
-                                        </div>
+
+                                            </div>
+                                        <?php  } ?>
 
                                     </form>
                                 </div>

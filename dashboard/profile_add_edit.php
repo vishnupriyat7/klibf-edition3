@@ -1,4 +1,6 @@
-<?php include "header.php";
+<?php
+ini_set('display_errors', '0'); 
+include "header.php";
 include "sidebar_publisher.php";
 $user_id = $user['id'];
 // var_dump($user_id);die;
@@ -199,39 +201,40 @@ $user_id = $user['id'];
                                 }
                                 // }
                             }
-                            if (strlen($comp_name) < 5) {
-                                $msg = $msg . "Organisation Name Must Be More Than 5 Char Length.<BR>";
+                            if (strlen($comp_name) < 3) {
+                                $msg = $msg . "Organisation name must be more than 3 characters length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($head_name) < 5) {
-                                $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
+                            if (strlen($head_name) < 3) {
+                                $msg = $msg . "Name must be more than 3 characters length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($head_mobile) < 8) {
-                                $msg = $msg . "Phone Must Be More Than 10 Char Length.<BR>";
+                            if (strlen($head_mobile) < 10) {
+                                $msg = $msg . "Phone No. should be 10 digits.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($head_email) < 3) {
-                                $msg = $msg . "Email Must Be More Than 3 Char Length.<BR>";
+                                $msg = $msg . "Email must be more than 3 characters length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($head_site) < 9) {
-                                $msg = $msg . "Email Must Be More Than 10 Char Length.<BR>";
+                            if (strlen($head_site) < 5) {
+                                $msg = $msg . "Website address should be more than 5 characters length.<BR>";
                                 $status = "NOTOK";
                             }
-                            if (strlen($prsn_name) < 5) {
-                                $msg = $msg . "Name Must Be More Than 5 Char Length.<BR>";
+                            if (strlen($prsn_name) < 3) {
+                                $msg = $msg . "Contact person name must be more than 3 char length.<BR>";
+                                $status = "NOTOK";
                             }
                             if (strlen($prsn_mobile) < 10) {
-                                $msg = $msg . "Phone Must Be More Than 10 Char Length.<BR>";
+                                $msg = $msg . "Contact person phone No. should 10 digits.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($prsn_email) < 3) {
-                                $msg = $msg . "Email Must Be More Than 3 Char Length.<BR>";
+                                $msg = $msg . "Contact person email must be more than 3 characters length.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($whatsapp) < 10) {
-                                $msg = $msg . "WhatsApp Number Must Be More Than 10 Char Length.<BR>";
+                                $msg = $msg . "WhatsApp No. should be 10 digits.<BR>";
                                 $status = "NOTOK";
                             }
                             if (strlen($book_lang) < 3) {
@@ -257,7 +260,7 @@ $user_id = $user['id'];
                                 if ($result) {
                                     $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your Profile Details is Successfully Saved.
+                                                Your Profile Details is Successfully Saved. Proceed with stall(s) booking.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>
                                               
@@ -307,7 +310,7 @@ $user_id = $user['id'];
                                     } else {
                                         $hide = "hidden";
                                     }
-                                } else {
+                                }  else {
                                     $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.

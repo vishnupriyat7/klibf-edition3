@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="assets/img/images/Forgot.svg" alt="">
+                            <img src="assets/img/images/Opt1_Fgt.svg" alt="">
                         </div>
                     </div>
                     <div class="content-wthree">

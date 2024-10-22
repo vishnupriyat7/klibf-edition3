@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="assets/img/images/Login.svg" alt="">
+                            <img src="assets/img/images/Opt1_Login.svg" alt="">
                         </div>
                     </div>
                     <div class="content-wthree">
@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
                             <button name="submit" class="btn" type="submit">Login</button>
                         </form>
                         <div class="social-icons">
-                            <p>Create Account! <a href="register.php"><b>Register</b></a>.</p>
+                            <!-- <p>Create Account! <a href="register.php"><b>Register</b></a>.</p> -->
                         </div>
                     </div>
                 </div>

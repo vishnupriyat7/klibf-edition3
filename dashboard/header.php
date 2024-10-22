@@ -19,15 +19,15 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
     // var_dump($username);die;
     $sql1 = "SELECT * FROM users WHERE email = ?;";
     // var_dump( $sql1);die;
-$stmt1 = $con->prepare($sql1);
-$stmt1->bind_param("s", $username);
-$stmt1->execute();
-$result1 = $stmt1->get_result();
-// var_dump($result1);die;
-$user = $result1->fetch_assoc();
-// var_dump($user);die;
+    $stmt1 = $con->prepare($sql1);
+    $stmt1->bind_param("s", $username);
+    $stmt1->execute();
+    $result1 = $stmt1->get_result();
+    // var_dump($result1);die;
+    $user = $result1->fetch_assoc();
+    // var_dump($user);die;
 
-    
+
 } else {
     print "
 				<script language='javascript'>
@@ -103,12 +103,12 @@ $user = $result1->fetch_assoc();
                             </a>
                         </div>
 
-                        <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
-                            <span class="hamburger-icon">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
+                        <button type="button" class="btn btn-sm px-3 fs-16 header-item horizontal-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                            <!-- <span class="hamburger-icon"> -->
+                            <span>MENU</span>
+                            <span></span>
+                            <span></span>
+                            <!-- </span> -->
                         </button>
 
                         <!-- App Search-->

@@ -15,16 +15,24 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    
+    <?php include "./components/about.php"; ?>
 
     <!-- End About Section -->
 
     <!-- ======= Speaker Section ======= -->
+
+    <?php include "./components/depty-secr.php"; ?>
    
     <!-- End Speaker Section -->
 
 
-    <!-- ======= publishers Section ======= -->
+    <!-- ======= Contest Section ======= -->
+  
+    <?php /*include "./components/contests.php"; ?>
+    <?php include "./components/schedule.php"; ?>
+    <?php include "./components/reflections.php";*/ ?>
+
+     <!----- End Contest Section ------>
    
     <!-- End Testimonials Section -->
 
