@@ -641,7 +641,7 @@ body {
     */
   /* margin-bottom: 30px; */
   font-size: 50px;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   font-weight: 700;
   color: #fff;
   text-shadow: 3px 3px 3px #000405;
@@ -662,7 +662,7 @@ body {
   margin-bottom: 50px;
 
   font-size: 30px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 700;
   text-shadow: -1px 0 2px #2f4d5a;
 }
@@ -671,7 +671,7 @@ body {
   margin-bottom: 20px;
   margin-top: 1%;
   font-size: 20px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   font-weight: 700;
   text-shadow: -1px 0 2px #051014;
 }
