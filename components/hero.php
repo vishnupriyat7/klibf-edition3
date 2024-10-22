@@ -8,9 +8,9 @@
     <!-- <h4>Stall Registration is open for Publishers ! Last Date: 20th August 2023 <a href="register.php"> <span class="horizontal-shake">  Click here</span> </a> to Register</h4> -->
 
     <a href="#about" class="btn-get-started"><i class="bx bx-chevrons-down"></i></a>
-    <div class="malayalam-text">
+    <!-- <div class="malayalam-text">
       <span>ക</span><span>െ</span><span>ര</span><span>ള</span><span>ം</span>
-    </div>
+    </div> -->
   </div>
 
 </section>
