@@ -739,31 +739,8 @@ body {
   background: rgba(255, 255, 255, 0.15);
 }
 
-/* Malayalam Text Animation */
-/* Hero Section */
-#hero {
-  width: auto;
-  height: 100vh;
-  background: url("../img/Banner_3rd_Main_01.jpg") top center;
-  background-size: cover;
-  position: relative;
-  margin-bottom: -90px;
-}
 
-#hero .hero-container {
-  position: absolute;
-  bottom: 0;
-  top: 10%;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-
+/* Add more custom styles for other letters as needed */
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
