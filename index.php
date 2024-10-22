@@ -52,7 +52,7 @@
    
     <!-- End Contest Section -->
 
-    <!-- ======= Contact Section ======= -->
+    <!-- ======= Contact Section ======= hh-->
     <?php include "./components/contact.php"; ?>
     <!-- End Contact Section -->
   </main><!-- End #main -->
