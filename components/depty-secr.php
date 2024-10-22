@@ -8,9 +8,9 @@
                     <h3>Deputy Speaker's Words</h3>
                     <img src="assets/img/about-msg/dpy-spkr.jpeg" alt="" class="img-fluid">
                     <p>
-                        The Kerala Legislature International Book Festival transcends socio-economic, cultural, and political
-                        barriers. The festival is a celebration of democracy incorporating novel thoughts from progressive thinkers
-                        across the globe.
+                    I am thrilled to announce that the third edition of the prestigious Kerala Legislative
+              International Book Festival (KLIBF) will take place from 2025 January 7 to 13, at the
+              legislative complex in the historic capital of Kerala, Trivandrum.
                         <!-- Legislatures are law-making bodies, and this new tradition of conducting book festivals by
             a legislature is a leap towards enhancement, the courage to think differently. Our society vouches for
             evolution and transformation at a fast pace to improve the lives of the marginalized. Ground-breaking ideas
@@ -19,7 +19,7 @@
             better place to live. Together, we can create a space of equality and alliance to learn and share new
             knowledge. I am sure the Kerala Legislature International Book Festival will be a significant milestone
             cherished by future generations. -->
-                    </p> <a href="dyspeaker-message-innerpage.php">Read More...</a>
+                    </p> <a href="dyspeaker-message-inner.php">Read More...</a>
                 </div>
             </div>
 
