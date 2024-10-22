@@ -25,8 +25,7 @@
           <img src="assets/img/about-msg/speaker1.jpeg" alt="" class="img-fluid">
           <p>
             The Kerala Legislature International Book Festival transcends socio-economic, cultural, and political
-            barriers. The festival is a celebration of democracy incorporating novel thoughts from progressive thinkers
-            across the globe.      
+            barriers. The festival is a celebration of democracy incorporating novel thoughts from...    
             <!-- Legislatures are law-making bodies, and this new tradition of conducting book festivals by
             a legislature is a leap towards enhancement, the courage to think differently. Our society vouches for
             evolution and transformation at a fast pace to improve the lives of the marginalized. Ground-breaking ideas
