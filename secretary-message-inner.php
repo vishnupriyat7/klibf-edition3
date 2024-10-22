@@ -19,7 +19,7 @@
           <h2>Speaker's Words</h2>
           <ol>
             <li><a href="index.php">Home</a></li>
-            <li>Speaker's Words</li>
+            <li>Secretary's Words</li>
           </ol>
         </div>
 
@@ -30,7 +30,7 @@
       <div class="container text-justify text-lg-justify">
         <div class="row">
         <div class="col-md-4">
-          <img src="assets/img/about-msg/speaker1.jpeg" alt="" class="img-fluid"><br>
+          <img src="assets/img/about-msg/sec.jpeg" alt="" class="img-fluid"><br>
         </div>
         <div class="col-md-8">
           <p>

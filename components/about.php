@@ -22,7 +22,7 @@
       <div class="col-md-6 row" data-aos="fade-left">
         <div class="content">
           <h3>Speaker's Words</h3>
-          <img src="assets/img/about-msg/spkr1.jpg" alt="" class="img-fluid">
+          <img src="assets/img/about-msg/speaker1.jpeg" alt="" class="img-fluid">
           <p>
             The Kerala Legislature International Book Festival transcends socio-economic, cultural, and political
             barriers. The festival is a celebration of democracy incorporating novel thoughts from progressive thinkers

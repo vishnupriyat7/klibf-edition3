@@ -16,7 +16,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Speaker's Words</h2>
+          <h2>Deputy Speaker's Words</h2>
           <ol>
             <li><a href="index.php">Home</a></li>
             <li>Speaker's Words</li>
@@ -30,7 +30,7 @@
       <div class="container text-justify text-lg-justify">
         <div class="row">
         <div class="col-md-4">
-          <img src="assets/img/about-msg/speaker1.jpeg" alt="" class="img-fluid"><br>
+          <img src="assets/img/about-msg/dpy-spkr.jpeg" alt="" class="img-fluid"><br>
         </div>
         <div class="col-md-8">
           <p>
