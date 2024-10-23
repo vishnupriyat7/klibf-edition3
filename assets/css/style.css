@@ -2393,7 +2393,10 @@ p.copy-footer-29 a:hover {
 }
 
 .logo-decsription {
-  text-align: center;
+  text-align: justify;
+  /* justify-content: center; */
+  /* font-size: large; */
+  
 }
 
 .logo-video {
