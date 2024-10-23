@@ -30,7 +30,7 @@
               <i class="bx bx-phone-call"></i>
               <h3>Call Us</h3>
               <p>+9188380058</p>
-              <p>0471-2512310</p>
+              <p>0471-2512263</p>
             </div>
           </div>
 

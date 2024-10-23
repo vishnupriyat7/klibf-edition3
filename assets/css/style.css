@@ -521,7 +521,7 @@ h6 {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-@import url('https://fonts.googleapis.com/css?family=Cairo');
+@import url("https://fonts.googleapis.com/css?family=Cairo");
 body {
   background-color: #010;
 }
@@ -529,14 +529,14 @@ body {
 .title {
   font-family: "Cairo";
   text-align: center;
-  color: #FFF;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   letter-spacing: 1px;
-  line-height:2
+  line-height: 2;
 }
 
 /* h1 {
@@ -549,8 +549,8 @@ body {
   padding: 7px 10px;
   background-color: #122;
   border-radius: 3px;
-  color: #FFF;
-  transition: .35s ease-in-out;
+  color: #fff;
+  transition: 0.35s ease-in-out;
   position: absolute;
   left: 15px;
   bottom: 15px;
@@ -558,7 +558,7 @@ body {
 }
 
 .white-mode:hover {
-  background-color: #FFF;
+  background-color: #fff;
   color: #122;
 }
 
@@ -598,8 +598,6 @@ body {
   /* color: #cc7a33; */
   text-shadow: 3px 3px 3px #000405;
 
-
-
   /* background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW10eHJlaTN3MTFiYWh4djg4OWJjZXBtNmdjNzYwcTgwODRuZzFqaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/la3211WGwbYYw/giphy.gif); */
   /* background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHVpb2cyM2pqbHo1OGU4cWRhbm9pdXp2cTBiZmMxODMwd29scHM1YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oriO9RCwMSSA6bEys/giphy.gif); */
   /* background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXdlbTFqZ2p5amlqdjNocWduMnBoczlpY3N4bzBtc215N2l0NjZ0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vRbTrGdpZrjjco8/giphy.gif); */
@@ -610,18 +608,18 @@ body {
   /* text-transform: uppercase; */
   color: #fff;
   font-size: 65px;
-  margin: 10px 0;  
+  margin: 10px 0;
 }
 
- /* #hero .klibf-title {
+/* #hero .klibf-title {
   background-image: url(https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXdlbTFqZ2p5amlqdjNocWduMnBoczlpY3N4bzBtc215N2l0NjZ0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vRbTrGdpZrjjco8/giphy.gif);
   background-size: cover;
   color: transparent;
   -moz-background-clip: text;
   -webkit-background-clip: text; */
-  /* text-transform: uppercase; */
-  /* color: #fff; */
-  /* font-size: 65px;
+/* text-transform: uppercase; */
+/* color: #fff; */
+/* font-size: 65px;
   margin: 10px 0;  
  } */
 
@@ -652,9 +650,6 @@ body {
   /* text-shadow: -1px 0 2px #2f4d5a; */
 }
 #hero h3 {
-  
-
-  
   /* color: #fff; */
   /* color:#ebcd28; */
   /* color: #eb2852; */
@@ -702,7 +697,8 @@ body {
 }
 
 @keyframes jump {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
   50% {
@@ -738,7 +734,6 @@ body {
   padding-top: 8px;
   background: rgba(255, 255, 255, 0.15);
 }
-
 
 /* Add more custom styles for other letters as needed */
 @media (min-width: 1024px) {
@@ -1005,7 +1000,6 @@ section {
     /* border-radius: 88%; */
   }
 }
-
 
 /* ------------------  About End ------------ */
 
@@ -1964,6 +1958,12 @@ section {
   font-weight: 700;
 }
 
+#footer .footer-info .logo img {
+  padding: 0;
+  margin: 0;
+  max-height: 65px;
+}
+
 #footer .footer-top .footer-info p {
   font-size: 14px;
   line-height: 24px;
@@ -2398,7 +2398,7 @@ p.copy-footer-29 a:hover {
 
 .logo-video {
   width: 100vw; /* Full width of the viewport */
-  height: 50vh; 
+  height: 50vh;
 }
 /*-- //responsive design --*/
 /*-- //form styling --*/
