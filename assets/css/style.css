@@ -739,6 +739,8 @@ body {
   background: rgba(255, 255, 255, 0.15);
 }
 
+
+/* Add more custom styles for other letters as needed */
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
