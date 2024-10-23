@@ -9,7 +9,7 @@
              <!-- <h3>Contact</h3> -->
              <div class="logo">
               
-               <a href="index.php"><img src="assets/img/Logo_KLIBF03.png" alt="" class="img-fluid"></a>
+               <a href="index.php"><img src="assets/img/Logo_KLIBF03_cropped.png" alt="" class="img-fluid"></a>
              </div>
              <!-- <p class="pb-3"><em>KLIBF</em></p> -->
              <p>
