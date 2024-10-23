@@ -2388,6 +2388,17 @@ p.copy-footer-29 a:hover {
   }
 }
 
+.img-fluid {
+  margin-bottom: 10%;
+}
 
+.logo-decsription {
+  text-align: center;
+}
+
+.logo-video {
+  width: 100vw; /* Full width of the viewport */
+  height: 50vh; 
+}
 /*-- //responsive design --*/
 /*-- //form styling --*/
