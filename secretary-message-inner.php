@@ -16,7 +16,7 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Speaker's Words</h2>
+          <h2>Secretary's Words</h2>
           <ol>
             <li><a href="index.php">Home</a></li>
             <li>Secretary's Words</li>

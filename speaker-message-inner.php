@@ -43,11 +43,11 @@
             this Book Festival help to spread the light of knowledge. Let us pledge to make this world a better place to
             live. Together we can create a space of equality and alliance to learn and share new knowledge. I am sure
             the Kerala Legislature International Book Festival will be a significant milestone cherished by future
-            generations.</p><br><br><br>
+            generations.</p><br><br>
         </div>
       </div>
       </div>
-    </section>
+    </section><br><br>
 
   </main><!-- End #main -->
 
