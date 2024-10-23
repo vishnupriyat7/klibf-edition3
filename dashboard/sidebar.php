@@ -7,9 +7,9 @@ $username = $_SESSION['username'];
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
         <?php
-        $rr = mysqli_query($con, "SELECT ufile FROM logo");
-        $r = mysqli_fetch_row($rr);
-        $ufile = $r[0];
+        // $rr = mysqli_query($con, "SELECT ufile FROM logo");
+        // $r = mysqli_fetch_row($rr);
+        // $ufile = $r[0];
         ?>
 
         <a href="index.html" class="logo logo-dark">

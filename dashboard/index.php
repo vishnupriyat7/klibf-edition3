@@ -4,14 +4,6 @@ include "header.php";
 
 $username = $_SESSION['SESSION_EMAIL'];
 
-// $sql1 = "SELECT user FROM users WHERE email = ?;";
-// $stmt1 = $con->prepare($sql1);
-// $stmt1->bind_param("s", $username);
-// $stmt1->execute();
-// $result1 = $stmt1->get_result();
-// $user = $result1->fetch_assoc();
-
-// var_dump($user);die;
 if ($user['user_type'] == 'S') {
     include "sidebar.php";
 } elseif ($user['user_type'] == 'P') {
