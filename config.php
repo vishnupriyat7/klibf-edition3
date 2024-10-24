@@ -1,7 +1,7 @@
 <?php
 
 
-$conn = mysqli_connect("127.0.0.1", "root", "Root@123", "klibf3");
+$conn = mysqli_connect("172.20.21.183", "root", "Root@123", "klibf3");
 
 
 

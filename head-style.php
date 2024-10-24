@@ -8,7 +8,8 @@
 
   <!-- Favicons -->
   <link href="assets/img/Logo_title.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- <link href="assets/img/Logo_KLIBF03.png" rel="icon"> -->
+  <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
 
 
