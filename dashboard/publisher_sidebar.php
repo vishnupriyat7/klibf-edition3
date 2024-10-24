@@ -6,30 +6,26 @@ include "../z_db.php";
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <!-- <?php
-                $rr = mysqli_query($con, "SELECT ufile FROM logo");
-                $r = mysqli_fetch_row($rr);
-                $ufile = $r[0];
-                ?>
 
         <a href="index.html" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="uploads/logo/<?php print $ufile ?>" alt="" height="100">
+                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
             </span>
             <span class="logo-lg">
-                <img src="uploads/logo/<?php print $ufile ?>" alt="" height="90">
+                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
             </span>
-        </a> -->
+        </a>
         <!-- Light Logo-->
-        <!-- <a href="index.html" class="logo logo-light">
+        <a href="index.html" class="logo logo-light">
             <span class="logo-sm">
-                <img src="uploads/logo/<?php print $ufile ?>" alt="" height="100">
+                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" width="50%" height="100">
             </span>
             <span class="logo-lg">
-                <img src="uploads/logo/<?php print $ufile ?>" alt="" height="90">
+                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" width="100%" height="100">
             </span>
-        </a> -->
-        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+        </a>
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+            id="vertical-hover">
             <i class="ri-record-circle-line"></i>
         </button>
     </div>
@@ -42,35 +38,43 @@ include "../z_db.php";
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards"> Dashboard </span></a>
+                    <a href="index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i>
+                        <span data-key="t-dashboards"> Dashboard </span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher_stall_rules_regulation.php" class="nav-link" data-key="t-one-page">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="publisher_stall_rules_regulation.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
                     </a>
                 </li>
                 <li class="nav-item" id="profile-menu">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher_profile_add_edit.php" class="nav-link" data-key="t-one-page">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="publisher_profile_add_edit.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher_stall_booking.php">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="publisher_stall_booking.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Booking</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher_chellan_upload.php">
-                        <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Payment Details</span>
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="publisher_chellan_upload.php">
+                        <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Payment
+                            Details</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher_catalog_upload.php">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="publisher_catalog_upload.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Catalogue Upload</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="publisher_coupon.php">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="publisher_coupon.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Coupon Entry</span>
                     </a>
                 </li>
@@ -100,7 +104,8 @@ include "../z_db.php";
                     </div>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding" href="#sidebarReport" data-bs-toggle="collapse">
+                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                        href="#sidebarReport" data-bs-toggle="collapse">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a>
                     <!-- <a class="nav-link menu-link" href="#sidebarPot" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
@@ -109,19 +114,24 @@ include "../z_db.php";
                     <div class="menu-dropdown collapse" id="sidebarReport">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="publisher-report.php" class="nav-link" data-key="t-one-page"> Profile Report </a>
+                                <a href="publisher-report.php" class="nav-link" data-key="t-one-page"> Profile Report
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a href="publisher_bookrelease_report.php" class="nav-link" data-key="t-nft-landing"> Book Release Proposal Report </a>
+                                <a href="publisher_bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
+                                    Book Release Proposal Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="publisher_book_discussion_report.php" class="nav-link" data-key="t-nft-landing"> Book Discussion Proposal Report </a>
+                                <a href="publisher_book_discussion_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Book Discussion Proposal Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="publisher_special_event_proposal_report.php" class="nav-link" data-key="t-nft-landing"> Special Event Proposal Report </a>
+                                <a href="publisher_special_event_proposal_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Special Event Proposal Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="publisher_coupon_list_report.php" class="nav-link" data-key="t-nft-landing">Coupon List Report</a>
+                                <a href="publisher_coupon_list_report.php" class="nav-link"
+                                    data-key="t-nft-landing">Coupon List Report</a>
                             </li>
                         </ul>
                     </div>

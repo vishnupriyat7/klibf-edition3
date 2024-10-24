@@ -16,18 +16,12 @@ if (!isset($_SESSION['SESSION_EMAIL'])) {
 // Check, if username session is NOT set then this page will jump to login page
 if (isset($_SESSION['SESSION_EMAIL'])) {
     $username = $_SESSION['SESSION_EMAIL'];
-    // var_dump($username);die;
     $sql1 = "SELECT * FROM users WHERE email = ?;";
-    // var_dump( $sql1);die;
     $stmt1 = $con->prepare($sql1);
     $stmt1->bind_param("s", $username);
     $stmt1->execute();
     $result1 = $stmt1->get_result();
-    // var_dump($result1);die;
     $user = $result1->fetch_assoc();
-    // var_dump($user);die;
-
-
 } else {
     print "
 				<script language='javascript'>
@@ -86,19 +80,19 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="17">
                                 </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-sm.png" alt="" height="22">
+                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="17">
+                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
