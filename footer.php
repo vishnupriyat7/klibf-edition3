@@ -20,8 +20,9 @@
              <div class="social-links mt-3">
                <a href="https://youtube.com/@KLIBF" target="_blank" class="youtube"><i class="bx bxl-youtube"></i></a>
                <a href="https://www.facebook.com/KLIBF" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
-               <a href="https://twitter.com/IbfKla" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-               <a href="https://www.instagram.com/klibf2022/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+               <a href="https://twitter.com/klibf_kla" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+               <a href="https://www.instagram.com/klibf_kla" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+               <!-- <a href="https://www.threads.net/@klibf_kla" target="_blank" class="threads"><i class="bx bxl-threads"></i></a> -->
                <a href="https://chat.whatsapp.com/KeDHXQQT5FT13Vc7hbHzWW" target="_blank" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
                <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
                <!-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
