@@ -3,7 +3,6 @@ ini_set('display_errors', '0');
 include "header.php";
 include "publisher_sidebar.php";
 $user_id = $user['id'];
-// var_dump($user_id);die;
 ?>
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -73,7 +72,7 @@ $user_id = $user['id'];
                             $whatsapp = $user_profile['cntct_prsn_watsapp'];
                             $fascia = $user_profile['fascia'];
                             $remark = $user_profile['remarks'];
-                            $logo = base64_encode($user_profile['logo']);
+                            $logo = $user_profile['logo'];
                             if ($org_nature == 'A') {
                                 $select0 = '';
                                 $selecta = 'selected';
@@ -87,17 +86,19 @@ $user_id = $user['id'];
                                 $selecta = '';
                                 $selectp = '';
                             }
-                            if (!$logo) {
-                                $hide = "";
-                            } else {
-                                $hide = "hidden";
-                            }
+                            // if (!$logo) {
+                            //     $hide = "";
+                            // } else {
+                            //     $hide = "hidden";
+                            // }
+                            $hide = !$logo ? "" : "hidden";
                             $sub_status = $user_profile['submitted'];
-                            if ($sub_status == 0) {
-                                $edit = '';
-                            } else {
-                                $edit = 'disabled';
-                            }
+                            // if ($sub_status == 0) {
+                            //     $edit = '';
+                            // } else {
+                            //     $edit = 'disabled';
+                            // }
+                            $edit = $sub_status == 0 ? '' : 'disabled';
                         } else {
                             $comp_name = '';
                             $estb_year = '';
@@ -182,29 +183,6 @@ $user_id = $user['id'];
                                 mysqli_real_escape_string($con, $_POST['remark']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-                            // if (!empty($_FILES["logo"]["name"])) {
-                            //     // Get file info 
-                            //     $fileName = basename(path: $_FILES["logo"]["name"]);
-                            //     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-                        
-                            //     // Allow certain file formats 
-                            //     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-                            //     if (in_array($fileType, $allowTypes)) {
-                            //         $image = $_FILES['logo']['tmp_name'];
-                            //         $imgContent = addslashes(file_get_contents($image));
-                            //     } else {
-                            //         $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
-                            //         $status = "NOTOK";
-                            //     }
-                            // } else {
-                            //     if (!$logo) {
-                            //         $msg = 'Please select an image file to upload.';
-                            //         $status = "NOTOK";
-                            //     }
-                            //     // }
-                            // }
-                        
-
                             if (!empty($_FILES["logo"]["name"])) {
                                 // Get the file name and type
                                 $fileName = basename($_FILES["logo"]["name"]);
@@ -214,14 +192,13 @@ $user_id = $user['id'];
                                 $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
                                     // Set the target directory where you want to save the image
-                                    $targetDir = "uploads/";
+                                    $targetDir = "uploads/publisher_logo/";
 
                                     // Generate a unique file name to avoid overwriting
                                     $newFileName = uniqid() . '.' . $fileType;
 
                                     // Set the target file path
                                     $targetFilePath = $targetDir . $newFileName;
-
                                     // Upload file to the target directory
                                     if (move_uploaded_file($_FILES["logo"]["tmp_name"], $targetFilePath)) {
                                         // File successfully uploaded, now save the file path into the database
@@ -230,7 +207,7 @@ $user_id = $user['id'];
                                         // Your database code here, use $filePathForDB to save the file path to DB
                                         // Example: $sql = "INSERT INTO your_table_name (image_path) VALUES ('$filePathForDB')";
                         
-                                        $msg = 'File uploaded and path saved successfully.';
+                                        // $msg = 'File uploaded and path saved successfully.';
                                         $status = "OK";
                                     } else {
                                         // If file upload failed
@@ -247,12 +224,6 @@ $user_id = $user['id'];
                                     $status = "NOTOK";
                                 }
                             }
-
-
-
-
-
-
 
                             if (strlen($comp_name) < 3) {
                                 $msg = $msg . "Organisation name must be more than 3 characters length.<BR>";
@@ -301,13 +272,13 @@ $user_id = $user['id'];
                                                </div>"; //printing error if found in validation
                             } else {
                                 if ($user_id && $user_profile['id']) {
-                                    if ((!$imgContent) && $logo) {
+                                    if ((!$newFileName) && $logo) {
                                         $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark' WHERE user_id = '$user_id'";
                                     } else {
-                                        $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$imgContent' WHERE user_id = '$user_id'";
+                                        $query = "UPDATE users_profile SET org_name = '$comp_name', estb_year = '$estb_year', reg_no = '$reg_no', gst_no = '$gst_no', book_lang = '$book_lang', title_no = '$title_no', org_nature = '$org_nature', mgr_house_name = '$mgr_pub_hse', head_org_name = '$head_name', head_org_addr = '$head_addr', head_org_mobile = '$head_mobile', head_org_email = '$head_email', head_org_website = '$head_site', cntct_prsn_name = '$prsn_name', cntct_prsn_addr = '$prsn_addr', cntct_prsn_mobile = '$prsn_mobile', cntct_prsn_email = '$prsn_email', cntct_prsn_watsapp = '$whatsapp', status = 'E', updated_at = '$date', fascia = '$fascia', remarks = '$remark', logo = '$newFileName' WHERE user_id = '$user_id'";
                                     }
                                 } else {
-                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$imgContent')";
+                                    $query = "INSERT INTO users_profile (org_name, estb_year, reg_no, gst_no, book_lang, title_no, org_nature, mgr_house_name, head_org_name, head_org_addr, head_org_mobile, head_org_email, head_org_website, cntct_prsn_name, cntct_prsn_addr, cntct_prsn_mobile, cntct_prsn_email, cntct_prsn_watsapp, status, updated_at, fascia, remarks, user_id, logo) VALUES ('$comp_name', '$estb_year', '$reg_no', '$gst_no', '$book_lang', '$title_no', '$org_nature', '$mgr_pub_hse', '$head_name', '$head_addr', '$head_mobile', '$head_email', '$head_site', '$prsn_name', '$prsn_addr', '$prsn_mobile', '$prsn_email', '$whatsapp', 'E', '$date', '$fascia', '$remark', '$user_id', '$newFileName')";
                                 }
                                 $result = mysqli_query($con, $query);
                                 if ($result) {
@@ -344,7 +315,7 @@ $user_id = $user['id'];
                                     $whatsapp = $user_profile['cntct_prsn_watsapp'];
                                     $fascia = $user_profile['fascia'];
                                     $remark = $user_profile['remarks'];
-                                    $logo = base64_encode($user_profile['logo']);
+                                    $logo = $user_profile['logo'];
                                     if ($org_nature == 'A') {
                                         $select0 = '';
                                         $selecta = 'selected';
@@ -590,18 +561,19 @@ $user_id = $user['id'];
                                             <div class="col-6">
                                                 </br>
                                                 <label>*Please upload Logo of Publishing House / Organization<br>
-                                                    (Only JPG, JPEG, PNG files are allowed for uploads.)</label>
+                                                    (Only JPG, JPEG, PNG files are allowed for uploads.)</label><br>
+                                                    <span id="changelogo" onclick="changeLogo();" <?= $edit; ?> class="btn btn-info text-right"><u>Change
+                                                    Logo</u></span>
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
                                                 <input type="file" class="form-control" name="logo" id="logo"
                                                     placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>>
                                                 <label id="logo_lab">
-                                                    <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>"
+                                                    <img src="uploads/publisher_logo/<?= $logo; ?>"
                                                         height="70vh" id="logo_img" <?= $edit; ?>>
                                                 </label>
-                                                <span id="changelogo" onclick="changeLogo();" <?= $edit; ?>><u>Change
-                                                        Logo</u></span>
+                                              
 
                                                 <!-- <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo"> -->
                                             </div>
