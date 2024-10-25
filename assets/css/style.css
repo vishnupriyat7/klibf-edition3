@@ -2116,9 +2116,13 @@ section {
   /* background: #00c16e; */
   /* background: #117525; */
   /* background: rgba(111, 153, 32, 0.9); */
-  background: #7da71b;
+  /* background: #7da71b; */
+  /* background: rgba(3, 61, 92); */
+  background: url("../img/register-img.png") no-repeat center center;
+  /* height: auto; */
+  background-size: cover;
 
-  padding: 100px 50px;
+  padding: 0px 0px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   display: flex;
@@ -2132,11 +2136,12 @@ section {
 }
 
 .content-wthree {
-  flex-basis: 60%;
-  -webkit-flex-basis: 60%;
+  flex-basis: 50%;
+  -webkit-flex-basis: 50%;
   box-sizing: border-box;
   padding: 3em 3.5em;
   background: #fff;
+  /* background-size: contain; */
   box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -2225,7 +2230,8 @@ section {
   /* background: #117525; */
   /* background: rgba(111, 153, 32, 0.9); */
   /* background: #00c16e; */
-  background: rgba(95, 45, 110, 0.9);
+  /* background: rgba(95, 45, 110, 0.9); */
+  background: rgba(10, 130, 173);
 
   border: none;
   padding: 14px 15px;
@@ -2385,6 +2391,45 @@ p.copy-footer-29 a:hover {
 
   .copyright p {
     font-size: 16px;
+  }
+}
+
+/* New Responsive Dimension */
+
+@media (min-width: 418px) and (max-width: 1185px) {
+  .w3l-mockup-form .main-mockup {
+    /* Adjust the flex direction if needed for these dimensions */
+    flex-direction: column;
+  }
+  .w3l-mockup-form {
+    padding: 150px 120px;
+  }
+
+  .w3l_form {
+    /* Customize padding, border radius, and ordering as needed */
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .content-wthree {
+    /* Adjust padding and radius */
+    padding: 3em;
+    border-radius: 10px;
+  }
+
+  .w3l-mockup-form h1 {
+    /* Adjust font size if necessary */
+    font-size: 32px;
+  }
+
+  .w3l-mockup-form h2 {
+    /* Adjust font size and line-height for larger screens */
+    font-size: 24px;
+    line-height: 34px;
+  }
+
+  .copyright p {
+    font-size: 18px;
   }
 }
 
