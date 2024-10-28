@@ -1,7 +1,10 @@
 <?php
 ini_set('display_errors', '0');
-include "header.php";
-include "publisher_sidebar.php";
+// $base_url = '/klibf-edition3';
+// include "$base_url/dashboard/header.php";
+// include "$base_url/sidebar.php";
+include "../header.php";
+include "sidebar.php";
 $user_id = $user['id'];
 ?>
 <!-- ============================================================== -->
@@ -19,7 +22,7 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i
+                                <a class="dropdown-item" href="../logout.php"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>

@@ -1,5 +1,5 @@
 <?php include "header.php"; ?>
-<?php include "publisher_sidebar.php"; ?>
+<?php include "sidebar_publisher.php"; ?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->

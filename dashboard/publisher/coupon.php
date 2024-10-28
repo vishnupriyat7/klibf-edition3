@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', '0');
 include "header.php";
-include "publisher_sidebar.php";
+include "sidebar_publisher.php";
 $user_id = $user['id'];
 function convertNumberToWordsForIndia($number)
 {

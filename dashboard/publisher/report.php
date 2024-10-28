@@ -1,5 +1,5 @@
 <?php include "header.php";
-include "publisher_sidebar.php";
+include "sidebar_publisher.php";
 $user_id = $user['id'];
 // var_dump($user_id );die;
 ?>

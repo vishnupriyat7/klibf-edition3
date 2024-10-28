@@ -1,6 +1,6 @@
 <?php
 include "z_db.php";
-
+$base_url = '/klibf-edition3';
 
 session_start();
 // Check, if username session is NOT set then this page will jump to login page
@@ -8,7 +8,7 @@ session_start();
 if (!isset($_SESSION['SESSION_EMAIL'])) {
     print "
 				<script language='javascript'>
-					window.location = '../index.php';
+					window.location = '<?= $base_url; ?>/index.php';
 				</script>
 			";
 }
@@ -25,7 +25,7 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
 } else {
     print "
 				<script language='javascript'>
-					window.location = '../index.php';
+					window.location = '<?= $base_url; ?>/index.php';
 				</script>
 			";
 }
@@ -40,30 +40,30 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | KLIBF 2 | 2023</title>
+    <title>Dashboard | KLIBF 3 | 2025</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/Logo_title.png">
+    <link rel="shortcut icon" href="<?= $base_url; ?>/dashboard/assets/images/Logo_title.png">
     <!-- <link href="assets/img/Logo_title.png" rel="icon"> -->
 
     <!-- jsvectormap css -->
-    <link href="assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
 
     <!--Swiper slider css-->
-    <link href="assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
-    <script src="assets/js/layout.js"></script>
+    <script src="<?= $base_url; ?>/dashboard/assets/js/layout.js"></script>
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
-    <link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -80,19 +80,19 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
                         <div class="navbar-brand-box horizontal-logo">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="22">
+                                    <img src="<?= $base_url; ?>/assets/images/Logo_KLIBF03_BG.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="17">
+                                    <img src="<?= $base_url; ?>/assets/images/Logo_KLIBF03_BG.png" alt="" height="17">
                                 </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="22">
+                                    <img src="<?= $base_url; ?>/assets/images/Logo_KLIBF03_BG.png" alt="" height="22">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="../assets/images/Logo_KLIBF03_BG.png" alt="" height="17">
+                                    <img src="<?= $base_url; ?>/assets/images/Logo_KLIBF03_BG.png" alt="" height="17">
                                 </span>
                             </a>
                         </div>
