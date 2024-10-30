@@ -103,9 +103,9 @@ if (isset($_POST['submit'])) {
                     <div class="alert-close">
                         <span class="fa fa-close"></span>
                     </div>
-                    <div class="w3l_form">
+                    <div class="w3l_form register">
                         <div class="left_grid_info">
-                            <!-- <img src="assets/img/images/Opt1_Reg.svg" alt=""> -->
+                            <!-- <img src="assets/img/Reg.jpg" alt=""> -->
                         </div>
                     </div>
                     <div class="content-wthree">

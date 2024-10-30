@@ -2099,7 +2099,7 @@ section {
   position: relative;
   min-height: 100vh;
   z-index: 0;
-  background: rgba(99, 194, 110, 0.1);
+  /* background: rgba(99, 194, 110, 0.1); */
   padding: 190px 270px;
   /* margin-top: 7%; */
 }
@@ -2110,29 +2110,48 @@ section {
 }
 
 .w3l_form {
-  padding: 0px;
+  /* padding: 0px;
   flex-basis: 50%;
-  -webkit-flex-basis: 50%;
+  -webkit-flex-basis: 50%; */
   /* background: #00c16e; */
   /* background: #117525; */
   /* background: rgba(111, 153, 32, 0.9); */
   /* background: #7da71b; */
   /* background: rgba(3, 61, 92); */
-  background: url("../img/register-img.png") no-repeat center center;
+  /* background: url("../img/Reg.jpg") no-repeat center center; */
   /* height: auto; */
-  background-size: cover;
+  /* background-size: contain; */
 
   padding: 0px 0px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  /* border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px; */
   display: flex;
   justify-content: center;
   align-items: center;
+
+
+  -webkit-flex-basis: 50%;
+  box-sizing: border-box;
+  /* padding: 3em 3.5em; */
+  /* background: #fff; */
+  background-size: contain;
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
+.w3l_form.login{
+  background: url("../img/Login.jpg");
+
+}
+.w3l_form.register{
+  background: url("../img/Reg.jpg");
+
+}
+
 .w3l_form img {
-  /* height: 25%; */
+  /* height: 100vh; */
   width: 100%;
-  position: relative;
+  /* position: relative; */
 }
 
 .content-wthree {
@@ -2338,7 +2357,7 @@ p.copy-footer-29 a:hover {
 
   .w3l_form {
     order: 2;
-    padding: 50px;
+    /* padding: 50px; */
     border-radius: 0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
