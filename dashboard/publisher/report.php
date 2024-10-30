@@ -1,5 +1,8 @@
-<?php include "header.php";
-include "sidebar_publisher.php";
+<?php 
+// include "header.php";
+// include "sidebar_publisher.php";
+include "../header.php";
+include "sidebar.php";
 $user_id = $user['id'];
 // var_dump($user_id );die;
 ?>
@@ -82,7 +85,7 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="../logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
                     </div>
@@ -130,7 +133,7 @@ $user_id = $user['id'];
                     $stall3x2 = $user_profile['stalls_3x2'];
                     $fascia = $user_profile['fascia'];
                     $remark = $user_profile['remarks'];
-                    $logo = base64_encode($user_profile['logo']);
+                    $logo = $user_profile['logo'];
                     $alloted_stall3x3 = $user_profile['confirm_3X3'];
                     $alloted_stall3x2 = $user_profile['confirm_3X2'];
                     $amt3x3 = 10000;
@@ -182,7 +185,7 @@ $user_id = $user['id'];
                             <table id="preview">
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label><img src="assets/images/Logo_01.png" height="70vh" class="text-left"></label>
+                                        <label><img src="<?= $base_url ?>/assets/img/Logo_KLIBF03.png" height="70vh" class="text-left"></label>
 
                                     </td>
                                 </tr>
@@ -412,7 +415,7 @@ $user_id = $user['id'];
                                         <label> Logo of Publishing House / Organization</label>
                                     </td>
                                     <td>
-                                        <label id="logo_lab"><img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh"></label>
+                                        <label id="logo_lab"><img src="<?= $base_url ?>/dashboard/uploads/publisher_logo/<?= $logo; ?>" height="70vh"></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -474,7 +477,7 @@ $user_id = $user['id'];
     </div>
     <!-- End Page-content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script>
         function printData() {

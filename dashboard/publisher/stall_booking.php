@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', '0');
-include "header.php";
-include "publisher/sidebar.php";
+include "../header.php";
+include "sidebar.php";
 $user_id = $user['id'];
 ?>
 
@@ -21,7 +21,7 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="../logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
 
@@ -252,7 +252,7 @@ $user_id = $user['id'];
     </div>
     <!-- End Page-content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 

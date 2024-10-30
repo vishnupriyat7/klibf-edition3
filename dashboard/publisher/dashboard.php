@@ -6,7 +6,7 @@
                 <ol class="breadcrumb m-0">
                     <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
                     <li class="breadcrumb-item active">Dashboard</li> -->
-                    <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                    <a class="dropdown-item" href="../logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                 </ol>
             </div>
         </div>
@@ -20,7 +20,7 @@ $profile_stmt->bind_param("s", $user['id']);
 $profile_stmt->execute();
 $profile_result = $profile_stmt->get_result();
 $user_profile_check = $profile_result->fetch_assoc();
-// var_dump($user_profile_check);
+
 $stall_sql = "SELECT stalls_3x3, stalls_3x2, confirm_3X3, confirm_3X2 FROM stall_booking WHERE user_id = ?;";
 $stall_stmt = $con->prepare($stall_sql);
 $stall_stmt->bind_param("s", $user['id']);

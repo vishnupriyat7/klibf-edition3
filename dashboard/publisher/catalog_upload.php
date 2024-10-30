@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', '0');
-include "header.php";
-include "sidebar_publisher.php";
+include "../header.php";
+include "sidebar.php";
 $user_id = $user['id'];
 ?>
 <!-- ============================================================== -->
@@ -125,4 +125,4 @@ $user_id = $user['id'];
     <iframe id="print-frame" style="display: none;"></iframe>
     <!-- End Page-content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>

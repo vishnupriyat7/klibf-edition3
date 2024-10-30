@@ -1,10 +1,10 @@
 <?php
-ini_set('display_errors', '0');
-// $base_url = '/klibf-edition3';
-// include "$base_url/dashboard/header.php";
-// include "$base_url/sidebar.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include "../header.php";
 include "sidebar.php";
+// include $base_url . 'dashboard/publisher/sidebar.php';
 $user_id = $user['id'];
 ?>
 <!-- ============================================================== -->
@@ -36,15 +36,6 @@ $user_id = $user['id'];
                 <!--end col-->
                 <div class="col-xxl-9">
                     <div class="card mt-xxl-n5">
-                        <!-- <div class="card-header">
-                                    <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab" aria-selected="false">
-                                                <i class="fas fa-home"></i> New Blog
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div> -->
                         <?php
                         $status = "OK";
                         $msg = "";
@@ -573,7 +564,7 @@ $user_id = $user['id'];
                                                 <input type="file" class="form-control" name="logo" id="logo"
                                                     placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>>
                                                 <label id="logo_lab">
-                                                    <img src="uploads/publisher_logo/<?= $logo; ?>"
+                                                    <img src="<?= $base_url ?>/dashboard/uploads/publisher_logo/<?= $logo; ?>"
                                                         height="70vh" id="logo_img" <?= $edit; ?>>
                                                 </label>
                                               
@@ -628,7 +619,7 @@ $user_id = $user['id'];
     </div>
     <!-- End Page-content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 

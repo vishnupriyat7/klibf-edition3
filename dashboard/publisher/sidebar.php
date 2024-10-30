@@ -3,7 +3,7 @@
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
 
-        <a href="index.html" class="logo logo-dark">
+        <a href="<?= $base_url ?>/dashboard/index.php" class="logo logo-dark">
             <span class="logo-sm">
                 <img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
             </span>
@@ -12,7 +12,7 @@
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="<?= $base_url ?>/dashboard/index.php" class="logo logo-light">
             <span class="logo-sm">
                 <img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03_BG.png" alt="" width="50%" height="100">
             </span>
@@ -34,73 +34,77 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a href="../index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i>
+                    <a href="<?= $base_url ?>/dashboard/index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards"> Dashboard </span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="stall_rules_regulation.php" class="nav-link" data-key="t-one-page">
+                    <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
+                        href="<?= $base_url ?>/dashboard/publisher/stall_rules_regulation.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
                     </a>
                 </li>
                 <li class="nav-item" id="profile-menu">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="profile_add_edit.php" class="nav-link" data-key="t-one-page">
+                    <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
+                        href="<?= $base_url ?>/dashboard/publisher/profile_add_edit.php" class="nav-link" data-key="t-one-page">
                         <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="stall_booking.php">
+                    <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
+                        href="<?= $base_url ?>/dashboard/publisher/stall_booking.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Booking</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="chellan_upload.php">
+                        href="<?= $base_url ?>/dashboard/publisher/chellan_upload.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Payment
                             Details</span>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="catalog_upload.php">
+                        href="<?= $base_url ?>/dashboard/publisher/catalog_upload.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Catalogue Upload</span>
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="coupon.php">
+                        href="<?= $base_url ?>/dashboard/publisher/coupon.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Coupon Entry</span>
                     </a>
-                </li>
+                </li> -->
+ 
+
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                        href="#sidebarReport" data-bs-toggle="collapse">
+                    <!-- <a class="nav-link menu-link" role="button" href="#sidebarReport" data-bs-toggle="collapse">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
-                    </a>
+                    </a> -->
+                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse" data-bs-target="#sidebarReport">
+    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
+</a>
                     <div class="menu-dropdown collapse" id="sidebarReport">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="report.php" class="nav-link" data-key="t-one-page"> Profile Report
+                                <a href="<?= $base_url ?>/dashboard/publisher/report.php" class="nav-link" data-key="t-one-page"> Profile Report
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
+                            <!-- <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
                                     Book Release Proposal Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="book_discussion_report.php" class="nav-link"
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Book Discussion Proposal Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="special_event_proposal_report.php" class="nav-link"
+                                <a href="<?= $base_url ?>/dashboard/publisher/special_event_proposal_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Special Event Proposal Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="coupon_list_report.php" class="nav-link"
+                                <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
                                     data-key="t-nft-landing">Coupon List Report</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </li>
