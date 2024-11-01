@@ -2,21 +2,21 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="index.html" class="logo logo-dark">
+        <a href="<?= $base_url ?>/dashboard/index.php" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
+                <img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
             </span>
             <span class="logo-lg">
-                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
+                <img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03_BG.png" alt="" height="100">
             </span>
         </a>
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="<?= $base_url ?>/dashboard/index.php" class="logo logo-light">
             <span class="logo-sm">
-                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" width="50%" height="100">
+                <img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03_BG.png" alt="" width="50%" height="100">
             </span>
             <span class="logo-lg">
-                <img src="../assets/img/Logo_KLIBF03_BG.png" alt="" width="100%" height="100">
+                <img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03_BG.png" alt="" width="100%" height="100">
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -34,7 +34,10 @@
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
 
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards"> Dashboard </span></a>
+                    <a href="<?= $base_url ?>/dashboard/index.php" class="nav-link" data-key="t-analytics"> 
+                        <i class="ri-dashboard-2-line"></i> 
+                        <span data-key="t-dashboards"> Dashboard </span>
+                    </a>
                 </li>
 
                 <li class="nav-item">
@@ -44,10 +47,10 @@
                     <div class="menu-dropdown collapse" id="sidebarX">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="publisher_register_report.php" class="nav-link" data-key="t-nft-landing">Publisher Registered </a>
+                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_register_report.php" class="nav-link" data-key="t-nft-landing">Publisher Registered </a>
                             </li>
                             <li class="nav-item">
-                                <a href="publisher_profile_report.php" class="nav-link" data-key="t-nft-landing">Profile Created </a>
+                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_profile_report.php" class="nav-link" data-key="t-nft-landing">Profile Created </a>
                             </li>
                             <li class="nav-item">
                                 <a href="stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall Booking </a>

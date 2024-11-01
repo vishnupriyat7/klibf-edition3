@@ -1,5 +1,7 @@
-<?php include "header.php"; ?>
-<?php include "sidebar_pgmcmtee.php"; ?>
+<?php
+include "../header.php";
+include "sidebar.php";
+?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -17,7 +19,10 @@
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> 
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                </a>
                             </ol>
                         </div>
                     </div>
@@ -101,10 +106,10 @@
                                         // $stalls_3x2 = "$book[stalls_3x2]";
                                         $status = "$book[status]";
                                         $date = "$book[updated_at]";
-                                        $logo = base64_encode($book['logo']);
+                                        $logo = $book['logo'];
                                         $fascia = "$book[fascia]";
                                         $remarks = "$book[remarks]";
-                                    ?>
+                                        ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
@@ -176,10 +181,7 @@
                                                 <?= $date; ?>
                                             </td>
                                             <td>
-
-                                                <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="70vh">
-                                                <!-- <?= $logo; ?> -->
-
+                                                <img src="<?= $base_url ?>/dashboard/uploads/publisher_logo/<?= $logo; ?>" height="70vh">
                                             </td>
                                             <td>
                                                 <?= $fascia; ?>
@@ -212,7 +214,7 @@
                                                 </div>
                                             </td> -->
                                         </tr>
-                                    <?php  }
+                                    <?php }
                                     ?>
                                 </tbody>
                             </table>
@@ -226,7 +228,7 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script>
         function exportTableToExcel(example, filename = '') {
