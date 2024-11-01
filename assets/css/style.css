@@ -2110,37 +2110,25 @@ section {
 }
 
 .w3l_form {
- 
   padding: 0px 0px;
-  /* border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px; */
   display: flex;
   justify-content: center;
   align-items: center;
 
-
   -webkit-flex-basis: 50%;
   box-sizing: border-box;
-  /* padding: 3em 3.5em; */
-  /* background: #fff; */
-  background-size: contain;
+
   box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+  background-size: cover;
+  background-position: center;
 }
-.w3l_form.login{
+.w3l_form.login {
   background: url("../img/Login.jpg");
-
 }
-.w3l_form.register{
+.w3l_form.register {
   background: url("../img/Reg.jpg");
-
-}
-
-.w3l_form img {
-  /* height: 100vh; */
-  width: 100%;
-  /* position: relative; */
 }
 
 .content-wthree {
@@ -2339,91 +2327,45 @@ p.copy-footer-29 a:hover {
 
 /*-- responsive design --*/
 
-@media (max-width: 736px) {
-  .w3l-mockup-form .main-mockup {
-    flex-direction: column;
-  }
 
-  .w3l_form {
-    order: 2;
-    /* padding: 50px; */
-    border-radius: 0;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-  }
 
-  .content-wthree {
-    order: 1;
-    border-radius: 0;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-  }
-}
 
-@media (max-width: 568px) {
-  .w3l-mockup-form h1 {
-    font-size: 30px;
-  }
-
-  .w3l-mockup-form .main-mockup {
-    margin: 30px 0;
-  }
-
-  .content-wthree {
-    padding: 2.5em;
-  }
-}
-
-@media (max-width: 415px) {
-  .w3l-mockup-form {
-    padding: 40px 30px;
-  }
-}
-
-@media (max-width: 384px) {
-  .w3l-mockup-form {
-    padding: 30px 15px;
-  }
-
-  .content-wthree {
-    padding: 2em;
-  }
-
-  .w3l-mockup-form h1 {
-    font-size: 28px;
-  }
-
-  .w3l-mockup-form h2 {
-    font-size: 22px;
-    line-height: 32px;
-  }
-
-  .copyright p {
-    font-size: 16px;
-  }
-}
 
 /* New Responsive Dimension */
 
-@media (min-width: 418px) and (max-width: 1185px) {
+
+@media (min-width: 300px) and (max-width: 1185px) {
   .w3l-mockup-form .main-mockup {
     /* Adjust the flex direction if needed for these dimensions */
     flex-direction: column;
   }
   .w3l-mockup-form {
-    padding: 150px 120px;
+    padding: 150px 60px;
   }
 
   .w3l_form {
     /* Customize padding, border radius, and ordering as needed */
-    padding: 40px;
+    padding: 120px;
     border-radius: 10px;
+  }
+  .w3l_form.login {
+    background: url("../img/Login.jpg") no-repeat center center;
+    background-size: cover; /* Makes the login background image responsive */
+  }
+  
+  .w3l_form.register {
+    background: url("../img/Reg.jpg") no-repeat center center;
+    background-size: cover; /* Makes the register background image responsive */
   }
 
   .content-wthree {
     /* Adjust padding and radius */
-    padding: 3em;
-    border-radius: 10px;
+    padding: 2em;
+    /* border-radius: 10px; */
+    order: 1;
+    border-radius: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   .w3l-mockup-form h1 {
@@ -2450,12 +2392,33 @@ p.copy-footer-29 a:hover {
   text-align: center;
   /* justify-content: center; */
   /* font-size: large; */
-  
 }
 
 .logo-video {
   width: 100vw; /* Full width of the viewport */
   height: 50vh;
+}
+
+@media (min-width: 1186px) {
+  .w3l-mockup-form {
+    padding: 200px 150px; /* Adjust padding for larger screens */
+  }
+
+  .w3l_form {
+    padding: 150px; /* Adjust padding as needed */
+    border-radius: 12px; /* Optionally increase border radius for a smoother look */
+    background-size: cover; /* Ensures the background image covers the container */
+  }
+
+  .w3l_form.login {
+    background: url("../img/Login.jpg") no-repeat center center;
+    background-size: cover; /* Keeps the login background responsive */
+  }
+  
+  .w3l_form.register {
+    background: url("../img/Reg.jpg") no-repeat center center;
+    background-size: cover; /* Keeps the register background responsive */
+  }
 }
 /*-- //responsive design --*/
 /*-- //form styling --*/
