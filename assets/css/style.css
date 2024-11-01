@@ -2326,10 +2326,7 @@ p.copy-footer-29 a:hover {
 }
 
 /*-- responsive design --*/
-
-
-
-
+/* Register & Login */
 
 /* New Responsive Dimension */
 
@@ -2340,7 +2337,7 @@ p.copy-footer-29 a:hover {
     flex-direction: column;
   }
   .w3l-mockup-form {
-    padding: 150px 60px;
+    padding: 150px 20px;
   }
 
   .w3l_form {
