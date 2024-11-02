@@ -112,7 +112,8 @@ $spclevent_result_count = $spclevent_result->fetch_all();
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Stalls Booked</p>
                                     <!-- <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $numrows; ?>"></span></h4> -->
-                                    <h4 class=" mb-0">3X3: <?= $stall_result_count['stalls_3x3'] ? $stall_result_count['stalls_3x3'] : 0; ?>&emsp;3X2: <?= $stall_result_count['stalls_3x2'] ? $stall_result_count['stalls_3x2'] : 0; ?></h4>
+
+                                    <h4 class=" mb-0">3X3: <?= $stall_result->num_rows ? $stall_result_count['stalls_3x3'] : 0; ?>&emsp;3X2: <?= $stall_result->num_rows  ? $stall_result_count['stalls_3x2'] : 0; ?></h4>
                                 </div>
 
                             </div>
@@ -132,7 +133,7 @@ $spclevent_result_count = $spclevent_result->fetch_all();
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Stalls Alloted</p>
                                     <!-- <h4 class=" mb-0"><span class="counter-value" data-target="<?php print $numrows; ?>"></span></h4> -->
-                                    <h4 class=" mb-0">3X3: <?= $stall_result_count['confirm_3X3'] ? $stall_result_count['confirm_3X3'] : 0; ?>&emsp;3X2: <?= $stall_result_count['confirm_3X2'] ? $stall_result_count['confirm_3X2'] : 0; ?></h4>
+                                    <h4 class=" mb-0">3X3: <?= $stall_result->num_rows ? $stall_result_count['confirm_3X3'] : 0; ?>&emsp;3X2: <?= $stall_result->num_rows ? $stall_result_count['confirm_3X2'] : 0; ?></h4>
                                 </div>
                             </div>
                         </div><!-- end card body -->

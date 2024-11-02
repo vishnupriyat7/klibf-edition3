@@ -34,35 +34,42 @@
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
 
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/index.php" class="nav-link" data-key="t-analytics"> 
-                        <i class="ri-dashboard-2-line"></i> 
+                    <a href="<?= $base_url ?>/dashboard/index.php" class="nav-link" data-key="t-analytics">
+                        <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards"> Dashboard </span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarX" data-bs-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarLanding">
+                    <a class="nav-link menu-link" href="#sidebarX" data-bs-toggle="collapse" role="button"
+                        aria-expanded="true" aria-controls="sidebarLanding">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarX">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_register_report.php" class="nav-link" data-key="t-nft-landing">Publisher Registered </a>
+                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_register_report.php"
+                                    class="nav-link" data-key="t-nft-landing">Publisher Registered </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_profile_report.php" class="nav-link" data-key="t-nft-landing">Profile Created </a>
+                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_profile_report.php"
+                                    class="nav-link" data-key="t-nft-landing">Profile Created </a>
                             </li>
                             <li class="nav-item">
-                                <a href="stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall Booking </a>
+                                <a href="stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall
+                                    Booking </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pgmcmtee-evnt-bkrls-report.php" class="nav-link" data-key="t-nft-landing">Event Proposal Book Release Report </a>
+                                <a href="pgmcmtee-evnt-bkrls-report.php" class="nav-link" data-key="t-nft-landing">Event
+                                    Proposal Book Release Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pgmcmtee-evnt-bkdscn-report.php" class="nav-link" data-key="t-nft-landing">Event Proposal Book Discussion Report </a>
+                                <a href="pgmcmtee-evnt-bkdscn-report.php" class="nav-link"
+                                    data-key="t-nft-landing">Event Proposal Book Discussion Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pgmcmtee-spcl-evnt-prpsl-report.php" class="nav-link" data-key="t-nft-landing">Special Event Proposal Report </a>
+                                <a href="pgmcmtee-spcl-evnt-prpsl-report.php" class="nav-link"
+                                    data-key="t-nft-landing">Special Event Proposal Report </a>
                             </li>
                         </ul>
                     </div>

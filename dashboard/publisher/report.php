@@ -415,7 +415,7 @@ $user_id = $user['id'];
                                         <label> Logo of Publishing House / Organization</label>
                                     </td>
                                     <td>
-                                        <label id="logo_lab"><img src="<?= $base_url ?>/dashboard/uploads/publisher_logo/<?= $logo; ?>" height="70vh"></label>
+                                        <label id="logo_lab"><img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>" height="70vh"></label>
                                     </td>
                                 </tr>
                                 <tr>
