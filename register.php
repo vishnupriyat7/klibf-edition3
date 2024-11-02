@@ -110,7 +110,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="content-wthree">
                         <h2>Register</h2>
-                        <p>Welcome to Kerala Legislature International Book Festival Edition II</p>
+                        <p>Welcome to Kerala Legislature International Book Festival Edition III</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
                             <div class="form-check form-check-inline">
