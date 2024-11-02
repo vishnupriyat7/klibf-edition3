@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 include "../header.php";
 include "sidebar.php";
 // include $base_url . 'dashboard/publisher/sidebar.php';
@@ -186,7 +186,8 @@ $user_id = $user['id'];
                                 $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
                                     // Set the target directory where you want to save the image
-                                    $targetDir = "uploads/publisher_logo/";
+                                    // $targetDir = $base_url."/dashboard/uploads/publisher_logo/";
+                                    $targetDir = "../uploads/publisher_logo/";
 
                                     // Generate a unique file name to avoid overwriting
                                     $newFileName = uniqid() . '.' . $fileType;
