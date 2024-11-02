@@ -1,7 +1,6 @@
 <?php
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 0);
+
 include "../header.php";
 include "sidebar.php";
 // include $base_url . 'dashboard/publisher/sidebar.php';
@@ -185,10 +184,8 @@ $user_id = $user['id'];
                                 // Allow certain file formats 
                                 $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
-                                    // Set the target directory where you want to save the image
-                                    // $targetDir = $base_url."/dashboard/uploads/publisher_logo/";
-                                    $targetDir = "../uploads/publisher_logo/";
-
+                                    // Set the target directory where you want to save the imag
+                                    $targetDir = "uploads/publisher_logo/";
                                     // Generate a unique file name to avoid overwriting
                                     $newFileName = uniqid() . '.' . $fileType;
 
@@ -565,7 +562,7 @@ $user_id = $user['id'];
                                                 <input type="file" class="form-control" name="logo" id="logo"
                                                     placeholder="*Upload Logo" <?= $hide; ?> <?= $edit; ?>>
                                                 <label id="logo_lab">
-                                                    <img src="<?= $base_url ?>/dashboard/uploads/publisher_logo/<?= $logo; ?>"
+                                                    <img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>"
                                                         height="70vh" id="logo_img" <?= $edit; ?>>
                                                 </label>
                                               

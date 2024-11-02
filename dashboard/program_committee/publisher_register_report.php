@@ -1,5 +1,7 @@
-<?php include "header.php"; ?>
-<?php include "sidebar_pgmcmtee.php"; ?>
+<?php
+include "../header.php";
+include "sidebar.php";
+?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -17,7 +19,10 @@
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="../logout.php">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                </a>
                             </ol>
                         </div>
                     </div>
@@ -55,7 +60,7 @@
                                         $name = "$bookuser[name]";
                                         $email = "$bookuser[email]";
                                         $contactno = "$bookuser[contact_no]";
-                                    ?>
+                                        ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
@@ -90,21 +95,18 @@
                                                 $query = "SELECT * FROM users_profile where user_id='$id'";
                                                 $profileusers = mysqli_query($con, $query);
                                                 $user_profile_row = mysqli_fetch_row($profileusers);
-                                                if ($user_profile_row) {
-                                                    $btnenbl = "hidden";
-                                                } else {
-                                                    $btnenbl = "";
-                                                }
+                                                $btnenbl = $user_profile_row ? "" : "hidden";
                                                 ?>
-                                                <a href='delete_reg_pblshr.php?id=<?= $id; ?>' class='dropdown-item remove-item-btn' <?= $btnenbl; ?>>
-                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i><?= $user_profile_row; ?>Delete
+                                                <a href='delete_reg_pblshr.php?id=<?= $id; ?>'
+                                                    class='dropdown-item remove-item-btn' <?= $btnenbl; ?>>
+                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i>Delete
                                                 </a>
                                                 <!-- </li> -->
                                                 <!-- </ul> -->
                                                 <!-- </div> -->
                                             </td>
                                         </tr>
-                                    <?php  }
+                                    <?php }
                                     ?>
                                 </tbody>
                             </table>
@@ -118,7 +120,7 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script>
         function exportTableToExcel(example, filename = '') {
