@@ -51,19 +51,20 @@
     <main id="about-inner-main">
 
         <!-- ======= Breadcrumbs Section ======= -->
-        <!-- <section class="breadcrumbs">
+        <section class="breadcrumbs">
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Quiz Registration</h2>
                     <ol>
                         <li><a href="index.php">Home</a></li>
+                        <li>Contest</li>
                         <li>Quiz</li>
                     </ol>
                 </div>
 
             </div>
-        </section> -->
+        </section>
         <!-- End Breadcrumbs Section -->
 
         <!-- <section class="contest-bkrvw-reg"> -->
@@ -86,7 +87,7 @@
                     <div class="col-xxl-12 col-12 col-md-12 col-lg-12">
                         <div class="card mt-xxl-n5">
                             <div class="text-center">
-                                <img class="mx-auto d-block img-fluid" src="./assets/img/contests/quiz-banner.jpg" style="width: 100%;">
+                                <img class="mx-auto d-block img-fluid" src="assets/img/contests/quiz-banner.jpg" style="width: 100%;">
                             </div>
 
 
@@ -95,7 +96,7 @@
                                     <div class="d-flex justify-content-end">
 
                                         <!-- <a href="https://forms.gle/Y58w5WuM5QKu24FN9 " class="mr-2 btn btn-success horizontal-shake" target="_blank"><i class="fa fa-download"></i> Click Here to Apply</a> -->
-                                        <!-- <a href="#" class="mr-2 btn btn-success horizontal-shake"><i class="fa fa-download"></i> Click Here to Apply</a> -->
+                                        <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake"><i class="fa fa-download"></i> Click Here to Apply</a>
 
                                     </div>
 

@@ -495,61 +495,6 @@ $user_id = $user['id'];
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- <div class="form-group col-12">
-                                                <label><b>Choose your cubicle</b></label>
-                                            </div>
-                                            <div class="form-group col-12">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="Size of Stall" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="Fare / Unit + 18% GST Extra (in ₹  )" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="No. Required " disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control font-weight-bold text-center" value="Total (in ₹  )" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <input class="form-control" value="3m X 3m" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control text-right" value="10000" id="amt3x3" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x3" placeholder="00" id="stall3x3" onchange="amount();" value="<?= $stall3x3; ?>">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="rate_amt" placeholder="00" id="rate_amt" disabled value="<?= $tot_amt3x3; ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <input class="form-control" value="3m X 2m" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input class="form-control text-right" value="7500" id="amt3x2" disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="stall3x2" id="stall3x2" placeholder="00" onchange="amount();" value="<?= $stall3x2; ?>">
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="rate_amt3x2" id="rate_amt3x2" placeholder="00" disabled value="<?= $tot_amt3x2; ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-9">
-                                                        <input class="form-control font-weight-bold text-right" value="Total amount payable (in ₹  )." disabled>
-                                                    </div>
-                                                    <div class="col-3">
-                                                        <input type="text" class="form-control text-right" name="totamt" id="totamt" placeholder="00" disabled value="<?= $total_amt; ?>">
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                             <div class="col-6">
                                                 </br>
                                                 <label>*Please upload Logo of Publishing House / Organization<br>
