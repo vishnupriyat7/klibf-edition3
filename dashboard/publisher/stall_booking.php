@@ -220,7 +220,7 @@ $user_id = $user['id'];
                                         <?php if ($stall_status != 'S') { ?>
                                             <div class="col-md-12">
                                                 <br>
-                                                <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_prof['org_name'] ?>, hereby agree to abide by the <a href="rules-regulation.php" target="_blank"> &nbsp;Rules & Regulations</a> of the Kerala Legislature International Book Festival 2025 3rd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
+                                                <input type="checkbox" name="terms" required="required" class="text-justify" id="terms">&emsp;I/We, <?= $user_prof['org_name'] ?>, hereby agree to abide by the <a href="stall_rules_regulation.php" target="_blank"> &nbsp;Terms & Conditions</a> of the Kerala Legislature International Book Festival 2025 3rd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
                                                 <br><br>
                                                 <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium><br>
                                                 <br>
