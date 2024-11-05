@@ -381,6 +381,7 @@ include "head-style.php";
     <script type="text/javascript">
         function hideZoneDistInst() {
             var catgry = document.getElementById("quiz_category").value;
+            alert(catgry);
             if (catgry == '3') {
                 alert("here");
                 document.getElementById("quiz_zone").style.display= "none";
