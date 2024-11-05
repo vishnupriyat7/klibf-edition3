@@ -122,7 +122,7 @@ include "head-style.php";
                                         $quiz_categories = $quiz_cat_res->fetch_all();
                                         ?>
                                         <select class="form-control form-group" name="quiz_category" id="quiz_category"
-                                            style="height:35px;" require="required" onchange="showInstitution();">
+                                            style="height:35px;" require="required" onchange="hide();">
                                             <option value="0">Select Category</option>
                                             <?php foreach ($quiz_categories as $quiz_category) { ?>
                                                 <option value="<?= $quiz_category[0] ?>">
@@ -168,12 +168,12 @@ include "head-style.php";
                                         </select>
                                     </div>
                                     <div class="row" id="inst_details">
-                                        <div class="form-group col-8">
+                                        <div class="form-group col-6">
                                             <input type="text" class="form-control" name="inst_name"
                                                 placeholder="*Name of Institution" id="inst_name">
                                         </div>
-                                        <div class="col-4"></div>
-                                        <div class="form-group col-8">
+                                   
+                                        <div class="form-group col-6">
                                             <input type="text" class="form-control" name="addr_inst" id="addr_inst"
                                                 placeholder="*Address of Institution">
                                         </div>
@@ -354,10 +354,15 @@ include "head-style.php";
     <script type="text/javascript">
         function hideZoneDistInst() {
             var catgry = document.getElementById("quiz_category").value;
-            if (catgry !== '3') {
+            if (catgry == '3') {
                 alert("here");
-                // document.getElementById("inst_details").attr('hidden', false);
-                document.getElementById("inst_name").prop('hidden');
+                document.getElementById("quiz_zone").style.display= "none";
+                document.getElementById("quiz_district").style.display="none";
+                document.getElementById("inst_details").style.display="none";
+            }else{
+                document.getElementById("quiz_zone").style.display= "block";
+                document.getElementById("quiz_district").style.display="block";
+                document.getElementById("inst_details").style.display="block";
             }
             // if (catgry !== 3) {
             // document.getElementById("inst_name").removeAttr('hidden');
