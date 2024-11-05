@@ -2,7 +2,7 @@
   <ul>
     <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
     <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
-    <li class="dropdown">
+    <!-- <li class="dropdown">
       <a href="#">
         <span>Contests</span>
       </a>
@@ -11,7 +11,7 @@
           <a href="contest-quiz-registration.php">Quiz Competition</a>
         </li>
       </ul>
-    </li>
+    </li> -->
     <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
     <li><a class="nav-link scrollto" href="#testimonials">Publishers</a></li>
     <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
