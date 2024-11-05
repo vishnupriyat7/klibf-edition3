@@ -181,9 +181,6 @@ include "head-style.php";
 
                                     <div class="row" id="team1">
                                         <button class="btn btn-bordered active btn-block mt-3">Team 1</button>
-
-                                        <br>
-                                        <br>
                                         <div class="form-group col-6">
                                             <div class="form-group col-12">
                                                 <input type="text" class="form-control" name="team1_memb1_name"
@@ -256,91 +253,90 @@ include "head-style.php";
                                                     placeholder="* E-mail" id="team1_memb2_mail">
                                             </div>
                                         </div>
-
-                                        <div class="row" id="team2">
-                                            <br>
-                                            <div class="form-group col-6">
-                                                <div class="form-group col-12">
-                                                    <input type="text" class="form-control" name="team2_memb1_name"
-                                                        placeholder="*Name of first participant" id="team2_memb1_name">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <input type="text" class="form-control" name="team2_memb1_class"
-                                                        placeholder="*Class/Course" id="team2_memb1_class">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="team2_memb1_gndr"
-                                                            class="gender_team2_memb1" value="M" checked> Male
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="team2_memb1_gndr"
-                                                            class="gender_team2_memb1" value="F"> Female
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" class="gender_team2_memb1"
-                                                            name="team2_memb1_gndr" value="T"> Trans-Person
-                                                    </label>
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <textarea class="form-control" name="team2_memb1_addr"
-                                                        id="team2_memb1_addr" placeholder="* Address"></textarea>
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <input type="number" class="form-control" name="team2_memb1_cntct"
-                                                        placeholder="*Contact Number" id="team2_memb1_cntct">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <input type="email" class="form-control" name="team2_memb1_mail"
-                                                        placeholder="* E-mail" id="team2_memb1_mail">
-                                                </div>
+                                    </div>
+                                    <div class="row" id="team2">
+                                        <button class="btn btn-bordered active btn-block mt-3">Team 2</button>
+                                        <div class="form-group col-6">
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="team2_memb1_name"
+                                                    placeholder="*Name of first participant" id="team2_memb1_name">
                                             </div>
-                                            <div class="form-group col-6">
-                                                <div class="form-group col-12">
-                                                    <input type="text" class="form-control" name="team2_memb2_name"
-                                                        placeholder="*Name of first participant" id="team2_memb2_name">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <input type="text" class="form-control" name="team2_memb2_class"
-                                                        placeholder="*Class/Course" id="team2_memb2_class">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="team2_memb2_gndr"
-                                                            class="gender_team2_memb2" value="M" checked> Male
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="team2_memb2_gndr"
-                                                            class="gender_team2_memb2" value="F"> Female
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="team2_memb2_gndr"
-                                                            class="gender_team2_memb2" value="T"> Trans-Person
-                                                    </label>
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <textarea class="form-control" name="team2_memb2_addr"
-                                                        id="team2_memb2_addr" placeholder="* Address"></textarea>
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <input type="number" class="form-control" name="team2_memb2_cntct"
-                                                        placeholder="*Contact Number" id="team2_memb2_cntct">
-                                                </div>
-                                                <div class="form-group col-12">
-                                                    <input type="email" class="form-control" name="team2_memb2_mail"
-                                                        placeholder="* E-mail" id="team2_memb2_mail">
-                                                </div>
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="team2_memb1_class"
+                                                    placeholder="*Class/Course" id="team2_memb1_class">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="team2_memb1_gndr"
+                                                        class="gender_team2_memb1" value="M" checked> Male
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="team2_memb1_gndr"
+                                                        class="gender_team2_memb1" value="F"> Female
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" class="gender_team2_memb1"
+                                                        name="team2_memb1_gndr" value="T"> Trans-Person
+                                                </label>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <textarea class="form-control" name="team2_memb1_addr"
+                                                    id="team2_memb1_addr" placeholder="* Address"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="number" class="form-control" name="team2_memb1_cntct"
+                                                    placeholder="*Contact Number" id="team2_memb1_cntct">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="email" class="form-control" name="team2_memb1_mail"
+                                                    placeholder="* E-mail" id="team2_memb1_mail">
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
-                                                onclick="checkTerm();"><span class="text-white pr-3"><i
-                                                        class="fa fa-eye"></i></span>Preview</button>
-                                            <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                                name="save-quiz" id="register-quiz" hidden><span
-                                                    class="text-white pr-3"><i
-                                                        class="fas fa-paper-plane"></i></span>Register</button>
+                                        <div class="form-group col-6">
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="team2_memb2_name"
+                                                    placeholder="*Name of first participant" id="team2_memb2_name">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="team2_memb2_class"
+                                                    placeholder="*Class/Course" id="team2_memb2_class">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="team2_memb2_gndr"
+                                                        class="gender_team2_memb2" value="M" checked> Male
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="team2_memb2_gndr"
+                                                        class="gender_team2_memb2" value="F"> Female
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="team2_memb2_gndr"
+                                                        class="gender_team2_memb2" value="T"> Trans-Person
+                                                </label>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <textarea class="form-control" name="team2_memb2_addr"
+                                                    id="team2_memb2_addr" placeholder="* Address"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="number" class="form-control" name="team2_memb2_cntct"
+                                                    placeholder="*Contact Number" id="team2_memb2_cntct">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="email" class="form-control" name="team2_memb2_mail"
+                                                    placeholder="* E-mail" id="team2_memb2_mail">
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
+                                            onclick="checkTerm();"><span class="text-white pr-3"><i
+                                                    class="fa fa-eye"></i></span>Preview</button>
+                                        <button type="submit" class="btn btn-bordered active btn-block mt-3"
+                                            name="save-quiz" id="register-quiz" hidden><span class="text-white pr-3"><i
+                                                    class="fas fa-paper-plane"></i></span>Register</button>
+                                    </div>
                             </form>
                             <p class="form-message"></p>
                         </div>
