@@ -330,12 +330,17 @@ include "head-style.php";
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
-                                            onclick="checkTerm();"><span class="text-white pr-3"><i
-                                                    class="fa fa-eye"></i></span>Preview</button>
+                                        <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn">
+                                            <span class="text-white pr-3">
+                                                <i class="fa fa-eye"></i>
+                                            </span>Preview
+                                        </button>
                                         <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                            name="save-quiz" id="register-quiz" hidden><span class="text-white pr-3"><i
-                                                    class="fas fa-paper-plane"></i></span>Register</button>
+                                            name="save-quiz" id="register-quiz" hidden>
+                                            <span class="text-white pr-3">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </span>Register
+                                        </button>
                                     </div>
                             </form>
                             <p class="form-message"></p>
@@ -345,7 +350,7 @@ include "head-style.php";
         </section>
     </main>
 
-    <?php include "attention.php" ?>
+    <!-- <?php include "attention.php" ?> -->
     <!--====== Call To Action Area End ======-->
 
     <?php include "footer.php"; ?>
@@ -360,7 +365,7 @@ include "head-style.php";
                             style="font-size:48px;color:red">&times;</span></button>&nbsp;
                 </div>
                 <div class="modal-body">
-                    <?php include "quiz_preview.php"; ?>
+                    <!-- <?php include "quiz_preview.php"; ?> -->
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-default float-left" id="download">Print</button> -->
@@ -395,32 +400,35 @@ include "head-style.php";
         }
 
         document.getElementById("preview_quiz_btn").addEventListener("click", function (event) {
+            alert("cgfdgf");
             event.preventDefault()
-            var catgry = $("#category").val();
-            if (catgry === 'C') {
-                var cat_text = 'College';
-            } else if (catgry === 'S') {
-                var cat_text = 'School';
-            } else if (catgry === 'P') {
-                var cat_text = 'Public';
-            } else {
-                var cat_text = 'Category not selected';
-            }
-            document.getElementById("category_lab").innerHTML = cat_text;
-            document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
-            document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
-            document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
-            document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
-            document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
-            document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
-            document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
-            document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
-            document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
-            document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
-            document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
-            document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
-            document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
-            document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
+            alert("here");
+            // var catgry = $("#category").val();
+            // if (catgry === 'C') {
+            //     var cat_text = 'College';
+            // } else if (catgry === 'S') {
+            //     var cat_text = 'School';
+            // } else if (catgry === 'P') {
+            //     var cat_text = 'Public';
+            // } else {
+            //     var cat_text = 'Category not selected';
+            // }
+            // document.getElementById("category_lab").innerHTML = cat_text;
+            // document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
+            // document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
+            // document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
+            // document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
+            // document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
+            // document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
+            // document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
+            // document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
+            // document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
+            // document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
+            // document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
+            // document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
+            // document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
+            // document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
+            // $('#preview-quiz-modal').modal('hide');
             $("#preview-quiz-modal").modal({
                 show: true,
                 backdrop: 'static',
