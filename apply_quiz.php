@@ -330,13 +330,14 @@ include "head-style.php";
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn">
+                                        <!-- <button class="btn btn-bordered active btn-block mt-3" data-target="#preview-quiz-modal">
                                             <span class="text-white pr-3">
                                                 <i class="fa fa-eye"></i>
                                             </span>Preview
-                                        </button>
+                                        </button> -->
+                                        <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
                                         <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                            name="save-quiz" id="register-quiz" hidden>
+                                            name="save-quiz" id="register-quiz">
                                             <span class="text-white pr-3">
                                                 <i class="fas fa-paper-plane"></i>
                                             </span>Register
@@ -350,6 +351,9 @@ include "head-style.php";
         </section>
     </main>
 
+
+
+   
     <!-- <?php include "attention.php" ?> -->
     <!--====== Call To Action Area End ======-->
 
@@ -379,6 +383,32 @@ include "head-style.php";
     </div>
 
 
+
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- <script src="assets/js/jquery.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+<!-- Include Bootstrap JS -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script> -->
     <script type="text/javascript">
         function showInstitution() {
             var catgry = document.getElementById("quiz_category").value;
@@ -399,42 +429,43 @@ include "head-style.php";
             // }
         }
 
-        document.getElementById("preview_quiz_btn").addEventListener("click", function (event) {
-            alert("cgfdgf");
-            event.preventDefault()
-            alert("here");
-            // var catgry = $("#category").val();
-            // if (catgry === 'C') {
-            //     var cat_text = 'College';
-            // } else if (catgry === 'S') {
-            //     var cat_text = 'School';
-            // } else if (catgry === 'P') {
-            //     var cat_text = 'Public';
-            // } else {
-            //     var cat_text = 'Category not selected';
-            // }
-            // document.getElementById("category_lab").innerHTML = cat_text;
-            // document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
-            // document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
-            // document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
-            // document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
-            // document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
-            // document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
-            // document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
-            // document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
-            // document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
-            // document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
-            // document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
-            // document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
-            // document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
-            // document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
-            // $('#preview-quiz-modal').modal('hide');
-            $("#preview-quiz-modal").modal({
-                show: true,
-                backdrop: 'static',
-                keyboard: false
-            });
-        });
+        // document.getElementById("preview_quiz_btn").addEventListener("click", function (event) {
+        //     alert("cgfdgf");
+        //     event.preventDefault()
+        //     alert("here");
+        //     // var catgry = $("#category").val();
+        //     // if (catgry === 'C') {
+        //     //     var cat_text = 'College';
+        //     // } else if (catgry === 'S') {
+        //     //     var cat_text = 'School';
+        //     // } else if (catgry === 'P') {
+        //     //     var cat_text = 'Public';
+        //     // } else {
+        //     //     var cat_text = 'Category not selected';
+        //     // }
+        //     // document.getElementById("category_lab").innerHTML = cat_text;
+        //     // document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
+        //     // document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
+        //     // document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
+        //     // document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
+        //     // document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
+        //     // document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
+        //     // document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
+        //     // document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
+        //     // document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
+        //     // document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
+        //     // document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
+        //     // document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
+        //     // document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
+        //     // document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
+        //     // $('#preview-quiz-modal').modal('hide');
+        //     // document.getElementById('preview-quiz-modal').show();
+        //     $("#preview-quiz-modal").modal({
+        //         show: true,
+        //         backdrop: 'static',
+        //         keyboard: false
+        //     });
+        // });
 
         document.getElementById("quiz-previewok").addEventListener("click", function (event) {
             event.preventDefault()
