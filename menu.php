@@ -2,7 +2,7 @@
   <ul>
     <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
     <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
-    <li class="dropdown">
+    <!-- <li class="dropdown">
       <a href="#">
         <span>Contests</span>
       </a>
@@ -11,11 +11,22 @@
           <a href="contest-quiz-registration.php">Quiz Competition</a>
         </li>
       </ul>
-    </li>
+    </li> -->
     <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
-          <li><a class="nav-link scrollto" href="#testimonials">Publishers</a></li>
-          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="#contests">Contests</a></li> -->
+    <li><a class="nav-link scrollto" href="#testimonials">Publishers</a></li>
+    <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
+    <!-- <li><a class="nav-link scrollto" href="#contests">Contests</a></li> -->
+    <!-- <li class="dropdown"><a href="#contests"><span>Contests</span> <i class="bi bi-chevron-right"></i></a>
+      <ul>
+        <li><a href="contest-bookreview-registration.php">Book Review / പുസ്തകാസ്വാദനം</a></li>
+        <li><a href="contest-poetryrecitation-registration.php">Poetry Recitation / പദ്യപാരായണം</a></li>
+        <li><a href="contest-story-telling-registration.php">Story Telling / ഒരു കഥ പറയാം</a></li>
+        <li><a href="#">Cartoon / കാർട്ടൂൺ</a></li>
+        <li><a href="contest-quiz-registration.php">Quiz / ക്വിസ്</a></li>
+        <li><a href="contest-enneswadhnicha-vayanashala-registration.php">എന്നെ സ്വാധീനിച്ച വായനശാല</a></li>
+        <li><a href="contest-parliament-registration.php">Model Parliament / മാതൃകാ നിയമസഭ</a></li>
+      </ul>
+    </li> -->
     <!-- <li><a class="nav-link scrollto" href="#contests">Edition I</a></li> -->
     <!-- <li class="dropdown"><a href="#"><span>Edition I</span> <i class="bi bi-chevron-down"></i></a>
             <ul> -->

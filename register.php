@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
                     //Content
                     $mail->isHTML(true);                                  //Set email format to HTML
                     $mail->Subject = 'no reply';
-                    $mail->Body    = 'You have successfully registered in KLIBF Edition 2.<br>Here is the login credentials.<br>Usename: ' . $email . '<br>Password:' . $_POST['password'] . '</b>';
+                    $mail->Body    = 'You have successfully registered in KLIBF 3rd Edition.<br>Here is the login credentials.<br>Usename: ' . $email . '<br>Password:' . $_POST['password'] . '</b>';
 
                     $mail->send();
                     echo 'Message has been sent';

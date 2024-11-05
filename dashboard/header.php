@@ -1,6 +1,7 @@
 <?php
 include "z_db.php";
 $base_url = '/klibf-edition3';
+// $base_url = '';
 
 session_start();
 // Check, if username session is NOT set then this page will jump to login page

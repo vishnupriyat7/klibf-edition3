@@ -201,11 +201,11 @@ $user_id = $user['id'];
                                     <td class="td-head" colspan="2">
                                         <?php if ($klaid > 99) { ?>
                                             <label>
-                                                <h5><b>KLA-IBF00<?= $klaid; ?></h5></b>
+                                                <h5><b>KLIBF0<?= $klaid; ?></h5></b>
                                             </label>
                                         <?php } else { ?>
                                             <label>
-                                                <h5><b>KLA-IBF000<?= $klaid; ?></h5></b>
+                                                <h5><b>KLIBF0<?= $klaid; ?></h5></b>
                                             </label>
                                         <?php } ?>
                                     </td>

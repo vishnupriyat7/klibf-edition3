@@ -516,9 +516,9 @@ $user_id = $user['id'];
                                             </div>
                                             <div class="form-group col-4">
                                                 </br>
-                                                *FASCIA / Display Text
+                                                *FASCIA (Name Of Publishing House)
                                                 <input type="text" class="form-control" name="fascia" id="fascia"
-                                                    placeholder="*FASCIA / Display Text" required="required"
+                                                    placeholder="*FASCIA / Name Of Publishing House" required="required"
                                                     value="<?= $fascia; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-8">
