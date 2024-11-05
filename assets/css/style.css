@@ -675,6 +675,10 @@ body {
   display: inline-block; /* Make sure the span is inline-block to apply transforms */
   animation: shake 2s infinite;
 }
+.form-control {
+    margin-top: 10px; /* Adjust the value as needed */
+    padding: 0;/* Adjust padding to maintain overall input height */
+}
 
 @keyframes shake {
   0%,
@@ -829,7 +833,7 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
+  padding: 0;
   background-color: #f8fbfd;
   min-height: 40px;
 }
