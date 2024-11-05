@@ -167,75 +167,143 @@ include "head-style.php";
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="row" id="inst_details" hidden>
-                                    <div class="form-group col-8">
-                                        <input type="text" class="form-control" name="inst_name"
-                                            placeholder="*Name of Institution" id="inst_name">
-                                    </div>
-                                    <div class="col-4"></div>
-                                    <div class="form-group col-8">
-                                        <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                            placeholder="*Address of Institution">
-                                    </div>
-                                    </div>
-                                    <div class="form-group col-6">
-                                        <div class="form-group col-12">
-                                            <input type="text" class="form-control" name="part1_name"
-                                                placeholder="*Name of first participant" id="part1_name">
+                                    <div class="row" id="inst_details">
+                                        <div class="form-group col-8">
+                                            <input type="text" class="form-control" name="inst_name"
+                                                placeholder="*Name of Institution" id="inst_name">
                                         </div>
-                                        <div class="form-group col-12">
-                                            <label for="part1_dob">Date of Birth</label>
-                                            <input type="date" id="part1_dob" name="part1_dob"
-                                                placeholder="Date of Birth">
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label class="radio-inline"> <input type="radio" name="gender_part1"
-                                                    class="part1_gender" value="M" checked> Male </label>
-                                            <label class="radio-inline"> <input type="radio" name="gender_part1"
-                                                    class="part1_gender" value="F"> Female </label>
-                                            <!-- <label class="radio-inline part1_gender"> <input type="radio" name="gender_part1" value="T"> Trans-Person </label> -->
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <textarea class="form-control" name="part1_addr" id="part1_addr"
-                                                placeholder="* Address"></textarea>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <input type="number" class="form-control" name="part1_mob"
-                                                placeholder="*Contact Number" id="part1_mob">
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <input type="email" class="form-control" name="part1_mail"
-                                                placeholder="* E-mail" id="part1_mail">
+                                        <div class="col-4"></div>
+                                        <div class="form-group col-8">
+                                            <input type="text" class="form-control" name="addr_inst" id="addr_inst"
+                                                placeholder="*Address of Institution">
                                         </div>
                                     </div>
-                                    <div class="form-group col-6">
-                                        <div class="form-group col-12">
-                                            <input type="text" class="form-control" name="part2_name"
-                                                placeholder="* Name of second participant" id="part2_name">
+
+                                    <div class="row" id="team1">
+                                        <button class="btn btn-bordered active btn-block mt-3">Team 1</button>
+
+                                        <br>
+                                        <br>
+                                        <div class="form-group col-6">
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="team1_memb1_name"
+                                                    placeholder="*Name of first participant" id="team1_memb1_name">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="radio-inline"> <input type="radio" name="team1_memb1_gndr"
+                                                        class="gender_team1_memb1" value="M" checked> Male </label>
+                                                <label class="radio-inline"> <input type="radio" name="team1_memb1_gndr"
+                                                        class="gender_team1_memb1" value="F"> Female </label>
+                                                <label class="radio-inline gender_team1_memb1">
+                                                    <input type="radio" name="team1_memb1_gndr" value="T"> Trans-Person
+                                                </label>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <textarea class="form-control" name="part1_addr" id="part1_addr"
+                                                    placeholder="* Address"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="number" class="form-control" name="part1_mob"
+                                                    placeholder="*Contact Number" id="part1_mob">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="email" class="form-control" name="part1_mail"
+                                                    placeholder="* E-mail" id="part1_mail">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-12">
-                                            <label for="vayana_dob">Date of Birth</label>
-                                            <input type="date" id="part2_dob" name="part2_dob"
-                                                placeholder="Date of Birth">
+                                        <div class="form-group col-6">
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="part2_name"
+                                                    placeholder="* Name of second participant" id="part2_name">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="vayana_dob">Date of Birth</label>
+                                                <input type="date" id="part2_dob" name="part2_dob"
+                                                    placeholder="Date of Birth">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="radio-inline"> <input type="radio" name="gender_part2"
+                                                        class="part2_gender" value="M" checked> Male </label>
+                                                <label class="radio-inline"> <input type="radio" name="gender_part2"
+                                                        class="part2_gender" value="F"> Female </label>
+                                                <!-- <label class="radio-inline part2_gender"> <input type="radio" name="gender_part2" value="T"> Trans-Person </label> -->
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <textarea class="form-control" name="part2_addr" id="part2_addr"
+                                                    placeholder="* Address"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="number" class="form-control" name="part2_mob"
+                                                    placeholder="*Contact Number" id="part2_mob">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="email" class="form-control" name="part2_mail"
+                                                    placeholder="* E-mail" id="part2_mail">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-12">
-                                            <label class="radio-inline"> <input type="radio" name="gender_part2"
-                                                    class="part2_gender" value="M" checked> Male </label>
-                                            <label class="radio-inline"> <input type="radio" name="gender_part2"
-                                                    class="part2_gender" value="F"> Female </label>
-                                            <!-- <label class="radio-inline part2_gender"> <input type="radio" name="gender_part2" value="T"> Trans-Person </label> -->
+                                    </div>
+
+                                    <div class="row" id="team2">
+                                        <br><br><br><br><br><br><br><br>
+                                        <div class="form-group col-6">
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="part1_name"
+                                                    placeholder="*Name of first participant" id="part1_name">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="part1_dob">Date of Birth</label>
+                                                <input type="date" id="part1_dob" name="part1_dob"
+                                                    placeholder="Date of Birth">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="radio-inline"> <input type="radio" name="gender_part1"
+                                                        class="part1_gender" value="M" checked> Male </label>
+                                                <label class="radio-inline"> <input type="radio" name="gender_part1"
+                                                        class="part1_gender" value="F"> Female </label>
+                                                <!-- <label class="radio-inline part1_gender"> <input type="radio" name="gender_part1" value="T"> Trans-Person </label> -->
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <textarea class="form-control" name="part1_addr" id="part1_addr"
+                                                    placeholder="* Address"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="number" class="form-control" name="part1_mob"
+                                                    placeholder="*Contact Number" id="part1_mob">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="email" class="form-control" name="part1_mail"
+                                                    placeholder="* E-mail" id="part1_mail">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-12">
-                                            <textarea class="form-control" name="part2_addr" id="part2_addr"
-                                                placeholder="* Address"></textarea>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <input type="number" class="form-control" name="part2_mob"
-                                                placeholder="*Contact Number" id="part2_mob">
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <input type="email" class="form-control" name="part2_mail"
-                                                placeholder="* E-mail" id="part2_mail">
+                                        <div class="form-group col-6">
+                                            <div class="form-group col-12">
+                                                <input type="text" class="form-control" name="part2_name"
+                                                    placeholder="* Name of second participant" id="part2_name">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label for="vayana_dob">Date of Birth</label>
+                                                <input type="date" id="part2_dob" name="part2_dob"
+                                                    placeholder="Date of Birth">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <label class="radio-inline"> <input type="radio" name="gender_part2"
+                                                        class="part2_gender" value="M" checked> Male </label>
+                                                <label class="radio-inline"> <input type="radio" name="gender_part2"
+                                                        class="part2_gender" value="F"> Female </label>
+                                                <!-- <label class="radio-inline part2_gender"> <input type="radio" name="gender_part2" value="T"> Trans-Person </label> -->
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <textarea class="form-control" name="part2_addr" id="part2_addr"
+                                                    placeholder="* Address"></textarea>
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="number" class="form-control" name="part2_mob"
+                                                    placeholder="*Contact Number" id="part2_mob">
+                                            </div>
+                                            <div class="form-group col-12">
+                                                <input type="email" class="form-control" name="part2_mail"
+                                                    placeholder="* E-mail" id="part2_mail">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -292,11 +360,11 @@ include "head-style.php";
                 document.getElementById("inst_name").prop('hidden');
             }
             // if (catgry !== 3) {
-                // document.getElementById("inst_name").removeAttr('hidden');
-                // $("#inst_name").removeAttr('hidden');
-                // $("#addr_inst").removeAttr('hidden');
-                // $("#addr_inst").show();
-                // $("#inst_name").show();
+            // document.getElementById("inst_name").removeAttr('hidden');
+            // $("#inst_name").removeAttr('hidden');
+            // $("#addr_inst").removeAttr('hidden');
+            // $("#addr_inst").show();
+            // $("#inst_name").show();
             // } else {
             //     $("#inst_name").hide();
             //     $("#addr_inst").hide();
