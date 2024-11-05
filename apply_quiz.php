@@ -158,7 +158,7 @@ include "head-style.php";
                                         $districts = $district_res->fetch_all();
                                         ?>
                                         <select class="form-control form-group" name="quiz_district" id="quiz_district"
-                                            style="height:35px;" require="required" onchange="showInstitution();">
+                                            style="height:35px;" require="required" onchange="hideZoneDistInst();">
                                             <option value="0">Select District</option>
                                             <?php foreach ($districts as $district) { ?>
                                                 <option value="<?= $district[0] ?>">
@@ -167,16 +167,16 @@ include "head-style.php";
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="row" id="inst_details" hidden>
-                                    <div class="form-group col-8">
-                                        <input type="text" class="form-control" name="inst_name"
-                                            placeholder="*Name of Institution" id="inst_name">
-                                    </div>
-                                    <div class="col-4"></div>
-                                    <div class="form-group col-8">
-                                        <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                            placeholder="*Address of Institution">
-                                    </div>
+                                    <div class="row" id="inst_details">
+                                        <div class="form-group col-8">
+                                            <input type="text" class="form-control" name="inst_name"
+                                                placeholder="*Name of Institution" id="inst_name">
+                                        </div>
+                                        <div class="col-4"></div>
+                                        <div class="form-group col-8">
+                                            <input type="text" class="form-control" name="addr_inst" id="addr_inst"
+                                                placeholder="*Address of Institution">
+                                        </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <div class="form-group col-12">
@@ -284,26 +284,21 @@ include "head-style.php";
 
 
     <script type="text/javascript">
-        function showInstitution() {
+        function hideZoneDistInst() {
             var catgry = document.getElementById("quiz_category").value;
-            if (catgry !== '3') {
-                alert("here");
-                // document.getElementById("inst_details").attr('hidden', false);
-                document.getElementById("inst_name").prop('hidden');
+            // alert(catgry);
+            if (catgry == '3') {
+                // Hide Zone and District fields
+                document.getElementById("quiz_zone").style.display = "none";
+                document.getElementById("quiz_district").style.display = "none";
+            } else {
+                // Show Zone and District fields
+                document.getElementById("quiz_zone").style.display = "block";
+                document.getElementById("quiz_district").style.display = "block";
             }
-            // if (catgry !== 3) {
-                // document.getElementById("inst_name").removeAttr('hidden');
-                // $("#inst_name").removeAttr('hidden');
-                // $("#addr_inst").removeAttr('hidden');
-                // $("#addr_inst").show();
-                // $("#inst_name").show();
-            // } else {
-            //     $("#inst_name").hide();
-            //     $("#addr_inst").hide();
-            // }
         }
 
-        document.getElementById("preview_quiz_btn").addEventListener("click", function (event) {
+        document.getElementById("preview_quiz_btn").addEventListener("click", function(event) {
             event.preventDefault()
             var catgry = $("#category").val();
             if (catgry === 'C') {
@@ -337,7 +332,7 @@ include "head-style.php";
             });
         });
 
-        document.getElementById("quiz-previewok").addEventListener("click", function (event) {
+        document.getElementById("quiz-previewok").addEventListener("click", function(event) {
             event.preventDefault()
             $("#preview-quiz-modal").modal('hide');
             $("#register-quiz").click();
