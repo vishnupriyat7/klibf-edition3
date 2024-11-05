@@ -15,7 +15,6 @@ include "head-style.php";
         <!-- ======= Breadcrumbs Section ======= -->
         <section class="breadcrumbs">
             <div class="container">
-
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Quiz Competition</h2>
                     <ol>
@@ -24,7 +23,6 @@ include "head-style.php";
                         <li>Quiz</li>
                     </ol>
                 </div>
-
             </div>
         </section><!-- End Breadcrumbs Section -->
 
@@ -123,22 +121,62 @@ include "head-style.php";
                                         $quiz_cat_res = $quiz_cat_stmt->get_result();
                                         $quiz_categories = $quiz_cat_res->fetch_all();
                                         ?>
-                                        <select class="form-control form-group" name="category" id="category"
+                                        <select class="form-control form-group" name="quiz_category" id="quiz_category"
                                             style="height:35px;" require="required" onchange="showInstitution();">
                                             <option value="0">Select Category</option>
-                                            <option value="S">School</option>
-                                            <option value="C">College</option>
-                                            <option value="P">Public</option>
+                                            <?php foreach ($quiz_categories as $quiz_category) { ?>
+                                                <option value="<?= $quiz_category[0] ?>">
+                                                    <?= $quiz_category[1] ?>
+                                                </option>
+                                            <?php } ?>
                                         </select>
                                     </div>
+                                    <div class="form-group col-4">
+                                        <?php
+                                        $quiz_zone_qry = "SELECT * FROM quiz_zone;";
+                                        $quiz_zone_stmt = $conn->prepare($quiz_zone_qry);
+                                        $quiz_zone_stmt->execute();
+                                        $quiz_zone_res = $quiz_zone_stmt->get_result();
+                                        $quiz_zones = $quiz_zone_res->fetch_all();
+                                        ?>
+                                        <select class="form-control form-group" name="quiz_zone" id="quiz_zone"
+                                            style="height:35px;" require="required" onchange="showInstitution();">
+                                            <option value="0">Select Zone</option>
+                                            <?php foreach ($quiz_zones as $quiz_zone) { ?>
+                                                <option value="<?= $quiz_zone[0] ?>">
+                                                    <?= $quiz_zone[2] ?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <?php
+                                        $district_qry = "SELECT * FROM district;";
+                                        $district_stmt = $conn->prepare($district_qry);
+                                        $district_stmt->execute();
+                                        $district_res = $district_stmt->get_result();
+                                        $districts = $district_res->fetch_all();
+                                        ?>
+                                        <select class="form-control form-group" name="quiz_district" id="quiz_district"
+                                            style="height:35px;" require="required" onchange="showInstitution();">
+                                            <option value="0">Select District</option>
+                                            <?php foreach ($districts as $district) { ?>
+                                                <option value="<?= $district[0] ?>">
+                                                    <?= $district[2] ?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="row" id="inst_details" hidden>
                                     <div class="form-group col-8">
                                         <input type="text" class="form-control" name="inst_name"
-                                            placeholder="*Name of Institution" id="inst_name" hidden>
+                                            placeholder="*Name of Institution" id="inst_name">
                                     </div>
                                     <div class="col-4"></div>
                                     <div class="form-group col-8">
                                         <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                            placeholder="* Address of Institution" hidden>
+                                            placeholder="*Address of Institution">
+                                    </div>
                                     </div>
                                     <div class="form-group col-6">
                                         <div class="form-group col-12">
@@ -247,16 +285,22 @@ include "head-style.php";
 
     <script type="text/javascript">
         function showInstitution() {
-            var catgry = $("#category").val();
-            if (catgry !== 'P') {
-                $("#inst_name").removeAttr('hidden');
-                $("#addr_inst").removeAttr('hidden');
-                $("#addr_inst").show();
-                $("#inst_name").show();
-            } else {
-                $("#inst_name").hide();
-                $("#addr_inst").hide();
+            var catgry = document.getElementById("quiz_category").value;
+            if (catgry !== '3') {
+                alert("here");
+                // document.getElementById("inst_details").attr('hidden', false);
+                document.getElementById("inst_name").prop('hidden');
             }
+            // if (catgry !== 3) {
+                // document.getElementById("inst_name").removeAttr('hidden');
+                // $("#inst_name").removeAttr('hidden');
+                // $("#addr_inst").removeAttr('hidden');
+                // $("#addr_inst").show();
+                // $("#inst_name").show();
+            // } else {
+            //     $("#inst_name").hide();
+            //     $("#addr_inst").hide();
+            // }
         }
 
         document.getElementById("preview_quiz_btn").addEventListener("click", function (event) {
