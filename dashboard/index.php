@@ -2,6 +2,7 @@
 ini_set('display_errors', '1');
 include "header.php";
 $base_url = '/klibf-edition3';
+// $base_url = '';
 
 $username = $_SESSION['SESSION_EMAIL'];
 

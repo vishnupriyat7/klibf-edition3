@@ -74,15 +74,15 @@
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Coupon Entry</span>
                     </a>
                 </li> -->
- 
+
 
                 <li class="nav-item">
                     <!-- <a class="nav-link menu-link" role="button" href="#sidebarReport" data-bs-toggle="collapse">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
                     </a> -->
-                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse" data-bs-target="#sidebarReport">
-    <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
-</a>
+                    <!-- <a class="nav-link menu-link" role="button" data-bs-toggle="collapse" data-bs-target="#sidebarReport">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
+                    </a> -->
                     <div class="menu-dropdown collapse" id="sidebarReport">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">

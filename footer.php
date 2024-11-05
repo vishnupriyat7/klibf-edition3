@@ -34,9 +34,9 @@
            <h4>Useful Links</h4>
            <ul>
              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
-             <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-             <li><i class="bx bx-chevron-right"></i> <a href="#">Speakers</a></li>
-             <li><i class="bx bx-chevron-right"></i> <a href="#">Gallery</a></li>
+             <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+             <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Speakers</a></li>
+             <li><i class="bx bx-chevron-right"></i> <a href="#">Gallery</a></li> -->
              <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
            </ul>
          </div>
