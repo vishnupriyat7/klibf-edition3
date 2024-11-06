@@ -44,36 +44,36 @@ include "head-style.php";
                                     $status = "OK";
                                     $msg = "";
                                     if (isset($_POST['save-quiz'])) {
-                                        $category =
-                                            mysqli_real_escape_string($con, $_POST['category']);
-                                        $inst_name =
-                                            mysqli_real_escape_string($con, $_POST['inst_name']);
-                                        $addr_inst =
-                                            mysqli_real_escape_string($con, $_POST['addr_inst']);
-                                        $part1_name =
-                                            mysqli_real_escape_string($con, $_POST['part1_name']);
-                                        $part1_dob =
-                                            mysqli_real_escape_string($con, $_POST['part1_dob']);
-                                        $part1_addr =
-                                            mysqli_real_escape_string($con, $_POST['part1_addr']);
-                                        $part1_mail =
-                                            mysqli_real_escape_string($con, $_POST['part1_mail']);
-                                        $part1_mob =
-                                            mysqli_real_escape_string($con, $_POST['part1_mob']);
-                                        $part2_name =
-                                            mysqli_real_escape_string($con, $_POST['part2_name']);
-                                        $part2_dob =
-                                            mysqli_real_escape_string($con, $_POST['part2_dob']);
-                                        $part2_addr =
-                                            mysqli_real_escape_string($con, $_POST['part2_addr']);
-                                        $part2_mail =
-                                            mysqli_real_escape_string($con, $_POST['part2_mail']);
-                                        $part2_mob =
-                                            mysqli_real_escape_string($con, $_POST['part2_mob']);
-                                        $part1_gndr =
-                                            mysqli_real_escape_string($con, $_POST['gender_part1']);
-                                        $part2_gndr =
-                                            mysqli_real_escape_string($con, $_POST['gender_part2']);
+                                        // var_dump("here");die;
+                                        $category = mysqli_real_escape_string($conn, $_POST['quiz_category']);
+                                        $zone = mysqli_real_escape_string($conn, $_POST['quiz_zone']);
+                                        $district = mysqli_real_escape_string($conn, $_POST['quiz_district']);
+                                        $inst_name = mysqli_real_escape_string($conn, $_POST['inst_name']);
+                                        $addr_inst = mysqli_real_escape_string($conn, $_POST['addr_inst']);
+                                        $team1_memb1_name = mysqli_real_escape_string($conn, $_POST['team1_memb1_name']);
+                                        $team1_memb1_class = mysqli_real_escape_string($conn, $_POST['team1_memb1_class']);
+                                        $team1_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team1_memb1_gndr']);
+                                        $team1_memb1_addr = mysqli_real_escape_string($conn, $_POST['team1_memb1_addr']);
+                                        $team1_memb1_mail = mysqli_real_escape_string($conn, $_POST['team1_memb1_mail']);
+                                        $team1_memb1_cntct = mysqli_real_escape_string($conn, $_POST['team1_memb1_cntct']);
+                                        $team1_memb2_name = mysqli_real_escape_string($conn, $_POST['team1_memb2_name']);
+                                        $team1_memb2_class = mysqli_real_escape_string($conn, $_POST['team1_memb2_class']);
+                                        $team1_memb2_gndr = mysqli_real_escape_string($conn, $_POST['team1_memb2_gndr']);
+                                        $team1_memb2_addr = mysqli_real_escape_string($conn, $_POST['team1_memb2_addr']);
+                                        $team1_memb2_mail = mysqli_real_escape_string($conn, $_POST['team1_memb2_mail']);
+                                        $team1_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team1_memb2_cntct']);
+                                        $team2_memb1_name = mysqli_real_escape_string($conn, $_POST['team2_memb1_name']);
+                                        $team2_memb1_class = mysqli_real_escape_string($conn, $_POST['team2_memb1_class']);
+                                        $team2_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team2_memb1_gndr']);
+                                        $team2_memb1_addr = mysqli_real_escape_string($conn, $_POST['team2_memb1_addr']);
+                                        $team2_memb1_mail = mysqli_real_escape_string($conn, $_POST['team2_memb1_mail']);
+                                        $team2_memb1_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb1_cntct']);
+                                        $team2_memb2_name = mysqli_real_escape_string($conn, $_POST['team2_memb2_name']);
+                                        $team2_memb2_class = mysqli_real_escape_string($conn, $_POST['team2_memb2_class']);
+                                        $team2_memb2_gndr = mysqli_real_escape_string($conn, $_POST['team2_memb2_gndr']);
+                                        $team2_memb2_addr = mysqli_real_escape_string($conn, $_POST['team2_memb2_addr']);
+                                        $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
+                                        $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
                                         $selectquery = "SELECT * from book_stall where (head_org_email = '$head_email' and head_org_mobile = '$head_mobile')";
                                         $selectresult = mysqli_query($con, $selectquery);
@@ -119,8 +119,9 @@ include "head-style.php";
                                                 $quiz_cat_res = $quiz_cat_stmt->get_result();
                                                 $quiz_categories = $quiz_cat_res->fetch_all();
                                                 ?>
-                                                <select class="form-control form-group" name="quiz_category" id="quiz_category"
-                                                    style="height:35px;" require="required" onchange="hideZoneDistInst()">
+                                                <select class="form-control form-group" name="quiz_category"
+                                                    id="quiz_category" style="height:35px;" require="required"
+                                                    onchange="hideZoneDistInst()">
                                                     <option value="0">Select Category</option>
                                                     <?php foreach ($quiz_categories as $quiz_category) { ?>
                                                         <option value="<?= $quiz_category[0] ?>">
@@ -155,8 +156,8 @@ include "head-style.php";
                                                 $district_res = $district_stmt->get_result();
                                                 $districts = $district_res->fetch_all();
                                                 ?>
-                                                <select class="form-control form-group" name="quiz_district" id="quiz_district"
-                                                    style="height:35px;" require="required">
+                                                <select class="form-control form-group" name="quiz_district"
+                                                    id="quiz_district" style="height:35px;" require="required">
                                                     <option value="0">Select District</option>
                                                     <?php foreach ($districts as $district) { ?>
                                                         <option value="<?= $district[0] ?>">
@@ -172,8 +173,8 @@ include "head-style.php";
                                                 </div>
 
                                                 <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                                        placeholder="*Address of Institution">
+                                                    <input type="text" class="form-control" name="addr_inst"
+                                                        id="addr_inst" placeholder="*Address of Institution">
                                                 </div>
                                             </div>
 
@@ -182,7 +183,8 @@ include "head-style.php";
                                                 <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team1_memb1_name"
-                                                            placeholder="*Name of first participant" id="team1_memb1_name">
+                                                            placeholder="*Name of first participant"
+                                                            id="team1_memb1_name">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team1_memb1_class"
@@ -207,8 +209,9 @@ include "head-style.php";
                                                             id="team1_memb1_addr" placeholder="* Address"></textarea>
                                                     </div>
                                                     <div class="form-group col-12">
-                                                        <input type="number" class="form-control" name="team1_memb1_cntct"
-                                                            placeholder="*Contact Number" id="team1_memb1_cntct">
+                                                        <input type="number" class="form-control"
+                                                            name="team1_memb1_cntct" placeholder="*Contact Number"
+                                                            id="team1_memb1_cntct">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="email" class="form-control" name="team1_memb1_mail"
@@ -218,7 +221,8 @@ include "head-style.php";
                                                 <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team1_memb2_name"
-                                                            placeholder="*Name of first participant" id="team1_memb2_name">
+                                                            placeholder="*Name of first participant"
+                                                            id="team1_memb2_name">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team1_memb2_class"
@@ -243,8 +247,9 @@ include "head-style.php";
                                                             id="team1_memb1_addr" placeholder="* Address"></textarea>
                                                     </div>
                                                     <div class="form-group col-12">
-                                                        <input type="number" class="form-control" name="team1_memb2_cntct"
-                                                            placeholder="*Contact Number" id="team1_memb2_cntct">
+                                                        <input type="number" class="form-control"
+                                                            name="team1_memb2_cntct" placeholder="*Contact Number"
+                                                            id="team1_memb2_cntct">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="email" class="form-control" name="team1_memb2_mail"
@@ -257,7 +262,8 @@ include "head-style.php";
                                                 <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team2_memb1_name"
-                                                            placeholder="*Name of first participant" id="team2_memb1_name">
+                                                            placeholder="*Name of first participant"
+                                                            id="team2_memb1_name">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team2_memb1_class"
@@ -282,8 +288,9 @@ include "head-style.php";
                                                             id="team2_memb1_addr" placeholder="* Address"></textarea>
                                                     </div>
                                                     <div class="form-group col-12">
-                                                        <input type="number" class="form-control" name="team2_memb1_cntct"
-                                                            placeholder="*Contact Number" id="team2_memb1_cntct">
+                                                        <input type="number" class="form-control"
+                                                            name="team2_memb1_cntct" placeholder="*Contact Number"
+                                                            id="team2_memb1_cntct">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="email" class="form-control" name="team2_memb1_mail"
@@ -293,7 +300,8 @@ include "head-style.php";
                                                 <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team2_memb2_name"
-                                                            placeholder="*Name of first participant" id="team2_memb2_name">
+                                                            placeholder="*Name of first participant"
+                                                            id="team2_memb2_name">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="text" class="form-control" name="team2_memb2_class"
@@ -318,8 +326,9 @@ include "head-style.php";
                                                             id="team2_memb2_addr" placeholder="* Address"></textarea>
                                                     </div>
                                                     <div class="form-group col-12">
-                                                        <input type="number" class="form-control" name="team2_memb2_cntct"
-                                                            placeholder="*Contact Number" id="team2_memb2_cntct">
+                                                        <input type="number" class="form-control"
+                                                            name="team2_memb2_cntct" placeholder="*Contact Number"
+                                                            id="team2_memb2_cntct">
                                                     </div>
                                                     <div class="form-group col-12">
                                                         <input type="email" class="form-control" name="team2_memb2_mail"
@@ -328,11 +337,11 @@ include "head-style.php";
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
+                                                <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
                                                     onclick="checkTerm();"><span class="text-white pr-3"><i
-                                                            class="fa fa-eye"></i></span>Preview</button>
+                                                            class="fa fa-eye"></i></span>Preview</button> -->
                                                 <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                                    name="save-quiz" id="register-quiz" hidden><span class="text-white pr-3"><i
+                                                    name="save-quiz" id="register-quiz"><span class="text-white pr-3"><i
                                                             class="fas fa-paper-plane"></i></span>Register</button>
                                             </div>
                                         </div>
@@ -404,44 +413,44 @@ include "head-style.php";
         // }
     }
 
-    document.getElementById("preview_quiz_btn").addEventListener("click", function(event) {
-        event.preventDefault()
-        var catgry = $("#category").val();
-        if (catgry === 'C') {
-            var cat_text = 'College';
-        } else if (catgry === 'S') {
-            var cat_text = 'School';
-        } else if (catgry === 'P') {
-            var cat_text = 'Public';
-        } else {
-            var cat_text = 'Category not selected';
-        }
-        document.getElementById("category_lab").innerHTML = cat_text;
-        document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
-        document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
-        document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
-        document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
-        document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
-        document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
-        document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
-        document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
-        document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
-        document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
-        document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
-        document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
-        document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
-        document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
-        $("#preview-quiz-modal").modal({
-            show: true,
-            backdrop: 'static',
-            keyboard: false
-        });
-    });
+    // document.getElementById("preview_quiz_btn").addEventListener("click", function(event) {
+    //     event.preventDefault()
+    //     var catgry = $("#category").val();
+    //     if (catgry === 'C') {
+    //         var cat_text = 'College';
+    //     } else if (catgry === 'S') {
+    //         var cat_text = 'School';
+    //     } else if (catgry === 'P') {
+    //         var cat_text = 'Public';
+    //     } else {
+    //         var cat_text = 'Category not selected';
+    //     }
+    //     document.getElementById("category_lab").innerHTML = cat_text;
+    //     document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
+    //     document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
+    //     document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
+    //     document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
+    //     document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
+    //     document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
+    //     document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
+    //     document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
+    //     document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
+    //     document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
+    //     document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
+    //     document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
+    //     document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
+    //     document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
+    //     $("#preview-quiz-modal").modal({
+    //         show: true,
+    //         backdrop: 'static',
+    //         keyboard: false
+    //     });
+    // });
 
-    document.getElementById("quiz-previewok").addEventListener("click", function(event) {
-        event.preventDefault()
-        $("#preview-quiz-modal").modal('hide');
-        $("#register-quiz").click();
+    // document.getElementById("quiz-previewok").addEventListener("click", function(event) {
+    //     event.preventDefault()
+    //     $("#preview-quiz-modal").modal('hide');
+    //     $("#register-quiz").click();
 
-    });
+    // });
 </script>
