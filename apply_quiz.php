@@ -109,26 +109,6 @@ include "head-style.php";
                                     ?>
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
-<<<<<<< HEAD
-                                            <div class="form-group col-xxl-4 co-xl-4 col-lg-6 col-sm-12 ">
-                                                <?php
-                                                $quiz_cat_qry = "SELECT * FROM quiz_category;";
-                                                $quiz_cat_stmt = $conn->prepare($quiz_cat_qry);
-                                                $quiz_cat_stmt->execute();
-                                                $quiz_cat_res = $quiz_cat_stmt->get_result();
-                                                $quiz_categories = $quiz_cat_res->fetch_all();
-                                                ?>
-                                                <select class="form-control form-group" name="quiz_category"
-                                                    id="quiz_category" style="height:35px;" require="required"
-                                                    onchange="hideZoneDistInst()">
-                                                    <option value="0">Select Category</option>
-                                                    <?php foreach ($quiz_categories as $quiz_category) { ?>
-                                                        <option value="<?= $quiz_category[0] ?>">
-                                                            <?= $quiz_category[1] ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select>
-=======
 
                                             <div class="card">
                                                 <div class="card-header">
@@ -199,7 +179,6 @@ include "head-style.php";
                                                     </div>
 
                                                 </div>
->>>>>>> 70afcb4fdc3e1f7d43db09c1f0d8657a6698d66a
                                             </div>
 
 
@@ -235,30 +214,8 @@ include "head-style.php";
                                                     </div>
                                                 </div>
                                             </div>
-<<<<<<< HEAD
-                                            <div class="form-group col-xxl-4 co-xl-4 col-lg-6 col-sm-12">
-                                                <?php
-                                                $district_qry = "SELECT * FROM district;";
-                                                $district_stmt = $conn->prepare($district_qry);
-                                                $district_stmt->execute();
-                                                $district_res = $district_stmt->get_result();
-                                                $districts = $district_res->fetch_all();
-                                                ?>
-                                                <select class="form-control form-group" name="quiz_district"
-                                                    id="quiz_district" style="height:35px;" require="required">
-                                                    <option value="0">Select District</option>
-                                                    <?php foreach ($districts as $district) { ?>
-                                                        <option value="<?= $district[0] ?>">
-                                                            <?= $district[2] ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <div class="row" id="inst_details" class="inst_details">
-=======
 
                                             <!-- <div class="row" id="inst_details" class="inst_details">
->>>>>>> 70afcb4fdc3e1f7d43db09c1f0d8657a6698d66a
                                                 <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                     <input type="text" class="form-control" name="inst_name"
                                                         placeholder="*Name of Institution" id="inst_name">
@@ -366,163 +323,6 @@ include "head-style.php";
                                                 </div>
                                             </div>
 
-<<<<<<< HEAD
-                                            <div class="row" id="team1">
-                                                <button class="btn btn-bordered active btn-block mt-3">Team 1</button>
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team1_memb1_name"
-                                                            placeholder="*Name of first participant"
-                                                            id="team1_memb1_name">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team1_memb1_class"
-                                                            placeholder="*Class/Course" id="team1_memb1_class">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team1_memb1_gndr"
-                                                                class="gender_team1_memb1" value="M" checked> Male
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team1_memb1_gndr"
-                                                                class="gender_team1_memb1" value="F"> Female
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team1_memb1_gndr"
-                                                                class="gender_team1_memb1" value="T"> Trans-Person
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <textarea class="form-control" name="team1_memb1_addr"
-                                                            id="team1_memb1_addr" placeholder="* Address"></textarea>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="number" class="form-control"
-                                                            name="team1_memb1_cntct" placeholder="*Contact Number"
-                                                            id="team1_memb1_cntct">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="email" class="form-control" name="team1_memb1_mail"
-                                                            placeholder="* E-mail" id="team1_memb1_mail">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team1_memb2_name"
-                                                            placeholder="*Name of first participant"
-                                                            id="team1_memb2_name">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team1_memb2_class"
-                                                            placeholder="*Class/Course" id="team1_memb2_class">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team1_memb2_gndr"
-                                                                class="gender_team1_memb2" value="M" checked> Male
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team1_memb2_gndr"
-                                                                class="gender_team1_memb2" value="F"> Female
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team1_memb2_gndr"
-                                                                class="gender_team1_memb2" value="T"> Trans-Person
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <textarea class="form-control" name="team1_memb2_addr"
-                                                            id="team1_memb1_addr" placeholder="* Address"></textarea>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="number" class="form-control"
-                                                            name="team1_memb2_cntct" placeholder="*Contact Number"
-                                                            id="team1_memb2_cntct">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="email" class="form-control" name="team1_memb2_mail"
-                                                            placeholder="* E-mail" id="team1_memb2_mail">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row" id="team2">
-                                                <button class="btn btn-bordered active btn-block mt-3">Team 2</button>
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team2_memb1_name"
-                                                            placeholder="*Name of first participant"
-                                                            id="team2_memb1_name">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team2_memb1_class"
-                                                            placeholder="*Class/Course" id="team2_memb1_class">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team2_memb1_gndr"
-                                                                class="gender_team2_memb1" value="M" checked> Male
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team2_memb1_gndr"
-                                                                class="gender_team2_memb1" value="F"> Female
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" class="gender_team2_memb1"
-                                                                name="team2_memb1_gndr" value="T"> Trans-Person
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <textarea class="form-control" name="team2_memb1_addr"
-                                                            id="team2_memb1_addr" placeholder="* Address"></textarea>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="number" class="form-control"
-                                                            name="team2_memb1_cntct" placeholder="*Contact Number"
-                                                            id="team2_memb1_cntct">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="email" class="form-control" name="team2_memb1_mail"
-                                                            placeholder="* E-mail" id="team2_memb1_mail">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team2_memb2_name"
-                                                            placeholder="*Name of first participant"
-                                                            id="team2_memb2_name">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="text" class="form-control" name="team2_memb2_class"
-                                                            placeholder="*Class/Course" id="team2_memb2_class">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team2_memb2_gndr"
-                                                                class="gender_team2_memb2" value="M" checked> Male
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team2_memb2_gndr"
-                                                                class="gender_team2_memb2" value="F"> Female
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="team2_memb2_gndr"
-                                                                class="gender_team2_memb2" value="T"> Trans-Person
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <textarea class="form-control" name="team2_memb2_addr"
-                                                            id="team2_memb2_addr" placeholder="* Address"></textarea>
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="number" class="form-control"
-                                                            name="team2_memb2_cntct" placeholder="*Contact Number"
-                                                            id="team2_memb2_cntct">
-                                                    </div>
-                                                    <div class="form-group col-12">
-                                                        <input type="email" class="form-control" name="team2_memb2_mail"
-                                                            placeholder="* E-mail" id="team2_memb2_mail">
-=======
 
 
                                             <div class="card mt-2" id="team2">
@@ -606,7 +406,6 @@ include "head-style.php";
                                                                     placeholder="* E-mail" id="team2_memb2_mail">
                                                             </div>
                                                         </div>
->>>>>>> 70afcb4fdc3e1f7d43db09c1f0d8657a6698d66a
                                                     </div>
 
                                                 </div>
