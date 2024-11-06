@@ -199,8 +199,7 @@ include "head-style.php";
                                                             <textarea class="form-control" ame="addr_inst" id="addr_inst"
                                                                 id="team1_memb1_addr" placeholder="*Address of Institution"></textarea>
 
-                                                            <!-- <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                                                placeholder="*Address of Institution"> -->
+                                                         
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <input type="number" class="form-control" name="principal_cntct" id="principal_cntct"
@@ -215,28 +214,7 @@ include "head-style.php";
                                                 </div>
                                             </div>
 
-                                            <!-- <div class="row" id="inst_details" class="inst_details">
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="text" class="form-control" name="inst_name"
-                                                        placeholder="*Name of Institution" id="inst_name">
-                                                </div>
-
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                                        placeholder="*Address of Institution">
-                                                </div>
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="number" class="form-control" name="principal_cntct" id="principal_cntct"
-                                                        placeholder="*Principal's Contact Number">
-                                                </div>
-
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="number" class="form-control" name="team_cntct_persn" id="team_cntct_persn"
-                                                        placeholder="*Team Contact Person's Number">
-                                                </div>
-                                            </div> -->
-
-
+                                          
                                             <div class="card mt-2" id="team1">
                                                 <div class="card-header text-center fw-bold">
                                                     Team 1
