@@ -48,6 +48,8 @@ include "head-style.php";
                                         $district = mysqli_real_escape_string($conn, $_POST['quiz_district']);
                                         $inst_name = mysqli_real_escape_string($conn, $_POST['inst_name']);
                                         $addr_inst = mysqli_real_escape_string($conn, $_POST['addr_inst']);
+                                        $principal_cntct = mysqli_real_escape_string($conn, $_POST['principal_cntct']);
+                                        $team_cntct_persn = mysqli_real_escape_string($conn, $_POST['team_cntct_persn']);
                                         $team1_memb1_name = mysqli_real_escape_string($conn, $_POST['team1_memb1_name']);
                                         $team1_memb1_class = mysqli_real_escape_string($conn, $_POST['team1_memb1_class']);
                                         $team1_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team1_memb1_gndr']);
@@ -63,20 +65,19 @@ include "head-style.php";
                                         $team2_memb1_name = mysqli_real_escape_string($conn, $_POST['team2_memb1_name']);
                                         $team2_memb1_class = mysqli_real_escape_string($conn, $_POST['team2_memb1_class']);
                                         $team2_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team2_memb1_gndr']);
-                                        $team2_memb1_addr = mysqli_real_escape_string($conn, $_POST['team2_memb1_addr']);
                                         $team2_memb1_mail = mysqli_real_escape_string($conn, $_POST['team2_memb1_mail']);
                                         $team2_memb1_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb1_cntct']);
                                         $team2_memb2_name = mysqli_real_escape_string($conn, $_POST['team2_memb2_name']);
                                         $team2_memb2_class = mysqli_real_escape_string($conn, $_POST['team2_memb2_class']);
                                         $team2_memb2_gndr = mysqli_real_escape_string($conn, $_POST['team2_memb2_gndr']);
-                                        $team2_memb2_addr = mysqli_real_escape_string($conn, $_POST['team2_memb2_addr']);
                                         $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
                                         $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
-                                        $selectquery = "SELECT * from book_stall where (head_org_email = '$head_email' and head_org_mobile = '$head_mobile')";
-                                        $selectresult = mysqli_query($con, $selectquery);
-                                        if ($selectresult->num_rows > 0) {
-                                            $msg = $msg . "You have already registered with same email Id and contact number. Please use another email Id and contact number to register.<BR>";
+                                        $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
+                                        $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
+                                        var_dump($sel_reg_quiz_res);
+                                        if ($sel_reg_quiz_res->num_rows > 0) {
+                                            $msg .= "You have already registered with this contact number.<BR>";
                                             $status = "NOTOK";
                                         }
                                         $errormsg = "";
@@ -85,7 +86,7 @@ include "head-style.php";
                                                 $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                                         } else {
-                                            $query = "INSERT INTO reg_quiz (category, institute_name, institute_addr, first_part_name, first_part_addr, first_part_dob, first_part_email, first_part_phone, second_part_name, second_part_addr, second_part_dob, secon_part_email, second_part_phone, reg_date, first_part_gndr, second_part_gndr) VALUES ('$category', '$inst_name', '$addr_inst', '$part1_name', '$part1_addr', '$part1_dob', '$part1_mail', '$part1_mob', '$part2_name', '$part2_addr', '$part2_dob', '$part2_mail', '$part2_mob', '$current_date', '$part1_gndr', '$part2_gndr')";
+                                            $query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$inst_name', '$addr_inst', '$part1_name', '$part1_addr', '$part1_dob', '$part1_mail', '$part1_mob', '$part2_name', '$part2_addr', '$part2_dob', '$part2_mail', '$part2_mob', '$current_date', '$part1_gndr', '$part2_gndr')";
                                             $result = mysqli_query($con, $query);
                                             if ($result) {
                                                 $errormsg = "
@@ -193,14 +194,8 @@ include "head-style.php";
                                                             <input type="text" class="form-control" name="inst_name"
                                                                 placeholder="*Name of Institution" id="inst_name">
                                                         </div>
-
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-
-                                                            <textarea class="form-control" ame="addr_inst" id="addr_inst"
-                                                                id="team1_memb1_addr" placeholder="*Address of Institution"></textarea>
-
-                                                            <!-- <input type="text" class="form-control" name="addr_inst" id="addr_inst"
-                                                                placeholder="*Address of Institution"> -->
+                                                            <textarea class="form-control" name="addr_inst" id="addr_inst" placeholder="*Address of Institution"></textarea>
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <input type="number" class="form-control" name="principal_cntct" id="principal_cntct"
@@ -215,26 +210,7 @@ include "head-style.php";
                                                 </div>
                                             </div>
 
-                                            <!-- <div class="row" id="inst_details" class="inst_details">
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="text" class="form-control" name="inst_name"
-                                                        placeholder="*Name of Institution" id="inst_name">
-                                                </div>
-
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="text" class="form-control" name="addr_inst"
-                                                        id="addr_inst" placeholder="*Address of Institution">
-                                                </div>
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="number" class="form-control" name="principal_cntct" id="principal_cntct"
-                                                        placeholder="*Principal's Contact Number">
-                                                </div>
-
-                                                <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                    <input type="number" class="form-control" name="team_cntct_persn" id="team_cntct_persn"
-                                                        placeholder="*Team Contact Person's Number">
-                                                </div>
-                                            </div> -->
+                                           
 
 
                                             <div class="card mt-2" id="team1">
