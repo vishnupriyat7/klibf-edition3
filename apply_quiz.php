@@ -195,26 +195,33 @@ include "head-style.php";
                                                         </div>
 
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-
                                                             <textarea class="form-control" ame="addr_inst" id="addr_inst"
                                                                 id="team1_memb1_addr" placeholder="*Address of Institution"></textarea>
-
-                                                         
                                                         </div>
+
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="email" class="form-control" name="inst_email"
+                                                                placeholder="*Email of Institution" id="inst_email">
+                                                        </div>
+
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <input type="number" class="form-control" name="principal_cntct" id="principal_cntct"
                                                                 placeholder="*Principal's Contact Number">
                                                         </div>
-
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                            <input type="number" class="form-control" name="team_cntct_persn" id="team_cntct_persn"
-                                                                placeholder="*Team Contact Person's Number">
+                                                            <input type="text" class="form-control" name="faclty_name"
+                                                                placeholder="*Name of Faculty In Charge" id="faclty_name">
+                                                        </div>
+                                                    
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="number" class="form-control" name="faclty_cntct" id="faclty_cntct"
+                                                                placeholder="*Contact Number of Faculty In Charge">
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                          
+
                                             <div class="card mt-2" id="team1">
                                                 <div class="card-header text-center fw-bold">
                                                     Team 1
@@ -222,7 +229,6 @@ include "head-style.php";
                                                 <div class="card-body">
 
                                                     <div class="row">
-                                                        <!-- <button class="btn btn-bordered active btn-block mt-3">Team 1</button> -->
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
                                                                 <input type="text" class="form-control" name="team1_memb1_name"
@@ -247,7 +253,7 @@ include "head-style.php";
                                                                     placeholder="*Class/Course" id="team1_memb1_class">
                                                             </div>
 
-                                                            <div class="form-group col-12">
+                                                            <div class="form-group col-12" style="display: none;" id="tm1_meb1_addr">
                                                                 <textarea class="form-control" name="team1_memb1_addr"
                                                                     id="team1_memb1_addr" placeholder="* Address"></textarea>
                                                             </div>
@@ -284,7 +290,7 @@ include "head-style.php";
                                                                     placeholder="*Class/Course" id="team1_memb2_class">
                                                             </div>
 
-                                                            <div class="form-group col-12">
+                                                            <div class="form-group col-12" style="display: none;" id="tm1_meb2_addr">
                                                                 <textarea class="form-control" name="team1_memb2_addr"
                                                                     id="team1_memb1_addr" placeholder="* Address"></textarea>
                                                             </div>
@@ -334,10 +340,10 @@ include "head-style.php";
                                                                     placeholder="*Class/Course" id="team2_memb1_class">
                                                             </div>
 
-                                                            <div class="form-group col-12">
+                                                            <!-- <div class="form-group col-12">
                                                                 <textarea class="form-control" name="team2_memb1_addr"
                                                                     id="team2_memb1_addr" placeholder="* Address"></textarea>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control" name="team2_memb1_cntct"
                                                                     placeholder="*Contact Number" id="team2_memb1_cntct">
@@ -371,10 +377,10 @@ include "head-style.php";
                                                                     placeholder="*Class/Course" id="team2_memb2_class">
                                                             </div>
 
-                                                            <div class="form-group col-12">
+                                                            <!-- <div class="form-group col-12">
                                                                 <textarea class="form-control" name="team2_memb2_addr"
                                                                     id="team2_memb2_addr" placeholder="* Address"></textarea>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control" name="team2_memb2_cntct"
                                                                     placeholder="*Contact Number" id="team2_memb2_cntct">
@@ -444,6 +450,8 @@ include "head-style.php";
 <script type="text/javascript">
     function hideZoneDistInst() {
         var catgry = document.getElementById("quiz_category").value;
+        const addressDiv1 = document.getElementById('tm1_meb1_addr');
+        const addressDiv2 = document.getElementById('tm1_meb2_addr');
         // alert(catgry);
         if (catgry == '3') {
             // alert("here");
@@ -453,6 +461,8 @@ include "head-style.php";
             document.getElementById("team1_memb1_class_course").style.display = "none";
             document.getElementById("team1_memb2_class_course").style.display = "none";
             document.getElementById("team2").style.display = "none";
+            addressDiv1.style.display = "block";
+            addressDiv2.style.display = "block"
         } else {
             document.getElementById("quiz_zone").style.display = "block";
             document.getElementById("quiz_district").style.display = "block";
@@ -460,6 +470,8 @@ include "head-style.php";
             document.getElementById("team1_memb1_class_course").style.display = "";
             document.getElementById("team1_memb2_class_course").style.display = "";
             document.getElementById("team2").style.display = "";
+            addressDiv1.style.display = "none";
+            addressDiv2.style.display = "none"
         }
         // if (catgry !== 3) {
         // document.getElementById("inst_name").removeAttr('hidden');
