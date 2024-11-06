@@ -49,7 +49,8 @@ include "head-style.php";
                                         $inst_name = mysqli_real_escape_string($conn, $_POST['inst_name']);
                                         $addr_inst = mysqli_real_escape_string($conn, $_POST['addr_inst']);
                                         $principal_cntct = mysqli_real_escape_string($conn, $_POST['principal_cntct']);
-                                        $team_cntct_persn = mysqli_real_escape_string($conn, $_POST['team_cntct_persn']);
+                                        $faclty_cntct = mysqli_real_escape_string($conn, $_POST['faclty_cntct']);
+                                        $faclty_name = mysqli_real_escape_string($conn, $_POST['faclty_name']);
                                         $team1_memb1_name = mysqli_real_escape_string($conn, $_POST['team1_memb1_name']);
                                         $team1_memb1_class = mysqli_real_escape_string($conn, $_POST['team1_memb1_class']);
                                         $team1_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team1_memb1_gndr']);
@@ -75,7 +76,7 @@ include "head-style.php";
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
                                         $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
                                         $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
-                                        var_dump($sel_reg_quiz_res);
+                                        // var_dump($sel_reg_quiz_res);
                                         if ($sel_reg_quiz_res->num_rows > 0) {
                                             $msg .= "You have already registered with this contact number.<BR>";
                                             $status = "NOTOK";
@@ -86,9 +87,14 @@ include "head-style.php";
                                                 $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                                         } else {
-                                            $query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$inst_name', '$addr_inst', '$part1_name', '$part1_addr', '$part1_dob', '$part1_mail', '$part1_mob', '$part2_name', '$part2_addr', '$part2_dob', '$part2_mail', '$part2_mob', '$current_date', '$part1_gndr', '$part2_gndr')";
-                                            $result = mysqli_query($con, $query);
+                                            $insrt_reg_quiz_query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$zone', '$district', '$inst_name', '$addr_inst', '$principal_cntct', '$faclty_name', '$faclty_cntct', '$team1_memb1_name', '$team1_memb1_class', '$team1_memb1_gndr', '$team1_memb1_mail', '$team1_memb1_cntct', '$team1_memb1_addr', '$team1_memb2_name', '$team1_memb2_class', '$team1_memb2_gndr', '$team1_memb2_mail', '$team1_memb2_cntct', '$team1_memb2_addr', '$team2_memb1_name', '$team2_memb1_class', '$team2_memb1_gndr', '$team2_memb1_mail', '$team2_memb1_cntct', '$team2_memb2_name', '$team2_memb2_class', '$team2_memb2_gndr', '$team2_memb2_mail', '$team2_memb2_cntct', '$current_date')";
+                                            var_dump($insrt_reg_quiz_query);
+                                            $result = mysqli_query($conn, $insrt_reg_quiz_query);
                                             if ($result) {
+                                                $sel_registered_query = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
+                                                $sel_registered_res = mysqli_query($conn, $sel_registered_query);
+                                                $quiz_reg_id = $sel_registered_res->fetch_assoc();
+                                                var_dump($quiz_reg_id);
                                                 $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Registered Successfully. We shall get back to you ASAP.
@@ -110,7 +116,6 @@ include "head-style.php";
                                     ?>
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
-
                                             <div class="card">
                                                 <div class="card-header">
                                                     <div class="section-heading text-center mb-3">
@@ -119,7 +124,8 @@ include "head-style.php";
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <div class="form-group col-xxl-12 co-xl-12 col-lg-12 col-sm-12 ">
+                                                        <div
+                                                            class="form-group col-xxl-12 co-xl-12 col-lg-12 col-sm-12 ">
                                                             <?php
                                                             $quiz_cat_qry = "SELECT * FROM quiz_category;";
                                                             $quiz_cat_stmt = $conn->prepare($quiz_cat_qry);
@@ -127,8 +133,9 @@ include "head-style.php";
                                                             $quiz_cat_res = $quiz_cat_stmt->get_result();
                                                             $quiz_categories = $quiz_cat_res->fetch_all();
                                                             ?>
-                                                            <select class="form-control form-group" name="quiz_category" id="quiz_category"
-                                                                style="height:35px;" require="required" onchange="hideZoneDistInst()">
+                                                            <select class="form-control form-group" name="quiz_category"
+                                                                id="quiz_category" style="height:35px;"
+                                                                require="required" onchange="hideZoneDistInst()">
                                                                 <option value="0">*Select Category</option>
                                                                 <?php foreach ($quiz_categories as $quiz_category) { ?>
                                                                     <option value="<?= $quiz_category[0] ?>">
@@ -139,8 +146,6 @@ include "head-style.php";
                                                         </div>
                                                     </div>
                                                     <div class="row">
-
-
                                                         <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
                                                             <?php
                                                             $quiz_zone_qry = "SELECT * FROM quiz_zone;";
@@ -149,8 +154,8 @@ include "head-style.php";
                                                             $quiz_zone_res = $quiz_zone_stmt->get_result();
                                                             $quiz_zones = $quiz_zone_res->fetch_all();
                                                             ?>
-                                                            <select class="form-control form-group" name="quiz_zone" id="quiz_zone"
-                                                                style="height:35px;" require="required">
+                                                            <select class="form-control form-group" name="quiz_zone"
+                                                                id="quiz_zone" style="height:35px;" require="required">
                                                                 <option value="0">*Select Zone</option>
                                                                 <?php foreach ($quiz_zones as $quiz_zone) { ?>
                                                                     <option value="<?= $quiz_zone[0] ?>">
@@ -167,8 +172,9 @@ include "head-style.php";
                                                             $district_res = $district_stmt->get_result();
                                                             $districts = $district_res->fetch_all();
                                                             ?>
-                                                            <select class="form-control form-group" name="quiz_district" id="quiz_district"
-                                                                style="height:35px;" require="required">
+                                                            <select class="form-control form-group" name="quiz_district"
+                                                                id="quiz_district" style="height:35px;"
+                                                                require="required">
                                                                 <option value="0">*Select District</option>
                                                                 <?php foreach ($districts as $district) { ?>
                                                                     <option value="<?= $district[0] ?>">
@@ -181,9 +187,6 @@ include "head-style.php";
 
                                                 </div>
                                             </div>
-
-
-
                                             <div class="card mt-2" id="inst_details" class="inst_details">
                                                 <div class="card-header text-center fw-bold">
                                                     Institution Details
@@ -195,26 +198,26 @@ include "head-style.php";
                                                                 placeholder="*Name of Institution" id="inst_name">
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                            <textarea class="form-control" ame="addr_inst" id="addr_inst"
-                                                                id="team1_memb1_addr" placeholder="*Address of Institution"></textarea>
+                                                            <textarea class="form-control" name="addr_inst"
+                                                                id="addr_inst" placeholder="*Address of Institution"></textarea>
                                                         </div>
-
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <input type="email" class="form-control" name="inst_email"
                                                                 placeholder="*Email of Institution" id="inst_email">
                                                         </div>
-
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                            <input type="number" class="form-control" name="principal_cntct" id="principal_cntct"
+                                                            <input type="number" class="form-control"
+                                                                name="principal_cntct" id="principal_cntct"
                                                                 placeholder="*Principal's Contact Number">
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <input type="text" class="form-control" name="faclty_name"
-                                                                placeholder="*Name of Faculty In Charge" id="faclty_name">
+                                                                placeholder="*Name of Faculty In Charge"
+                                                                id="faclty_name">
                                                         </div>
-                                                    
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
-                                                            <input type="number" class="form-control" name="faclty_cntct" id="faclty_cntct"
+                                                            <input type="number" class="form-control"
+                                                                name="faclty_cntct" id="faclty_cntct"
                                                                 placeholder="*Contact Number of Faculty In Charge">
                                                         </div>
                                                     </div>
@@ -231,13 +234,16 @@ include "head-style.php";
                                                     <div class="row">
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
-                                                                <input type="text" class="form-control" name="team1_memb1_name"
-                                                                    placeholder="*Name of first participant" id="team1_memb1_name">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb1_name"
+                                                                    placeholder="*Name of first participant"
+                                                                    id="team1_memb1_name">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team1_memb1_gndr"
-                                                                        class="gender_team1_memb1" value="M" checked> Male
+                                                                        class="gender_team1_memb1" value="M" checked>
+                                                                    Male
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team1_memb1_gndr"
@@ -245,36 +251,47 @@ include "head-style.php";
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team1_memb1_gndr"
-                                                                        class="gender_team1_memb1" value="T"> Trans-Person
+                                                                        class="gender_team1_memb1" value="T">
+                                                                    Trans-Person
                                                                 </label>
                                                             </div>
-                                                            <div class="form-group col-12" id="team1_memb1_class_course">
-                                                                <input type="text" class="form-control" name="team1_memb1_class"
-                                                                    placeholder="*Class/Course" id="team1_memb1_class">
+                                                            <div class="form-group col-12"
+                                                                id="team1_memb1_class_course">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb1_class" placeholder="*Class/Course"
+                                                                    id="team1_memb1_class">
                                                             </div>
 
-                                                            <div class="form-group col-12" style="display: none;" id="tm1_meb1_addr">
+                                                            <div class="form-group col-12" style="display: none;"
+                                                                id="tm1_meb1_addr">
                                                                 <textarea class="form-control" name="team1_memb1_addr"
-                                                                    id="team1_memb1_addr" placeholder="* Address"></textarea>
+                                                                    id="team1_memb1_addr"
+                                                                    placeholder="* Address"></textarea>
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="number" class="form-control" name="team1_memb1_cntct"
-                                                                    placeholder="*Contact Number" id="team1_memb1_cntct">
+                                                                <input type="number" class="form-control"
+                                                                    name="team1_memb1_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team1_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="email" class="form-control" name="team1_memb1_mail"
-                                                                    placeholder="* E-mail" id="team1_memb1_mail">
+                                                                <input type="email" class="form-control"
+                                                                    name="team1_memb1_mail" placeholder="* E-mail"
+                                                                    id="team1_memb1_mail">
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
-                                                                <input type="text" class="form-control" name="team1_memb2_name"
-                                                                    placeholder="*Name of second participant" id="team1_memb2_name">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb2_name"
+                                                                    placeholder="*Name of second participant"
+                                                                    id="team1_memb2_name">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team1_memb2_gndr"
-                                                                        class="gender_team1_memb2" value="M" checked> Male
+                                                                        class="gender_team1_memb2" value="M" checked>
+                                                                    Male
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team1_memb2_gndr"
@@ -282,25 +299,33 @@ include "head-style.php";
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team1_memb2_gndr"
-                                                                        class="gender_team1_memb2" value="T"> Trans-Person
+                                                                        class="gender_team1_memb2" value="T">
+                                                                    Trans-Person
                                                                 </label>
                                                             </div>
-                                                            <div class="form-group col-12" id="team1_memb2_class_course">
-                                                                <input type="text" class="form-control" name="team1_memb2_class"
-                                                                    placeholder="*Class/Course" id="team1_memb2_class">
+                                                            <div class="form-group col-12"
+                                                                id="team1_memb2_class_course">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb2_class" placeholder="*Class/Course"
+                                                                    id="team1_memb2_class">
                                                             </div>
 
-                                                            <div class="form-group col-12" style="display: none;" id="tm1_meb2_addr">
+                                                            <div class="form-group col-12" style="display: none;"
+                                                                id="tm1_meb2_addr">
                                                                 <textarea class="form-control" name="team1_memb2_addr"
-                                                                    id="team1_memb1_addr" placeholder="* Address"></textarea>
+                                                                    id="team1_memb1_addr"
+                                                                    placeholder="* Address"></textarea>
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="number" class="form-control" name="team1_memb2_cntct"
-                                                                    placeholder="*Contact Number" id="team1_memb2_cntct">
+                                                                <input type="number" class="form-control"
+                                                                    name="team1_memb2_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team1_memb2_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="email" class="form-control" name="team1_memb2_mail"
-                                                                    placeholder="* E-mail" id="team1_memb2_mail">
+                                                                <input type="email" class="form-control"
+                                                                    name="team1_memb2_mail" placeholder="* E-mail"
+                                                                    id="team1_memb2_mail">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -318,13 +343,16 @@ include "head-style.php";
                                                         <!-- <button class="btn btn-bordered active btn-block mt-3">Team 2</button> -->
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
-                                                                <input type="text" class="form-control" name="team2_memb1_name"
-                                                                    placeholder="*Name of first participant" id="team2_memb1_name">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb1_name"
+                                                                    placeholder="*Name of first participant"
+                                                                    id="team2_memb1_name">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team2_memb1_gndr"
-                                                                        class="gender_team2_memb1" value="M" checked> Male
+                                                                        class="gender_team2_memb1" value="M" checked>
+                                                                    Male
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team2_memb1_gndr"
@@ -336,8 +364,9 @@ include "head-style.php";
                                                                 </label>
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="text" class="form-control" name="team2_memb1_class"
-                                                                    placeholder="*Class/Course" id="team2_memb1_class">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb1_class" placeholder="*Class/Course"
+                                                                    id="team2_memb1_class">
                                                             </div>
 
                                                             <!-- <div class="form-group col-12">
@@ -345,23 +374,29 @@ include "head-style.php";
                                                                     id="team2_memb1_addr" placeholder="* Address"></textarea>
                                                             </div> -->
                                                             <div class="form-group col-12">
-                                                                <input type="number" class="form-control" name="team2_memb1_cntct"
-                                                                    placeholder="*Contact Number" id="team2_memb1_cntct">
+                                                                <input type="number" class="form-control"
+                                                                    name="team2_memb1_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team2_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="email" class="form-control" name="team2_memb1_mail"
-                                                                    placeholder="* E-mail" id="team2_memb1_mail">
+                                                                <input type="email" class="form-control"
+                                                                    name="team2_memb1_mail" placeholder="* E-mail"
+                                                                    id="team2_memb1_mail">
                                                             </div>
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
-                                                                <input type="text" class="form-control" name="team2_memb2_name"
-                                                                    placeholder="*Name of second participant" id="team2_memb2_name">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb2_name"
+                                                                    placeholder="*Name of second participant"
+                                                                    id="team2_memb2_name">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team2_memb2_gndr"
-                                                                        class="gender_team2_memb2" value="M" checked> Male
+                                                                        class="gender_team2_memb2" value="M" checked>
+                                                                    Male
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team2_memb2_gndr"
@@ -369,12 +404,14 @@ include "head-style.php";
                                                                 </label>
                                                                 <label class="radio-inline">
                                                                     <input type="radio" name="team2_memb2_gndr"
-                                                                        class="gender_team2_memb2" value="T"> Trans-Person
+                                                                        class="gender_team2_memb2" value="T">
+                                                                    Trans-Person
                                                                 </label>
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="text" class="form-control" name="team2_memb2_class"
-                                                                    placeholder="*Class/Course" id="team2_memb2_class">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb2_class" placeholder="*Class/Course"
+                                                                    id="team2_memb2_class">
                                                             </div>
 
                                                             <!-- <div class="form-group col-12">
@@ -382,12 +419,15 @@ include "head-style.php";
                                                                     id="team2_memb2_addr" placeholder="* Address"></textarea>
                                                             </div> -->
                                                             <div class="form-group col-12">
-                                                                <input type="number" class="form-control" name="team2_memb2_cntct"
-                                                                    placeholder="*Contact Number" id="team2_memb2_cntct">
+                                                                <input type="number" class="form-control"
+                                                                    name="team2_memb2_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team2_memb2_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
-                                                                <input type="email" class="form-control" name="team2_memb2_mail"
-                                                                    placeholder="* E-mail" id="team2_memb2_mail">
+                                                                <input type="email" class="form-control"
+                                                                    name="team2_memb2_mail" placeholder="* E-mail"
+                                                                    id="team2_memb2_mail">
                                                             </div>
                                                         </div>
                                                     </div>
