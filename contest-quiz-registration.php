@@ -66,20 +66,6 @@
             </div>
         </section>
         <!-- End Breadcrumbs Section -->
-
-        <!-- <section class="contest-bkrvw-reg"> -->
-        <!-- <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card overflow-auto">
-                            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScKw20kdrJw7rUjexrK_vo8HU4-mIN3M1NT7wAXfSbFYrph9w/viewform?embedded=true" width="640" height="1815" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                        </div>
-                     </div> 
-
-                </div>
-            </div> -->
-        <!-- <div class="container d-flex justify-content-center align-items-center min-vh-100"> -->
-        <!-- Section to hold your Google Sheets link -->
         <section>
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
@@ -89,29 +75,15 @@
                             <div class="text-center">
                                 <img class="mx-auto d-block img-fluid" src="assets/img/contests/quiz-banner.jpg" style="width: 100%;">
                             </div>
-
-
                             <div class="card-body p-4">
                                 <div class="tab-content">
                                     <div class="d-flex justify-content-end">
-
-                                        <!-- <a href="https://forms.gle/Y58w5WuM5QKu24FN9 " class="mr-2 btn btn-success horizontal-shake" target="_blank"><i class="fa fa-download"></i> Click Here to Apply</a> -->
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake"><i class="fa fa-download"></i> Click Here to Apply</a>
-
                                     </div>
-
                                     <div class="align-items-center text-center">
                                         <h3><b>ക്വിസ് മത്സരം - പൊതുമാർഗ്ഗനിർദ്ദേശങ്ങൾ</b></h3>
-
                                     </div>
-
-                                    <!-- <div class="tab-pane active" id="personalDetails" role="tabpanel"> -->
-
-                                    <!-- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScKw20kdrJw7rUjexrK_vo8HU4-mIN3M1NT7wAXfSbFYrph9w/viewform?embedded=true" width="1000" height="1815" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
                                     <ul>
-                                        <!-- <li class="contact-info color-1 bg-hover active hover-bottom p-2"> -->
-                                        <!-- <h3>Rules & Regulations</h3> -->
-
                                         <h5>
                                             <ul>
                                                 <small>

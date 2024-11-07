@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <?php
 include "config.php";
 include "head-style.php";
@@ -10,7 +9,6 @@ include "head-style.php";
     <!-- ======= Header ======= -->
     <?php include "header-inner.php"; ?>
     <!-- End Header -->
-
     <main id="main">
         <!-- ======= Breadcrumbs Section ======= -->
         <section class="breadcrumbs">
@@ -25,13 +23,11 @@ include "head-style.php";
                 </div>
             </div>
         </section><!-- End Breadcrumbs Section -->
-
         <section id="contact" class="contact-area ptb_50">
             <div class="container d-flex justify-content-between align-items-center">
                 <div class="row">
                     <div class="col-xxl-12 col-12 col-md-12 col-lg-12 col-sm-12">
                         <div class="card">
-
                             <!-- Register Box -->
                             <div class="contact-box text-center">
                                 <!-- <p> Read the <a href="terms&condition.php" target="_blank"><span style="color:blue"> &nbsp;Rules & Regulations</span> </a> before submitting.
@@ -42,10 +38,13 @@ include "head-style.php";
                                     $status = "OK";
                                     $msg = "";
                                     if (isset($_POST['save-quiz'])) {
-                                        // var_dump("here");die;
                                         $category = mysqli_real_escape_string($conn, $_POST['quiz_category']);
                                         $zone = mysqli_real_escape_string($conn, $_POST['quiz_zone']);
                                         $district = mysqli_real_escape_string($conn, $_POST['quiz_district']);
+                                        if ($category == 3) {
+                                            $zone = 6;
+                                            $district = 15;
+                                        }
                                         $inst_name = mysqli_real_escape_string($conn, $_POST['inst_name']);
                                         $addr_inst = mysqli_real_escape_string($conn, $_POST['addr_inst']);
                                         $principal_cntct = mysqli_real_escape_string($conn, $_POST['principal_cntct']);
@@ -74,12 +73,13 @@ include "head-style.php";
                                         $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
                                         $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
-                                        $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
-                                        $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
-                                        // var_dump($sel_reg_quiz_res);
-                                        if ($sel_reg_quiz_res->num_rows > 0) {
-                                            $msg .= "You have already registered with this contact number.<BR>";
-                                            $status = "NOTOK";
+                                        if ($category != 3) {
+                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
+                                            $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
+                                            if ($sel_reg_quiz_res->num_rows > 0) {
+                                                $msg .= "You have already registered with this contact number.<BR>";
+                                                $status = "NOTOK";
+                                            }
                                         }
                                         $errormsg = "";
                                         if ($status == "NOTOK") {
@@ -88,22 +88,24 @@ include "head-style.php";
                                                </div>"; //printing error if found in validation
                                         } else {
                                             $insrt_reg_quiz_query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$zone', '$district', '$inst_name', '$addr_inst', '$principal_cntct', '$faclty_name', '$faclty_cntct', '$team1_memb1_name', '$team1_memb1_class', '$team1_memb1_gndr', '$team1_memb1_mail', '$team1_memb1_cntct', '$team1_memb1_addr', '$team1_memb2_name', '$team1_memb2_class', '$team1_memb2_gndr', '$team1_memb2_mail', '$team1_memb2_cntct', '$team1_memb2_addr', '$team2_memb1_name', '$team2_memb1_class', '$team2_memb1_gndr', '$team2_memb1_mail', '$team2_memb1_cntct', '$team2_memb2_name', '$team2_memb2_class', '$team2_memb2_gndr', '$team2_memb2_mail', '$team2_memb2_cntct', '$current_date')";
-                                            var_dump($insrt_reg_quiz_query);
+                                             // <button type='button' class='btn-info' onclick='printQuiz(" . $quiz_reg_id['id'] . ")'>Print</button>
                                             $result = mysqli_query($conn, $insrt_reg_quiz_query);
                                             if ($result) {
-                                                $sel_registered_query = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
+                                                if ($category != 3) {
+                                                    $sel_registered_query = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct';";
+                                                } else {
+                                                    $sel_registered_query = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct';";
+                                                }
                                                 $sel_registered_res = mysqli_query($conn, $sel_registered_query);
                                                 $quiz_reg_id = $sel_registered_res->fetch_assoc();
-                                                var_dump($quiz_reg_id);
-                                                $errormsg = "
-                              <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Registered Successfully. We shall get back to you ASAP.
+                                                $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                                You have been registered successfully. Your Registration Number is " . $quiz_reg_id['id'] . ". 
+                                               
+
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                                                </div>
-                               ";
+                                                </div>";
                                             } else {
-                                                $errormsg = "
-                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
@@ -148,14 +150,15 @@ include "head-style.php";
                                                     <div class="row">
                                                         <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
                                                             <?php
-                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone;";
+                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6;";
                                                             $quiz_zone_stmt = $conn->prepare($quiz_zone_qry);
                                                             $quiz_zone_stmt->execute();
                                                             $quiz_zone_res = $quiz_zone_stmt->get_result();
                                                             $quiz_zones = $quiz_zone_res->fetch_all();
                                                             ?>
                                                             <select class="form-control form-group" name="quiz_zone"
-                                                                id="quiz_zone" style="height:35px;" require="required">
+                                                                id="quiz_zone" style="height:35px;" require="required"
+                                                                onclick="selectDistrict();">
                                                                 <option value="0">*Select Zone</option>
                                                                 <?php foreach ($quiz_zones as $quiz_zone) { ?>
                                                                     <option value="<?= $quiz_zone[0] ?>">
@@ -166,7 +169,7 @@ include "head-style.php";
                                                         </div>
                                                         <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
                                                             <?php
-                                                            $district_qry = "SELECT * FROM district;";
+                                                            $district_qry = "SELECT * FROM district where id != 15;";
                                                             $district_stmt = $conn->prepare($district_qry);
                                                             $district_stmt->execute();
                                                             $district_res = $district_stmt->get_result();
@@ -184,7 +187,6 @@ include "head-style.php";
                                                             </select>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                             <div class="card mt-2" id="inst_details" class="inst_details">
@@ -199,7 +201,8 @@ include "head-style.php";
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <textarea class="form-control" name="addr_inst"
-                                                                id="addr_inst" placeholder="*Address of Institution"></textarea>
+                                                                id="addr_inst"
+                                                                placeholder="*Address of Institution"></textarea>
                                                         </div>
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <input type="email" class="form-control" name="inst_email"
@@ -223,14 +226,11 @@ include "head-style.php";
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                             <div class="card mt-2" id="team1">
                                                 <div class="card-header text-center fw-bold">
                                                     Team 1
                                                 </div>
                                                 <div class="card-body">
-
                                                     <div class="row">
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
@@ -261,7 +261,6 @@ include "head-style.php";
                                                                     name="team1_memb1_class" placeholder="*Class/Course"
                                                                     id="team1_memb1_class">
                                                             </div>
-
                                                             <div class="form-group col-12" style="display: none;"
                                                                 id="tm1_meb1_addr">
                                                                 <textarea class="form-control" name="team1_memb1_addr"
@@ -309,7 +308,6 @@ include "head-style.php";
                                                                     name="team1_memb2_class" placeholder="*Class/Course"
                                                                     id="team1_memb2_class">
                                                             </div>
-
                                                             <div class="form-group col-12" style="display: none;"
                                                                 id="tm1_meb2_addr">
                                                                 <textarea class="form-control" name="team1_memb2_addr"
@@ -331,16 +329,12 @@ include "head-style.php";
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                             <div class="card mt-2" id="team2">
                                                 <div class="card-header text-center fw-bold">
                                                     Team 2
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <!-- <button class="btn btn-bordered active btn-block mt-3">Team 2</button> -->
                                                         <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
                                                             <div class="form-group col-12">
                                                                 <input type="text" class="form-control"
@@ -368,7 +362,6 @@ include "head-style.php";
                                                                     name="team2_memb1_class" placeholder="*Class/Course"
                                                                     id="team2_memb1_class">
                                                             </div>
-
                                                             <!-- <div class="form-group col-12">
                                                                 <textarea class="form-control" name="team2_memb1_addr"
                                                                     id="team2_memb1_addr" placeholder="* Address"></textarea>
@@ -413,7 +406,6 @@ include "head-style.php";
                                                                     name="team2_memb2_class" placeholder="*Class/Course"
                                                                     id="team2_memb2_class">
                                                             </div>
-
                                                             <!-- <div class="form-group col-12">
                                                                 <textarea class="form-control" name="team2_memb2_addr"
                                                                     id="team2_memb2_addr" placeholder="* Address"></textarea>
@@ -431,18 +423,17 @@ include "head-style.php";
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
-
-
                                             <div class="col-12">
                                                 <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
-                                                    onclick="checkTerm();"><span class="text-white pr-3"><i
+                                                    target="#preview-quiz-modal"><span class="text-white pr-3"><i
                                                             class="fa fa-eye"></i></span>Preview</button> -->
                                                 <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                                    name="save-quiz" id="register-quiz"><span class="text-white pr-3"><i
-                                                            class="fas fa-paper-plane"></i></span>Register</button>
+                                                    name="save-quiz" id="register-quiz">
+                                                    <span class="text-white pr-3">
+                                                        <i class="fas fa-paper-plane"></i>
+                                                    </span>Register</button>
                                             </div>
                                         </div>
                                     </form>
@@ -456,6 +447,9 @@ include "head-style.php";
     </main>
 </body>
 <br>
+
+<?php include "attention.php" ?>
+<!--====== Call To Action Area End ======-->
 
 <div id="preview-quiz-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -480,21 +474,17 @@ include "head-style.php";
     </div>
 </div>
 <br>
-<?php include "attention.php" ?>
-<!--====== Call To Action Area End ======-->
-
 <?php include "footer.php"; ?>
 
 
-
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
+
     function hideZoneDistInst() {
         var catgry = document.getElementById("quiz_category").value;
         const addressDiv1 = document.getElementById('tm1_meb1_addr');
         const addressDiv2 = document.getElementById('tm1_meb2_addr');
-        // alert(catgry);
         if (catgry == '3') {
-            // alert("here");
             document.getElementById("quiz_zone").style.display = "none";
             document.getElementById("quiz_district").style.display = "none";
             document.getElementById("inst_details").style.display = "none";
@@ -513,56 +503,108 @@ include "head-style.php";
             addressDiv1.style.display = "none";
             addressDiv2.style.display = "none"
         }
-        // if (catgry !== 3) {
-        // document.getElementById("inst_name").removeAttr('hidden');
-        // $("#inst_name").removeAttr('hidden');
-        // $("#addr_inst").removeAttr('hidden');
-        // $("#addr_inst").show();
-        // $("#inst_name").show();
-        // } else {
-        //     $("#inst_name").hide();
-        //     $("#addr_inst").hide();
-        // }
     }
 
-    // document.getElementById("preview_quiz_btn").addEventListener("click", function(event) {
-    //     event.preventDefault()
-    //     var catgry = $("#category").val();
-    //     if (catgry === 'C') {
-    //         var cat_text = 'College';
-    //     } else if (catgry === 'S') {
-    //         var cat_text = 'School';
-    //     } else if (catgry === 'P') {
-    //         var cat_text = 'Public';
-    //     } else {
-    //         var cat_text = 'Category not selected';
-    //     }
-    //     document.getElementById("category_lab").innerHTML = cat_text;
-    //     document.getElementById("inst_name_lab").innerHTML = $("#inst_name").val();
-    //     document.getElementById("addr_inst_lab").innerHTML = $("#addr_inst").val();
-    //     document.getElementById("part1_nme_lab").innerHTML = $("#part1_name").val();
-    //     document.getElementById("part1_dob_lab").innerHTML = $("#part1_dob").val();
-    //     document.getElementById("part1_gndr_lab").innerHTML = document.querySelector('input[name = gender_part1]:checked').value;
-    //     document.getElementById("part1_addr_lab").innerHTML = $("#part1_addr").val();
-    //     document.getElementById("part1_cntct_lab").innerHTML = $("#part1_mob").val();
-    //     document.getElementById("part1_email_lab").innerHTML = $("#part1_mail").val();
-    //     document.getElementById("part2_nme_lab").innerHTML = $("#part2_name").val();
-    //     document.getElementById("part2_dob_lab").innerHTML = $("#part2_dob").val();
-    //     document.getElementById("part2_gndr_lab").innerHTML = document.querySelector('input[name = gender_part2]:checked').value;
-    //     document.getElementById("part2_addr_lab").innerHTML = $("#part2_addr").val();
-    //     document.getElementById("part2_cntct_lab").innerHTML = $("#part2_mob").val();
-    //     document.getElementById("part2_email_lab").innerHTML = $("#part2_mail").val();
-    //     $("#preview-quiz-modal").modal({
-    //         show: true,
-    //         backdrop: 'static',
-    //         keyboard: false
-    //     });
-    // });
+    function selectDistrict() {
+        var zone = document.getElementById("quiz_zone").value;
+        $.ajax({
+            dataType: "json",
+            url: "list_district.php",
+            type: "POST",
+            data: {
+                zone_id: zone
+            },
+            dataType: "json",
+            success: function (data) {
+                $('#quiz_district').empty();
+                var add_slot = "";
+                $.each(data, function (key, value) {
+                    $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
+                });
+            }
+        });
+    }
 
-    // document.getElementById("quiz-previewok").addEventListener("click", function(event) {
-    //     event.preventDefault()
-    //     $("#preview-quiz-modal").modal('hide');
-    //     $("#register-quiz").click();
-
-    // });
+    function printQuiz(quiz_id) {
+        alert("mhkj");
+        $.ajax({
+            dataType: "json",
+            url: "print_quiz_reg.php",
+            type: "POST",
+            data: {
+                quiz_id: quiz_id
+            },
+            dataType: "json",
+            success: function (data) {
+                var printWindow = window.open('', '', 'height=800,width=600');
+            printWindow.document.write('<html><head><title>');
+            printWindow.document.write('</title></head><body align="center">');
+            // printWindow.document.write('<img src="');
+            // printWindow.document.write('./assets/img/logo/header2.jpg');
+            // printWindow.document.write('" height="150" width="100%">');
+            printWindow.document.write("<div align='center'>");
+            printWindow.document.write("<table border='3'>");
+            printWindow.document.write('<thead></thead><tbody><tr><th colspan="2">House / Organization</th></tr><tr><td>Name  <td>');
+            // printWindow.document.write($("#comp_name").val());
+            printWindow.document.write('</td></tr><tr><td>Year of Establishment  </td><td>');
+            // printWindow.document.write($("#estb_year").val());
+            printWindow.document.write('</td></tr><tr><td>Registration Number  </td><td>');
+            // printWindow.document.write($("#reg_no").val());
+            printWindow.document.write('</td></tr><tr><td>GST Number  </td><td>');
+            // printWindow.document.write($("#gst_no").val());
+            printWindow.document.write('</td></tr><tr><td>Language(s) in which books are published  </td><td>');
+            // printWindow.document.write($("#book_lang").val());
+            printWindow.document.write('</td></tr><tr><td>Number of Titles Published  </td><td>');
+            // printWindow.document.write($("#title_no").val());
+            printWindow.document.write('</td></tr><tr><td>Nature of Organization  </td><td>');
+            // var org_nature = $("#org_nature").val();
+            // if (org_nature == 'P') {
+            //     printWindow.document.write('Publisher');
+            // } else {
+            //     printWindow.document.write('Publisher & Distributer</td></tr><tr><td>Major Publishing House(s) which are distributed  </td><td>');
+            //     printWindow.document.write($("#mjr_pub_val").val());
+            // }
+            printWindow.document.write('</td></tr><tr><th colspan="2">Head of the Publishing House / Organization</th></tr><tr><td>Name  </td><td>');
+            // printWindow.document.write($("#head_name").val());
+            printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
+            // printWindow.document.write($("#head_addr").val());
+            printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
+            // printWindow.document.write($("#head_email").val());
+            printWindow.document.write('</td></tr><tr><td>Website  </td><td>');
+            // printWindow.document.write($("#head_site").val());
+            printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
+            // printWindow.document.write($("#head_mobile").val());
+            printWindow.document.write('</td></tr><tr><th colspan="2">Contact (In-charge) Person for the Fair</th></tr><tr><td>Name  </td><td>');
+            // printWindow.document.write($("#prsn_name").val());
+            printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
+            // printWindow.document.write($("#prsn_addr").val());
+            printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
+            // printWindow.document.write($("#prsn_email").val());
+            printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
+            // printWindow.document.write($("#prsn_mobile").val());
+            printWindow.document.write('</td></tr><tr><td>WhatsApp Number  </td><td>');
+            // printWindow.document.write($("#whatsapp").val());
+            printWindow.document.write('</td></tr><tr><td>Estimated amount to remit (including GST)</td><td>');
+            printWindow.document.write('₹.');
+            // printWindow.document.write($("#totamt").val());
+            printWindow.document.write('/-</td></tr><tr><td>FASCIA Text  </td><td>');
+            // printWindow.document.write($("#fascia").val());
+            printWindow.document.write('</td></tr><tr><td>Remarks  </td><td>');
+            // printWindow.document.write($("#remark").val());
+            printWindow.document.write('</td></tr><tr><td>Logo  </td><td>');
+            // const [file] = logo.files
+            // if (file) {
+            //     printWindow.document.write('<img id = "blah" height="50px" width="100px" src = "');
+            //     printWindow.document.write(URL.createObjectURL(file));
+            //     printWindow.document.write('" alt = "your image " />');
+            // }
+            printWindow.document.write('<img src="');
+            printWindow.document.write('">');
+            printWindow.document.write('</tr></tr></tbody></table>');
+            printWindow.document.write("</div>");
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            }
+        });
+    }
 </script>
