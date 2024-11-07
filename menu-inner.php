@@ -59,6 +59,16 @@
             </ul>
           </li> -->
     <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
+    <li class="dropdown">
+      <a href="#">
+        <span>Contests</span>
+      </a>
+      <ul>
+        <li>
+          <a href="contest-quiz-registration.php">Quiz Competition</a>
+        </li>
+      </ul>
+    </li>
     <li class="dropdown"><a href="#"><span>Previous KLIBF</span> <i class="bi bi-chevron-right"></i></a>
       <ul>
         <li><a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition I</a></li>

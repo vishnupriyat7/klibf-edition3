@@ -24,9 +24,9 @@ include "head-style.php";
             </div>
         </section><!-- End Breadcrumbs Section -->
         <section id="contact" class="contact-area ptb_50">
-            <div class="container d-flex justify-content-between align-items-center">
+            <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
-                    <div class="col-xxl-12 col-12 col-md-12 col-lg-12 col-sm-12">
+                    <div class="col-xxl-12 col-md-12 col-lg-12 col-sm-12">
                         <div class="card">
                             <!-- Register Box -->
                             <div class="contact-box text-center">
@@ -170,26 +170,36 @@ include "head-style.php";
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <div class="row">
-                                                        <div
-                                                            class="form-group col-xxl-12 co-xl-12 col-lg-12 col-sm-12 ">
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <div class="form-group col-xxl-12 col-xl-12 col-lg-12 col-sm-12 d-flex flex-row">
+                                                            <label class="me-3">*Select Category:</label>
+                                                            
                                                             <?php
                                                             $quiz_cat_qry = "SELECT * FROM quiz_category;";
                                                             $quiz_cat_stmt = $conn->prepare($quiz_cat_qry);
                                                             $quiz_cat_stmt->execute();
                                                             $quiz_cat_res = $quiz_cat_stmt->get_result();
                                                             $quiz_categories = $quiz_cat_res->fetch_all();
-                                                            ?>
-                                                            <select class="form-control form-group" name="quiz_category"
-                                                                id="quiz_category" style="height:35px;"
-                                                                require="required" onchange="hideZoneDistInst()">
-                                                                <option value="0">*Select Category</option>
-                                                                <?php foreach ($quiz_categories as $quiz_category) { ?>
-                                                                    <option value="<?= $quiz_category[0] ?>">
+
+                                                            $first = true; // Variable to check if it's the first radio button
+                                                            foreach ($quiz_categories as $quiz_category) { ?>
+                                                                <div class="form-check me-3">
+                                                                    <input type="radio"
+                                                                        class="form-check-input"
+                                                                        name="quiz_category"
+                                                                        id="quiz_category_<?= $quiz_category[0] ?>"
+                                                                        value="<?= $quiz_category[0] ?>"
+                                                                        onchange="hideZoneDistInst()"
+                                                                        <?php if ($first) echo 'checked'; // Set checked attribute for the first radio button 
+                                                                        ?>
+                                                                        required>
+                                                                    <label class="form-check-label" for="quiz_category_<?= $quiz_category[0] ?>">
                                                                         <?= $quiz_category[1] ?>
-                                                                    </option>
-                                                                <?php } ?>
-                                                            </select>
+                                                                    </label>
+                                                                </div>
+                                                            <?php
+                                                                $first = false; // After the first item, set $first to false
+                                                            } ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -202,9 +212,9 @@ include "head-style.php";
                                                             $quiz_zones = $quiz_zone_res->fetch_all();
                                                             ?>
                                                             <select class="form-control form-group" name="quiz_zone"
-                                                                id="quiz_zone" style="height:35px;" required
+                                                                id="quiz_zone" style="height:35px;" require="required"
                                                                 onclick="selectDistrict();">
-                                                                <option value="">*Select Zone</option>
+                                                                <option value="0">*Select Zone</option>
                                                                 <?php foreach ($quiz_zones as $quiz_zone) { ?>
                                                                     <option value="<?= $quiz_zone[0] ?>">
                                                                         <?= $quiz_zone[2] ?>
@@ -221,8 +231,9 @@ include "head-style.php";
                                                             $districts = $district_res->fetch_all();
                                                             ?>
                                                             <select class="form-control form-group" name="quiz_district"
-                                                                id="quiz_district" style="height:35px;" required>
-                                                                <option value="">*Select District</option>
+                                                                id="quiz_district" style="height:35px;"
+                                                                require="required">
+                                                                <option value="0">*Select District</option>
                                                                 <?php foreach ($districts as $district) { ?>
                                                                     <option value="<?= $district[0] ?>">
                                                                         <?= $district[2] ?>
@@ -281,7 +292,7 @@ include "head-style.php";
                                                                 <input type="text" class="form-control"
                                                                     name="team1_memb1_name"
                                                                     placeholder="*Name of first participant"
-                                                                    id="team1_memb1_name" required>
+                                                                    id="team1_memb1_name">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
@@ -314,11 +325,12 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team1_memb1_cntct"
-                                                                    placeholder="Contact Number" id="team1_memb1_cntct">
+                                                                    placeholder="*Contact Number"
+                                                                    id="team1_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team1_memb1_mail" placeholder="E-mail"
+                                                                    name="team1_memb1_mail" placeholder="* E-mail"
                                                                     id="team1_memb1_mail">
                                                             </div>
                                                         </div>
@@ -327,7 +339,7 @@ include "head-style.php";
                                                                 <input type="text" class="form-control"
                                                                     name="team1_memb2_name"
                                                                     placeholder="*Name of second participant"
-                                                                    id="team1_memb2_name" required>
+                                                                    id="team1_memb2_name">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
@@ -360,11 +372,12 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team1_memb2_cntct"
-                                                                    placeholder="Contact Number" id="team1_memb2_cntct">
+                                                                    placeholder="*Contact Number"
+                                                                    id="team1_memb2_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team1_memb2_mail" placeholder="E-mail"
+                                                                    name="team1_memb2_mail" placeholder="* E-mail"
                                                                     id="team1_memb2_mail">
                                                             </div>
                                                         </div>
@@ -411,11 +424,12 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team2_memb1_cntct"
-                                                                    placeholder="Contact Number" id="team2_memb1_cntct">
+                                                                    placeholder="*Contact Number"
+                                                                    id="team2_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team2_memb1_mail" placeholder="E-mail"
+                                                                    name="team2_memb1_mail" placeholder="* E-mail"
                                                                     id="team2_memb1_mail">
                                                             </div>
                                                         </div>
@@ -454,11 +468,12 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team2_memb2_cntct"
-                                                                    placeholder="Contact Number" id="team2_memb2_cntct">
+                                                                    placeholder="*Contact Number"
+                                                                    id="team2_memb2_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team2_memb2_mail" placeholder="E-mail"
+                                                                    name="team2_memb2_mail" placeholder="* E-mail"
                                                                     id="team2_memb2_mail">
                                                             </div>
                                                         </div>
@@ -469,13 +484,13 @@ include "head-style.php";
                                                 <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
                                                     target="#preview-quiz-modal"><span class="text-white pr-3"><i
                                                             class="fa fa-eye"></i></span>Preview</button> -->
-                                                <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                                    name="save-quiz" id="register-quiz">
-                                                    <span class="text-white pr-3">
-                                                        <i class="fas fa-paper-plane"></i>
-                                                    </span>Register</button>
+                                                    <button type="submit" class="btn btn-bordered active btn-block mt-3"
+                                                        name="save-quiz" id="register-quiz">
+                                                        <span class="text-white pr-3">
+                                                            <i class="fas fa-paper-plane"></i>
+                                                        </span>Register</button>
+                                                </div>
                                             </div>
-                                        </div>
                                     </form>
                                     <p class="form-message"></p>
                                 </div>
@@ -519,31 +534,57 @@ include "head-style.php";
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
+    // function hideZoneDistInst() {
+    //     var catgry = document.getElementByID("quiz_category").value;
+    //     const addressDiv1 = document.getElementById('tm1_meb1_addr');
+    //     const addressDiv2 = document.getElementById('tm1_meb2_addr');
+    //     if (catgry == '3') {
+    //         document.getElementById("quiz_zone").style.display = "none";
+    //         document.getElementById("quiz_district").style.display = "none";
+    //         document.getElementById("inst_details").style.display = "none";
+    //         document.getElementById("team1_memb1_class_course").style.display = "none";
+    //         document.getElementById("team1_memb2_class_course").style.display = "none";
+    //         document.getElementById("team2").style.display = "none";
+    //         addressDiv1.style.display = "block";
+    //         addressDiv2.style.display = "block"
+    //     } else {
+    //         document.getElementById("quiz_zone").style.display = "block";
+    //         document.getElementById("quiz_district").style.display = "block";
+    //         document.getElementById("inst_details").style.display = "";
+    //         document.getElementById("team1_memb1_class_course").style.display = "";
+    //         document.getElementById("team1_memb2_class_course").style.display = "";
+    //         document.getElementById("team2").style.display = "";
+    //         addressDiv1.style.display = "none";
+    //         addressDiv2.style.display = "none"
+    //     }
+    // }
 
     function hideZoneDistInst() {
-        var catgry = document.getElementById("quiz_category").value;
-        const addressDiv1 = document.getElementById('tm1_meb1_addr');
-        const addressDiv2 = document.getElementById('tm1_meb2_addr');
-        if (catgry == '3') {
-            document.getElementById("quiz_zone").style.display = "none";
-            document.getElementById("quiz_district").style.display = "none";
-            document.getElementById("inst_details").style.display = "none";
-            document.getElementById("team1_memb1_class_course").style.display = "none";
-            document.getElementById("team1_memb2_class_course").style.display = "none";
-            document.getElementById("team2").style.display = "none";
-            addressDiv1.style.display = "block";
-            addressDiv2.style.display = "block"
-        } else {
-            document.getElementById("quiz_zone").style.display = "block";
-            document.getElementById("quiz_district").style.display = "block";
-            document.getElementById("inst_details").style.display = "";
-            document.getElementById("team1_memb1_class_course").style.display = "";
-            document.getElementById("team1_memb2_class_course").style.display = "";
-            document.getElementById("team2").style.display = "";
-            addressDiv1.style.display = "none";
-            addressDiv2.style.display = "none"
-        }
+    // Get the selected radio button value for category
+    const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
+    const addressDiv1 = document.getElementById('tm1_meb1_addr');
+    const addressDiv2 = document.getElementById('tm1_meb2_addr');
+    
+    if (catgry == '3') {
+        document.getElementById("quiz_zone").style.display = "none";
+        document.getElementById("quiz_district").style.display = "none";
+        document.getElementById("inst_details").style.display = "none";
+        document.getElementById("team1_memb1_class_course").style.display = "none";
+        document.getElementById("team1_memb2_class_course").style.display = "none";
+        document.getElementById("team2").style.display = "none";
+        addressDiv1.style.display = "block";
+        addressDiv2.style.display = "block";
+    } else {
+        document.getElementById("quiz_zone").style.display = "block";
+        document.getElementById("quiz_district").style.display = "block";
+        document.getElementById("inst_details").style.display = "";
+        document.getElementById("team1_memb1_class_course").style.display = "";
+        document.getElementById("team1_memb2_class_course").style.display = "";
+        document.getElementById("team2").style.display = "";
+        addressDiv1.style.display = "none";
+        addressDiv2.style.display = "none";
     }
+}
 
     function selectDistrict() {
         var zone = document.getElementById("quiz_zone").value;
@@ -555,10 +596,10 @@ include "head-style.php";
                 zone_id: zone
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 $('#quiz_district').empty();
                 var add_slot = "";
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
                 });
             }
@@ -575,7 +616,7 @@ include "head-style.php";
                 quiz_id: quiz_id
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 var printWindow = window.open('', '', 'height=800,width=600');
                 printWindow.document.write('<html><head><title>');
                 printWindow.document.write('</title></head><body align="center">');
