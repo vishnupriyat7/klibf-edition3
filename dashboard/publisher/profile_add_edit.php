@@ -123,7 +123,7 @@ $user_id = $user['id'];
                         //                     Your Profile Details is Successfully Submitted. Further edit is not possible.
                         //                     <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                         //                     </div>
-                        
+
                         //    ";
                         //     } else {
                         //         $errormsg = "
@@ -187,18 +187,18 @@ $user_id = $user['id'];
                                     // Set the target directory where you want to save the imag
                                     $targetDir = "uploads/publisher_logo/";
                                     // Generate a unique file name to avoid overwriting
-                                    $newFileName = uniqid() . '.' . $fileType;
-
+                                    // $newFileName = uniqid() . '.' . $fileType;
+                                    $newFileName =   $comp_name. '-' . uniqid() . '.' . $fileType;
                                     // Set the target file path
                                     $targetFilePath = $targetDir . $newFileName;
                                     // Upload file to the target directory
                                     if (move_uploaded_file($_FILES["logo"]["tmp_name"], $targetFilePath)) {
                                         // File successfully uploaded, now save the file path into the database
                                         $filePathForDB = addslashes($targetFilePath); // Add slashes for safety in SQL
-                        
+
                                         // Your database code here, use $filePathForDB to save the file path to DB
                                         // Example: $sql = "INSERT INTO your_table_name (image_path) VALUES ('$filePathForDB')";
-                        
+
                                         // $msg = 'File uploaded and path saved successfully.';
                                         $status = "OK";
                                     } else {
@@ -499,8 +499,8 @@ $user_id = $user['id'];
                                                 </br>
                                                 <label>*Please upload Logo of Publishing House / Organization<br>
                                                     (Only JPG, JPEG, PNG files are allowed for uploads.)</label><br>
-                                                    <span id="changelogo" onclick="changeLogo();" <?= $edit; ?> class="btn btn-info text-right"><u>Change
-                                                    Logo</u></span>
+                                                <span id="changelogo" onclick="changeLogo();" <?= $edit; ?> class="btn btn-info text-right"><u>Change
+                                                        Logo</u></span>
                                             </div>
                                             <div class="form-group col-6">
                                                 </br>
@@ -510,7 +510,7 @@ $user_id = $user['id'];
                                                     <img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>"
                                                         height="70vh" id="logo_img" <?= $edit; ?>>
                                                 </label>
-                                              
+
 
                                                 <!-- <input type="file" class="form-control" name="logo" id="logo" placeholder="*Upload Logo"> -->
                                             </div>
@@ -683,7 +683,7 @@ $user_id = $user['id'];
         //     }
         // });
 
-        $("#download").live("click", function () {
+        $("#download").live("click", function() {
             var printWindow = window.open('', '', 'height=800,width=600');
             printWindow.document.write('<html><head><title>');
             printWindow.document.write('</title></head><body align="center">');
