@@ -29,7 +29,7 @@
     }
 </style>
 
-<?php 
+<?php
 include "../header.php";
 include "sidebar.php";
 $user_id = $user['id'];
@@ -88,16 +88,16 @@ $user_id = $user['id'];
                                                     <ul>
                                                         <li><b>*</b> A minimum discount to be allowed on the printed price at the rate mentioned below.</li><br>
                                                         <div class="table-details">
-                                                            <table>
+                                                            <table class="table table-bordered table-stripped" style="width: 50%;">
                                                                 <tr>
                                                                     <th>
 
                                                                     </th>
                                                                     <th>
-                                                                        <label>Malayalam books</label>
+                                                                        <label><b>Malayalam books</b></label>
                                                                     </th>
                                                                     <th>
-                                                                        <label>English books</label>
+                                                                        <label><b>English books</b></label>
                                                                     </th>
                                                                 </tr>
                                                                 <tr>
@@ -155,31 +155,85 @@ $user_id = $user['id'];
                                                 <li>&emsp;<b>&emsp;4.1</b>&emsp; Exhibitors need to make remittance towards stall rent after receiving the intimation from the Organizer via email in this regard.</li><br>
                                                 <li>&emsp;<b>&emsp;4.2</b>&emsp; The payment receipt should be made available to the Organizer within <span>48 hours</span> after receiving the confirmation mail.</li><br>
                                                 <li>&emsp;<b>&emsp;4.3</b>&emsp; Payment can be made via RTGS/NEFT/Online Banking.</li>
+                                                <li>&emsp;<b>&emsp;4.4</b>&emsp; <b>Rate : </b></li><br>
+                                                <div class="table-details">
+                                                    <table class="table table-bordered table-stripped" style="width: 50%;">
+                                                        <tr>
+                                                            <th>
+                                                                <label><b>Size of Stall</b></label>
+                                                            </th>
+                                                            <th>
+                                                                <label><b>Rate (18% GST Extra)</b></label>
+                                                            </th>
+                                                            <!-- <th>
+                                                                <label>English books</label>
+                                                            </th> -->
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Stall of size 3m x 3m 
+                                                                (Furniture Details to be added)</label>
+                                                            </td>
+                                                            <td style="text-align: center;">
+                                                                <label> ₹ 10,000/-</label>
+
+                                                            </td>
+                                                            <!-- <td style="text-align: center;">
+                                                                <label>35%</label>
+
+                                                            </td> -->
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>Stall of size 3m x 2m 
+                                                                (Furniture Details to be added)</label>
+                                                            </td>
+                                                            <td style="text-align: center;">
+                                                                <label>₹ 7500/-</label>
+
+                                                            </td>
+                                                            <!-- <td style="text-align: center;">
+                                                                <label>35%</label>
+
+                                                            </td> -->
+                                                        </tr>
+
+                                                    </table>
+                                                </div>
+                                                <br>
 
                                             </ul>
 
                                             <li>
-                                                <b><span>5.&emsp;Allotment of Stalls : </span></b> Allotment of Stalls shall be made by lots. Allotment letters, Stall Number(s) will be intimated to the exhibitors in advance via email and it will also be notified on the website.</li><br>
-                                            <li>
-                                                <b><span>6.&emsp;Possession :</b> </span>Exhibitors will be given possession of the Stall at 2:00 p.m. on <span>06 January 2025</span>. The Stalls can not be vacated before the last day of the Fair. 
+                                                <b><span>5.&emsp;Allotment of Stalls : </span></b> Allotment of Stalls shall be made by lots. Allotment letters, Stall Number(s) will be intimated to the exhibitors in advance via email and it will also be notified on the website.
                                             </li><br>
                                             <li>
-                                                <b><span>7.&emsp;Entry : </span></b> will be allowed on production of Letter on confirmation and allotment and Gate Pass/Temporary Id cards.</li><br>
+                                                <b><span>6.&emsp;Possession :</b> </span>Exhibitors will be given possession of the Stall at 2:00 p.m. on <span>06 January 2025</span>. The Stalls can not be vacated before the last day of the Fair.
+                                            </li><br>
                                             <li>
-                                                <b><span>8.&emsp;Vacation of Stalls : </b></span> It shall be the responsibility of the exhibitors to remove all exhibits, tools and other materials at the end of the Fair and leave the Stalls in the same condition in which they were allotted to them. If any panels, racks, tables or any other item provided are found to be broken/not further usable or missing, then the cost of those items will be borne by the respective exhibitor.</li><br>
+                                                <b><span>7.&emsp;Entry : </span></b> will be allowed on production of Letter on confirmation and allotment and Gate Pass/Temporary Id cards.
+                                            </li><br>
+                                            <li>
+                                                <b><span>8.&emsp;Vacation of Stalls : </b></span> It shall be the responsibility of the exhibitors to remove all exhibits, tools and other materials at the end of the Fair and leave the Stalls in the same condition in which they were allotted to them. If any panels, racks, tables or any other item provided are found to be broken/not further usable or missing, then the cost of those items will be borne by the respective exhibitor.
+                                            </li><br>
                                             <li>
                                                 <b><span>9.&emsp; Removal of Displays and Goods :</b></span> No goods or displays shall be removed from the Stalls during the Fair without the written permission of the Organizer.
                                             </li><br>
                                             <li>
-                                                <b><span>10.&emsp;Cleaning :</b> </span>The Organizer will carry out general cleaning, exhibitors will be responsible for the cleanliness of their respective Stalls during the Fair.</li><br>
+                                                <b><span>10.&emsp;Cleaning :</b> </span>The Organizer will carry out general cleaning, exhibitors will be responsible for the cleanliness of their respective Stalls during the Fair.
+                                            </li><br>
                                             <li>
-                                                <b><span>11.&emsp; Timings for Exhibition :</b> </span>Exhibition time - <span>10.00 a.m. to 10.00 p.m.</span> Exhibitors will be allowed entry into the Stalls from <span>9.00 a.m.</span> and they have to vacate the Stalls latest by <span>11.00 p.m.</span> every day during the Fair.</li><br>
+                                                <b><span>11.&emsp; Timings for Exhibition :</b> </span>Exhibition time - <span>10.00 a.m. to 10.00 p.m.</span> Exhibitors will be allowed entry into the Stalls from <span>9.00 a.m.</span> and they have to vacate the Stalls latest by <span>11.00 p.m.</span> every day during the Fair.
+                                            </li><br>
                                             <li>
-                                                <b><span>12.&emsp;Modification of Terms and Conditions :</b></span> Any of the terms and conditions mentioned above may be relaxed or modified at the discretion of the Secretary, Kerala Legislature Secretariat whose decision will be final and binding.</li><br>
+                                                <b><span>12.&emsp;Modification of Terms and Conditions :</b></span> Any of the terms and conditions mentioned above may be relaxed or modified at the discretion of the Secretary, Kerala Legislature Secretariat whose decision will be final and binding.
+                                            </li><br>
                                             <li>
-                                                <b><span>13.&emsp; Security :</b></span>The Organizer will provide round-the-clock security arrangements during the Fair. However, the Organizer is not liable for the loss or damage to the goods and property of the exhibitors. Exhibitors are, therefore, advised not to leave their Stalls or their belongings unattended during the Fair timings.</li><br>
+                                                <b><span>13.&emsp; Security :</b></span>The Organizer will provide round-the-clock security arrangements during the Fair. However, the Organizer is not liable for the loss or damage to the goods and property of the exhibitors. Exhibitors are, therefore, advised not to leave their Stalls or their belongings unattended during the Fair timings.
+                                            </li><br>
                                             <li>
-                                                <b><span>14.&emsp;Jurisdiction :</b></span> Any dispute or claim arising out of the participation in the Fair will be subjected to the exclusive jurisdiction of the <span>Thiruvananthapuram Courts</span>.</li><br>
+                                                <b><span>14.&emsp;Jurisdiction :</b></span> Any dispute or claim arising out of the participation in the Fair will be subjected to the exclusive jurisdiction of the <span>Thiruvananthapuram Courts</span>.
+                                            </li><br>
                                             <li>
                                                 <h5><b><span>15. Others:</b></h5>
                                                 <ul>
