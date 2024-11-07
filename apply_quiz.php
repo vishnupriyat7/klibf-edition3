@@ -41,10 +41,6 @@ include "head-style.php";
                                         $category = mysqli_real_escape_string($conn, $_POST['quiz_category']);
                                         $zone = mysqli_real_escape_string($conn, $_POST['quiz_zone']);
                                         $district = mysqli_real_escape_string($conn, $_POST['quiz_district']);
-                                        if ($category == 3) {
-                                            $zone = 6;
-                                            $district = 15;
-                                        }
                                         $inst_name = mysqli_real_escape_string($conn, $_POST['inst_name']);
                                         $addr_inst = mysqli_real_escape_string($conn, $_POST['addr_inst']);
                                         $principal_cntct = mysqli_real_escape_string($conn, $_POST['principal_cntct']);
@@ -73,8 +69,59 @@ include "head-style.php";
                                         $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
                                         $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
+                                        if ($category == 3) {
+                                            $zone = 6;
+                                            $district = 15;
+                                            $team2_memb1_gndr = $team2_memb2_gndr = null;
+                                            if ($team1_memb1_name == '') {
+                                                $msg .= "Please enter first participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_name == '') {
+                                                $msg .= "Please enter second participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_addr == '') {
+                                                $msg .= "Please enter first participant's address.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_addr == '') {
+                                                $msg .= "Please enter second participant's address.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_cntct == '') {
+                                                $msg .= "Please enter first participant's contact no.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_cntct == '') {
+                                                $msg .= "Please enter second participant's contact no.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_mail == '') {
+                                                $msg .= "Please enter first participant's mail id.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_mail == '') {
+                                                $msg .= "Please enter second participant's mail id.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                        } else {
+                                            if ($team1_memb1_name == '') {
+                                                $msg .= "Please enter first participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_name == '') {
+                                                $msg .= "Please enter second participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_class == '') {
+                                                $msg .= "Please enter first participant's class / course.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_class == '') {
+                                                $msg .= "Please enter second participant's class / course.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                        }
                                         if ($category != 3) {
                                             $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
+                                            $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
+                                            if ($sel_reg_quiz_res->num_rows > 0) {
+                                                $msg .= "You have already registered with this contact number.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                        } else {
+                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct' or team1_mem2_cntct = '$team1_memb1_cntct' or team1_mem1_cntct = '$team1_memb2_cntct' or team1_mem1_cntct = '$team1_memb2_cntct'";
                                             $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
                                             if ($sel_reg_quiz_res->num_rows > 0) {
                                                 $msg .= "You have already registered with this contact number.<BR>";
@@ -88,7 +135,7 @@ include "head-style.php";
                                                </div>"; //printing error if found in validation
                                         } else {
                                             $insrt_reg_quiz_query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$zone', '$district', '$inst_name', '$addr_inst', '$principal_cntct', '$faclty_name', '$faclty_cntct', '$team1_memb1_name', '$team1_memb1_class', '$team1_memb1_gndr', '$team1_memb1_mail', '$team1_memb1_cntct', '$team1_memb1_addr', '$team1_memb2_name', '$team1_memb2_class', '$team1_memb2_gndr', '$team1_memb2_mail', '$team1_memb2_cntct', '$team1_memb2_addr', '$team2_memb1_name', '$team2_memb1_class', '$team2_memb1_gndr', '$team2_memb1_mail', '$team2_memb1_cntct', '$team2_memb2_name', '$team2_memb2_class', '$team2_memb2_gndr', '$team2_memb2_mail', '$team2_memb2_cntct', '$current_date')";
-                                             // <button type='button' class='btn-info' onclick='printQuiz(" . $quiz_reg_id['id'] . ")'>Print</button>
+                                            // <button type='button' class='btn-info' onclick='printQuiz(" . $quiz_reg_id['id'] . ")'>Print</button>
                                             $result = mysqli_query($conn, $insrt_reg_quiz_query);
                                             if ($result) {
                                                 if ($category != 3) {
@@ -99,9 +146,7 @@ include "head-style.php";
                                                 $sel_registered_res = mysqli_query($conn, $sel_registered_query);
                                                 $quiz_reg_id = $sel_registered_res->fetch_assoc();
                                                 $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                You have been registered successfully. Your Registration Number is " . $quiz_reg_id['id'] . ". 
-                                               
-
+                                                You have been registered successfully. Your Registration Number is 030" . $quiz_reg_id['id'] . ". 
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                             } else {
@@ -157,9 +202,9 @@ include "head-style.php";
                                                             $quiz_zones = $quiz_zone_res->fetch_all();
                                                             ?>
                                                             <select class="form-control form-group" name="quiz_zone"
-                                                                id="quiz_zone" style="height:35px;" require="required"
+                                                                id="quiz_zone" style="height:35px;" required
                                                                 onclick="selectDistrict();">
-                                                                <option value="0">*Select Zone</option>
+                                                                <option value="">*Select Zone</option>
                                                                 <?php foreach ($quiz_zones as $quiz_zone) { ?>
                                                                     <option value="<?= $quiz_zone[0] ?>">
                                                                         <?= $quiz_zone[2] ?>
@@ -176,9 +221,8 @@ include "head-style.php";
                                                             $districts = $district_res->fetch_all();
                                                             ?>
                                                             <select class="form-control form-group" name="quiz_district"
-                                                                id="quiz_district" style="height:35px;"
-                                                                require="required">
-                                                                <option value="0">*Select District</option>
+                                                                id="quiz_district" style="height:35px;" required>
+                                                                <option value="">*Select District</option>
                                                                 <?php foreach ($districts as $district) { ?>
                                                                     <option value="<?= $district[0] ?>">
                                                                         <?= $district[2] ?>
@@ -237,7 +281,7 @@ include "head-style.php";
                                                                 <input type="text" class="form-control"
                                                                     name="team1_memb1_name"
                                                                     placeholder="*Name of first participant"
-                                                                    id="team1_memb1_name">
+                                                                    id="team1_memb1_name" required>
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
@@ -270,12 +314,11 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team1_memb1_cntct"
-                                                                    placeholder="*Contact Number"
-                                                                    id="team1_memb1_cntct">
+                                                                    placeholder="Contact Number" id="team1_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team1_memb1_mail" placeholder="* E-mail"
+                                                                    name="team1_memb1_mail" placeholder="E-mail"
                                                                     id="team1_memb1_mail">
                                                             </div>
                                                         </div>
@@ -284,7 +327,7 @@ include "head-style.php";
                                                                 <input type="text" class="form-control"
                                                                     name="team1_memb2_name"
                                                                     placeholder="*Name of second participant"
-                                                                    id="team1_memb2_name">
+                                                                    id="team1_memb2_name" required>
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <label class="radio-inline">
@@ -317,12 +360,11 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team1_memb2_cntct"
-                                                                    placeholder="*Contact Number"
-                                                                    id="team1_memb2_cntct">
+                                                                    placeholder="Contact Number" id="team1_memb2_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team1_memb2_mail" placeholder="* E-mail"
+                                                                    name="team1_memb2_mail" placeholder="E-mail"
                                                                     id="team1_memb2_mail">
                                                             </div>
                                                         </div>
@@ -369,12 +411,11 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team2_memb1_cntct"
-                                                                    placeholder="*Contact Number"
-                                                                    id="team2_memb1_cntct">
+                                                                    placeholder="Contact Number" id="team2_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team2_memb1_mail" placeholder="* E-mail"
+                                                                    name="team2_memb1_mail" placeholder="E-mail"
                                                                     id="team2_memb1_mail">
                                                             </div>
                                                         </div>
@@ -413,12 +454,11 @@ include "head-style.php";
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
                                                                     name="team2_memb2_cntct"
-                                                                    placeholder="*Contact Number"
-                                                                    id="team2_memb2_cntct">
+                                                                    placeholder="Contact Number" id="team2_memb2_cntct">
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="email" class="form-control"
-                                                                    name="team2_memb2_mail" placeholder="* E-mail"
+                                                                    name="team2_memb2_mail" placeholder="E-mail"
                                                                     id="team2_memb2_mail">
                                                             </div>
                                                         </div>
@@ -537,73 +577,73 @@ include "head-style.php";
             dataType: "json",
             success: function (data) {
                 var printWindow = window.open('', '', 'height=800,width=600');
-            printWindow.document.write('<html><head><title>');
-            printWindow.document.write('</title></head><body align="center">');
-            // printWindow.document.write('<img src="');
-            // printWindow.document.write('./assets/img/logo/header2.jpg');
-            // printWindow.document.write('" height="150" width="100%">');
-            printWindow.document.write("<div align='center'>");
-            printWindow.document.write("<table border='3'>");
-            printWindow.document.write('<thead></thead><tbody><tr><th colspan="2">House / Organization</th></tr><tr><td>Name  <td>');
-            // printWindow.document.write($("#comp_name").val());
-            printWindow.document.write('</td></tr><tr><td>Year of Establishment  </td><td>');
-            // printWindow.document.write($("#estb_year").val());
-            printWindow.document.write('</td></tr><tr><td>Registration Number  </td><td>');
-            // printWindow.document.write($("#reg_no").val());
-            printWindow.document.write('</td></tr><tr><td>GST Number  </td><td>');
-            // printWindow.document.write($("#gst_no").val());
-            printWindow.document.write('</td></tr><tr><td>Language(s) in which books are published  </td><td>');
-            // printWindow.document.write($("#book_lang").val());
-            printWindow.document.write('</td></tr><tr><td>Number of Titles Published  </td><td>');
-            // printWindow.document.write($("#title_no").val());
-            printWindow.document.write('</td></tr><tr><td>Nature of Organization  </td><td>');
-            // var org_nature = $("#org_nature").val();
-            // if (org_nature == 'P') {
-            //     printWindow.document.write('Publisher');
-            // } else {
-            //     printWindow.document.write('Publisher & Distributer</td></tr><tr><td>Major Publishing House(s) which are distributed  </td><td>');
-            //     printWindow.document.write($("#mjr_pub_val").val());
-            // }
-            printWindow.document.write('</td></tr><tr><th colspan="2">Head of the Publishing House / Organization</th></tr><tr><td>Name  </td><td>');
-            // printWindow.document.write($("#head_name").val());
-            printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
-            // printWindow.document.write($("#head_addr").val());
-            printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
-            // printWindow.document.write($("#head_email").val());
-            printWindow.document.write('</td></tr><tr><td>Website  </td><td>');
-            // printWindow.document.write($("#head_site").val());
-            printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
-            // printWindow.document.write($("#head_mobile").val());
-            printWindow.document.write('</td></tr><tr><th colspan="2">Contact (In-charge) Person for the Fair</th></tr><tr><td>Name  </td><td>');
-            // printWindow.document.write($("#prsn_name").val());
-            printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
-            // printWindow.document.write($("#prsn_addr").val());
-            printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
-            // printWindow.document.write($("#prsn_email").val());
-            printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
-            // printWindow.document.write($("#prsn_mobile").val());
-            printWindow.document.write('</td></tr><tr><td>WhatsApp Number  </td><td>');
-            // printWindow.document.write($("#whatsapp").val());
-            printWindow.document.write('</td></tr><tr><td>Estimated amount to remit (including GST)</td><td>');
-            printWindow.document.write('₹.');
-            // printWindow.document.write($("#totamt").val());
-            printWindow.document.write('/-</td></tr><tr><td>FASCIA Text  </td><td>');
-            // printWindow.document.write($("#fascia").val());
-            printWindow.document.write('</td></tr><tr><td>Remarks  </td><td>');
-            // printWindow.document.write($("#remark").val());
-            printWindow.document.write('</td></tr><tr><td>Logo  </td><td>');
-            // const [file] = logo.files
-            // if (file) {
-            //     printWindow.document.write('<img id = "blah" height="50px" width="100px" src = "');
-            //     printWindow.document.write(URL.createObjectURL(file));
-            //     printWindow.document.write('" alt = "your image " />');
-            // }
-            printWindow.document.write('<img src="');
-            printWindow.document.write('">');
-            printWindow.document.write('</tr></tr></tbody></table>');
-            printWindow.document.write("</div>");
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
+                printWindow.document.write('<html><head><title>');
+                printWindow.document.write('</title></head><body align="center">');
+                // printWindow.document.write('<img src="');
+                // printWindow.document.write('./assets/img/logo/header2.jpg');
+                // printWindow.document.write('" height="150" width="100%">');
+                printWindow.document.write("<div align='center'>");
+                printWindow.document.write("<table border='3'>");
+                printWindow.document.write('<thead></thead><tbody><tr><th colspan="2">House / Organization</th></tr><tr><td>Name  <td>');
+                // printWindow.document.write($("#comp_name").val());
+                printWindow.document.write('</td></tr><tr><td>Year of Establishment  </td><td>');
+                // printWindow.document.write($("#estb_year").val());
+                printWindow.document.write('</td></tr><tr><td>Registration Number  </td><td>');
+                // printWindow.document.write($("#reg_no").val());
+                printWindow.document.write('</td></tr><tr><td>GST Number  </td><td>');
+                // printWindow.document.write($("#gst_no").val());
+                printWindow.document.write('</td></tr><tr><td>Language(s) in which books are published  </td><td>');
+                // printWindow.document.write($("#book_lang").val());
+                printWindow.document.write('</td></tr><tr><td>Number of Titles Published  </td><td>');
+                // printWindow.document.write($("#title_no").val());
+                printWindow.document.write('</td></tr><tr><td>Nature of Organization  </td><td>');
+                // var org_nature = $("#org_nature").val();
+                // if (org_nature == 'P') {
+                //     printWindow.document.write('Publisher');
+                // } else {
+                //     printWindow.document.write('Publisher & Distributer</td></tr><tr><td>Major Publishing House(s) which are distributed  </td><td>');
+                //     printWindow.document.write($("#mjr_pub_val").val());
+                // }
+                printWindow.document.write('</td></tr><tr><th colspan="2">Head of the Publishing House / Organization</th></tr><tr><td>Name  </td><td>');
+                // printWindow.document.write($("#head_name").val());
+                printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
+                // printWindow.document.write($("#head_addr").val());
+                printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
+                // printWindow.document.write($("#head_email").val());
+                printWindow.document.write('</td></tr><tr><td>Website  </td><td>');
+                // printWindow.document.write($("#head_site").val());
+                printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
+                // printWindow.document.write($("#head_mobile").val());
+                printWindow.document.write('</td></tr><tr><th colspan="2">Contact (In-charge) Person for the Fair</th></tr><tr><td>Name  </td><td>');
+                // printWindow.document.write($("#prsn_name").val());
+                printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
+                // printWindow.document.write($("#prsn_addr").val());
+                printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
+                // printWindow.document.write($("#prsn_email").val());
+                printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
+                // printWindow.document.write($("#prsn_mobile").val());
+                printWindow.document.write('</td></tr><tr><td>WhatsApp Number  </td><td>');
+                // printWindow.document.write($("#whatsapp").val());
+                printWindow.document.write('</td></tr><tr><td>Estimated amount to remit (including GST)</td><td>');
+                printWindow.document.write('₹.');
+                // printWindow.document.write($("#totamt").val());
+                printWindow.document.write('/-</td></tr><tr><td>FASCIA Text  </td><td>');
+                // printWindow.document.write($("#fascia").val());
+                printWindow.document.write('</td></tr><tr><td>Remarks  </td><td>');
+                // printWindow.document.write($("#remark").val());
+                printWindow.document.write('</td></tr><tr><td>Logo  </td><td>');
+                // const [file] = logo.files
+                // if (file) {
+                //     printWindow.document.write('<img id = "blah" height="50px" width="100px" src = "');
+                //     printWindow.document.write(URL.createObjectURL(file));
+                //     printWindow.document.write('" alt = "your image " />');
+                // }
+                printWindow.document.write('<img src="');
+                printWindow.document.write('">');
+                printWindow.document.write('</tr></tr></tbody></table>');
+                printWindow.document.write("</div>");
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
             }
         });
     }
