@@ -9,7 +9,7 @@
                     <!-- <img src="assets/img/about-msg/dpy-spkr.jpeg" alt="" class="img-fluid"> -->
                     <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-2">
                         <div class="spkr-thumb text-center wow fadeInLeft slow">
-                            <iframe width="500" height="300" src="https://www.youtube.com/embed/2mDvh-BsHWI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="500" height="300" src="https://www.youtube.com/embed/ue-xdi1RzAw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen></iframe>
                             </iframe>
                             <!-- <p class="text-lg text-center mt-3">Shri. A N Shamseer, Hon’ble Speaker, Kerala Legislative Assembly</p> -->
                         </div>
@@ -34,14 +34,14 @@
             <div class="col-md-6 row" data-aos="fade-right">
                 <div class="content">
                     <h3>Secretary's Words</h3>
-                    <!-- <img src="assets/img/about-msg/sec.jpeg" alt="" class="img-fluid"> -->
-                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-2">
+                    <img src="assets/img/about-msg/sec.jpeg" alt="" class="img-fluid">
+                    <!-- <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-2">
                         <div class="spkr-thumb text-center wow fadeInLeft slow">
                             <iframe width="500" height="300" src="https://www.youtube.com/embed/2mDvh-BsHWI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen></iframe>
                             </iframe>
-                            <!-- <p class="text-lg text-center mt-3">Shri. A N Shamseer, Hon’ble Speaker, Kerala Legislative Assembly</p> -->
+                            <p class="text-lg text-center mt-3">Shri. A N Shamseer, Hon’ble Speaker, Kerala Legislative Assembly</p>
                         </div>
-                    </div>
+                    </div> -->
                     <p>
                         After the remarkable success of the first and second editions, the Kerala Legislature International Book Festival (KLIBF) now embarks on a vibrant journey towards its much-anticipated third edition. With the powerful slogan, "Vaayanayanu Lahari" at its heart,...
                         <!-- Legislatures are law-making bodies, and this new tradition of conducting book festivals by

@@ -20,8 +20,8 @@
         <div class="content">
           <h3>About Us</h3>
           <p>
-            The Kerala Legislature International Book Festival is a coalescence of cultural economic and political developments. The Book Festival encompasses the world. Innovative ideas are discussed and shared to bring significant changes in our society. A retreat from the mundane is the trigger behind this event. Kerala is on the road to create more of its celebrated models. Our endeavor to create a better world will be futile unless our people are knowledgeable. Reading helps to refine our contemplation and perception. It is insignificant whether burgeoning thoughts come from a school kid, teenager or youth. Exhilarating visions soar from young minds and hence it is our prerogative to ensure the whole hearted participation of our youth.<br>
-            The Kerala Legislature International Book Festival offers diverse opportunities for the brilliant participation of students and youth by way of debates, quiz competitions, women parliament and the like. Their involvement was overwhelming as evident from the earlier editions of the festival. The book festival is an opportunity to experience the lesser explored path..
+            The Kerala Legislature International Book Festival is a coalescence of cultural economic and political developments. The Book Festival encompasses the world. Innovative ideas are discussed and shared to bring significant changes in our society. A retreat from the mundane is the trigger behind this event. Kerala is on the road to create more of its celebrated models. Our endeavor to create a better world will be futile unless our people are knowledgeable. Reading helps to refine our contemplation and perception. It is insignificant whether burgeoning thoughts come from a school kid, teenager or youth. Exhilarating visions soar from young minds and hence it is our prerogative to ensure the whole hearted participation of our youth.<br><br>
+            The Kerala Legislature International Book Festival offers diverse opportunities for the brilliant participation of students and youth by way of debates, quiz competitions, women parliament and the like. Their involvement was overwhelming as evident from the earlier editions of the festival. The book festival is an opportunity to experience the lesser explored path. Seminars and discussion are worthwhile only when reading is nurtured. Reading kindles the social responsibility in us. We tend to be more receptive to challenges and socially committed to the well being of fellow citizens. A signature event of the Kerala Legislative Assembly, the Book Festival, is an instance of yet another Kerala Model with the profound participation of the populace.
 
           </p> <a href="about-inner-page.php">Read More...</a>
           </p>
@@ -38,7 +38,8 @@
           <h3>Speaker's Words</h3>
           <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-2">
             <div class="spkr-thumb text-center wow fadeInLeft slow">
-              <iframe width="600" height="300" src="https://www.youtube.com/embed/2mDvh-BsHWI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen></iframe>
+           
+              <iframe width="600" height="300" src="https://www.youtube.com/embed/2A3DEm3AiPE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen></iframe>
               </iframe>
               <!-- <p class="text-lg text-center mt-3">Shri. A N Shamseer, Hon’ble Speaker, Kerala Legislative Assembly</p> -->
             </div>
