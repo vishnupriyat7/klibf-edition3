@@ -69,6 +69,10 @@ include "head-style.php";
                                         $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
                                         $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
+                                        if(strlen($team1_memb1_cntct) < 10 || strlen($team1_memb1_cntct) > 11 || strlen($team1_memb2_cntct) < 10 || strlen($team1_memb2_cntct) > 11) {
+                                            $msg .= "Partcipants contact number should contain 10 digits.<BR>";
+                                                $status = "NOTOK";
+                                        }
                                         if ($category == 3) {
                                             $zone = 6;
                                             $district = 15;
@@ -97,6 +101,12 @@ include "head-style.php";
                                             } elseif ($team1_memb2_mail == '') {
                                                 $msg .= "Please enter second participant's mail id.<BR>";
                                                 $status = "NOTOK";
+                                            }                                            
+                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct' or team1_mem2_cntct = '$team1_memb1_cntct' or team1_mem1_cntct = '$team1_memb2_cntct' or team1_mem1_cntct = '$team1_memb2_cntct'";
+                                            $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
+                                            if ($sel_reg_quiz_res->num_rows > 0) {
+                                                $msg .= "You have already registered with this contact number.<BR>";
+                                                $status = "NOTOK";
                                             }
                                         } else {
                                             if ($team1_memb1_name == '') {
@@ -112,16 +122,15 @@ include "head-style.php";
                                                 $msg .= "Please enter second participant's class / course.<BR>";
                                                 $status = "NOTOK";
                                             }
-                                        }
-                                        if ($category != 3) {
-                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
-                                            $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
-                                            if ($sel_reg_quiz_res->num_rows > 0) {
-                                                $msg .= "You have already registered with this contact number.<BR>";
-                                                $status = "NOTOK";
+                                            if(strlen($team2_memb1_cntct) < 10 || strlen($team2_memb1_cntct) > 11 || strlen($team2_memb2_cntct) < 10 || strlen($team2_memb2_cntct) > 11) {
+                                                $msg .= "Partcipants contact number should contain 10 digits.<BR>";
+                                                    $status = "NOTOK";
                                             }
-                                        } else {
-                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct' or team1_mem2_cntct = '$team1_memb1_cntct' or team1_mem1_cntct = '$team1_memb2_cntct' or team1_mem1_cntct = '$team1_memb2_cntct'";
+                                            if(strlen($principal_cntct) < 10 || strlen($principal_cntct) > 11 || strlen($faclty_cntct) < 10 || strlen($faclty_cntct) > 11) {
+                                                $msg .= "Contact number should contain 10 digits.<BR>";
+                                                    $status = "NOTOK";
+                                            }
+                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
                                             $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
                                             if ($sel_reg_quiz_res->num_rows > 0) {
                                                 $msg .= "You have already registered with this contact number.<BR>";
@@ -173,14 +182,12 @@ include "head-style.php";
                                                     <div class="row align-items-center justify-content-center">
                                                         <div class="form-group col-xxl-12 col-xl-12 col-lg-12 col-sm-12 d-flex flex-row">
                                                             <label class="me-3">*Select Category:</label>
-                                                            
                                                             <?php
                                                             $quiz_cat_qry = "SELECT * FROM quiz_category;";
                                                             $quiz_cat_stmt = $conn->prepare($quiz_cat_qry);
                                                             $quiz_cat_stmt->execute();
                                                             $quiz_cat_res = $quiz_cat_stmt->get_result();
                                                             $quiz_categories = $quiz_cat_res->fetch_all();
-
                                                             $first = true; // Variable to check if it's the first radio button
                                                             foreach ($quiz_categories as $quiz_category) { ?>
                                                                 <div class="form-check me-3">
@@ -324,8 +331,7 @@ include "head-style.php";
                                                             </div>
                                                             <div class="form-group col-12">
                                                                 <input type="number" class="form-control"
-                                                                    name="team1_memb1_cntct"
-                                                                    placeholder="*Contact Number"
+                                                                    name="team1_memb1_cntct" placeholder="*Contact Number"
                                                                     id="team1_memb1_cntct">
                                                             </div>
                                                             <div class="form-group col-12">

@@ -16,6 +16,9 @@ switch ($user['user_type']) {
     case 'PC':
         include "program_committee/sidebar.php";
         break;
+    case 'MC':
+        include "media_committee/sidebar.php";
+        break;
     case 'FC':
         include "sidebar_finance.php";
         break;
@@ -52,6 +55,9 @@ switch ($user['user_type']) {
                     break;
                 case 'PC':
                     include "program_committee/dashboard.php";
+                    break;
+                case 'MC':
+                    include "media_committee/dashboard.php";
                     break;
                 case 'FC':
                     include "sidebar_finance.php";
