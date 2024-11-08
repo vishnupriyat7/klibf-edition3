@@ -19,7 +19,7 @@ include "sidebar.php";
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php">
+                                <a class="dropdown-item" href="../logout.php">
                                     <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                                     <span class="align-middle" data-key="t-logout">Logout</span>
                                 </a>
@@ -39,7 +39,7 @@ include "sidebar.php";
                         <div class="card-body overflow-auto">
                         <button onclick="exportTableToExcel('example', 'stallbookingreport-data')"
                         class="btn btn-primary">Export Table Data To Excel File</button>
-                            <div class="card" style="width:150vw;">
+                            <div class="card" style="width:200vw;">
                                 <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                               
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
@@ -182,7 +182,8 @@ include "sidebar.php";
                                                 </td>
                                                 <td>
                                                     <img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>"
-                                                        height="70vh">
+                                                        height="70vh"><br>
+                                                        <?= $logo; ?>
                                                 </td>
                                                 <td>
                                                     <?= $fascia; ?>
