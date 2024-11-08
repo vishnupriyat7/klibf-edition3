@@ -598,6 +598,7 @@ include "head-style.php";
             success: function(data) {
                 $('#quiz_district').empty();
                 var add_slot = "";
+                $("#quiz_district").append('<option value="">Select District</option>');
                 $.each(data, function(key, value) {
                     $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
                 });
