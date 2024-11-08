@@ -69,10 +69,10 @@ include "head-style.php";
                                         $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
                                         $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
                                         $current_date = (new \DateTime())->format('Y-m-d H:i:s');
-                                        if(strlen($team1_memb1_cntct) < 10 || strlen($team1_memb1_cntct) > 11 || strlen($team1_memb2_cntct) < 10 || strlen($team1_memb2_cntct) > 11) {
-                                            $msg .= "Partcipants contact number should contain 10 digits.<BR>";
-                                                $status = "NOTOK";
-                                        }
+                                        // if(strlen($team1_memb1_cntct) < 10 || strlen($team1_memb1_cntct) > 11 || strlen($team1_memb2_cntct) < 10 || strlen($team1_memb2_cntct) > 11) {
+                                        //     $msg .= "Partcipants contact number should contain 10 digits.<BR>";
+                                        //         $status = "NOTOK";
+                                        // }
                                         if ($category == 3) {
                                             $zone = 6;
                                             $district = 15;
@@ -122,14 +122,14 @@ include "head-style.php";
                                                 $msg .= "Please enter second participant's class / course.<BR>";
                                                 $status = "NOTOK";
                                             }
-                                            if(strlen($team2_memb1_cntct) < 10 || strlen($team2_memb1_cntct) > 11 || strlen($team2_memb2_cntct) < 10 || strlen($team2_memb2_cntct) > 11) {
-                                                $msg .= "Partcipants contact number should contain 10 digits.<BR>";
-                                                    $status = "NOTOK";
-                                            }
-                                            if(strlen($principal_cntct) < 10 || strlen($principal_cntct) > 11 || strlen($faclty_cntct) < 10 || strlen($faclty_cntct) > 11) {
-                                                $msg .= "Contact number should contain 10 digits.<BR>";
-                                                    $status = "NOTOK";
-                                            }
+                                            // if(strlen($team2_memb1_cntct) < 10 || strlen($team2_memb1_cntct) > 11 || strlen($team2_memb2_cntct) < 10 || strlen($team2_memb2_cntct) > 11) {
+                                            //     $msg .= "Partcipants contact number should contain 10 digits.<BR>";
+                                            //         $status = "NOTOK";
+                                            // }
+                                            // if(strlen($principal_cntct) < 10 || strlen($principal_cntct) > 11 || strlen($faclty_cntct) < 10 || strlen($faclty_cntct) > 11) {
+                                            //     $msg .= "Contact number should contain 10 digits.<BR>";
+                                            //         $status = "NOTOK";
+                                            // }
                                             $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
                                             $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
                                             if ($sel_reg_quiz_res->num_rows > 0) {
