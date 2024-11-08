@@ -155,7 +155,7 @@ include "head-style.php";
                                                 $sel_registered_res = mysqli_query($conn, $sel_registered_query);
                                                 $quiz_reg_id = $sel_registered_res->fetch_assoc();
                                                 $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                You have been registered successfully. Your Registration Number is 030" . $quiz_reg_id['id'] . ". 
+                                                You have been registered successfully. Your Registration Number is KLIBF03-Q" . $quiz_reg_id['id'] . ". 
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                             } else {
@@ -390,6 +390,9 @@ include "head-style.php";
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="d-flex justify-content-end mt-4">
+                                                <a class="mr-2 btn btn-primary" id="team2_dtls" onclick="displayTeam2()">Team 2 Details</a>
+                                            </div>
                                             <div class="card mt-2" id="team2">
                                                 <div class="card-header text-center fw-bold">
                                                     Team 2
@@ -490,13 +493,13 @@ include "head-style.php";
                                                 <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
                                                     target="#preview-quiz-modal"><span class="text-white pr-3"><i
                                                             class="fa fa-eye"></i></span>Preview</button> -->
-                                                    <button type="submit" class="btn btn-bordered active btn-block mt-3"
-                                                        name="save-quiz" id="register-quiz">
-                                                        <span class="text-white pr-3">
-                                                            <i class="fas fa-paper-plane"></i>
-                                                        </span>Register</button>
-                                                </div>
+                                                <button type="submit" class="btn btn-bordered btn-success btn-block mt-3"
+                                                    name="save-quiz" id="register-quiz">
+                                                    <span class="text-white pr-3">
+                                                        <i class="fas fa-paper-plane"></i>
+                                                    </span>Register</button>
                                             </div>
+                                        </div>
                                     </form>
                                     <p class="form-message"></p>
                                 </div>
@@ -540,57 +543,53 @@ include "head-style.php";
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
-    // function hideZoneDistInst() {
-    //     var catgry = document.getElementByID("quiz_category").value;
-    //     const addressDiv1 = document.getElementById('tm1_meb1_addr');
-    //     const addressDiv2 = document.getElementById('tm1_meb2_addr');
-    //     if (catgry == '3') {
-    //         document.getElementById("quiz_zone").style.display = "none";
-    //         document.getElementById("quiz_district").style.display = "none";
-    //         document.getElementById("inst_details").style.display = "none";
-    //         document.getElementById("team1_memb1_class_course").style.display = "none";
-    //         document.getElementById("team1_memb2_class_course").style.display = "none";
-    //         document.getElementById("team2").style.display = "none";
-    //         addressDiv1.style.display = "block";
-    //         addressDiv2.style.display = "block"
-    //     } else {
-    //         document.getElementById("quiz_zone").style.display = "block";
-    //         document.getElementById("quiz_district").style.display = "block";
-    //         document.getElementById("inst_details").style.display = "";
-    //         document.getElementById("team1_memb1_class_course").style.display = "";
-    //         document.getElementById("team1_memb2_class_course").style.display = "";
-    //         document.getElementById("team2").style.display = "";
-    //         addressDiv1.style.display = "none";
-    //         addressDiv2.style.display = "none"
-    //     }
-    // }
+    document.addEventListener("DOMContentLoaded", function() {
+        const defaultCategory = '1';
+        document.querySelector(`input[name="quiz_category"][value="${defaultCategory}"]`).checked = true;
+        hideZoneDistInst();
+    });
 
     function hideZoneDistInst() {
-    // Get the selected radio button value for category
-    const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
-    const addressDiv1 = document.getElementById('tm1_meb1_addr');
-    const addressDiv2 = document.getElementById('tm1_meb2_addr');
-    
-    if (catgry == '3') {
-        document.getElementById("quiz_zone").style.display = "none";
-        document.getElementById("quiz_district").style.display = "none";
-        document.getElementById("inst_details").style.display = "none";
-        document.getElementById("team1_memb1_class_course").style.display = "none";
-        document.getElementById("team1_memb2_class_course").style.display = "none";
-        document.getElementById("team2").style.display = "none";
-        addressDiv1.style.display = "block";
-        addressDiv2.style.display = "block";
-    } else {
-        document.getElementById("quiz_zone").style.display = "block";
-        document.getElementById("quiz_district").style.display = "block";
-        document.getElementById("inst_details").style.display = "";
-        document.getElementById("team1_memb1_class_course").style.display = "";
-        document.getElementById("team1_memb2_class_course").style.display = "";
-        document.getElementById("team2").style.display = "";
-        addressDiv1.style.display = "none";
-        addressDiv2.style.display = "none";
+        // Get the selected radio button value for category
+        const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
+        const addressDiv1 = document.getElementById('tm1_meb1_addr');
+        const addressDiv2 = document.getElementById('tm1_meb2_addr');
+        const team2_details = document.getElementById("team2_dtls");
+
+        if (catgry === '3') {
+            document.getElementById("quiz_zone").style.display = "none";
+            document.getElementById("quiz_district").style.display = "none";
+            document.getElementById("inst_details").style.display = "none";
+            document.getElementById("team1_memb1_class_course").style.display = "none";
+            document.getElementById("team1_memb2_class_course").style.display = "none";
+            team2_details.style.display = "none";
+            // console.log("Display property of team2_dtls:", document.getElementById("team2_dtls").style.display);
+
+            document.getElementById("team2").style.display = "none";
+            addressDiv1.style.display = "block";
+            addressDiv2.style.display = "block";
+        } else if (catgry === '1' || catgry === '2') {
+            document.getElementById("quiz_zone").style.display = "block";
+            document.getElementById("quiz_district").style.display = "block";
+            document.getElementById("inst_details").style.display = "";
+            document.getElementById("team1_memb1_class_course").style.display = "";
+            document.getElementById("team1_memb2_class_course").style.display = "";
+            document.getElementById("team2").style.display = "none";
+            team2_details.style.display = "block";
+            addressDiv1.style.display = "none";
+            addressDiv2.style.display = "none";
+        }
     }
-}
+
+    function displayTeam2() {
+
+        const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
+        if (catgry === '1' || catgry === '2') {
+            document.getElementById("team2").style.display = "block";
+        }
+    }
+
+
 
     function selectDistrict() {
         var zone = document.getElementById("quiz_zone").value;
@@ -605,6 +604,7 @@ include "head-style.php";
             success: function(data) {
                 $('#quiz_district').empty();
                 var add_slot = "";
+                $("#quiz_district").append('<option value="">Select District</option>');
                 $.each(data, function(key, value) {
                     $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
                 });
