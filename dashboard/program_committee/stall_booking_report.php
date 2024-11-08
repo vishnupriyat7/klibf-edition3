@@ -35,7 +35,7 @@
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'stallbookingreport-data')" class="btn btn-primary">Export Table Data To Excel File</button>
 
-                            <div class="card" style="width:150vw;">
+                            <div class="card" style="width:200vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
                                     <thead>
                                         <tr>
@@ -180,7 +180,7 @@
                                                 </td>
                                                 <td>
 
-                                                    <img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>" height="70vh">
+                                                    <img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>" height="70vh"><br>
                                                     <?= $logo; ?>
 
                                                 </td>
