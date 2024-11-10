@@ -206,15 +206,16 @@
 
                                         <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
                                                 <div class="gallery-wrap">
-                                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank">
+                                                    <a href="https://forms.gle/vh6rzVSnjKe1XYga7" target="_blank">
                                                         <img src="assets/img/contests/book-review-new.jpg" class="img-fluid" alt="">
                                                     </a>
                                                     <div class="gallery-links">
                                                        
-
                                                      <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> 
-                                                     
-                                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+
+                                                        <!-- <a href="https://forms.gle/vh6rzVSnjKe1XYga7" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+
+                                                        <a href="contest-bookreview.php"><i class="bx bx-link"></i><span>Apply</span></a>
                                                         <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
                                                          <!-- <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> -->
