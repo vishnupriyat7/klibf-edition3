@@ -112,11 +112,11 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Storry Telling</h2>
+                    <h2>Cartoon Registration</h2>
                     <ol>
                         <li><a href="index.php">Home</a></li>
                         <li>Online Contests</li>
-                        <li>Storry Telling</li>
+                        <li>Cartoon </li>
                     </ol>
                 </div>
 
@@ -159,7 +159,7 @@
 
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">General Rules</button>&emsp;
 
-                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNApHxzyo9OP8y3582bdaLhGQ1Uc0u5YlrTqCuGrQQOdj-pw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake">Apply</button></a>
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDlDssnneJciIu__SzoDL6ytsUJxqEogvnm6wiekc-AkWNvw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake">Apply</button></a>
                                         &emsp;
                                     </div>
 
@@ -180,7 +180,7 @@
                                     </div>
 
                                     <div class="align-items-center text-center mt-2">
-                                        <h3><b>ഒരു കഥ പറയാം മത്സരം </b></h3>
+                                        <h3><b>കാർട്ടൂൺ മത്സരം </b></h3>
 
                                     </div>
 
@@ -193,15 +193,22 @@
 
                                           
 
-                                            <p>ഒരു കഥ പറയാം മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ,  കഥ പറയുന്നതിന്റെ   (5 മിനുറ്റിൽ  കവിയാത്ത) വീഡിയോ രൂപത്തിൽ ചിത്രീകരിച്ച്, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി,  വാട്സ്ആപ്പ്   മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., കഥയുടെ പേര് എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
+                                            
+                                            <p>കാർട്ടൂൺ മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ, കാർട്ടൂണിന്റെ ഇമേജ് ഫയൽ  അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി,  വാട്സ്ആപ്പ്   മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., ഇൻസ്റ്റാഗ്രാം ഐ.ഡി. എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                            <span class="fw-bold">"സോഷ്യൽ മീഡിയ കാലത്തെ വായന” </span>എന്ന വിഷയം  പ്രമേയമാക്കിയുള്ള കാർട്ടൂണുകളാണ് അപ്‌ലോഡ് ചെയ്യേണ്ടത്. 
+                                            </p>
+                                        </li>
 
                                         <li>
-                                            <p class="fw-bold">സബ്‌ ജൂനിയേർസ്(10വയസ്സു വരെ), ജൂനിയേഴ്സ് (11  മുതൽ 18വയസ്സു വരെ), സീനിയേഴ്സ് (18 മുതൽ 40 വയസ്സ് വരെ), മാസ്റ്റേഴ്സ് (40 വയസ്സിനു മുകളിൽ) എന്നീ നാല് വിഭാഗങ്ങളിലാണ് ഒരു കഥ പറയാം മത്സരം സംഘടിപ്പിക്കുന്നത്.
+                                            <p class="fw-bold">ജൂനിയേഴ്സ് (18വയസ്സു വരെ), സീനിയേഴ്സ് (18 മുതൽ 40 വയസ്സ് വരെ), മാസ്റ്റേഴ്സ് (40 വയസ്സിനു മുകളിൽ) എന്നീ മൂന്ന് വിഭാഗങ്ങളിലാണ് കാർട്ടൂൺ മത്സരം സംഘടിപ്പിക്കുന്നത്.
 
                                             </p>
                                         </li>
                                         <li>
-                                            <p>വീഡിയോ അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുൻപായി, പൊതു നിർദ്ദേശങ്ങളും പാലിക്കേണ്ടതാണ്.</p>
+                                            <p>ഇമേജ് അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുൻപായി, പൊതു നിർദ്ദേശങ്ങളും പാലിക്കേണ്ടതാണ്.</p>
 
                                         </li>
                                         <li>
@@ -211,8 +218,6 @@
                                             <p>വീഡിയോ അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുൻപായി, പൊതു നിർദ്ദേശങ്ങളും പാലിക്കേണ്ടതാണ്.</p>
 
                                             <p>എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി -2024 നവംബർ 30</p>
-
-
 
                                         </div> -->
 

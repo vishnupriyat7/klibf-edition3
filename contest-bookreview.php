@@ -149,15 +149,22 @@
                                 <img class="mx-auto d-block img-fluid" src="./assets/img/contests/bookrw.jpeg" style="width: 100%;">
                             </div> -->
 
-                            <div class="card-body mt-5">
+                            <div class="card-body mt-2">
                                 <div class="tab-content malayalam-text">
                                     <!-- <div class="d-flex justify-content-end">
                                         <button class="btn btn-success horizontal-shake" data-bs-toggle="modal" data-bs-target="#myModal">Result</button>&emsp;
                                         <a href="https://www.youtube.com/watch?v=tIrV4JzbRF4&list=PLWnK7DhsuZ9CnwyahQsrezv_GYZbDlvQ8" class="mr-2 btn btn-success" target="_blank"><i class="fa fa-download"></i> Entries</a>
                                     </div> -->
+                                    <div class="d-flex justify-content-end">
+
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">General Rules</button>&emsp;
+
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScRPA-RybIk8AAwA1fIrSepncpax-lrbOJTcbemkB-Y8Jjfbw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake">Apply</button></a>
+                                        &emsp;
+                                    </div>
 
                                     <div class="modal" id="myModal">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h4 class="modal-title"></h4>
@@ -165,7 +172,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="embed-responsive embed-responsive-16by9">
-                                                        <iframe src="./contestsresult/result-bookreview.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
+                                                        <iframe src="assets/img/contests/general_rules.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,21 +191,28 @@
                                         <li>
                                             <!-- <h3>Rules & Regulations</h3> -->
 
-                                            <p>പുസ്തകാസ്വാദന മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ, വായിച്ച ഒരു പുസ്തകത്തിന്റെ ആസ്വാദനം (5 മിനുറ്റിൽ കവിയാത്ത) വീഡിയോ രൂപത്തിൽ ചിത്രീകരിച്ച്, klibf.niyamasabha.org എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി, വാട്സ്ആപ്പ് മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., പുസ്തകത്തിന്റെ പേര്, രചയിതാവ്, പുസ്തകത്തിന്റെ കവർ (ഫോട്ടോ) എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
+                                            <p>പുസ്തകാസ്വാദന മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ, വായിച്ച ഒരു പുസ്തകത്തിന്റെ ആസ്വാദനം (5 മിനുറ്റിൽ കവിയാത്ത) വീഡിയോ രൂപത്തിൽ ചിത്രീകരിച്ച്, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി, വാട്സ്ആപ്പ് മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., പുസ്തകത്തിന്റെ പേര്, രചയിതാവ്, പുസ്തകത്തിന്റെ കവർ (ഫോട്ടോ) എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
 
                                         <li>
                                             <p>ജൂനിയേഴ്സ് (18വയസ്സു വരെ), സീനിയേഴ്സ് (18 മുതൽ 40 വയസ്സ് വരെ), മാസ്റ്റേഴ്സ് (40 വയസ്സിനു മുകളിൽ) എന്നീ മൂന്ന് വിഭാഗങ്ങളിലാണ് പുസ്തകാസ്വാദന മത്സരം സംഘടിപ്പിക്കുന്നത്.
 
                                             </p>
                                         </li>
-                                        <div style="margin-left: 2rem;">
-                                            <p> #വീഡിയോ അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുൻപായി, പൊതു നിർദ്ദേശങ്ങളും പാലിക്കേണ്ടതാണ്.</p>
+                                        <li>
+                                            <p>വീഡിയോ അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുൻപായി, പൊതു നിർദ്ദേശങ്ങളും പാലിക്കേണ്ടതാണ്.</p>
+
+                                        </li>
+                                        <li>
+                                            <p class="fw-bold">എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി -2024 നവംബർ 30</p>
+                                        </li>
+                                        <!-- <div style="margin-left: 2rem;">
+                                            <p>വീഡിയോ അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുൻപായി, പൊതു നിർദ്ദേശങ്ങളും പാലിക്കേണ്ടതാണ്.</p>
 
                                             <p>എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി -2024 നവംബർ 30</p>
 
 
 
-                                        </div>
+                                        </div> -->
 
                                     </ul>
                                     <!-- </div> -->
