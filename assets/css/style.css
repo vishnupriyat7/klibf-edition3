@@ -1507,6 +1507,10 @@ section {
   display: flex;
   justify-content: center;
 }
+.gallery .gallery-wrap img{
+  height: auto;
+  width: 50vw;
+}
 
 .gallery .gallery-wrap .gallery-links a {
   color: #fff;

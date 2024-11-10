@@ -210,9 +210,14 @@
                                                         <img src="assets/img/contests/book-review-new.jpg" class="img-fluid" alt="">
                                                     </a>
                                                     <div class="gallery-links">
-                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
-                                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
-                                                        <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a>
+                                                       
+
+                                                     <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> 
+                                                     
+                                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                                                        <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
+
+                                                         <!-- <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> -->
 
                                                     </div>
                                                 </div>
