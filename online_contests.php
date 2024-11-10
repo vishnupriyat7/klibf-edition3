@@ -94,6 +94,7 @@
                     <ol>
                         <li><a href="index.php">Home</a></li>
                         <li>Contests</li>
+                        <li>Oline Contests</li>
 
                     </ol>
                 </div>
@@ -101,7 +102,7 @@
             </div>
         </section>
         <!-- End Breadcrumbs Section -->
-        <section>
+        <section id="contests" class="gallery">
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
                     <!--end col-->
@@ -185,36 +186,109 @@
                                                 <p>എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി -2024 നവംബർ 30.</p>
                                             </li>
                                         </ul>
-                                        <div style="margin-left: 2rem; font-size: large;">
-                                            <b><span> <u>For more details, pls contact </u></b></span><br>
-                                            <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
-                                                Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
-                                                QUIZ : klibf.quiz@gmail.com<br>
-                                                പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
-                                                പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
-
-                                                ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br>
-
-                                                കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
-                                            </p>
+                                        <div class="modal" id="myModal">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title"></h4>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="embed-responsive embed-responsive-16by9">
+                                                            <iframe src="./contestsresult/contests-result.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
+                                        <div class="row gallery-container text-center" data-aos="fade-up">
+
+                                        <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
+                                                <div class="gallery-wrap">
+                                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank">
+                                                        <img src="assets/img/contests/book-review-new.jpg" class="img-fluid" alt="">
+                                                    </a>
+                                                    <div class="gallery-links">
+                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                                                        <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
+                                                <div class="gallery-wrap">
+                                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank">
+                                                        <img src="assets/img/contests/poetry-rectn-new.jpg" class="img-fluid" alt="">
+                                                    </a>
+                                                    <div class="gallery-links">
+                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                                                        <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-app">
+                                                <div class="gallery-wrap">
+                                                    <img src="assets/img/contests/story-telling-new.jpg" href="https://docs.google.com/forms/d/e/1FAIpQLSenjtwMpymnTi7mF88Iq38uGuackVdFhmM9hkbXjj_XRuX8Qw/viewform" target="_blank" class="img-fluid" alt="">
+                                                    <div class="gallery-links">
+                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSenjtwMpymnTi7mF88Iq38uGuackVdFhmM9hkbXjj_XRuX8Qw/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                                                        <a href="https://www.youtube.com/watch?v=Lg-BCS3p3sA&list=PLWnK7DhsuZ9CJlcJaV1VCbIRuy9tYURIc" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
+                                                <div class="gallery-wrap">
+                                                    <img src="assets/img/contests/enne-swadheenicha-new.jpg" href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" class="img-fluid" alt="">
+                                                    <div class="gallery-links">
+                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                                                        <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+
+                                          
+                                            
+
+                                        </div>
+                                        <div style="margin-left: 2rem; font-size: large;">
+                                                <b><span> <u>For more details, pls contact </u></b></span><br>
+                                                <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                                    Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                                    QUIZ : klibf.quiz@gmail.com<br>
+                                                    പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                                    പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
+
+                                                    ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br>
+
+                                                    കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
+                                                </p>
+                                            </div>
+                                        <!-- </div> -->
+                                        <!--end tab-pane-->
+
+                                        <!--end tab-pane-->
+
+                                        <!--end tab-pane-->
                                     </div>
-                                    <!-- </div> -->
-                                    <!--end tab-pane-->
 
-                                    <!--end tab-pane-->
-
-                                    <!--end tab-pane-->
                                 </div>
-
-
                             </div>
                         </div>
+                        <!--end col-->
+
                     </div>
-                    <!--end col-->
+
                 </div>
-            </div>
         </section>
 
 
