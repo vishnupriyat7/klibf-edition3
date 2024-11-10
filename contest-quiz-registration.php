@@ -139,7 +139,7 @@
                                                 </p>
                                             </li>
                                             <li>
-                                                <p> രജിസ്‌ട്രേഷൻ നടപടികൾ <a href="www.klibf.niyamasabha.org">www.klibf.niyamasabha.org</a> മുഖേന പൂർത്തിയാക്കേണ്ടതാണ്. (വിശദ വിവരങ്ങൾക്ക് വെബ്‌സൈറ്റ് സന്ദർശിക്കുക).</p>
+                                                <p> രജിസ്‌ട്രേഷൻ നടപടികൾ <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> മുഖേന പൂർത്തിയാക്കേണ്ടതാണ്. (വിശദ വിവരങ്ങൾക്ക് വെബ്‌സൈറ്റ് സന്ദർശിക്കുക).</p>
                                             </li>
                                             <li>
                                                 <p>മേഖലാതല മത്സരങ്ങള്‍ക്ക് സ്പോട്ട് രജിസ്‌ട്രേഷൻ ഉണ്ടായിരിക്കുന്നതല്ല.</p>
@@ -326,7 +326,7 @@
                                             </li>
                                         </ul>
 
-                                        <div style="margin-left: 2rem;">
+                                        <div style="margin-left: 2rem; font-size: large;">
                                             <b><span> <u>For more details, pls contact </u></b></span><br>
                                             <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
                                                 Whatsapp : 7356602286 (pls text your queries. No Phone calls)<br>
