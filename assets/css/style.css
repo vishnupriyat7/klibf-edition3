@@ -1518,7 +1518,8 @@ section {
   text-align: center;
   /* background: rgba(103, 176, 209, 0.75); */
   /* background: #117525; */
-  background: rgba(95, 45, 110, 0.9);
+  /* background: rgba(95, 45, 110, 0.9); */
+  background: rgba(3, 61, 92);
 
   transition: 0.3s;
   width: 50%;

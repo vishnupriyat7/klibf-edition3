@@ -65,7 +65,7 @@
       </a>
       <ul>
       <li>
-          <a href="online_contests.php">Online Contests</a>
+          <a href="contests_online.php">Online Contests</a>
         </li>
         <li>
           <a href="contest-quiz-registration.php">Quiz Competition</a>
