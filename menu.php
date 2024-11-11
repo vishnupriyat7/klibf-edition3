@@ -3,7 +3,7 @@
     <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
     <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
     <li class="dropdown">
-      <a href="#">
+      <a href="#contests">
         <span>Contests</span>
       </a>
       <ul>
