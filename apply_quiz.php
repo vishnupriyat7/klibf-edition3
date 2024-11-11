@@ -204,9 +204,7 @@ include "head-style.php";
                                                                         <?= $quiz_category[1] ?>
                                                                     </label>
                                                                 </div>
-                                                            <?php
-                                                                $first = false; // After the first item, set $first to false
-                                                            } ?>
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -230,22 +228,10 @@ include "head-style.php";
                                                             </select>
                                                         </div>
                                                         <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
-                                                            <?php
-                                                            $district_qry = "SELECT * FROM district where id != 15;";
-                                                            $district_stmt = $conn->prepare($district_qry);
-                                                            $district_stmt->execute();
-                                                            $district_res = $district_stmt->get_result();
-                                                            $districts = $district_res->fetch_all();
-                                                            ?>
                                                             <select class="form-control form-group" name="quiz_district"
                                                                 id="quiz_district" style="height:35px;"
                                                                 require="required">
                                                                 <option value="0">*Select District</option>
-                                                                <?php foreach ($districts as $district) { ?>
-                                                                    <option value="<?= $district[0] ?>">
-                                                                        <?= $district[2] ?>
-                                                                    </option>
-                                                                <?php } ?>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -589,8 +575,6 @@ include "head-style.php";
         }
     }
 
-
-
     function selectDistrict() {
         var zone = document.getElementById("quiz_zone").value;
         $.ajax({
@@ -608,89 +592,6 @@ include "head-style.php";
                 $.each(data, function(key, value) {
                     $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
                 });
-            }
-        });
-    }
-
-    function printQuiz(quiz_id) {
-        alert("mhkj");
-        $.ajax({
-            dataType: "json",
-            url: "print_quiz_reg.php",
-            type: "POST",
-            data: {
-                quiz_id: quiz_id
-            },
-            dataType: "json",
-            success: function(data) {
-                var printWindow = window.open('', '', 'height=800,width=600');
-                printWindow.document.write('<html><head><title>');
-                printWindow.document.write('</title></head><body align="center">');
-                // printWindow.document.write('<img src="');
-                // printWindow.document.write('./assets/img/logo/header2.jpg');
-                // printWindow.document.write('" height="150" width="100%">');
-                printWindow.document.write("<div align='center'>");
-                printWindow.document.write("<table border='3'>");
-                printWindow.document.write('<thead></thead><tbody><tr><th colspan="2">House / Organization</th></tr><tr><td>Name  <td>');
-                // printWindow.document.write($("#comp_name").val());
-                printWindow.document.write('</td></tr><tr><td>Year of Establishment  </td><td>');
-                // printWindow.document.write($("#estb_year").val());
-                printWindow.document.write('</td></tr><tr><td>Registration Number  </td><td>');
-                // printWindow.document.write($("#reg_no").val());
-                printWindow.document.write('</td></tr><tr><td>GST Number  </td><td>');
-                // printWindow.document.write($("#gst_no").val());
-                printWindow.document.write('</td></tr><tr><td>Language(s) in which books are published  </td><td>');
-                // printWindow.document.write($("#book_lang").val());
-                printWindow.document.write('</td></tr><tr><td>Number of Titles Published  </td><td>');
-                // printWindow.document.write($("#title_no").val());
-                printWindow.document.write('</td></tr><tr><td>Nature of Organization  </td><td>');
-                // var org_nature = $("#org_nature").val();
-                // if (org_nature == 'P') {
-                //     printWindow.document.write('Publisher');
-                // } else {
-                //     printWindow.document.write('Publisher & Distributer</td></tr><tr><td>Major Publishing House(s) which are distributed  </td><td>');
-                //     printWindow.document.write($("#mjr_pub_val").val());
-                // }
-                printWindow.document.write('</td></tr><tr><th colspan="2">Head of the Publishing House / Organization</th></tr><tr><td>Name  </td><td>');
-                // printWindow.document.write($("#head_name").val());
-                printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
-                // printWindow.document.write($("#head_addr").val());
-                printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
-                // printWindow.document.write($("#head_email").val());
-                printWindow.document.write('</td></tr><tr><td>Website  </td><td>');
-                // printWindow.document.write($("#head_site").val());
-                printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
-                // printWindow.document.write($("#head_mobile").val());
-                printWindow.document.write('</td></tr><tr><th colspan="2">Contact (In-charge) Person for the Fair</th></tr><tr><td>Name  </td><td>');
-                // printWindow.document.write($("#prsn_name").val());
-                printWindow.document.write('</td></tr><tr><td>Address  </td><td>');
-                // printWindow.document.write($("#prsn_addr").val());
-                printWindow.document.write('</td></tr><tr><td>Email ID  </td><td>');
-                // printWindow.document.write($("#prsn_email").val());
-                printWindow.document.write('</td></tr><tr><td>Mobile Number  </td><td>');
-                // printWindow.document.write($("#prsn_mobile").val());
-                printWindow.document.write('</td></tr><tr><td>WhatsApp Number  </td><td>');
-                // printWindow.document.write($("#whatsapp").val());
-                printWindow.document.write('</td></tr><tr><td>Estimated amount to remit (including GST)</td><td>');
-                printWindow.document.write('₹.');
-                // printWindow.document.write($("#totamt").val());
-                printWindow.document.write('/-</td></tr><tr><td>FASCIA Text  </td><td>');
-                // printWindow.document.write($("#fascia").val());
-                printWindow.document.write('</td></tr><tr><td>Remarks  </td><td>');
-                // printWindow.document.write($("#remark").val());
-                printWindow.document.write('</td></tr><tr><td>Logo  </td><td>');
-                // const [file] = logo.files
-                // if (file) {
-                //     printWindow.document.write('<img id = "blah" height="50px" width="100px" src = "');
-                //     printWindow.document.write(URL.createObjectURL(file));
-                //     printWindow.document.write('" alt = "your image " />');
-                // }
-                printWindow.document.write('<img src="');
-                printWindow.document.write('">');
-                printWindow.document.write('</tr></tr></tbody></table>');
-                printWindow.document.write("</div>");
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
             }
         });
     }
