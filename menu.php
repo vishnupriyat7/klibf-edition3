@@ -8,6 +8,9 @@
       </a>
       <ul>
         <li>
+          <a href="online_contests.php">Online Contests</a>
+        </li>
+        <li>
           <a href="contest-quiz-registration.php">Quiz Competition</a>
         </li>
       </ul>

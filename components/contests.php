@@ -61,7 +61,7 @@
     }
 </style>
 <section id="contests" class="gallery">
-    <div class="container">
+    <div class="container gallery">
 
         <div class="section-title" data-aos="fade-in" data-aos-delay="100">
             <h2>Contests</h2>
