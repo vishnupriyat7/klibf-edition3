@@ -115,7 +115,7 @@
                     <h2>Cartoon Registration</h2>
                     <ol>
                         <li><a href="index.php">Home</a></li>
-                        <li>Online Contests</li>
+                        <li> <a href="contests_online.php">Online Contests</a></li>
                         <li>Cartoon </li>
                     </ol>
                 </div>
@@ -142,14 +142,14 @@
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
                     <!--end col-->
-                    <div class="col-xxl-12 col-12 col-md-12 col-lg-12">
+                    <div class="col-xxl-12 col-xl-12 col-md-12 col-lg-12 col-sm-12">
                         <div class="card mt-6">
 
-                            <!-- <div class="text-center">
-                                <img class="mx-auto d-block img-fluid" src="./assets/img/contests/bookrw.jpeg" style="width: 100%;">
-                            </div> -->
+                            <div class="text-center">
+                                <img class="mx-auto d-block img-fluid" src="./assets/img/contests/Cartoon_Web.jpg" style="width: 100%;">
+                            </div>
 
-                            <div class="card-body mt-2">
+                            <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content malayalam-text">
                                     <!-- <div class="d-flex justify-content-end">
                                         <button class="btn btn-success horizontal-shake" data-bs-toggle="modal" data-bs-target="#myModal">Result</button>&emsp;
@@ -157,9 +157,9 @@
                                     </div> -->
                                     <div class="d-flex justify-content-end">
 
-                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">General Rules</button>&emsp;
+                                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal" style="font-size: 16px;">General Rules</button>&emsp;
 
-                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDlDssnneJciIu__SzoDL6ytsUJxqEogvnm6wiekc-AkWNvw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake">Apply</button></a>
+                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDlDssnneJciIu__SzoDL6ytsUJxqEogvnm6wiekc-AkWNvw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake" style="font-size: 16px;">Apply</button></a>
                                         &emsp;
                                     </div>
 

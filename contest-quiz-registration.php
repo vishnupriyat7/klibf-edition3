@@ -36,7 +36,7 @@
     .malayalam-text {
         font-family: 'Meera', sans-serif;
         line-height: 2;
-        font-size: 16px;
+        font-size: large;
     }
 
     /* Additional CSS for adjusting the card width */
@@ -113,7 +113,7 @@
                             <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content mt-2">
                                     <div class="d-flex justify-content-end">
-                                        <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake"><i class="fa fa-download"></i> Click Here to Apply</a>
+                                        <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a>
                                     </div>
                                     <div class="align-items-center text-center">
                                         <h3><b>ക്വിസ് മത്സരം - പൊതുമാർഗ്ഗനിർദ്ദേശങ്ങൾ</b></h3>
@@ -139,7 +139,7 @@
                                                 </p>
                                             </li>
                                             <li>
-                                                <p> രജിസ്‌ട്രേഷൻ നടപടികൾ <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> മുഖേന പൂർത്തിയാക്കേണ്ടതാണ്. (വിശദ വിവരങ്ങൾക്ക് വെബ്‌സൈറ്റ് സന്ദർശിക്കുക).</p>
+                                                <p> രജിസ്‌ട്രേഷൻ നടപടികൾ <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> മുഖേന പൂർത്തിയാക്കേണ്ടതാണ്.</p>
                                             </li>
                                             <li>
                                                 <p>മേഖലാതല മത്സരങ്ങള്‍ക്ക് സ്പോട്ട് രജിസ്‌ട്രേഷൻ ഉണ്ടായിരിക്കുന്നതല്ല.</p>
@@ -167,24 +167,24 @@
                                         <div class="text-center align-items-center d-flex justify-content-center">
                                             <table class="table table-bordered bg-gradient" style="width: 70%;">
                                                 <thead>
-                                                    <tr style="font-size: 14px;">
+                                                    <tr style="font-size: 16px;">
                                                         <th class="fw-bold">സ്ഥാനം</th>
                                                         <th class="fw-bold">ക്യാഷ് പ്രൈസ്</th>
                                                         <th class="fw-bold">പുസ്തക കൂപ്പൺ(രൂപ )</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody style="font-size: 14px; ">
-                                                    <tr>
+                                                <tbody>
+                                                    <tr style="font-size: 16px;">
                                                         <td>ഒന്നാം സ്ഥാനം</td>
                                                         <td><span>&#8377;</span>5000</td>
                                                         <td><span>&#8377;</span>2500</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="font-size: 16px;">
                                                         <td>രണ്ടാ സ്ഥാനം</td>
                                                         <td><span>&#8377;</span>3000</td>
                                                         <td><span>&#8377;</span>2000</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="font-size: 16px;">
                                                         <td>മൂന്നാം സ്ഥാനം</td>
                                                         <td><span>&#8377;</span>2000</td>
                                                         <td><span>&#8377;</span>1000</td>
@@ -221,101 +221,101 @@
                                             <br>
                                         </div>
 
-
-
                                         <div class="text-center align-items-center d-flex justify-content-center">
-                                            <table class="table table-bordered bg-gradient" style="width: 70%;">
-                                                <thead>
-                                                    <tr style="font-size: 14px;">
-                                                    <tr>
-                                                        <th class="fw-bold">മേഖല</th>
-                                                        <th class="fw-bold">ജില്ലകള്‍</th>
-                                                        <th class="fw-bold">
-                                                            മേഖല</th>
-                                                        <th class="fw-bold">ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി</th>
-                                                        <th class="fw-bold">പ്രാഥമിക മത്സര തീയതി</th>
-                                                        <th class="fw-bold">വേദി</th>
+                                            <div class="table-responsive" style="width: 70%;">
+                                                <table class="table table-bordered bg-gradient overflow" style="width: 70%;">
+                                                    <thead>
+                                                        <tr style="font-size: 20px;">
+                                                        <tr>
+                                                            <th class="fw-bold">മേഖല</th>
+                                                            <th class="fw-bold">ജില്ലകള്‍</th>
+                                                            <th class="fw-bold">
+                                                                മേഖല</th>
+                                                            <th class="fw-bold">ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി</th>
+                                                            <th class="fw-bold">പ്രാഥമിക മത്സര തീയതി</th>
+                                                            <th class="fw-bold">വേദി</th>
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>I</td>
-                                                        <td style="text-align: left;">
-                                                            <ul>
-                                                                <li>കണ്ണൂര്‍</li>
-                                                                <li>കാസര്‍ഗോഡ്</li>
-                                                            </ul>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr style="font-size: 18px;">
+                                                            <td>I</td>
+                                                            <td style="text-align: left;">
+                                                                <ul>
+                                                                    <li>കണ്ണൂര്‍</li>
+                                                                    <li>കാസര്‍ഗോഡ്</li>
+                                                                </ul>
 
-                                                        </td>
-                                                        <td>കണ്ണൂര്‍</td>
-                                                        <td>22.11.2024</td>
-                                                        <td>29.11.2024</td>
-                                                        <td>ശിക്ഷക് സദൻ , കണ്ണൂർ</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>II</td>
-                                                        <td style="text-align: left;">
-                                                            <ul>
-                                                                <li>വയനാട്</li>
-                                                                <li>കോഴിക്കോട്</li>
-                                                                <li>മലപ്പുറം</li>
-                                                            </ul>
+                                                            </td>
+                                                            <td>കണ്ണൂര്‍</td>
+                                                            <td>22.11.2024</td>
+                                                            <td>29.11.2024</td>
+                                                            <td>ശിക്ഷക് സദൻ , കണ്ണൂർ</td>
+                                                        </tr>
+                                                        <tr style="font-size: 18px;">
+                                                            <td>II</td>
+                                                            <td style="text-align: left;">
+                                                                <ul>
+                                                                    <li>വയനാട്</li>
+                                                                    <li>കോഴിക്കോട്</li>
+                                                                    <li>മലപ്പുറം</li>
+                                                                </ul>
 
-                                                        </td>
-                                                        <td>കോഴിക്കോട്</td>
-                                                        <td>26.11.2024</td>
-                                                        <td>3.12.2024</td>
-                                                        <td>കാരപറമ്പ ഗവ.ഹയർസെക്കന്ററി സ്‌കൂൾ, കോഴിക്കോട്</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>III</td>
-                                                        <td style="text-align: left;">
-                                                            <ul>
-                                                                <li>പാലക്കാട്</li>
-                                                                <li>തൃശൂര്‍</li>
-                                                                <li>എറണാകുളം</li>
-                                                            </ul>
+                                                            </td>
+                                                            <td>കോഴിക്കോട്</td>
+                                                            <td>26.11.2024</td>
+                                                            <td>3.12.2024</td>
+                                                            <td>കാരപറമ്പ ഗവ.ഹയർസെക്കന്ററി സ്‌കൂൾ, കോഴിക്കോട്</td>
+                                                        </tr>
+                                                        <tr style="font-size: 18px;">
+                                                            <td>III</td>
+                                                            <td style="text-align: left;">
+                                                                <ul>
+                                                                    <li>പാലക്കാട്</li>
+                                                                    <li>തൃശൂര്‍</li>
+                                                                    <li>എറണാകുളം</li>
+                                                                </ul>
 
-                                                        </td>
-                                                        <td>എറണാകുളം</td>
-                                                        <td>28.11.2024</td>
-                                                        <td>5.12.2024</td>
-                                                        <td>കൊച്ചിൻ യൂണിവേഴ്‌സിറ്റി ഓഫ് സയൻസ് ആന്റ് ടെക്‌നോളജി (CUSAT), എറണാകുളം</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>IV</td>
-                                                        <td style="text-align: left;">
-                                                            <ul>
-                                                                <li>കോട്ടയം</li>
-                                                                <li>ഇടുക്കി</li>
-                                                                <li>പത്തനംതിട്ട</li>
-                                                            </ul>
+                                                            </td>
+                                                            <td>എറണാകുളം</td>
+                                                            <td>28.11.2024</td>
+                                                            <td>5.12.2024</td>
+                                                            <td>കൊച്ചിൻ യൂണിവേഴ്‌സിറ്റി ഓഫ് സയൻസ് ആന്റ് ടെക്‌നോളജി (CUSAT), എറണാകുളം</td>
+                                                        </tr>
+                                                        <tr style="font-size: 18px;">
+                                                            <td>IV</td>
+                                                            <td style="text-align: left;">
+                                                                <ul>
+                                                                    <li>കോട്ടയം</li>
+                                                                    <li>ഇടുക്കി</li>
+                                                                    <li>പത്തനംതിട്ട</li>
+                                                                </ul>
 
-                                                        </td>
-                                                        <td>കോട്ടയം</td>
-                                                        <td>30.11.2024</td>
-                                                        <td>7.12.2024</td>
-                                                        <td>സെന്റ് ജോസഫ് പബ്ലിക് സ്‌കൂൾ, കുന്നുംഭാഗം, കാഞ്ഞിരപ്പള്ളി കോട്ടയം</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>V</td>
-                                                        <td style="text-align: left;">
-                                                            <ul>
-                                                                <li>ആലപ്പുഴ</li>
-                                                                <li>കൊല്ലം</li>
-                                                                <li>തിരുവനന്തപുരം</li>
-                                                            </ul>
+                                                            </td>
+                                                            <td>കോട്ടയം</td>
+                                                            <td>30.11.2024</td>
+                                                            <td>7.12.2024</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr style="font-size: 18px;">
+                                                            <td>V</td>
+                                                            <td style="text-align: left;">
+                                                                <ul>
+                                                                    <li>ആലപ്പുഴ</li>
+                                                                    <li>കൊല്ലം</li>
+                                                                    <li>തിരുവനന്തപുരം</li>
+                                                                </ul>
 
-                                                        </td>
-                                                        <td>തിരുവനന്തപുരം</td>
-                                                        <td>31.12.2024</td>
-                                                        <td>8.1.2025</td>
-                                                        <td>നിയമസഭാ സമുച്ചയം, തിരുവനന്തപുരം</td>
-                                                    </tr>
+                                                            </td>
+                                                            <td>തിരുവനന്തപുരം</td>
+                                                            <td>31.12.2024</td>
+                                                            <td>8.1.2025</td>
+                                                            <td>നിയമസഭാ സമുച്ചയം, തിരുവനന്തപുരം</td>
+                                                        </tr>
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                         <ul class="custom-bullet">
                                             <li>
@@ -335,7 +335,7 @@
                                         </div>
 
                                     </div>
-                                   
+
                                 </div>
 
 

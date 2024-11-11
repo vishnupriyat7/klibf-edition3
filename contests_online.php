@@ -34,7 +34,7 @@
     .malayalam-text {
         font-family: 'Meera', sans-serif;
         line-height: 2;
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 500;
         font-style: normal;
     }
@@ -106,12 +106,12 @@
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
                     <!--end col-->
-                    <div class="col-xxl-12 col-12 col-md-12 col-lg-12">
+                    <div class="col-xxl-12 col-xl-12 col-md-12 col-lg-12 col-sm-12">
                         <div class="card">
-                            <!-- <div class="text-center">
-                                <img class="mx-auto d-block img-fluid" src="assets/img/contests/Quiz_Web1.jpg" style="width: 100%;">
-                            </div> -->
-                            <div class="card-body" style="margin-top: 1%;">
+                            <div class="text-center">
+                                <img class="mx-auto d-block img-fluid" src="assets/img/contests/Contest_Web.jpg" style="width: 100%;">
+                            </div>
+                            <div class="card-body"  style="margin-top: -10%;">
                                 <div class="tab-content">
                                     <!-- <div class="d-flex justify-content-end">
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake"><i class="fa fa-download"></i> Click Here to Apply</a>
@@ -183,7 +183,7 @@
                                                 <p>നിയമസഭാ സെക്രട്ടേറിയറ്റിലെ ജീവനക്കാർക്കും കുടുംബാംഗങ്ങൾക്കും (കരാര്‍ ജീവനക്കാര്‍/ദിവസവേതന ജീവനക്കാര്‍‍ ഉള്‍പ്പെടെ) മത്സരങ്ങളില്‍ പങ്കെടുക്കാന്‍ കഴിയുന്നതല്ല.</p>
                                             </li>
                                             <li>
-                                                <p>എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി -2024 നവംബർ 30.</p>
+                                                <p class="fw-bold">എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി - 2024 നവംബർ 30.</p>
                                             </li>
                                         </ul>
                                         <div class="modal" id="myModal">
@@ -211,11 +211,11 @@
                                                     </a>
                                                     <div class="gallery-links">
                                                        
-                                                     <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> 
+                                                     <a href="assets/img/contests/pdf/book-review.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> 
 
                                                         <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
 
-                                                        <a href="contest-bookreview.php"><i class="bx bx-link"></i><span>Apply</span></a>
+                                                        <a href="contest-bookreview-registration.php"><i class="bx bx-link"></i><span>Apply</span></a>
                                                         <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
                                                          <!-- <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> -->
@@ -230,7 +230,7 @@
                                                         <img src="assets/img/contests/poetry-rectn-new.jpg" class="img-fluid" alt="">
                                                     </a>
                                                     <div class="gallery-links">
-                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <a href="assets/img/contests/pdf/poetry-rec-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
                                                         <a href="contest-poetryrecitation.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
                                                         <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
@@ -242,7 +242,7 @@
                                                 <div class="gallery-wrap">
                                                     <img src="assets/img/contests/story-telling-new.jpg" href="https://docs.google.com/forms/d/e/1FAIpQLSenjtwMpymnTi7mF88Iq38uGuackVdFhmM9hkbXjj_XRuX8Qw/viewform" target="_blank" class="img-fluid" alt="">
                                                     <div class="gallery-links">
-                                                        <a href="assets/img/contests/story-telling.docx" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <a href="assets/img/contests/pdf/story-telling.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
                                                         <a href="contest-story-telling-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
                                                         <!-- <a href="https://www.youtube.com/watch?v=Lg-BCS3p3sA&list=PLWnK7DhsuZ9CJlcJaV1VCbIRuy9tYURIc" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
                                                     </div>
@@ -253,7 +253,7 @@
                                                 <div class="gallery-wrap">
                                                     <img src="assets/img/contests/enne-swadheenicha-new.jpg" href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" class="img-fluid" alt="">
                                                     <div class="gallery-links">
-                                                        <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                                                        <a href="assets/img/contests/pdf/cartoon-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
                                                         <a href="contest-cartoon-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
                                                         <!-- <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
@@ -266,7 +266,7 @@
                                             
 
                                         </div>
-                                        <div style="margin-left: 2rem; font-size: large;">
+                                        <div style="margin-left: 2rem; font-size: larger;">
                                                 <b><span> <u>For more details, pls contact </u></b></span><br>
                                                 <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
                                                     Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
