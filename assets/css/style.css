@@ -922,7 +922,7 @@ section {
 }
 
 .about .content {
-  padding: 30px 30px 30px 0;
+  padding: 30px 30px 30px -1;
 }
 .about .content-only {
   /* padding: 0px 0px 30px 0; */
@@ -995,7 +995,7 @@ section {
 
 @media (max-width: 1200px) {
   .about .content {
-    padding-right: 10px;
+    padding-right: 0px;
   }
   .about img {
     padding: 3%;
@@ -1049,9 +1049,9 @@ section {
   z-index: 10;
 }
 
-.dysecmsg .content {
+/* .dysecmsg .content {
   padding: 30px 30px 30px 0;
-}
+} */
 .dysecmsg .content-only {
   /* padding: 0px 0px 30px 0; */
   margin-left: 30px;

@@ -8,7 +8,7 @@ $username = $_SESSION['SESSION_EMAIL'];
 
 switch ($user['user_type']) {
     case 'S':
-        include "sidebar.php";
+        include "super_admin/sidebar.php";
         break;
     case 'P':
         include "publisher/sidebar.php";
@@ -48,7 +48,7 @@ switch ($user['user_type']) {
             <?php
             switch ($user['user_type']) {
                 case 'S':
-                    include "sidebar.php";
+                    include "super_admin/dashboard.php";
                     break;
                 case 'P':
                     include "publisher/dashboard.php";

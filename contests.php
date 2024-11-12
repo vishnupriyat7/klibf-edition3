@@ -24,10 +24,10 @@
 
     }
 
-    .horizontal-shake {
+    /* .horizontal-shake {
         position: relative;
         animation: shake 0.8s infinite;
-    }
+    } */
 
     .horizontal-shake {
         position: relative;
@@ -96,7 +96,7 @@
                 <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
                     <div class="gallery-wrap">
                         <a href="https://forms.gle/vh6rzVSnjKe1XYga7" target="_blank">
-                            <img src="assets/img/contests/bookreview.jpeg" class="img-fluid" alt="">
+                            <img src="assets/img/contests/bookreview.jpeg" class="img-fluid" alt="" width="100px" height="200px">
                         </a>
                         <div class="gallery-links">
 
