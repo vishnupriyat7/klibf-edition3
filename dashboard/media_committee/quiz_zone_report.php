@@ -204,9 +204,6 @@
             var admin_category = document.querySelector('input[name="quiz_admin_category"]:checked').value;
             var admin_district = document.getElementById("quiz_admin_district").value;
             var tablequiz = document.getElementById('example');
-            alert(admin_category);
-            alert(admin_zone);
-            alert(admin_district);
             $.ajax({
                 dataType: "json",
                 url: "list_quiz_details.php",
