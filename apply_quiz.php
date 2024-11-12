@@ -122,6 +122,14 @@ include "head-style.php";
                                                 $msg .= "Please enter second participant's class / course.<BR>";
                                                 $status = "NOTOK";
                                             }
+                                            if ($principal_cntct == '') {
+                                                $msg .= "Please enter principal's contact number.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                            if ($faclty_cntct == '') {
+                                                $msg .= "Please enter contact person number.<BR>";
+                                                $status = "NOTOK";
+                                            }
                                             // if(strlen($team2_memb1_cntct) < 10 || strlen($team2_memb1_cntct) > 11 || strlen($team2_memb2_cntct) < 10 || strlen($team2_memb2_cntct) > 11) {
                                             //     $msg .= "Partcipants contact number should contain 10 digits.<BR>";
                                             //         $status = "NOTOK";
@@ -148,14 +156,14 @@ include "head-style.php";
                                             $result = mysqli_query($conn, $insrt_reg_quiz_query);
                                             if ($result) {
                                                 if ($category != 3) {
-                                                    $sel_registered_query = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct';";
+                                                    $sel_registered_query = "SELECT max(id) from reg_quiz where inst_prnci_cntct = '$principal_cntct';";
                                                 } else {
                                                     $sel_registered_query = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct';";
                                                 }
                                                 $sel_registered_res = mysqli_query($conn, $sel_registered_query);
                                                 $quiz_reg_id = $sel_registered_res->fetch_assoc();
                                                 $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                You have been registered successfully. Your Registration Number is KLIBF03-Q" . $quiz_reg_id['id'] . ". 
+                                                You have been registered successfully. Your Registration Number is KLIBF03-Q" . $quiz_reg_id['max(id)'] . ". 
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                             } else {
