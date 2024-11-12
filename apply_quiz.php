@@ -132,8 +132,8 @@ include "head-style.php";
                                             // }
                                             $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
                                             $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
-                                            if ($sel_reg_quiz_res->num_rows > 0) {
-                                                $msg .= "You have already registered with this contact number.<BR>";
+                                            if ($sel_reg_quiz_res->num_rows > 2) {
+                                                $msg .= "You have already registered 2 teams from this institution. More than 2 teams not allowed.<BR>";
                                                 $status = "NOTOK";
                                             }
                                         }
