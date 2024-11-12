@@ -51,26 +51,10 @@
                                 <a href="<?= $base_url ?>/dashboard/media_committee/quiz_zone_report.php"
                                     class="nav-link" data-key="t-nft-landing">Zone Wise Report </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_profile_report.php"
-                                    class="nav-link" data-key="t-nft-landing">Profile Created </a>
-                            </li>
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/program_committee/stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall
-                                    Booking </a>
-                            </li> -->
-                            <!-- <li class="nav-item">
-                                <a href="pgmcmtee-evnt-bkrls-report.php" class="nav-link" data-key="t-nft-landing">Event
-                                    Proposal Book Release Report </a>
+                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_public_report.php"
+                                    class="nav-link" data-key="t-nft-landing">Public Category Report </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="pgmcmtee-evnt-bkdscn-report.php" class="nav-link"
-                                    data-key="t-nft-landing">Event Proposal Book Discussion Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pgmcmtee-spcl-evnt-prpsl-report.php" class="nav-link"
-                                    data-key="t-nft-landing">Special Event Proposal Report </a>
-                            </li> -->
                         </ul>
                     </div>
                 </li>

@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Report</h4>
+                        <h4 class="mb-sm-0">Quiz Registration Report</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <a class="dropdown-item" href="../logout.php"><i
@@ -27,9 +27,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Stall Booking Report</h5>
+                            <h5 class="card-title mb-0">Zone Wise Report</h5>
                         </div>
-                        <div class="card-body overflow-auto">
+                        <div class="card-body overflow-auto" >
                             <button onclick="exportTableToExcel('example', 'quiz_zone_wise_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <div class="card-body">
@@ -37,7 +37,7 @@
                                     <div class="form-group col-xxl-12 col-xl-12 col-lg-12 col-sm-12 d-flex flex-row">
                                         <label class="me-3">*Select Category:</label>
                                         <?php
-                                        $quiz_cat_qry = "SELECT * FROM quiz_category;";
+                                        $quiz_cat_qry = "SELECT * FROM quiz_category where id != 3;";
                                         $quiz_cat_stmt = $con->prepare($quiz_cat_qry);
                                         $quiz_cat_stmt->execute();
                                         $quiz_cat_res = $quiz_cat_stmt->get_result();
@@ -88,7 +88,55 @@
                                     </div>
                                 </div>
                             </div>
-                           
+                            <div class="card" style="width:150vw;">
+                                <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                    style="font-style:normal; font-size: 12px;">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">Reg.No</th>
+                                            <th data-ordering="false" rowspan="2">Category</th>
+                                            <th data-ordering="false" rowspan="2">Zone</th>
+                                            <th data-ordering="false" rowspan="2">District</th>
+                                            <th data-ordering="false" rowspan="2">Institute Name</th>
+                                            <th data-ordering="false" rowspan="2">Institute Address</th>
+                                            <th data-ordering="false" rowspan="2">Principal Contact</th>
+                                            <th data-ordering="false" rowspan="2">In-Charge Name</th>
+                                            <th data-ordering="false" rowspan="2">In-Charge Contact</th>                                        
+                                            <th data-ordering="false" colspan="5">Team1 Member1 Details</th>
+                                            <th data-ordering="false" colspan="5">Team1 Member2 Details</th>
+                                            <th data-ordering="false" colspan="5">Team2 Member1 Details</th>
+                                            <th data-ordering="false" colspan="5">Team2 Member2 Details</th>
+                                            <th data-ordering="false" rowspan="2">Date Registered</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr>
+                                        <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Class / Course</th>
+                                            <th data-ordering="false">Gender</th>
+                                            <th data-ordering="false">Phone</th>
+                                            <th data-ordering="false">Email</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Class / Course</th>
+                                            <th data-ordering="false">Gender</th>
+                                            <th data-ordering="false">Phone</th>
+                                            <th data-ordering="false">Email</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Class / Course</th>
+                                            <th data-ordering="false">Gender</th>
+                                            <th data-ordering="false">Phone</th>
+                                            <th data-ordering="false">Email</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Class / Course</th>
+                                            <th data-ordering="false">Gender</th>
+                                            <th data-ordering="false">Phone</th>
+                                            <th data-ordering="false">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="quiz-data-list">
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +149,6 @@
     <!-- End Page-content -->
     <?php include "../footer.php"; ?>
 
-    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
     <script type="text/javascript">
@@ -152,11 +199,14 @@
         }
 
         function loadQuizData() {
-            alert("here");
+            // alert("here");
             var admin_zone = document.getElementById("quiz_admin_zone").value;
             var admin_category = document.querySelector('input[name="quiz_admin_category"]:checked').value;
             var admin_district = document.getElementById("quiz_admin_district").value;
             var tablequiz = document.getElementById('example');
+            alert(admin_category);
+            alert(admin_zone);
+            alert(admin_district);
             $.ajax({
                 dataType: "json",
                 url: "list_quiz_details.php",
@@ -169,21 +219,7 @@
                 dataType: "json",
                 success: function(data) {
                     $('#quiz-data-list').empty();
-                console.log(data);
-                if ($('#quiz-data-list').length > 0) {
-    console.log("Element found");
-} else {
-    console.log("Element not found");
-}$('#quiz-data-list').appendChild('<tr><td>test</td></tr>');
-
-                // 
-                // quiz-data-list
-                    // $('#quiz_district').empty();
-                    // var add_slot = "";
-                    // $("#quiz_district").append('<option value="">Select District</option>');
-                    // $.each(data, function(key, value) {
-                    //     $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
-                    // });
+                    $('#quiz-data-list').append(data);
                 }
             });
         }
