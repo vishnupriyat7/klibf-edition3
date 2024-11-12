@@ -149,7 +149,7 @@
                                 <img class="mx-auto d-block img-fluid" src="./assets/img/contests/BookReview_Web.jpg" style="width: 100%;">
                             </div>
 
-                            <div class="card-body"  style="margin-top: -10%;">
+                            <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content malayalam-text">
                                     <!-- <div class="d-flex justify-content-end">
                                         <button class="btn btn-success horizontal-shake" data-bs-toggle="modal" data-bs-target="#myModal">Result</button>&emsp;
@@ -222,13 +222,26 @@
 
                                     <!--end tab-pane-->
                                 </div>
+                                <div style="margin-left: 2rem; font-size: larger;">
+                                    <b><span> <u>For more details, pls contact </u></b></span><br>
+                                    <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                        Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                        <!-- QUIZ : klibf.quiz@gmail.com<br> -->
+                                        പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                        <!-- പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
+
+                                        ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br>
+
+                                        കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com -->
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!--end col-->
                 </div>
             </div>
-        </section>
+        </section><br><br><br>
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->

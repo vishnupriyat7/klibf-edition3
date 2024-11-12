@@ -149,7 +149,7 @@
                                 <img class="mx-auto d-block img-fluid" src="./assets/img/contests/Katha_Web.jpg" style="width: 100%;">
                             </div>
 
-                            <div class="card-body"  style="margin-top: -10%;">
+                            <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content malayalam-text">
                                     <!-- <div class="d-flex justify-content-end">
                                         <button class="btn btn-success horizontal-shake" data-bs-toggle="modal" data-bs-target="#myModal">Result</button>&emsp;
@@ -172,7 +172,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="embed-responsive embed-responsive-16by9">
-                                                        <iframe src="assets/img/contests/general_rules.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
+                                                        <iframe src="assets/img/contests/pdf/general-rules.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,12 +191,12 @@
                                         <li>
                                             <!-- <h3>Rules & Regulations</h3> -->
 
-                                          
 
-                                            <p>ഒരു കഥ പറയാം മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ,  കഥ പറയുന്നതിന്റെ   (5 മിനുറ്റിൽ  കവിയാത്ത) വീഡിയോ രൂപത്തിൽ ചിത്രീകരിച്ച്, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി,  വാട്സ്ആപ്പ്   മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., കഥയുടെ പേര് എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
+
+                                            <p>ഒരു കഥ പറയാം മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ, കഥ പറയുന്നതിന്റെ (5 മിനുറ്റിൽ കവിയാത്ത) വീഡിയോ രൂപത്തിൽ ചിത്രീകരിച്ച്, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി, വാട്സ്ആപ്പ് മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., കഥയുടെ പേര് എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
 
                                         <li>
-                                            <p class="fw-bold">സബ്‌ ജൂനിയേർസ്(10വയസ്സു വരെ), ജൂനിയേഴ്സ് (11  മുതൽ 18വയസ്സു വരെ), സീനിയേഴ്സ് (18 മുതൽ 40 വയസ്സ് വരെ), മാസ്റ്റേഴ്സ് (40 വയസ്സിനു മുകളിൽ) എന്നീ നാല് വിഭാഗങ്ങളിലാണ് ഒരു കഥ പറയാം മത്സരം സംഘടിപ്പിക്കുന്നത്.
+                                            <p class="fw-bold">സബ്‌ ജൂനിയേർസ്(10വയസ്സു വരെ), ജൂനിയേഴ്സ് (11 മുതൽ 18വയസ്സു വരെ), സീനിയേഴ്സ് (18 മുതൽ 40 വയസ്സ് വരെ), മാസ്റ്റേഴ്സ് (40 വയസ്സിനു മുകളിൽ) എന്നീ നാല് വിഭാഗങ്ങളിലാണ് ഒരു കഥ പറയാം മത്സരം സംഘടിപ്പിക്കുന്നത്.
 
                                             </p>
                                         </li>
@@ -224,13 +224,26 @@
 
                                     <!--end tab-pane-->
                                 </div>
+                                <div style="margin-left: 2rem; font-size: larger;">
+                                    <b><span> <u>For more details, pls contact </u></b></span><br>
+                                    <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                        Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                        <!-- QUIZ : klibf.quiz@gmail.com<br> -->
+                                        <!-- പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                                പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br> -->
+
+                                        ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br>
+
+                                        <!-- കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com -->
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!--end col-->
                 </div>
             </div>
-        </section>
+        </section><br><br><br>
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->

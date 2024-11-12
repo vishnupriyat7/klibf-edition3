@@ -172,7 +172,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="embed-responsive embed-responsive-16by9">
-                                                        <iframe src="assets/img/contests/general_rules.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
+                                                        <iframe src="assets/img/contests/pdf/general-rules.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,13 +229,26 @@
 
                                     <!--end tab-pane-->
                                 </div>
+                                <div style="margin-left: 2rem; font-size: larger;">
+                                            <b><span> <u>For more details, pls contact </u></b></span><br>
+                                            <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                                Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                                <!-- QUIZ : klibf.quiz@gmail.com<br> -->
+                                                <!-- പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                                പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
+
+                                                ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br> -->
+
+                                                കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
+                                            </p>
+                                        </div>
                             </div>
                         </div>
                     </div>
                     <!--end col-->
                 </div>
             </div>
-        </section>
+        </section><br><br><br>
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->

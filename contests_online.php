@@ -111,7 +111,7 @@
                             <div class="text-center">
                                 <img class="mx-auto d-block img-fluid" src="assets/img/contests/Contest_Web.jpg" style="width: 100%;">
                             </div>
-                            <div class="card-body"  style="margin-top: -10%;">
+                            <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content p-2">
                                     <!-- <div class="d-flex justify-content-end">
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake"><i class="fa fa-download"></i> Click Here to Apply</a>
@@ -186,7 +186,7 @@
                                                 <p class="fw-bold">എൻട്രികൾ ലഭിക്കുന്നതിനുള്ള അവസാന തീയതി - 2024 നവംബർ 30.</p>
                                             </li>
                                         </ul>
-                                        <div class="modal" id="myModal">
+                                        <!-- <div class="modal" id="myModal">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -200,25 +200,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="row gallery-container text-center" data-aos="fade-up">
 
-                                        <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
+                                            <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
                                                 <div class="gallery-wrap">
                                                     <a href="https://forms.gle/vh6rzVSnjKe1XYga7" target="_blank">
-                                                        <img src="assets/img/contests/book-review-new.jpg" class="img-fluid" alt="">
+                                                        <img src="assets/img/contests/bookreview.jpeg" class="img-fluid" alt="">
                                                     </a>
                                                     <div class="gallery-links">
-                                                       
-                                                     <a href="assets/img/contests/pdf/book-review.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> 
+
+                                                        <a href="assets/img/contests/pdf/book-review.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
 
                                                         <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
 
                                                         <a href="contest-bookreview-registration.php"><i class="bx bx-link"></i><span>Apply</span></a>
                                                         <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
-                                                         <!-- <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> -->
+                                                        <!-- <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> -->
 
                                                     </div>
                                                 </div>
@@ -227,7 +227,7 @@
                                             <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
                                                 <div class="gallery-wrap">
                                                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank">
-                                                        <img src="assets/img/contests/poetry-rectn-new.jpg" class="img-fluid" alt="">
+                                                        <img src="assets/img/contests/poetry-recitation.jpeg" class="img-fluid" alt="">
                                                     </a>
                                                     <div class="gallery-links">
                                                         <a href="assets/img/contests/pdf/poetry-rec-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
@@ -240,7 +240,7 @@
 
                                             <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-app">
                                                 <div class="gallery-wrap">
-                                                    <img src="assets/img/contests/story-telling-new.jpg" href="https://docs.google.com/forms/d/e/1FAIpQLSenjtwMpymnTi7mF88Iq38uGuackVdFhmM9hkbXjj_XRuX8Qw/viewform" target="_blank" class="img-fluid" alt="">
+                                                    <img src="assets/img/contests/story-telling.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSenjtwMpymnTi7mF88Iq38uGuackVdFhmM9hkbXjj_XRuX8Qw/viewform" target="_blank" class="img-fluid" alt="">
                                                     <div class="gallery-links">
                                                         <a href="assets/img/contests/pdf/story-telling.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
                                                         <a href="contest-story-telling-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
@@ -251,7 +251,7 @@
 
                                             <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
                                                 <div class="gallery-wrap">
-                                                    <img src="assets/img/contests/enne-swadheenicha-new.jpg" href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" class="img-fluid" alt="">
+                                                    <img src="assets/img/contests/cartoon.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" class="img-fluid" alt="">
                                                     <div class="gallery-links">
                                                         <a href="assets/img/contests/pdf/cartoon-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
                                                         <a href="contest-cartoon-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
@@ -260,25 +260,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           
-
-                                          
-                                            
-
                                         </div>
                                         <div style="margin-left: 2rem; font-size: larger;">
-                                                <b><span> <u>For more details, pls contact </u></b></span><br>
-                                                <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
-                                                    Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
-                                                    QUIZ : klibf.quiz@gmail.com<br>
-                                                    പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
-                                                    പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
+                                            <b><span> <u>For more details, pls contact </u></b></span><br>
+                                            <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                                Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                                <!-- QUIZ : klibf.quiz@gmail.com<br> -->
+                                                പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                                പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
 
-                                                    ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br>
+                                                ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br>
 
-                                                    കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
-                                                </p>
-                                            </div>
+                                                കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
+                                            </p>
+                                        </div>
                                         <!-- </div> -->
                                         <!--end tab-pane-->
 
@@ -295,7 +290,7 @@
                     </div>
 
                 </div>
-        </section>
+        </section><br><br><br>
 
 
     </main><!-- End #main -->
