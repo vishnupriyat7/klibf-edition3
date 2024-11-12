@@ -55,6 +55,10 @@
                                 <a href="<?= $base_url ?>/dashboard/media_committee/quiz_public_report.php"
                                     class="nav-link" data-key="t-nft-landing">Public Category Report </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_report.php"
+                                    class="nav-link" data-key="t-nft-landing">Total Registration Report </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
