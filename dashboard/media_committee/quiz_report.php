@@ -126,7 +126,19 @@
                                                 <td><?= $quiz_reg['team2_mem2_cntct'] ?></td>
                                                 <td><?= $quiz_reg['team2_mem2_email'] ?></td>
                                                 <td><?= $quiz_reg['updated_date'] ?></td>
-                                                <td> </td>
+                                                <td>
+                                                    <?php
+                                                    $query = "SELECT * FROM users_profile where user_id='$id'";
+                                                    $profileusers = mysqli_query($con, $query);
+                                                    $user_profile_row = mysqli_fetch_row($profileusers);
+                                                    $btnenbl = $user_profile_row ? "" : "hidden";
+                                                    ?>
+                                                    <a class='dropdown-item remove-item-btn'
+                                                        onclick="delete_quiz_reg(<?= $quiz_reg['id']; ?>);">
+                                                        <i
+                                                            class='ri-delete-bin-fill align-bottom me-2 text-danger'></i>Delete
+                                                    </a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -145,6 +157,8 @@
     <?php include "../footer.php"; ?>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
     <script type="text/javascript">
         function exportTableToExcel(example, filename = '') {
@@ -170,5 +184,24 @@
                 //triggering the function
                 downloadLink.click();
             }
+        }
+
+        function delete_quiz_reg(quiz_id) {
+            $.ajax({
+                dataType: "json",
+                url: "delete_quiz_registration.php",
+                type: "POST",
+                data: {
+                    quiz_id: quiz_id
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data === 1) {
+                        swal("Quiz registration deleted successsfully").then(() => {
+                            location.reload();
+                        });
+                    }
+                }
+            });
         }
     </script>
