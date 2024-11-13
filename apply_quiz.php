@@ -218,7 +218,8 @@ include "head-style.php";
                                                     <div class="row">
                                                         <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
                                                             <?php
-                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6;";
+                                                            $current_date = (new \DateTime())->format('Y-m-d');
+                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6 and reg_closing_date != '$current_date';";
                                                             $quiz_zone_stmt = $conn->prepare($quiz_zone_qry);
                                                             $quiz_zone_stmt->execute();
                                                             $quiz_zone_res = $quiz_zone_stmt->get_result();
