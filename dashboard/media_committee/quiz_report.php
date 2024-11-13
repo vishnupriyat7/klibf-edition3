@@ -86,7 +86,7 @@
                                         $counter = 0;
                                         while ($quiz_reg = mysqli_fetch_array($quiz_registrations)) {
                                             if (!$quiz_reg['team2_mem1_name']) {
-                                                $quiz_reg['team2_mem2_gndr'] = '';
+                                                $quiz_reg['team2_mem1_gndr'] = '';
                                             }
                                             if (!$quiz_reg['team2_mem2_name']) {
                                                 $quiz_reg['team2_mem2_gndr'] = '';

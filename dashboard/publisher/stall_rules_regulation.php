@@ -105,11 +105,11 @@ $user_id = $user['id'];
                                                                         <label>For Individuals</label>
                                                                     </td>
                                                                     <td style="text-align: center;">
-                                                                        <label>35%</label>
+                                                                        <label>20%</label>
 
                                                                     </td>
                                                                     <td style="text-align: center;">
-                                                                        <label>35%</label>
+                                                                        <label>10%</label>
 
                                                                     </td>
                                                                 </tr>
@@ -123,7 +123,7 @@ $user_id = $user['id'];
 
                                                                     </td>
                                                                     <td style="text-align: center;">
-                                                                        <label>35%</label>
+                                                                        <label>20%</label>
 
                                                                     </td>
                                                                 </tr>
