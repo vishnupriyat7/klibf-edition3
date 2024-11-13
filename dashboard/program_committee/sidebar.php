@@ -56,8 +56,13 @@
                                     class="nav-link" data-key="t-nft-landing">Profile Created </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/program_committee/stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall
-                                    Booking </a>
+                                <a href="<?= $base_url ?>/dashboard/program_committee/stall_booking_report.php" class="nav-link" data-key="t-nft-landing">Stall Booking </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_noprofile_report.php" class="nav-link" data-key="t-nft-landing">No Profile Created Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/program_committee/publisher_nostall_report.php" class="nav-link" data-key="t-nft-landing">No Stall Booked Report</a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a href="pgmcmtee-evnt-bkrls-report.php" class="nav-link" data-key="t-nft-landing">Event
