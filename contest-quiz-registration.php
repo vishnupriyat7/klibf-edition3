@@ -75,6 +75,66 @@
             transform: translateX(0);
         }
     }
+
+    /* Base styles */
+    .table-responsive table {
+        width: 100%;
+        table-layout: fixed;
+    }
+
+    /* Mobile styles */
+    /* Mobile styles */
+    /* Mobile styles */
+    @media (max-width: 768px) {
+        .table-responsive thead {
+            display: none;
+            /* Hide table headers on mobile */
+        }
+
+        .table-responsive tbody,
+        .table-responsive tr,
+        .table-responsive td {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            /* Ensures padding is contained within td */
+        }
+
+        .table-responsive tr {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #ddd;
+            /* Line under each row */
+        }
+
+        .table-responsive td {
+            display: flex;
+            flex-direction: column;
+            /* Makes each cell a full-width block */
+            padding: 0.5rem;
+            position: relative;
+            word-wrap: break-word;
+            /* Allow data to wrap */
+            white-space: normal;
+            /* Allow data to wrap in small screens */
+            border-bottom: 1px solid #ddd;
+            /* Horizontal line for each td */
+            text-align: left;
+            /* Aligns text for readability */
+        }
+
+        .table-responsive td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            /* Space between label and content */
+            white-space: normal;
+            /* Allow wrapping */
+            word-wrap: break-word;
+            /* Ensure label wraps if too long */
+            color: #000;
+            /* Adjust color for label readability */
+        }
+    }
 </style>
 
 <body>
@@ -167,24 +227,24 @@
                                         <div class="text-center align-items-center d-flex justify-content-center">
                                             <table class="table table-bordered bg-gradient" style="width: 70%;">
                                                 <thead>
-                                                    <tr style="font-size: 16px;">
+                                                    <tr style="font-size: 18px;">
                                                         <th class="fw-bold">സ്ഥാനം</th>
                                                         <th class="fw-bold">ക്യാഷ് പ്രൈസ്</th>
                                                         <th class="fw-bold">പുസ്തക കൂപ്പൺ(രൂപ )</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr style="font-size: 16px;">
+                                                    <tr style="font-size: 18px;">
                                                         <td>ഒന്നാം സ്ഥാനം</td>
                                                         <td><span>&#8377;</span>5000</td>
                                                         <td><span>&#8377;</span>2500</td>
                                                     </tr>
-                                                    <tr style="font-size: 16px;">
+                                                    <tr style="font-size: 18px;">
                                                         <td>രണ്ടാ സ്ഥാനം</td>
                                                         <td><span>&#8377;</span>3000</td>
                                                         <td><span>&#8377;</span>2000</td>
                                                     </tr>
-                                                    <tr style="font-size: 16px;">
+                                                    <tr style="font-size: 18px;">
                                                         <td>മൂന്നാം സ്ഥാനം</td>
                                                         <td><span>&#8377;</span>2000</td>
                                                         <td><span>&#8377;</span>1000</td>
@@ -220,15 +280,14 @@
                                         </div>
 
                                         <div class="text-center align-items-center d-flex justify-content-center">
-                                            <div class="table-responsive" style="width: 70%;">
-                                                <table class="table table-bordered bg-gradient overflow" style="width: 70%;">
+                                            <div class="table-responsive" style="width: 100%;">
+                                                <table class="table table-bordered bg-gradient">
                                                     <thead>
-                                                        <tr style="font-size: 20px;">
-                                                        <tr>
+                                                        <tr style="font-size: 18px; color: black;">
+
                                                             <th class="fw-bold">മേഖല</th>
                                                             <th class="fw-bold">ജില്ലകള്‍</th>
-                                                            <th class="fw-bold">
-                                                                മേഖല</th>
+                                                            <th class="fw-bold">മേഖല</th>
                                                             <th class="fw-bold">ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി</th>
                                                             <th class="fw-bold">പ്രാഥമിക മത്സര തീയതി</th>
                                                             <th class="fw-bold">വേദി</th>
@@ -237,22 +296,22 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr style="font-size: 18px;">
-                                                            <td>I</td>
-                                                            <td style="text-align: left;">
+                                                            <td data-label="മേഖല" class="fw-bold">I</td>
+                                                            <td data-label="ജില്ലകള്‍" style="text-align: left;">
                                                                 <ul>
                                                                     <li>കണ്ണൂര്‍</li>
                                                                     <li>കാസര്‍ഗോഡ്</li>
                                                                 </ul>
 
                                                             </td>
-                                                            <td>കണ്ണൂര്‍</td>
-                                                            <td>22.11.2024</td>
-                                                            <td>29.11.2024</td>
-                                                            <td>ശിക്ഷക് സദൻ , കണ്ണൂർ</td>
+                                                            <td data-label="മേഖല">കണ്ണൂര്‍</td>
+                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">22.11.2024</td>
+                                                            <td data-label="പ്രാഥമിക മത്സര തീയതി">29.11.2024</td>
+                                                            <td data-label="വേദി">ശിക്ഷക് സദൻ , കണ്ണൂർ</td>
                                                         </tr>
                                                         <tr style="font-size: 18px;">
-                                                            <td>II</td>
-                                                            <td style="text-align: left;">
+                                                            <td data-label="മേഖല" class="fw-bold">II</td>
+                                                            <td data-label="ജില്ലകള്‍" style="text-align: left;">
                                                                 <ul>
                                                                     <li>വയനാട്</li>
                                                                     <li>കോഴിക്കോട്</li>
@@ -260,14 +319,14 @@
                                                                 </ul>
 
                                                             </td>
-                                                            <td>കോഴിക്കോട്</td>
-                                                            <td>26.11.2024</td>
-                                                            <td>3.12.2024</td>
-                                                            <td>കാരപറമ്പ ഗവ.ഹയർസെക്കന്ററി സ്‌കൂൾ, കോഴിക്കോട്</td>
+                                                            <td data-label="മേഖല">കോഴിക്കോട്</td>
+                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">26.11.2024</td>
+                                                            <td data-label="പ്രാഥമിക മത്സര തീയതി">3.12.2024</td>
+                                                            <td data-label="വേദി">കാരപറമ്പ ഗവ.ഹയർസെക്കന്ററി സ്‌കൂൾ, കോഴിക്കോട്</td>
                                                         </tr>
                                                         <tr style="font-size: 18px;">
-                                                            <td>III</td>
-                                                            <td style="text-align: left;">
+                                                            <td data-label="മേഖല" class="fw-bold">III</td>
+                                                            <td data-label="ജില്ലകള്‍" style="text-align: left;">
                                                                 <ul>
                                                                     <li>പാലക്കാട്</li>
                                                                     <li>തൃശൂര്‍</li>
@@ -275,14 +334,14 @@
                                                                 </ul>
 
                                                             </td>
-                                                            <td>എറണാകുളം</td>
-                                                            <td>28.11.2024</td>
-                                                            <td>5.12.2024</td>
-                                                            <td>കൊച്ചിൻ യൂണിവേഴ്‌സിറ്റി ഓഫ് സയൻസ് ആന്റ് ടെക്‌നോളജി (CUSAT), എറണാകുളം</td>
+                                                            <td data-label="മേഖല">എറണാകുളം</td>
+                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">28.11.2024</td>
+                                                            <td data-label="പ്രാഥമിക മത്സര തീയതി">5.12.2024</td>
+                                                            <td data-label="വേദി">കൊച്ചിൻ യൂണിവേഴ്‌സിറ്റി ഓഫ് സയൻസ് ആന്റ് ടെക്‌നോളജി (CUSAT), എറണാകുളം</td>
                                                         </tr>
                                                         <tr style="font-size: 18px;">
-                                                            <td>IV</td>
-                                                            <td style="text-align: left;">
+                                                            <td data-label="മേഖല" class="fw-bold">IV</td>
+                                                            <td data-label="ജില്ലകള്‍" style="text-align: left;">
                                                                 <ul>
                                                                     <li>കോട്ടയം</li>
                                                                     <li>ഇടുക്കി</li>
@@ -290,14 +349,14 @@
                                                                 </ul>
 
                                                             </td>
-                                                            <td>കോട്ടയം</td>
-                                                            <td>30.11.2024</td>
-                                                            <td>7.12.2024</td>
-                                                            <td></td>
+                                                            <td data-label="മേഖല">കോട്ടയം</td>
+                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">30.11.2024</td>
+                                                            <td data-label="പ്രാഥമിക മത്സര തീയതി">7.12.2024</td>
+                                                            <td data-label="വേദി">സെന്റ് ജോസഫ് പബ്ലിക് സ്‌കൂൾ, കുന്നുംഭാഗം, കാഞ്ഞിരപ്പള്ളി കോട്ടയം</td>
                                                         </tr>
                                                         <tr style="font-size: 18px;">
-                                                            <td>V</td>
-                                                            <td style="text-align: left;">
+                                                            <td data-label="മേഖല" class="fw-bold">V</td>
+                                                            <td data-label="ജില്ലകള്‍" style="text-align: left;">
                                                                 <ul>
                                                                     <li>ആലപ്പുഴ</li>
                                                                     <li>കൊല്ലം</li>
@@ -305,10 +364,10 @@
                                                                 </ul>
 
                                                             </td>
-                                                            <td>തിരുവനന്തപുരം</td>
-                                                            <td>31.12.2024</td>
-                                                            <td>8.1.2025</td>
-                                                            <td>നിയമസഭാ സമുച്ചയം, തിരുവനന്തപുരം</td>
+                                                            <td data-label="മേഖല">തിരുവനന്തപുരം</td>
+                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">31.12.2024</td>
+                                                            <td data-label="പ്രാഥമിക മത്സര തീയതി">8.1.2025</td>
+                                                            <td data-label="വേദി">നിയമസഭാ സമുച്ചയം, തിരുവനന്തപുരം</td>
                                                         </tr>
 
                                                     </tbody>

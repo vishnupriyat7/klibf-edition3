@@ -23,7 +23,7 @@ include "head-style.php";
                 </div>
             </div>
         </section><!-- End Breadcrumbs Section -->
-        <section id="contact" class="contact-area ptb_50">
+        <section>
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
                     <div class="col-xxl-12 col-md-12 col-lg-12 col-sm-12">
@@ -101,7 +101,7 @@ include "head-style.php";
                                             } elseif ($team1_memb2_mail == '') {
                                                 $msg .= "Please enter second participant's mail id.<BR>";
                                                 $status = "NOTOK";
-                                            }                                            
+                                            }
                                             $sel_reg_quiz_qry = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct' or team1_mem2_cntct = '$team1_memb1_cntct' or team1_mem1_cntct = '$team1_memb2_cntct' or team1_mem1_cntct = '$team1_memb2_cntct'";
                                             $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
                                             if ($sel_reg_quiz_res->num_rows > 0) {
@@ -184,6 +184,9 @@ include "head-style.php";
                                                 <div class="card-header">
                                                     <div class="section-heading text-center mb-3">
                                                         <h2>Apply Now!</h2>
+                                                    </div>
+                                                    <div class="scrolling-message">
+                                                        <span>jhjhjhjhjhj</span>
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
