@@ -91,7 +91,7 @@
                                             if (!$quiz_reg['team2_mem2_name']) {
                                                 $quiz_reg['team2_mem2_gndr'] = '';
                                             }
-                                            ?>
+                                        ?>
                                             <tr>
                                                 <td><?= ++$counter ?></td>
                                                 <td>KLIBF03-Q<?= $quiz_reg['id'] ?></td>
@@ -127,12 +127,6 @@
                                                 <td><?= $quiz_reg['team2_mem2_email'] ?></td>
                                                 <td><?= $quiz_reg['updated_date'] ?></td>
                                                 <td>
-                                                    <?php
-                                                    $query = "SELECT * FROM users_profile where user_id='$id'";
-                                                    $profileusers = mysqli_query($con, $query);
-                                                    $user_profile_row = mysqli_fetch_row($profileusers);
-                                                    $btnenbl = $user_profile_row ? "" : "hidden";
-                                                    ?>
                                                     <a class='dropdown-item remove-item-btn'
                                                         onclick="delete_quiz_reg(<?= $quiz_reg['id']; ?>);">
                                                         <i
@@ -195,7 +189,7 @@
                     quiz_id: quiz_id
                 },
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     if (data === 1) {
                         swal("Quiz registration deleted successsfully").then(() => {
                             location.reload();
