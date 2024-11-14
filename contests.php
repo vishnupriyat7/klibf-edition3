@@ -76,7 +76,7 @@
             <br>
 
             <div class="modal" id="contest_general_rule">
-                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-xxl">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title"></h4>
@@ -144,6 +144,30 @@
                         <div class="gallery-links">
                             <a href="assets/img/contests/pdf/cartoon-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
                             <a href="contest-cartoon-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
+                    <div class="gallery-wrap">
+                        <img src="assets/img/contests/quiz-poster.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" class="img-fluid" alt="">
+                        <div class="gallery-links">
+                            <a href="assets/img/contests/pdf/quiz-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                            <a href="apply_quiz.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="co-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 gallery-item filter-web">
+                    <div class="gallery-wrap">
+                        <img src="assets/img/contests/modelassembly-poster.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSdF5Vsl1E-ZEDNW4yBr6E6IZVNAvozMkHEiPn6VUt70BEtgDw/viewform" target="_blank" class="img-fluid" alt="">
+                        <div class="gallery-links">
+                            <a href="assets/img/contests/pdf/modelassembly-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
+                            <a href="contest-modelassembly-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
                             <!-- <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
                         </div>

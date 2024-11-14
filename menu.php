@@ -13,6 +13,9 @@
         <li>
           <a href="contest-quiz-registration.php">Quiz Competition</a>
         </li>
+        <li>
+          <a href="contest-modelassembly-registration.php">Model Assembly</a>
+        </li>
       </ul>
     </li>
     <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>

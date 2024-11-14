@@ -70,6 +70,9 @@
         <li>
           <a href="contest-quiz-registration.php">Quiz Competition</a>
         </li>
+        <li>
+          <a href="contest-modelassembly-registration.php">Model Assembly</a>
+        </li>
       </ul>
     </li>
     <li class="dropdown"><a href="#"><span>Previous KLIBF</span> <i class="bi bi-chevron-right"></i></a>
