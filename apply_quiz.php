@@ -185,9 +185,9 @@ include "head-style.php";
                                                     <div class="section-heading text-center mb-3">
                                                         <h2>Apply Now!</h2>
                                                     </div>
-                                                    <div class="scrolling-message">
+                                                    <!-- <div class="scrolling-message">
                                                         <span>jhjhjhjhjhj</span>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="row align-items-center justify-content-center">

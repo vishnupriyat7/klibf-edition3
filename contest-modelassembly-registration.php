@@ -210,22 +210,28 @@
                                             </li>
                                             <li>
                                                 <p>
-                                                രജിസ്റ്റര്‍ ചെയ്യേണ്ട അവസാന തീയതി <span class="fw-bold">28.11.2024</span> </p>
+                                                    രജിസ്റ്റര്‍ ചെയ്യേണ്ട അവസാന തീയതി <span class="fw-bold">28.11.2024</span> </p>
                                             </li>
                                             <li>
-                                                <p> മാതൃക നിയമസഭ ( Model Assembly) യുമായി  ബന്ധപ്പെട്ട് നിയമസഭാ സെക്രട്ടേറിയറ്റിന്റെ തീരുമാനങ്ങള്‍ അന്തിമമായിരിക്കും.</p>
+                                                <p> മാതൃക നിയമസഭ ( Model Assembly) യുമായി ബന്ധപ്പെട്ട് നിയമസഭാ സെക്രട്ടേറിയറ്റിന്റെ തീരുമാനങ്ങള്‍ അന്തിമമായിരിക്കും.</p>
                                             </li>
-                                           
-                                        </ul>
-                                      
-                                       
-                                    
 
-                                        <div style="margin-left: 2rem; font-size: large;">
+                                        </ul>
+
+
+
+
+                                        <div style="margin-left: 2rem; font-size: larger;">
                                             <b><span> <u>For more details, pls contact </u></b></span><br>
-                                            <p style="font-size: 20px;">Phone : 9400528408 / 8281470086<br>
-                                                <!-- Whatsapp : 7356602286 (pls text your queries. No Phone calls)<br>
-                                                Email : klibf.quiz@gmail.com -->
+                                            <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                                Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                                <!-- QUIZ : klibf.quiz@gmail.com<br> -->
+                                                <!-- പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                                പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
+
+                                                ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br> -->
+
+                                                Email : klibf.modelparliament@gmail.com
                                             </p>
                                         </div>
 
