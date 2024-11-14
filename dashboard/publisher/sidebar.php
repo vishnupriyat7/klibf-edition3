@@ -34,18 +34,21 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/index.php" class="nav-link" data-key="t-analytics"> <i class="ri-dashboard-2-line"></i>
+                    <a href="<?= $base_url ?>/dashboard/index.php" class="nav-link" data-key="t-analytics"> <i
+                            class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards"> Dashboard </span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
-                        href="<?= $base_url ?>/dashboard/publisher/stall_rules_regulation.php" class="nav-link" data-key="t-one-page">
+                        href="<?= $base_url ?>/dashboard/publisher/stall_rules_regulation.php" class="nav-link"
+                        data-key="t-one-page">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
                     </a>
                 </li>
                 <li class="nav-item" id="profile-menu">
                     <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
-                        href="<?= $base_url ?>/dashboard/publisher/profile_add_edit.php" class="nav-link" data-key="t-one-page">
+                        href="<?= $base_url ?>/dashboard/publisher/profile_add_edit.php" class="nav-link"
+                        data-key="t-one-page">
                         <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
                 </li>
@@ -74,21 +77,47 @@
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Coupon Entry</span>
                     </a>
                 </li> -->
-
-
                 <li class="nav-item">
-                    <!-- <a class="nav-link menu-link" role="button" href="#sidebarReport" data-bs-toggle="collapse">
-                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
-                    </a> -->
-                    <!-- <a class="nav-link menu-link" role="button" data-bs-toggle="collapse" data-bs-target="#sidebarReport">
-                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Report</span>
-                    </a> -->
-                    <div class="menu-dropdown collapse" id="sidebarReport">
+                    <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse">
+                        <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Event Proposals</span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarEvent">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/report.php" class="nav-link" data-key="t-one-page"> Profile Report
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php" class="nav-link"
+                                    data-key="t-one-page"> Book Release Proposals
                                 </a>
                             </li>
+                            <!-- <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
+                                    Book Release Proposal Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Book Discussion Proposal Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/special_event_proposal_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Special Event Proposal Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
+                                    data-key="t-nft-landing">Coupon List Report</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse" data-bs-target="#sidebarReport">
+                        <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Report</span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarReport">
+                        <ul class="nav nav-sm flex-column">
+                            <!-- <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/report.php" class="nav-link"
+                                    data-key="t-one-page"> Profile Report
+                                </a>
+                            </li> -->
                             <!-- <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
                                     Book Release Proposal Report </a>

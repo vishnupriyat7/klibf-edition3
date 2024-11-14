@@ -27,12 +27,68 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Quiz Registration Report</h5>
+                            <h5 class="card-title mb-0">Zone Wise Report</h5>
                         </div>
-                        <div class="card-body overflow-auto">
-                            <button onclick="exportTableToExcel('example', 'quiz_report_all')"
+                        <div class="card-body overflow-auto" >
+                            <button onclick="exportTableToExcel('example', 'quiz_zone_wise_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
-                            <div class="card" style="width:200vw;">
+                            <div class="card-body">
+                                <div class="row align-items-center justify-content-center">
+                                    <div class="form-group col-xxl-12 col-xl-12 col-lg-12 col-sm-12 d-flex flex-row">
+                                        <label class="me-3">*Select Category:</label>
+                                        <?php
+                                        $quiz_cat_qry = "SELECT * FROM quiz_category";
+                                        $quiz_cat_stmt = $con->prepare($quiz_cat_qry);
+                                        $quiz_cat_stmt->execute();
+                                        $quiz_cat_res = $quiz_cat_stmt->get_result();
+                                        $quiz_categories = $quiz_cat_res->fetch_all();
+                                        $first = true; // Variable to check if it's the first radio button
+                                        foreach ($quiz_categories as $quiz_category) { ?>
+                                            <div class="form-check me-3">
+                                                <input type="radio"
+                                                    class="form-check-input"
+                                                    name="quiz_present_category"
+                                                    id="quiz_present_category<?= $quiz_category[0] ?>"
+                                                    value="<?= $quiz_category[0] ?>"
+                                                    <?php if ($first) echo 'checked';// Set checked attribute for the first radio button  ?> 
+                                                    required>
+                                                <label class="form-check-label" for="quiz_present_category<?= $quiz_category[0] ?>">
+                                                    <?= $quiz_category[1] ?>
+                                                </label>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
+                                        <?php
+                                        $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6;";
+                                        $quiz_zone_stmt = $con->prepare($quiz_zone_qry);
+                                        $quiz_zone_stmt->execute();
+                                        $quiz_zone_res = $quiz_zone_stmt->get_result();
+                                        $quiz_zones = $quiz_zone_res->fetch_all();
+                                        ?>
+                                        <select class="form-control form-group" name="quiz_present_zone"
+                                            id="quiz_present_zone" style="height:35px;" require="required"
+                                            onchange="selDist();">
+                                            <option value="0">*Select Zone</option>
+                                            <?php foreach ($quiz_zones as $quiz_zone) { ?>
+                                                <option value="<?= $quiz_zone[0] ?>">
+                                                    <?= $quiz_zone[2] ?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
+                                        <select class="form-control form-group" name="quiz_present_district"
+                                            id="quiz_present_district" style="height:35px;"
+                                            require="required" onchange="loadQuizData();">
+                                            <option value="0">*Select District</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card" style="width:150vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                     style="font-style:normal; font-size: 12px;">
                                     <thead class="text-center">
@@ -46,27 +102,25 @@
                                             <th data-ordering="false" rowspan="2">Institute Address</th>
                                             <th data-ordering="false" rowspan="2">Principal Contact</th>
                                             <th data-ordering="false" rowspan="2">In-Charge Name</th>
-                                            <th data-ordering="false" rowspan="2">In-Charge Contact</th>
-                                            <th data-ordering="false" colspan="6">Team1 Member1 Details</th>
-                                            <th data-ordering="false" colspan="6">Team1 Member2 Details</th>
+                                            <th data-ordering="false" rowspan="2">In-Charge Contact</th>                                        
+                                            <th data-ordering="false" colspan="5">Team1 Member1 Details</th>
+                                            <th data-ordering="false" colspan="5">Team1 Member2 Details</th>
                                             <th data-ordering="false" colspan="5">Team2 Member1 Details</th>
                                             <th data-ordering="false" colspan="5">Team2 Member2 Details</th>
                                             <th data-ordering="false" rowspan="2">Date Registered</th>
-                                            <th data-ordering="false" rowspan="2">Action</th>
+                                            <th>Action</th>
                                         </tr>
                                         <tr>
+                                        <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Class / Course</th>
+                                            <th data-ordering="false">Gender</th>
+                                            <th data-ordering="false">Phone</th>
+                                            <th data-ordering="false">Email</th>
                                             <th data-ordering="false">Name</th>
                                             <th data-ordering="false">Class / Course</th>
                                             <th data-ordering="false">Gender</th>
                                             <th data-ordering="false">Phone</th>
                                             <th data-ordering="false">Email</th>
-                                            <th data-ordering="false">Address</th>
-                                            <th data-ordering="false">Name</th>
-                                            <th data-ordering="false">Class / Course</th>
-                                            <th data-ordering="false">Gender</th>
-                                            <th data-ordering="false">Phone</th>
-                                            <th data-ordering="false">Email</th>
-                                            <th data-ordering="false">Address</th>
                                             <th data-ordering="false">Name</th>
                                             <th data-ordering="false">Class / Course</th>
                                             <th data-ordering="false">Gender</th>
@@ -80,61 +134,6 @@
                                         </tr>
                                     </thead>
                                     <tbody id="quiz-data-list">
-                                        <?php
-                                        $quiz_reg_query = "SELECT a.*, b.category as category, c.name as zone, d.dt_name as dist_name FROM reg_quiz a join quiz_category b on a.category_id = b.id join quiz_zone c on a.zone_id = c.id join district d on a.district_id = d.id ORDER BY id DESC";
-                                        $quiz_registrations = mysqli_query($con, $quiz_reg_query);
-                                        $counter = 0;
-                                        while ($quiz_reg = mysqli_fetch_array($quiz_registrations)) {
-                                            if (!$quiz_reg['team2_mem1_name']) {
-                                                $quiz_reg['team2_mem1_gndr'] = '';
-                                            }
-                                            if (!$quiz_reg['team2_mem2_name']) {
-                                                $quiz_reg['team2_mem2_gndr'] = '';
-                                            }
-                                        ?>
-                                            <tr>
-                                                <td><?= ++$counter ?></td>
-                                                <td>KLIBF03-Q<?= $quiz_reg['id'] ?></td>
-                                                <td><?= $quiz_reg['category'] ?></td>
-                                                <td><?= $quiz_reg['zone'] ?></td>
-                                                <td><?= $quiz_reg['dist_name'] ?></td>
-                                                <td><?= $quiz_reg['inst_name'] ?></td>
-                                                <td><?= $quiz_reg['inst_addr'] ?></td>
-                                                <td><?= $quiz_reg['inst_prnci_cntct'] ?></td>
-                                                <td><?= $quiz_reg['inst_faclt_name'] ?></td>
-                                                <td><?= $quiz_reg['inst_faclt_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_name'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_class'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_email'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_addr'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_name'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_class'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_email'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_addr'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_name'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_class'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_email'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_name'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_class'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_email'] ?></td>
-                                                <td><?= $quiz_reg['updated_date'] ?></td>
-                                                <td>
-                                                    <a class='dropdown-item remove-item-btn'
-                                                        onclick="delete_quiz_reg(<?= $quiz_reg['id']; ?>);">
-                                                        <i
-                                                            class='ri-delete-bin-fill align-bottom me-2 text-danger'></i>Delete
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -151,8 +150,6 @@
     <?php include "../footer.php"; ?>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
     <script type="text/javascript">
         function exportTableToExcel(example, filename = '') {
@@ -180,22 +177,48 @@
             }
         }
 
-        function delete_quiz_reg(quiz_id) {
+        function selDist() {
+            var zone = document.getElementById("quiz_present_zone").value;
             $.ajax({
                 dataType: "json",
-                url: "delete_quiz_registration.php",
+                url: "<?= $base_url; ?>/list_district.php",
                 type: "POST",
                 data: {
-                    quiz_id: quiz_id
+                    zone_id: zone
                 },
                 dataType: "json",
                 success: function(data) {
-                    if (data === 1) {
-                        swal("Quiz registration deleted successsfully").then(() => {
-                            location.reload();
-                        });
-                    }
+                    $('#quiz_present_district').empty();
+                    var add_slot = "";
+                    $("#quiz_present_district").append('<option value="">Select District</option>');
+                    $.each(data, function(key, value) {
+                        $("#quiz_present_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
+                    });
                 }
             });
         }
+
+        function loadQuizData() {
+            // alert("here");
+            var admin_zone = document.getElementById("quiz_admin_zone").value;
+            var admin_category = document.querySelector('input[name="quiz_admin_category"]:checked').value;
+            var admin_district = document.getElementById("quiz_admin_district").value;
+            var tablequiz = document.getElementById('example');
+            $.ajax({
+                dataType: "json",
+                url: "list_quiz_details.php",
+                type: "POST",
+                data: {
+                    zone_id: admin_zone,
+                    category_id: admin_category,
+                    district_id:admin_district
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#quiz-data-list').empty();
+                    $('#quiz-data-list').append(data);
+                }
+            });
+        }
+       
     </script>
