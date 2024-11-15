@@ -27,9 +27,9 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Zone Wise Report</h5>
+                            <h5 class="card-title mb-0">Zone-District Wise Report</h5>
                         </div>
-                        <div class="card-body overflow-auto">
+                        <div class="card-body overflow-auto" >
                             <button onclick="exportTableToExcel('example', 'quiz_zone_wise_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <div class="card-body">
@@ -50,8 +50,7 @@
                                                     name="quiz_admin_category"
                                                     id="quiz_admin_category_<?= $quiz_category[0] ?>"
                                                     value="<?= $quiz_category[0] ?>"
-                                                    <?php if ($first) echo 'checked'; // Set checked attribute for the first radio button  
-                                                    ?>
+                                                    <?php if ($first) echo 'checked';// Set checked attribute for the first radio button  ?> 
                                                     required>
                                                 <label class="form-check-label" for="quiz_admin_category_<?= $quiz_category[0] ?>">
                                                     <?= $quiz_category[1] ?>
@@ -70,7 +69,8 @@
                                         $quiz_zones = $quiz_zone_res->fetch_all();
                                         ?>
                                         <select class="form-control form-group" name="quiz_admin_zone"
-                                            id="quiz_admin_zone" style="height:35px;" require="required" onchange="loadQuizData();">
+                                            id="quiz_admin_zone" style="height:35px;" require="required"
+                                            onchange="selDist();">
                                             <option value="0">*Select Zone</option>
                                             <?php foreach ($quiz_zones as $quiz_zone) { ?>
                                                 <option value="<?= $quiz_zone[0] ?>">
@@ -79,13 +79,13 @@
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <!-- <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
+                                    <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
                                         <select class="form-control form-group" name="quiz_admin_district"
                                             id="quiz_admin_district" style="height:35px;"
                                             require="required" onchange="loadQuizData();">
                                             <option value="0">*Select District</option>
                                         </select>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                             <div class="card" style="width:150vw;">
@@ -102,7 +102,7 @@
                                             <th data-ordering="false" rowspan="2">Institute Address</th>
                                             <th data-ordering="false" rowspan="2">Principal Contact</th>
                                             <th data-ordering="false" rowspan="2">In-Charge Name</th>
-                                            <th data-ordering="false" rowspan="2">In-Charge Contact</th>
+                                            <th data-ordering="false" rowspan="2">In-Charge Contact</th>                                        
                                             <th data-ordering="false" colspan="5">Team1 Member1 Details</th>
                                             <th data-ordering="false" colspan="5">Team1 Member2 Details</th>
                                             <th data-ordering="false" colspan="5">Team2 Member1 Details</th>
@@ -111,7 +111,7 @@
                                             <th>Action</th>
                                         </tr>
                                         <tr>
-                                            <th data-ordering="false">Name</th>
+                                        <th data-ordering="false">Name</th>
                                             <th data-ordering="false">Class / Course</th>
                                             <th data-ordering="false">Gender</th>
                                             <th data-ordering="false">Phone</th>
@@ -177,13 +177,32 @@
             }
         }
 
-       
+        function selDist() {
+            var zone = document.getElementById("quiz_admin_zone").value;
+            $.ajax({
+                dataType: "json",
+                url: "<?= $base_url; ?>/list_district.php",
+                type: "POST",
+                data: {
+                    zone_id: zone
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#quiz_admin_district').empty();
+                    var add_slot = "";
+                    $("#quiz_admin_district").append('<option value="">Select District</option>');
+                    $.each(data, function(key, value) {
+                        $("#quiz_admin_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
+                    });
+                }
+            });
+        }
+
         function loadQuizData() {
-    
+            // alert("here");
             var admin_zone = document.getElementById("quiz_admin_zone").value;
-         
             var admin_category = document.querySelector('input[name="quiz_admin_category"]:checked').value;
-         
+            var admin_district = document.getElementById("quiz_admin_district").value;
             var tablequiz = document.getElementById('example');
             $.ajax({
                 dataType: "json",
@@ -192,7 +211,7 @@
                 data: {
                     zone_id: admin_zone,
                     category_id: admin_category,
-                   
+                    district_id:admin_district
                 },
                 dataType: "json",
                 success: function(data) {
@@ -201,4 +220,5 @@
                 }
             });
         }
+       
     </script>
