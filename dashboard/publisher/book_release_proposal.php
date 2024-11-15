@@ -20,7 +20,7 @@ $bkrls_id = $_GET['bkrlsid'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i
+                                <a class="dropdown-item" href="../logout.php"><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
@@ -217,7 +217,6 @@ $bkrls_id = $_GET['bkrlsid'];
                                 } else {
                                     $query = "INSERT INTO event_propsl_bkrls (users_id, book_title, book_genere, brf_description, author,  released_by, relcd_by_cntct, recived_by, recvd_by_contact, guest1, guest1_contct, guest2, guest2_contct, guest3, guest3_contct, contact_persn_name, contact_persn_mobile,contact_persn_email, remarks,  updated_at, status, book_cover) VALUES ('$user_id','$book_title',  '$book_genere','$brief_descrptn','$author',  '$release_by', '$releas_by_cntct','$recvd_by','$recvd_by_cntct', '$guest1', '$guest1_cntct', '$guest2', '$guest2_cntct', '$guest3', '$guest3_cntct', '$bkrls_cntct_persn_name', '$bkrls_cntct_persn_mobile', '$bkrls_cntct_persn_email', '$remark', '$date', 'E', '$newFileName')";
                                 }
-                                // var_dump($query);die;
                                 $result1 = mysqli_query($con, $query);
                                 if ($result1) {
                                     $querySelectbookrls = "SELECT id FROM event_propsl_bkrls WHERE users_id = '$user_id' ORDER BY id DESC LIMIT 1";
@@ -532,7 +531,8 @@ $bkrls_id = $_GET['bkrlsid'];
     </div>
 </div>
 
-<?php include "footer.php"; ?>
+<?php include "../footer.php"; ?>
+
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
     integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
