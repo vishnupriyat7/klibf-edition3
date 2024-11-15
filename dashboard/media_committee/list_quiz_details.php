@@ -2,8 +2,7 @@
 include "../z_db.php";
 $zone_id = $_POST['zone_id'];
 $category_id = $_POST['category_id'];
-$district_id = $_POST['district_id'];
-$query = "SELECT a.*, b.category as category, c.name as zone, d.dt_name as dist_name FROM reg_quiz a join quiz_category b on a.category_id = b.id join quiz_zone c on a.zone_id = c.id join district d on a.district_id = d.id where a.category_id = $category_id and a.zone_id = $zone_id and a.district_id = $district_id ORDER BY id DESC";
+$query = "SELECT a.*, b.category as category, c.name as zone, d.dt_name as dist_name FROM reg_quiz a join quiz_category b on a.category_id = b.id join quiz_zone c on a.zone_id = c.id join district d on a.district_id = d.id where a.category_id = $category_id and a.zone_id = $zone_id ORDER BY id DESC";
 $reg_quiz_zone = mysqli_query($con, $query);
 $counter = 0;
 $quizHtmlData = "";
