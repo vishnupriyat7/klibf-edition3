@@ -176,7 +176,6 @@
                 downloadLink.click();
             }
         }
-
        
         function loadQuizData() {
     
