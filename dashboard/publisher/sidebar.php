@@ -84,9 +84,13 @@
                     <div class="menu-dropdown collapse" id="sidebarEvent">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php" class="nav-link"
-                                    data-key="t-one-page"> Book Release Proposals
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
+                                    class="nav-link" data-key="t-one-page"> Book Release Proposal
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
+                                    data-key="t-nft-landing"> Book Discussion Proposal </a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
@@ -108,20 +112,23 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse" data-bs-target="#sidebarReport">
+                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarReport">
                         <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Report</span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarReport">
                         <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_release_report.php" class="nav-link"
+                                    data-key="t-nft-landing">
+                                    Book Release Proposal Report </a>
+                            </li>
                             <!-- <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/report.php" class="nav-link"
                                     data-key="t-one-page"> Profile Report
                                 </a>
                             </li> -->
-                            <!-- <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
-                                    Book Release Proposal Report </a>
-                            </li>
+                            <!-- 
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Book Discussion Proposal Report </a>
