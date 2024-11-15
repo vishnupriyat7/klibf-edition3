@@ -85,8 +85,12 @@
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
-                                    class="nav-link" data-key="t-one-page"> Book Release Proposals
+                                    class="nav-link" data-key="t-one-page"> Book Release Proposal
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
+                                    data-key="t-nft-landing"> Book Discussion Proposal </a>
                             </li>
                             <!-- <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">

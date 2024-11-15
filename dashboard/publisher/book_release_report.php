@@ -13,11 +13,10 @@
                         <h4 class="mb-sm-0">Report</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
-                                <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="../logout.php"><i
-                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="../logout.php">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                </a>
                             </ol>
                         </div>
                     </div>
@@ -28,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Book Release Report</h5>
+                            <h5 class="card-title mb-0">Book Release Proposal Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <button onclick="exportTableToExcel('example', 'publisher_book_release_report')"
