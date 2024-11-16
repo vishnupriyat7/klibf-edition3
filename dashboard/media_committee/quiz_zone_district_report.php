@@ -199,11 +199,9 @@
         }
 
         function loadQuizData() {
-            // alert("here");
             var admin_zone = document.getElementById("quiz_admin_zone").value;
             var admin_category = document.querySelector('input[name="quiz_admin_category"]:checked').value;
             var admin_district = document.getElementById("quiz_admin_district").value;
-            var tablequiz = document.getElementById('example');
             $.ajax({
                 dataType: "json",
                 url: "list_quiz_details.php",

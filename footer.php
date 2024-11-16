@@ -91,5 +91,6 @@
  <script src="assets/vendor/mdb-ui-kit3.6.0/js/mdb.min.js"></script>
  
  <script src="assets/js/main.js"></script>
+ 
  <!-- Template Main JS File -->
  
