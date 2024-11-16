@@ -3,15 +3,11 @@
    <div class="footer-top">
      <div class="container">
        <div class="row">
-
          <div class="col-lg-4 col-md-6">
            <div class="footer-info">
-             <!-- <h3>Contact</h3> -->
              <div class="logo">
-              
                <a href="index.php"><img src="assets/img/Logo_KLIBF03_cropped.png" alt="" class="img-fluid"></a>
              </div>
-             <!-- <p class="pb-3"><em>KLIBF</em></p> -->
              <p>
                Kerala Legislature Secretariat, Legislature Complex, Palayam, Vikasbhavan PO, Thiruvananthapuram<br><br>
                <strong>Phone:</strong> 9188380058<br>0471-2512263<br>
@@ -35,9 +31,6 @@
            <ul>
              <li><i class="bx bx-chevron-right"></i> <a href="index.php">Home</a></li>
              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
-             <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Speakers</a></li>
-             <li><i class="bx bx-chevron-right"></i> <a href="#">Gallery</a></li> -->
-             <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
            </ul>
          </div>
 
@@ -46,21 +39,8 @@
            <ul>
              <li><i class="bx bx-chevron-right"></i> <a href="http://www.niyamasabha.org/">Kerala Niyamasabha</a></li>
              <li><i class="bx bx-chevron-right"></i> <a href="http://www.niyamasabha.org/library/library.htm">Kerala Niyamasabha Library</a></li>
-             <!-- <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li> -->
            </ul>
          </div>
-
-         <!-- <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div> -->
-
        </div>
      </div>
    </div>
@@ -89,8 +69,7 @@
  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
  <script src="assets/vendor/php-email-form/validate.js"></script>
  <script src="assets/vendor/mdb-ui-kit3.6.0/js/mdb.min.js"></script>
- 
  <script src="assets/js/main.js"></script>
- 
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
  <!-- Template Main JS File -->
  
