@@ -30,8 +30,6 @@ include "head-style.php";
                         <div class="card">
                             <!-- Register Box -->
                             <div class="contact-box text-center">
-                                <!-- <p> Read the <a href="terms&condition.php" target="_blank"><span style="color:blue"> &nbsp;Rules & Regulations</span> </a> before submitting.
-                                 </p> -->
                                 <!-- Register Form -->
                                 <div class="card-body p-5">
                                     <?php
@@ -152,19 +150,17 @@ include "head-style.php";
                                                </div>"; //printing error if found in validation
                                         } else {
                                             $insrt_reg_quiz_query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$zone', '$district', '$inst_name', '$addr_inst', '$principal_cntct', '$faclty_name', '$faclty_cntct', '$team1_memb1_name', '$team1_memb1_class', '$team1_memb1_gndr', '$team1_memb1_mail', '$team1_memb1_cntct', '$team1_memb1_addr', '$team1_memb2_name', '$team1_memb2_class', '$team1_memb2_gndr', '$team1_memb2_mail', '$team1_memb2_cntct', '$team1_memb2_addr', '$team2_memb1_name', '$team2_memb1_class', '$team2_memb1_gndr', '$team2_memb1_mail', '$team2_memb1_cntct', '$team2_memb2_name', '$team2_memb2_class', '$team2_memb2_gndr', '$team2_memb2_mail', '$team2_memb2_cntct', '$current_date')";
-                                            // <button type='button' class='btn-info' onclick='printQuiz(" . $quiz_reg_id['id'] . ")'>Print</button>
                                             $result = mysqli_query($conn, $insrt_reg_quiz_query);
                                             if ($result) {
                                                 if ($category != 3) {
-                                                    $sel_registered_query = "SELECT max(id) from reg_quiz where inst_prnci_cntct = '$principal_cntct';";
+                                                    $sel_registered_query = "SELECT max(id) as regid from reg_quiz where inst_prnci_cntct = '$principal_cntct';";
                                                 } else {
-                                                    $sel_registered_query = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct';";
+                                                    $sel_registered_query = "SELECT id as regid from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct';";
                                                 }
                                                 $sel_registered_res = mysqli_query($conn, $sel_registered_query);
                                                 $quiz_reg_id = $sel_registered_res->fetch_assoc();
                                                 $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                You have been registered successfully. Your Registration Number is KLIBF03-Q" . $quiz_reg_id['max(id)'] . ". 
-                                                <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                                You have been registered successfully. Your Registration Number is KLIBF03-Q" . $quiz_reg_id['regid']. ". <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                             } else {
                                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -185,9 +181,7 @@ include "head-style.php";
                                                     <div class="section-heading text-center mb-3">
                                                         <h2>Apply Now!</h2>
                                                     </div>
-                                                    <!-- <div class="scrolling-message">
-                                                        <span>jhjhjhjhjhj</span>
-                                                    </div> -->
+                                                    <p class="text-primary" id="message">Registration for <b>Schools</b> and <b>Colleges</b> should be handled through <b>Institutional Heads</b>.</p>
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="row align-items-center justify-content-center">
@@ -509,37 +503,10 @@ include "head-style.php";
     </main>
 </body>
 <br>
-
-<?php include "attention.php" ?>
-<!--====== Call To Action Area End ======-->
-
-<div id="preview-quiz-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title float-left">Preview</h4>
-                <button type="button" class="close" data-dismiss="modal"><span
-                        style="font-size:48px;color:red">&times;</span></button>&nbsp;
-            </div>
-            <div class="modal-body">
-                <?php include "quiz_preview.php"; ?>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-default float-left" id="download">Print</button> -->
-                <button type=" button" class="btn btn-default" data-dismiss="modal">Edit</button>
-                <button type="button" class="btn btn-success" onclick="previewok();"
-                    id="quiz-previewok">Register</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 <br>
+
 <?php include "footer.php"; ?>
 
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
         const defaultCategory = '1';
@@ -553,16 +520,14 @@ include "head-style.php";
         const addressDiv1 = document.getElementById('tm1_meb1_addr');
         const addressDiv2 = document.getElementById('tm1_meb2_addr');
         const team2_details = document.getElementById("team2_dtls");
-
         if (catgry === '3') {
             document.getElementById("quiz_zone").style.display = "none";
             document.getElementById("quiz_district").style.display = "none";
             document.getElementById("inst_details").style.display = "none";
             document.getElementById("team1_memb1_class_course").style.display = "none";
             document.getElementById("team1_memb2_class_course").style.display = "none";
+            document.getElementById("message").style.display = "none";
             team2_details.style.display = "none";
-            // console.log("Display property of team2_dtls:", document.getElementById("team2_dtls").style.display);
-
             document.getElementById("team2").style.display = "none";
             addressDiv1.style.display = "block";
             addressDiv2.style.display = "block";
@@ -576,11 +541,11 @@ include "head-style.php";
             team2_details.style.display = "block";
             addressDiv1.style.display = "none";
             addressDiv2.style.display = "none";
+            document.getElementById("message").style.display = "block";
         }
     }
 
     function displayTeam2() {
-
         const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
         if (catgry === '1' || catgry === '2') {
             document.getElementById("team2").style.display = "block";
