@@ -197,6 +197,7 @@
             success: function (data) {
                 if(!data) {
                     swal("Unable to mark attendance");
+                    document.getElementById("quiz_prsnt" + quizId).checked = false;
                 }
             }
         });
