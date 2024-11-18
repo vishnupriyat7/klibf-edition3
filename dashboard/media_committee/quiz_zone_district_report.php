@@ -94,6 +94,8 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">Attendance</th>
+                                            <th data-ordering="false" rowspan="2">Team Count</th>
                                             <th data-ordering="false" rowspan="2">Reg.No</th>
                                             <th data-ordering="false" rowspan="2">Category</th>
                                             <th data-ordering="false" rowspan="2">Zone</th>
@@ -108,7 +110,7 @@
                                             <th data-ordering="false" colspan="5">Team2 Member1 Details</th>
                                             <th data-ordering="false" colspan="5">Team2 Member2 Details</th>
                                             <th data-ordering="false" rowspan="2">Date Registered</th>
-                                            <th>Action</th>
+                                           
                                         </tr>
                                         <tr>
                                         <th data-ordering="false">Name</th>

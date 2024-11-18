@@ -83,6 +83,7 @@
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
                                             <th data-ordering="false" rowspan="2">Attendance</th>
+                                            <th data-ordering="false" rowspan="2">Team Count</th>
                                             <th data-ordering="false" rowspan="2">Reg.No</th>
                                             <th data-ordering="false" rowspan="2">Category</th>
                                             <th data-ordering="false" rowspan="2">Zone</th>
