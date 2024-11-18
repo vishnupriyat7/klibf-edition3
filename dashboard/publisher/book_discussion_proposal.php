@@ -142,10 +142,6 @@ $bkdscn_id = $_GET['bkdscnid'];
                                 mysqli_real_escape_string($con, $_POST['disc_remark']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-
-
-
-
                             if (!empty($_FILES["disc_book_cover"]["name"])) {
                                 $fileName = basename($_FILES["disc_book_cover"]["name"]);
                                 $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -171,42 +167,20 @@ $bkdscn_id = $_GET['bkdscnid'];
                                     $status = "NOTOK";
                                 }
                             }
-
-
-
-                            // if (!empty($_FILES["disc_book_cover"]["name"])) {
-                            //     $fileName = basename($_FILES["disc_book_cover"]["name"]);
-                            //     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-
-                            //     // Allow certain file formats 
-                            //     $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-                            //     if (in_array($fileType, $allowTypes)) {
-                            //         $image = $_FILES['disc_book_cover']['tmp_name'];
-                            //         $imgContent = addslashes(file_get_contents($image));
-                            //     } else {
-                            //         $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
-                            //         $status = "NOTOK";
-                            //     }
-                            // } else {
-                            //     if (!$disc_book_cover) {
-                            //         $msg = 'Please select an image file to upload.';
-                            //         $status = "NOTOK";
-                            //     }
-                            // }
                             if ($time_slot1 == '0') {
-                                $time_slot1 = '5';
+                                $time_slot1 = '9';
                             }
                             if ($evnt_day1 == '0') {
                                 $evnt_day1 = '8';
                             }
                             if ($time_slot2 == '0') {
-                                $time_slot2 = '5';
+                                $time_slot2 = '9';
                             }
                             if ($evnt_day2 == '0') {
                                 $evnt_day2 = '8';
                             }
                             if ($time_slot3 == '0') {
-                                $time_slot3 = '5';
+                                $time_slot3 = '9';
                             }
                             if ($evnt_day3 == '0') {
                                 $evnt_day3 = '8';
@@ -217,10 +191,7 @@ $bkdscn_id = $_GET['bkdscnid'];
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                // var_dump($bkdscndetls);
-                        
                                 if ($bkdscndetls) {
-                                    // var_dump("jkjfk");
                                     if (!$newFileName && $disc_book_cover) {
                                         $query1 = "UPDATE evnt_propsl_bkdscn SET subject = '$disc_sub', book_name = '$disc_book', moderator = '$modrtr', modrtr_cntct = '$modrtr_cntct', participant1 = '$prtcpnt1', part1_cntct = '$prtcpnt1_cntct',  participant2 = '$prtcpnt2', part2_cntct = '$prtcpnt2_cntct', participant3 = '$prtcpnt3', part3_cntct = '$prtcpnt3_cntct', participant4 = '$prtcpnt4', part4_cntct = '$prtcpnt4_cntct', cntct_name = '$cntct_name', cntct_mail = '$cntct_mail', cntct_phno = '$cntct_phno', remarks = '$disc_remark', updated_at = '$date' WHERE id = $bkdscn_id";
                                     } else {
