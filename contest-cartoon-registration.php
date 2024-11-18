@@ -191,14 +191,14 @@
                                         <li>
                                             <!-- <h3>Rules & Regulations</h3> -->
 
-                                          
 
-                                            
-                                            <p>കാർട്ടൂൺ മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ, കാർട്ടൂണിന്റെ ഇമേജ് ഫയൽ  അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി,  വാട്സ്ആപ്പ്   മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., ഇൻസ്റ്റാഗ്രാം ഐ.ഡി. എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
+
+
+                                            <p>കാർട്ടൂൺ മത്സരത്തിൽ പങ്കെടുക്കാൻ ആഗ്രഹിക്കുന്നവർ, <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> എന്ന വെബ്‌സൈറ്റിൽ ലഭ്യമാക്കിയിരിക്കുന്ന ഗൂഗിൾ ഫോമിൽ, കാർട്ടൂണിന്റെ ഇമേജ് ഫയൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്. അതോടൊപ്പം മത്സരാർത്ഥിയുടെ പേര്, ഫോട്ടോ, ജനനതീയതി, വാട്സ്ആപ്പ് മൊബൈൽ നമ്പർ, ഇ-മെയിൽ വിലാസം, ഫേസ്ബുക്ക് പ്രൊഫൈലിന്റെ ഐ.ഡി., ഇൻസ്റ്റാഗ്രാം ഐ.ഡി. എന്നിവയും ഗൂഗിൾ ഫോമിൽ അപ്‌ലോഡ് ചെയ്യേണ്ടതാണ്.</p>
                                         </li>
                                         <li>
                                             <p>
-                                            <span class="fw-bold">"സോഷ്യൽ മീഡിയ കാലത്തെ വായന” </span>എന്ന വിഷയം  പ്രമേയമാക്കിയുള്ള കാർട്ടൂണുകളാണ് അപ്‌ലോഡ് ചെയ്യേണ്ടത്. 
+                                                <span class="fw-bold">"സോഷ്യൽ മീഡിയ കാലത്തെ വായന” </span>എന്ന വിഷയം പ്രമേയമാക്കിയുള്ള കാർട്ടൂണുകളാണ് അപ്‌ലോഡ് ചെയ്യേണ്ടത്.
                                             </p>
                                         </li>
 
@@ -230,18 +230,18 @@
                                     <!--end tab-pane-->
                                 </div>
                                 <div style="margin-left: 2rem; font-size: larger;">
-                                            <b><span> <u>For more details, pls contact </u></b></span><br>
-                                            <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
-                                                Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
-                                                <!-- QUIZ : klibf.quiz@gmail.com<br> -->
-                                                <!-- പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
+                                    <b><span> <u>For more details, pls contact </u></b></span><br>
+                                    <p>Telephone : 0471 - 2512263 (10.15 am -5.00 pm IST)<br>
+                                        Whatsapp : <a href=" https://wa.me/7356602286">7356602286</a> (pls text your queries. No Phone calls)<br>
+                                        <!-- QUIZ : klibf.quiz@gmail.com<br> -->
+                                        <!-- പുസ്തകാസ്വാദന മത്സരം : klibf.bookreview@gmail.com <br>
                                                 പദ്യപാരായണ മത്സരം : klibf.poetryrecitation@gmail.com <br>
 
                                                 ഒരു കഥ പറയാം മത്സരം : klibf.storytelling@gmail.com<br> -->
 
-                                                കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
-                                            </p>
-                                        </div>
+                                        കാർട്ടൂൺ മത്സരം : klibf.cartoondrawing@gmail.com
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
