@@ -21,7 +21,7 @@ foreach ($quizDatas as $quiz_zone) {
     if (!$quiz_zone[21]) {
         $quiz_zone[23] = '';
     }
-    // var_dump($quiz_zone[9]);
+    var_dump($quiz_zone);
 
     // var_dump($quiz_zone[21]);
 
