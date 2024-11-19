@@ -21,17 +21,15 @@ foreach ($quizDatas as $quiz_zone) {
     if (!$quiz_zone[21]) {
         $quiz_zone[23] = '';
     }
-    var_dump($quiz_zone);
-
-    // var_dump($quiz_zone[21]);
+   
 
     $quiz_team_count = 0;
 
-    if (($quiz_zone[9]) > 0) {
-        $quiz_team_count++;
+    if (($quiz_zone[9]) > "") {
+        $quiz_team_count =  $quiz_team_count+1 ;
     }
-    if (($quiz_zone[21]) > 0) {
-        $quiz_team_count++;
+    if (($quiz_zone[21]) > "") {
+        $quiz_team_count = $quiz_team_count+1 ;
     }
 
     $quiz_check = ($quiz_zone[31] == '1') ? "checked" : "";
