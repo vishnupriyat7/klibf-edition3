@@ -77,8 +77,8 @@
     </li>
     <li class="dropdown"><a href="#"><span>Previous KLIBF</span> <i class="bi bi-chevron-right"></i></a>
       <ul>
-        <li><a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition I</a></li>
-        <li><a href="https://klibf.niyamasabha.org" target="_blank">Edition II</a></li>
+        <li><a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition 1</a></li>
+        <li><a href="https://klibf.niyamasabha.org" target="_blank">Edition 2</a></li>
       </ul>
     </li>
     <li><a class="nav-link scrollto" href="contact-inner-page.php">Contact</a></li>

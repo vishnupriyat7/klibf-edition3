@@ -52,7 +52,7 @@
                     <!-- Grid column -->
                     <?php
                     // Directory where your images are located
-                    $imageDirectory = "assets/img/Newpaper/";
+                    $imageDirectory = "assets/img/NewsPaper/";
 
                     // Get all image files from the directory
                     $imageFiles = glob($imageDirectory . "*.{jpg,jpeg,png}", GLOB_BRACE);

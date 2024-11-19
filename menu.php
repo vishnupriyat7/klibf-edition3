@@ -18,6 +18,28 @@
         </li>
       </ul>
     </li>
+
+
+    <!-- <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
+      <ul>
+        <li><a href="news.php">News</a></li>
+        <li><a href="#reflections">Reflections</a></li>
+        
+      </ul>
+    </li> -->
+
+    <li>
+      <a class="nav-link scrollto" href="news.php">News</a>
+    </li>
+
+
+    <!-- <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
+      <ul>
+        <li><a href="news.php">News</a></li>
+        <li><a href="#reflections">Reflections</a></li>
+        
+      </ul>
+    </li> -->
     <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
     <li><a class="nav-link scrollto" href="#testimonials">Publishers</a></li>
     <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
@@ -54,10 +76,10 @@
     <li class="dropdown"><a href="#"><span>Previous KLIBF</span> <i class="bi bi-chevron-right"></i></a>
       <ul>
         <li>
-          <a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition I</a>
+          <a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition 1</a>
         </li>
         <li>
-          <a href="https://klibf.niyamasabha.org/edition2/" target="_blank">Edition II</a>
+          <a href="https://klibf.niyamasabha.org/edition2/" target="_blank">Edition 2</a>
         </li>
       </ul>
     </li>

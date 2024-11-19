@@ -47,7 +47,7 @@
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarX">
                         <ul class="nav nav-sm flex-column">
-                        <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/media_committee/quiz_zone_report.php"
                                     class="nav-link" data-key="t-nft-landing">Zone Wise Report </a>
                             </li>
@@ -65,6 +65,12 @@
                             </li>
                         </ul>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/media_committee/news_upload.php" class="nav-link" data-key="t-analytics">
+                        <i class="ri-dashboard-2-line"></i>
+                        <span data-key="t-dashboards"> News Upload </span>
+                    </a>
                 </li>
                 <!-- <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/media_committee/quiz_mark_team.php" class="nav-link" data-key="t-analytics">
