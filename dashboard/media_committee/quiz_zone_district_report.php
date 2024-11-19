@@ -182,7 +182,6 @@
         function selDist() {
             var zone = document.getElementById("quiz_admin_zone").value;
             $.ajax({
-                dataType: "json",
                 url: "<?= $base_url; ?>/list_district.php",
                 type: "POST",
                 data: {
@@ -205,7 +204,6 @@
             var admin_category = document.querySelector('input[name="quiz_admin_category"]:checked').value;
             var admin_district = document.getElementById("quiz_admin_district").value;
             $.ajax({
-                dataType: "json",
                 url: "list_quiz_details.php",
                 type: "POST",
                 data: {

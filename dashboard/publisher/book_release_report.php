@@ -116,32 +116,18 @@
                                                         <i class='mdi mdi-book-edit'></i>
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <?= $booktitle; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $author; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $book_genere; ?>
-                                                </td>
+                                                <td><?= $booktitle; ?></td>
+                                                <td><?= $author; ?></td>
+                                                <td><?= $book_genere; ?></td>
                                                 <td>
                                                     <img src="<?= $base_url ?>/dashboard/publisher/uploads/book_release_img/<?= $book_cover; ?>"
                                                         height="70vh">
                                                 </td>
-                                                <td>
-                                                    <?= $brf_description; ?>
-                                                </td>
+                                                <td><?= $brf_description; ?></td>
 
-                                                <td>
-                                                    <?= $released_by; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $relcd_by_cntct; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $recived_by; ?>
-                                                </td>
+                                                <td><?= $released_by; ?></td>
+                                                <td><?= $relcd_by_cntct; ?></td>
+                                                <td><?= $recived_by; ?></td>
                                                 <td>
                                                     <?= $recvd_by_contact; ?>
                                                 </td>

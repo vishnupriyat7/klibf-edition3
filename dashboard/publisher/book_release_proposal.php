@@ -357,7 +357,7 @@ $bkrls_id = $_GET['bkrlsid'];
                                                     id="guest3_cntct" placeholder="Guest3 Contact"
                                                     value="<?= $guest3_cntct; ?>" <?= $edit; ?>>
                                             </div>
-                                            <?php
+                                            <?php 
                                             $day_query = "SELECT * FROM event_date";
                                             $day_stmt = $con->prepare($day_query);
                                             $day_stmt->execute();
@@ -406,7 +406,7 @@ $bkrls_id = $_GET['bkrlsid'];
                                                 <br>
                                                 <label>Event Date Preference 2</label>
                                                 <select class="form-control form-group" name="evnt_day2" id="evnt_day2"
-                                                    style="height:35px;">
+                                                    style="height:35px;" onchange="listTimeSlot2();">
                                                     <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
@@ -439,7 +439,7 @@ $bkrls_id = $_GET['bkrlsid'];
                                                 <br>
                                                 <label>Event Date Preference 3</label>
                                                 <select class="form-control form-group" name="evnt_day3" id="evnt_day3"
-                                                    style="height:35px;">
+                                                    style="height:35px;" onchange="listTimeSlot3();">
                                                     <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
@@ -540,16 +540,59 @@ $bkrls_id = $_GET['bkrlsid'];
         function listTimeSlot1() {
             var eventDt = document.getElementById("evnt_day1").value;
             $.ajax({
-                dataType: "json",
-                url: "list_time_slot.php",
+                url: "<?= $base_url; ?>/dashboard/publisher/list_time_slot.php",
                 type: "POST",
                 data: {
                     eventDt_id: eventDt
                 },
                 dataType: "json",
                 success: function (data) {
-                    // $('#quiz-data-list').empty();
-                    // $('#quiz-data-list').append(data);
+                    $('#time_slot1').empty();
+                    var add_slot = "";
+                    $("#time_slot1").append('<option value="">Select Proposed Event Time</option>');
+                    $.each(data, function (key, value) {
+                        $("#time_slot1").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
+                    });
+                }
+            });
+        }
+
+        function listTimeSlot2() {
+            var eventDt2 = document.getElementById("evnt_day2").value;
+            $.ajax({
+                url: "<?= $base_url; ?>/dashboard/publisher/list_time_slot.php",
+                type: "POST",
+                data: {
+                    eventDt_id: eventDt2
+                },
+                dataType: "json",
+                success: function (data) {
+                    $('#time_slot2').empty();
+                    var add_slot = "";
+                    $("#time_slot2").append('<option value="">Select Proposed Event Time</option>');
+                    $.each(data, function (key, value) {
+                        $("#time_slot2").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
+                    });
+                }
+            });
+        }
+
+        function listTimeSlot3() {
+            var eventDt3 = document.getElementById("evnt_day3").value;
+            $.ajax({
+                url: "<?= $base_url; ?>/dashboard/publisher/list_time_slot.php",
+                type: "POST",
+                data: {
+                    eventDt_id: eventDt3
+                },
+                dataType: "json",
+                success: function (data) {
+                    $('#time_slot3').empty();
+                    var add_slot = "";
+                    $("#time_slot3").append('<option value="">Select Proposed Event Time</option>');
+                    $.each(data, function (key, value) {
+                        $("#time_slot3").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
+                    });
                 }
             });
         }
