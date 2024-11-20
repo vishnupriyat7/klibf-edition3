@@ -187,7 +187,6 @@
     function saveQuizAttendance(quizId) {
         var attendance = $('#quiz_prsnt' + quizId + ':checked').val();
         $.ajax({
-            dataType: "json",
             url: "save_quiz_attendance.php",
             type: "POST",
             data: {

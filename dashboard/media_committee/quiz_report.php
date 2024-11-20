@@ -178,7 +178,6 @@
 
         function delete_quiz_reg(quiz_id) {
             $.ajax({
-                dataType: "json",
                 url: "delete_quiz_registration.php",
                 type: "POST",
                 data: {
