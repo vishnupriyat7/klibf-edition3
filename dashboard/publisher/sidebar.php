@@ -83,6 +83,11 @@
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarEvent">
                         <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/event_rules_regulation.php"
+                                    class="nav-link" data-key="t-one-page"> Terms and Conditions
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
                                     class="nav-link" data-key="t-one-page"> Book Release Proposal
