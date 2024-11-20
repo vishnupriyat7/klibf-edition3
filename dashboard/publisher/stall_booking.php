@@ -65,7 +65,7 @@ $user_id = $user['id'];
                             $amt3x2 = 7500;
                             $tot_amt3x2 = ($stall3x2 * $amt3x2) + ($amt3x2 * $stall3x2 * 18) / 100;
                             $stall_status = $user_stall['status'];
-                            if ($stall_status != 'S') {
+                            if ($stall_status != 'A') {
                                 $edit_count = '';
                             } else {
                                 $edit_count = 'disabled';
@@ -249,31 +249,23 @@ $user_id = $user['id'];
                                                 </div>
                                             </div>
                                         </div><br>
-                                        <?php if ($stall_status != 'S') { ?>
+                                        <?php if ($stall_status != 'A') { ?>
                                             <div class="col-md-12">
                                                 <br>
                                                 <input type="checkbox" name="terms" required="required" class="text-justify"
-                                                    id="terms">&emsp;I/We, <?= $user_prof['org_name'] ?>, hereby agree to
-                                                abide by the <a href="stall_rules_regulation.php" target="_blank">
-                                                    &nbsp;Terms & Conditions</a> of the Kerala Legislature International
-                                                Book Festival 2025 3rd Edition given in the Terms and Conditions and as
-                                                decided by the Kerala Legislature Secretariat from time to time.
+                                                    id="terms">&emsp;I/We, <?= $user_prof['org_name'] ?>, hereby agree to abide by the <a href="stall_rules_regulation.php" target="_blank"> &nbsp;Terms & Conditions</a> of the Kerala Legislature International Book Festival 2025 3rd Edition given in the Terms and Conditions and as decided by the Kerala Legislature Secretariat from time to time.
                                                 <br><br>
-                                                <medium class="text-danger">**Disclaimer: Once you submitted, further
-                                                    editing is not possible.</medium><br>
-                                                <br>
+                                                <medium class="text-danger">**Disclaimer: Once you submitted, further editing is not possible.</medium>
+                                                <br><br>
                                             </div>
                                             <div class="col-lg-12">
-
                                                 <button type="submit" name="save_stall" class="btn btn-primary"
                                                     id="save_stall">Save</button>
                                                 <!-- </div> -->
                                                 <!-- <button type="submit" class="btn btn-success" name="submit-stall"
                                                     id="submit-stall">Submit</button> -->
-
                                             </div>
                                         <?php } ?>
-
                                     </form>
                                 </div>
                                 <!--end tab-pane-->
@@ -296,11 +288,6 @@ $user_id = $user['id'];
 
     <?php include "../footer.php"; ?>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
-        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
-        crossorigin="anonymous"></script>
     <script type="text/javascript">
         var _URL = window.URL || window.webkitURL;
         function amount() {

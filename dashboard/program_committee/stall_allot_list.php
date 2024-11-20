@@ -1,5 +1,5 @@
-<?php include "header.php"; ?>
-<?php include "pgmcmtee_sidebar.php"; ?>
+<?php include "../header.php"; ?>
+<?php include "sidebar.php"; ?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -8,8 +8,8 @@
     <div class="page-content">
         <div class="container-fluid">
 
-             <!-- start page title -->
-             <div class="row">
+            <!-- start page title -->
+            <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                         <h4 class="mb-sm-0">Report</h4>
@@ -17,7 +17,9 @@
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="../logout.php"><i
+                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
                     </div>
@@ -33,20 +35,25 @@
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'stallbookingreport-data')" class="btn btn-primary">Export Table Data To Excel File</button>
-                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
-                                <thead>
+                            <button onclick="exportTableToExcel('example', 'stallbookingreport-data')"
+                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                style="font-style:normal; font-size: 12px;">
+                                <thead class="text-center">
                                     <tr>
-                                        <th data-ordering="false">Sl.No</th>
-                                        
-                                        <th data-ordering="false">Organization Name</th>
-                                        <th data-ordering="false">Booked Stalls 3X3</th>
-                                        <th data-ordering="false">Booked Stalls 3X2</th>
-                                        <th data-ordering="false">Allot Stalls 3X3</th>
-                                        <th data-ordering="false">Allot Stalls 3X2</th>
-                                        <th data-ordering="false">Allotment</th>
+                                        <th data-ordering="false" rowspan="2">Sl.No</th>
+                                        <th data-ordering="false" rowspan="2">Organization Name</th>
+                                        <th data-ordering="false" colspan="2">Booked Stalls</th>
+                                        <th data-ordering="false" colspan="2">Allot Stalls</th>
+                                        <th data-ordering="false" rowspan="2">Allotment</th>
                                         <!-- <th>Action</th> -->
                                         <!-- <th></th> -->
+                                    </tr>
+                                    <tr>
+                                        <th data-ordering="false">3X3</th>
+                                        <th data-ordering="false">3X2</th>
+                                        <th data-ordering="false">3X3</th>
+                                        <th data-ordering="false">3X2</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,21 +65,21 @@
                                     while ($book = mysqli_fetch_array($bookstall)) {
                                         $id = "$book[id]";
                                         $pub_user_id = "$book[user_id]";
-                                        $org_name = "$book[org_name]";                                        
+                                        $org_name = "$book[org_name]";
                                         $stalls_3x3 = "$book[stalls_3x3]";
-                                        $stalls_3x2 = "$book[stalls_3x2]";    
+                                        $stalls_3x2 = "$book[stalls_3x2]";
                                         $allot_3x3 = "$book[confirm_3X3]";
                                         $allot_3x2 = "$book[confirm_3X2]";
-                                    ?>
+                                        ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
-                                           
+
                                             <td>
                                                 <?= $org_name; ?>
                                             </td>
-                                           
+
                                             <td>
                                                 <?= $stalls_3x3; ?>
                                             </td>
@@ -85,27 +92,13 @@
                                             <td>
                                                 <?= $allot_3x2; ?>
                                             </td>
-                                            <td>
-                                                <div class='dropdown d-inline-block'>
-                                                    <!-- <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                                        <i class='ri-more-fill align-middle'></i>
-                                                    </button> -->
-                                                    <!-- <ul class='dropdown-menu dropdown-menu-end'>
-                                                        <li> -->
-                                                            <a href='pgmcmtee_allot_stall.php?pubid=<?= $pub_user_id ?>' class='dropdown-item edit-item-btn'>
-                                                                 <!-- <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'> -->
-                                                        <i class='ri-edit-fill align-middle'></i>
-                                                    <!-- </button> -->
-                                                                <!-- <i class='ri-edit-fill align-bottom me-2 text-muted'></i> Allotment -->
-                                                            </a>
-                                                        <!-- </li>
-                                                       
-                                                    </ul> -->
-                                                </div>
+                                            <td class="text-center">
+                                                <a href='allot_stall.php?pubid=<?= $pub_user_id ?>'>
+                                                    <i class='mdi mdi-skew-more mdi-24px'></i>
+                                                </a>
                                             </td>
                                         </tr>
-                                    <?php  }
-                                    ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -118,7 +111,7 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script>
         function exportTableToExcel(example, filename = '') {

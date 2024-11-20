@@ -3,7 +3,6 @@ ini_set('display_errors', 0);
 
 include "../header.php";
 include "sidebar.php";
-// include $base_url . 'dashboard/publisher/sidebar.php';
 $user_id = $user['id'];
 ?>
 <!-- ============================================================== -->
@@ -79,18 +78,8 @@ $user_id = $user['id'];
                                 $selecta = '';
                                 $selectp = '';
                             }
-                            // if (!$logo) {
-                            //     $hide = "";
-                            // } else {
-                            //     $hide = "hidden";
-                            // }
                             $hide = !$logo ? "" : "hidden";
                             $sub_status = $user_profile['submitted'];
-                            // if ($sub_status == 0) {
-                            //     $edit = '';
-                            // } else {
-                            //     $edit = 'disabled';
-                            // }
                             $edit = $sub_status == 0 ? '' : 'disabled';
                         } else {
                             $comp_name = '';

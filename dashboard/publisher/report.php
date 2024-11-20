@@ -1,10 +1,7 @@
-<?php 
-// include "header.php";
-// include "sidebar_publisher.php";
+<?php
 include "../header.php";
 include "sidebar.php";
 $user_id = $user['id'];
-// var_dump($user_id );die;
 ?>
 <style>
     .card {
@@ -13,7 +10,6 @@ $user_id = $user['id'];
     }
 
     .card table {
-
         border-collapse: collapse;
         border-spacing: 0;
         width: 70%;
@@ -33,11 +29,8 @@ $user_id = $user['id'];
 
     #preview th {
         text-align: center;
-        /* font-size: xx-large; */
         color: black;
-        /* font-weight: bold; */
     }
-
 
     #preview tr:nth-child(odd) {
         background-color: #f2f2f2;
@@ -62,20 +55,12 @@ $user_id = $user['id'];
 
     }
 </style>
-
-
-
-
-
-
-
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -85,30 +70,25 @@ $user_id = $user['id'];
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="../logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="../logout.php"><i
+                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end page title -->
-
-
             <?php
             $status = "OK";
             $msg = "";
             if ($user_id) {
-                // $sql1 = "SELECT * FROM users_profile WHERE user_id = ?; ";
-                $sql1 =  "SELECT up.*, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
-                // var_dump($sql1);
+                $sql1 = "SELECT up.*, sb.*  FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id WHERE up.user_id = ?";
                 $stmt1 = $con->prepare($sql1);
-
                 $stmt1->bind_param("i", $user_id);
-                // var_dump($stmt1);
                 $stmt1->execute();
                 $result1 = $stmt1->get_result();
                 $user_profile = $result1->fetch_assoc();
-                // var_dump($user_profile);
                 if ($user_profile) {
                     $klaid = $user_profile['id'];
                     $comp_name = $user_profile['org_name'];
@@ -137,9 +117,9 @@ $user_id = $user['id'];
                     $alloted_stall3x3 = $user_profile['confirm_3X3'];
                     $alloted_stall3x2 = $user_profile['confirm_3X2'];
                     $amt3x3 = 10000;
-                    $tot_amt3x3 = ($alloted_stall3x3 * $amt3x3) + ($amt3x3 * $alloted_stall3x3 * 18) / 100;
+                    $tot_amt3x3 = $alloted_stall3x3 * $amt3x3 + ($amt3x3 * $alloted_stall3x3 * 18) / 100;
                     $amt3x2 = 7500;
-                    $tot_amt3x2 = ($allotted_stall3x2 * $amt3x2) + ($amt3x2 * $allotted_stall3x2 * 18) / 100;
+                    $tot_amt3x2 = $alloted_stall3x2 * $amt3x2 + ($amt3x2 * $alloted_stall3x2 * 18) / 100;
                     $total_amt = $tot_amt3x3 + $tot_amt3x2;
                     $prof_reg_date = $user_profile['updated_at'];
                     $stall_reg_date = $user_profile['updated_date'];
@@ -175,8 +155,6 @@ $user_id = $user['id'];
                 }
             }
             ?>
-
-
             <div class="row">
                 <div class="col-xxl-12 mt-0">
                     <!-- Terms-Condition Start-->
@@ -185,27 +163,30 @@ $user_id = $user['id'];
                             <table id="preview">
                                 <tr>
                                     <td class="td-head" colspan="2">
-                                        <label><img src="<?= $base_url ?>/assets/img/Logo_KLIBF03.png" height="70vh" class="text-left"></label>
-
+                                        <label><img src="<?= $base_url ?>/assets/img/Logo_KLIBF03.png" height="70vh"
+                                                class="text-left"></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="td-head">
-                                        <!-- <label><img src="assets/images/Logo_01.png" height="70vh"></label> -->
                                         <label>
-                                            <h3><b>STALL BOOKING REPORT</b></h3>
+                                            <h3>
+                                                <b>STALL BOOKING REPORT</b>
+                                            </h3>
                                         </label>
                                     </td>
-                                <!-- </tr>
-                                <tr> -->
                                     <td class="td-head" colspan="2">
                                         <?php if ($klaid > 99) { ?>
                                             <label>
-                                                <h5><b>KLIBF0<?= $klaid; ?></h5></b>
+                                                <h5>
+                                                    <b>KLIBF0<?= $klaid; ?> </b>
+                                                </h5>
                                             </label>
                                         <?php } else { ?>
                                             <label>
-                                                <h5><b>KLIBF0<?= $klaid; ?></h5></b>
+                                                <h5>
+                                                    <b>KLIBF0<?= $klaid; ?></b>
+                                                </h5>
                                             </label>
                                         <?php } ?>
                                     </td>
@@ -213,7 +194,9 @@ $user_id = $user['id'];
                                 <tr>
                                     <td class="td-head" colspan="2">
                                         <label>
-                                            <h5><b>Publishing House / Organization</h5></b>
+                                            <h5>
+                                                <b>Publishing House / Organization</b>
+                                            </h5>
                                         </label>
                                     </td>
                                 </tr>
@@ -402,20 +385,14 @@ $user_id = $user['id'];
                                         <label id="rmrk_lab"><?= $stall3x2; ?></label>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td>
-                                        Estimated amount for stall booking</td>
-                                    </td>
-                                    <td>
-                                        <label id="3x3amt_lab"><?= $total_amt; ?></label>
-                                    </td>
-                                </tr> -->
                                 <tr>
                                     <td>
                                         <label> Logo of Publishing House / Organization</label>
                                     </td>
                                     <td>
-                                        <label id="logo_lab"><img src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>" height="70vh"></label>
+                                        <label id="logo_lab"><img
+                                                src="<?= $base_url ?>/dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>"
+                                                height="70vh"></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -455,23 +432,18 @@ $user_id = $user['id'];
                                         Amount to be paid (in ₹)</td>
                                     </td>
                                     <td>
-                                        <label id="3x3amt_lab"><?= $total_amt; ?></label>
+                                        <label><?= $total_amt; ?></label>
                                     </td>
                                 </tr>
                             </table>
                             <div class="button">
                                 <button type="submit" name="print" class="btn btn-primary" id="print">Print</button>
                             </div>
-
                         </form>
-
                     </div>
-
                 </div>
                 <!-- Terms-Condition End-->
             </div>
-
-
         </div>
         <!-- container-fluid -->
     </div>
@@ -487,7 +459,6 @@ $user_id = $user['id'];
             newWin.print();
             newWin.close();
         }
-
         const btn = document.getElementById("print");
         btn.addEventListener('click', () => printData())
     </script>
