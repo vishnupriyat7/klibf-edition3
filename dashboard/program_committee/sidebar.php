@@ -45,6 +45,12 @@
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Terms and Conditions</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
+                        href="<?= $base_url ?>/dashboard/program_committee/stall_allot_list.php" class="nav-link" data-key="t-one-page">
+                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Stall Allotment</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarX" data-bs-toggle="collapse" role="button"
