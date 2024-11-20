@@ -119,6 +119,11 @@
                     <div class="menu-dropdown collapse" id="sidebarReport">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/publisher/report.php" class="nav-link"
+                                    data-key="t-one-page"> Profile Report
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_release_report.php" class="nav-link"
                                     data-key="t-nft-landing">
                                     Book Release Proposal Report </a>
@@ -127,11 +132,8 @@
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Book Discussion Proposal Report </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/report.php" class="nav-link"
-                                    data-key="t-one-page"> Profile Report
-                                </a>
-                            </li> -->
+                           
+                            
                             <!-- 
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
