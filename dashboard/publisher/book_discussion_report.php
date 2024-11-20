@@ -33,37 +33,40 @@
                         <div class="card-body overflow-auto">
                             <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
-                            <div class="card" style="width:200vw;">
+                            <div class="card" style="width:150vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                     style="font-style:normal; font-size: 12px;">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
-                                            <th data-ordering="false">Sl.No</th>
-                                            <th>Action</th>
-                                            <th data-ordering="false">Subject</th>
-                                            <th data-ordering="false">Book Name</th>
-                                            <th data-ordering="false">Book Cover</th>
-                                            <th data-ordering="false">Moderator</th>
-                                            <th data-ordering="false">Moderator Contact</th>
+                                            <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">Action</th>
+                                            <th data-ordering="false" rowspan="2">Subject</th>
+                                            <th data-ordering="false" rowspan="2">Book Name</th>
+                                            <th data-ordering="false" rowspan="2">Book Cover</th>
+                                            <th data-ordering="false" colspan="2">Moderator Details</th>
+                                            <th data-ordering="false" colspan="8">Panel Member Details</th>
+                                            <th data-ordering="false" colspan="3">Date and Time Slot Proposed</th>
+                                            <th data-ordering="false" colspan="3">Contact Person Details</th>
+                                            <th data-ordering="false" rowspan="2">Remarks</th>
+                                            <th data-ordering="false" rowspan="2">Updated Date</th>
+                                        </tr>
+                                        <tr>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
                                             <th data-ordering="false">Participant 1</th>
-                                            <th data-ordering="false">Participant 1 Contact No</th>
+                                            <th data-ordering="false">Contact No</th>
                                             <th data-ordering="false">Participant 2</th>
-                                            <th data-ordering="false">Participant 2 Contact No</th>
+                                            <th data-ordering="false">Contact No</th>
                                             <th data-ordering="false">Participant 3</th>
-                                            <th data-ordering="false">Participant 3 Contact No</th>
+                                            <th data-ordering="false">Contact No</th>
                                             <th data-ordering="false">Participant 4</th>
-                                            <th data-ordering="false">Participant 4 Contact No</th>
-                                            <th data-ordering="false">Date Proposed 1</th>
-                                            <th data-ordering="false">Time Proposed 1</th>
-                                            <th data-ordering="false">Date Proposed 2</th>
-                                            <th data-ordering="false">Time Proposed 2</th>
-                                            <th data-ordering="false">Date Proposed 3</th>
-                                            <th data-ordering="false">Time Proposed 3</th>
-                                            <th data-ordering="false">Contact Person Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">First</th>
+                                            <th data-ordering="false">Second</th>
+                                            <th data-ordering="false">Third</th>
+                                            <th data-ordering="false">Name</th>
                                             <th data-ordering="false">Contact No</th>
                                             <th data-ordering="false">Email Id</th>
-                                            <th data-ordering="false">Remarks</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -99,7 +102,7 @@
                                             $cntct_phno = $discDiscProp['cntct_phno'];
                                             $cntct_mail = $discDiscProp['cntct_mail'];
                                             $remarks = $discDiscProp['remarks'];
-                                            $book_cover = base64_encode($discDiscProp['book_cover']);
+                                            $book_cover = $discDiscProp['book_cover'];
                                             $day1_date = $discDiscProp['day1_date'];
                                             $day1 = $discDiscProp['day1'];
                                             $day2_date = $discDiscProp['day2_date'];
@@ -114,90 +117,45 @@
                                             $slotname3 = $discDiscProp['slotname3'];
                                             ?>
                                             <tr>
+                                                <td><?= ++$counter; ?></td>
                                                 <td>
-                                                    <?= ++$counter; ?>
-                                                </td>
-                                                <td>
-
-                                                    <a href='publisher_bookdiscussion.php?bkdscnid=<?= $id; ?>'
-                                                        class='dropdown-item edit-item-btn'>
-                                                        <button class="btn btn-primary"> <i
-                                                                class='ri-edit-box-fill align-bottom me-2 text-white'></i>
-                                                            Edit</button>
+                                                    <a href='book_discussion_proposal.php?bkdscnid=<?= $id; ?>'
+                                                        class='dropdown-item'>
+                                                        <i class='mdi mdi-book-edit'></i>
                                                     </a>
-
                                                 </td>
-                                                <td>
-                                                    <?= $subject; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $bookName; ?>
-                                                </td>
-                                                <td>
+                                                <td><?= $subject; ?></td>
+                                                <td><?= $bookName; ?></td>
+                                                <td class="text-center">
                                                     <img src="<?= $base_url ?>/dashboard/publisher/uploads/book_discussion_img/<?= $book_cover; ?>"
                                                         height="70vh">
                                                 </td>
-                                                <td>
-                                                    <?= $moderator; ?>
+                                                <td><?= $moderator; ?></td>
+                                                <td><?= $modrtr_cntct; ?></td>
+                                                <td><?= $participant1; ?></td>
+                                                <td><?= $part1_cntct; ?></td>
+                                                <td><?= $participant2; ?></td>
+                                                <td><?= $part2_cntct; ?></td>
+                                                <td><?= $participant3; ?></td>
+                                                <td><?= $part3_cntct; ?></td>
+                                                <td><?= $participant4; ?></td>
+                                                <td><?= $part4_cntct; ?></td>
+                                                <td><?= $day1; ?> - <?= $day1_date; ?><br>
+                                                    <?= $slotname1; ?> (<?= $slotime1; ?>)
                                                 </td>
                                                 <td>
-                                                    <?= $modrtr_cntct; ?>
+                                                    <?= $day2; ?> - <?= $day2_date; ?><br>
+                                                    <?= $slotname2; ?> (<?= $slotime2; ?>)
                                                 </td>
                                                 <td>
-                                                    <?= $participant1; ?>
+                                                    <?= $day3; ?> - <?= $day3_date; ?><br>
+                                                    <?= $slotname3; ?> (<?= $slotime3; ?>)
                                                 </td>
-                                                <td>
-                                                    <?= $part1_cntct; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $participant2; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $part2_cntct; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $participant3; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $part3_cntct; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $participant4; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $part4_cntct; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $day1; ?> <br> <?= $day1_date; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $slotname1; ?> <br> <?= $slotime1; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $day2; ?> <br> <?= $day2_date; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $slotname2; ?> <br> <?= $slotime2; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $day3; ?> <br> <?= $day3_date; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $slotname3; ?> <br> <?= $slotime3; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $cntct_name; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $cntct_phno; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $cntct_mail; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $remarks; ?>
-                                                </td>
-
+                                                <td><?= $cntct_name; ?></td>
+                                                <td><?= $cntct_phno; ?></td>
+                                                <td><?= $cntct_mail; ?></td>
+                                                <td><?= $remarks; ?></td>
+                                                <td><?= $discDiscProp['updated_at'] ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

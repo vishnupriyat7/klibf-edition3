@@ -32,38 +32,45 @@
                         <div class="card-body overflow-auto">
                             <button onclick="exportTableToExcel('example', 'publisher_book_release_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
-                            <div class="card" style="width:200vw;">
+                            <div class="card" style="width:150vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                     style="font-style:normal; font-size: 12px;">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
-                                            <th data-ordering="false">Sl.No</th>
-                                            <th>Action</th>
-                                            <th data-ordering="false">Book Title</th>
-                                            <th data-ordering="false">Author</th>
-                                            <th data-ordering="false">Book Genere</th>
-                                            <th data-ordering="false">Book Cover</th>
-                                            <th data-ordering="false">Brief Description</th>
-                                            <th data-ordering="false">Releasing by</th>
-                                            <th data-ordering="false">Releasing by Contact No</th>
-                                            <th data-ordering="false">Receiving by </th>
-                                            <th data-ordering="false">Receiving by Contact No</th>
-                                            <th data-ordering="false">Guest 1</th>
-                                            <th data-ordering="false">Guest 1 Contact No</th>
-                                            <th data-ordering="false">Guest 2</th>
-                                            <th data-ordering="false">Guest 2 Contact No</th>
-                                            <th data-ordering="false">Guest 3</th>
-                                            <th data-ordering="false">Guest 3 Contact No</th>
-                                            <th data-ordering="false">Event Date Proposed 1</th>
-                                            <th data-ordering="false">Time Proposed 1</th>
-                                            <th data-ordering="false">Event Date Proposed 2</th>
-                                            <th data-ordering="false">Time Proposed 2</th>
-                                            <th data-ordering="false">Event Date Proposed 3</th>
-                                            <th data-ordering="false">Time Proposed 3</th>
-                                            <th data-ordering="false">Contact Person Name</th>
-                                            <th data-ordering="false">Contact Person Mobile</th>
-                                            <th data-ordering="false">Contact Person Email</th>
-                                            <th data-ordering="false">Remarks</th>
+                                            <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">Action</th>
+                                            <th data-ordering="false" rowspan="2">Book Title</th>
+                                            <th data-ordering="false" rowspan="2">Author</th>
+                                            <th data-ordering="false" rowspan="2">Book Genere</th>
+                                            <th data-ordering="false" rowspan="2">Book Cover</th>
+                                            <th data-ordering="false" rowspan="2">Brief Description</th>
+                                            <th data-ordering="false" colspan="2">Releasing By</th>
+                                            <th data-ordering="false" colspan="2">Receiving By</th>
+                                            <th data-ordering="false" colspan="2">Guest1</th>
+                                            <th data-ordering="false" colspan="2">Guest2</th>
+                                            <th data-ordering="false" colspan="2">Guest3</th>
+                                            <th data-ordering="false" colspan="3">Date and Time Slot Proposed</th>
+                                            <th data-ordering="false" colspan="3">Contact Person Details</th>
+                                            <th data-ordering="false" rowspan="2">Remarks</th>
+                                            <th data-ordering="false" rowspan="2">Updated Date</th>
+                                        </tr>
+                                        <tr>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">First</th>
+                                            <th data-ordering="false">Second</th>
+                                            <th data-ordering="false">Third</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Mobile</th>
+                                            <th data-ordering="false">Email</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -107,9 +114,7 @@
                                             $slotname3 = $bookprp['slotname3'];
                                             ?>
                                             <tr>
-                                                <td>
-                                                    <?= ++$counter; ?>
-                                                </td>
+                                                <td><?= ++$counter; ?></td>
                                                 <td>
                                                     <a href='book_release_proposal.php?bkrlsid=<?= $id; ?>'
                                                         class='dropdown-item'>
@@ -119,65 +124,38 @@
                                                 <td><?= $booktitle; ?></td>
                                                 <td><?= $author; ?></td>
                                                 <td><?= $book_genere; ?></td>
-                                                <td>
+                                                <td class="text-center">
                                                     <img src="<?= $base_url ?>/dashboard/publisher/uploads/book_release_img/<?= $book_cover; ?>"
                                                         height="70vh">
                                                 </td>
                                                 <td><?= $brf_description; ?></td>
-
-                                                <td><?= $released_by; ?></td>
+                                                <td><?= $released_by; ?> </td>
                                                 <td><?= $relcd_by_cntct; ?></td>
                                                 <td><?= $recived_by; ?></td>
+                                                <td><?= $recvd_by_contact; ?></td>
+                                                <td><?= $guest1; ?></td>
+                                                <td><?= $guest1_contct; ?></td>
+                                                <td><?= $guest2; ?></td>
+                                                <td><?= $guest2_contct; ?></td>
+                                                <td><?= $guest3; ?></td>
+                                                <td><?= $guest3_contct; ?></td>
                                                 <td>
-                                                    <?= $recvd_by_contact; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $guest1; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $guest1_contct; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $guest2; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $guest2_contct; ?>
+                                                    <?= $day1; ?> - <?= $day1_date; ?> <br>
+                                                    <?= $slotname1; ?>(<?= $slotime1; ?>)
                                                 </td>
                                                 <td>
-                                                    <?= $guest3; ?>
+                                                    <?= $day2; ?> - <?= $day2_date; ?><br>
+                                                    <?= $slotname2 ?> (<?= $slotime2; ?>)
                                                 </td>
                                                 <td>
-                                                    <?= $guest3_contct; ?>
+                                                    <?= $day3; ?> - <?= $day3_date; ?><br>
+                                                    <?= $slotname3; ?> (<?= $slotime3; ?>)
                                                 </td>
-                                                <td>
-                                                    <?= $day1; ?><br> <?= $day1_date; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $slotname1; ?><br> <?= $slotime1; ?>
-                                                </td>
-                                                </td>
-                                                <td>
-                                                    <?= $day2; ?><br> <?= $day2_date; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $slotname2 ?><br> <?= $slotime2; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $day3; ?><br> <?= $day3_date; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $slotname3; ?><br> <?= $slotime3; ?>
-                                                </td>
-                                                <td> <?= $contact_persn_name; ?></td>
-                                                <td>
-                                                    <?= $contact_persn_mobile; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $contact_persn_email; ?>
-                                                </td>
-                                                <td>
-                                                    <?= $remark; ?>
-                                                </td>
+                                                <td><?= $contact_persn_name; ?></td>
+                                                <td><?= $contact_persn_mobile; ?></td>
+                                                <td><?= $contact_persn_email; ?></td>
+                                                <td><?= $remark; ?></td>
+                                                <td><?= $bookprp['updated_at']; ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
