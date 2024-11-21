@@ -19,11 +19,11 @@ switch ($user['user_type']) {
     case 'MC':
         include "media_committee/sidebar.php";
         break;
+    case 'CC':
+        include "cultural_committee/sidebar.php";
+        break;
     case 'FC':
         include "sidebar_finance.php";
-        break;
-    case 'CC':
-        include "sidebar_cultural.php";
         break;
     case 'RC':
         include "sidebar_reception.php";
@@ -59,11 +59,11 @@ switch ($user['user_type']) {
                 case 'MC':
                     include "media_committee/dashboard.php";
                     break;
+                case 'CC':
+                    include "cultural_committee/dashboard.php";
+                    break;
                 case 'FC':
                     include "sidebar_finance.php";
-                    break;
-                case 'CC':
-                    include "sidebar_cultural.php";
                     break;
                 case 'RC':
                     include "sidebar_reception.php";
