@@ -185,7 +185,7 @@ $user_id = $user['id'];
                                         <?php } else { ?>
                                             <label>
                                                 <h5>
-                                                    <b>KLIBF0<?= $klaid; ?></b>
+                                                    <b>KLIBF00<?= $klaid; ?></b>
                                                 </h5>
                                             </label>
                                         <?php } ?>
