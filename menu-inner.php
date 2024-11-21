@@ -75,6 +75,11 @@
         </li>
       </ul>
     </li>
+
+    <li>
+      <a class="nav-link scrollto" href="news.php">News</a>
+    </li>
+
     <li class="dropdown"><a href="#"><span>Previous KLIBF</span> <i class="bi bi-chevron-right"></i></a>
       <ul>
         <li><a href="https://klibf.niyamasabha.org/edition1/" target="_blank">Edition 1</a></li>
