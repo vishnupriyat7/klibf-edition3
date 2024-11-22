@@ -7,12 +7,34 @@ function convertNumberToWordsForIndia($number)
 {
     //A function to convert numbers into Indian readable words with Cores, Lakhs and Thousands.
     $words = array(
-        '0' => '', '1' => 'one', '2' => 'two', '3' => 'three', '4' => 'four', '5' => 'five',
-        '6' => 'six', '7' => 'seven', '8' => 'eight', '9' => 'nine', '10' => 'ten',
-        '11' => 'eleven', '12' => 'twelve', '13' => 'thirteen', '14' => 'fouteen', '15' => 'fifteen',
-        '16' => 'sixteen', '17' => 'seventeen', '18' => 'eighteen', '19' => 'nineteen', '20' => 'twenty',
-        '30' => 'thirty', '40' => 'fourty', '50' => 'fifty', '60' => 'sixty', '70' => 'seventy',
-        '80' => 'eighty', '90' => 'ninty'
+        '0' => '',
+        '1' => 'one',
+        '2' => 'two',
+        '3' => 'three',
+        '4' => 'four',
+        '5' => 'five',
+        '6' => 'six',
+        '7' => 'seven',
+        '8' => 'eight',
+        '9' => 'nine',
+        '10' => 'ten',
+        '11' => 'eleven',
+        '12' => 'twelve',
+        '13' => 'thirteen',
+        '14' => 'fouteen',
+        '15' => 'fifteen',
+        '16' => 'sixteen',
+        '17' => 'seventeen',
+        '18' => 'eighteen',
+        '19' => 'nineteen',
+        '20' => 'twenty',
+        '30' => 'thirty',
+        '40' => 'fourty',
+        '50' => 'fifty',
+        '60' => 'sixty',
+        '70' => 'seventy',
+        '80' => 'eighty',
+        '90' => 'ninty'
     );
 
     //First find the length of the number
@@ -116,7 +138,9 @@ function generateInvoice($invoiceNo)
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i
+                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
 
@@ -158,7 +182,7 @@ function generateInvoice($invoiceNo)
                             $gst3x3 = ($rate3x3 * 18) / 100;
                             $gst3x2 = ($rate3x2 * 18) / 100;
                             $tot_amt3x3 = $rate3x3 + $gst3x3;
-                            $tot_amt3x2 = $rate3x2 +  $gst3x2;
+                            $tot_amt3x2 = $rate3x2 + $gst3x2;
                             // $stall_status = $user_stall['status'];
                             // if ($stall_status != 'S') {
                             //     $edit_count = '';
@@ -259,18 +283,40 @@ function generateInvoice($invoiceNo)
                                 $status = "NOTOK";
                             }
                             if (!empty($_FILES["chellan_img"]["name"])) {
-                                // Get file info 
                                 $fileName = basename($_FILES["chellan_img"]["name"]);
                                 $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-                                // Allow certain file formats 
-                                $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+                                $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
-                                    $image = $_FILES['chellan_img']['tmp_name'];
-                                    $imgContent = addslashes(file_get_contents($image));
+                                    $targetDir = "uploads/chellan_img/";
+                                    $newFileName = $user_prof['org_name'] . '-' . uniqid() . '.' . $fileType;
+                                    $targetFilePath = $targetDir . $newFileName;
+                                    if (move_uploaded_file($_FILES["chellan_img"]["tmp_name"], $targetFilePath)) {
+                                        $filePathForDB = addslashes($targetFilePath); // Add slashes for safety in SQL
+                                        $status = "OK";
+                                    } else {
+                                        $msg = 'Sorry, there was an error uploading your file.';
+                                        $status = "NOTOK";
+                                    }
                                 } else {
                                     $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
                                     $status = "NOTOK";
                                 }
+
+
+
+
+                                // Get file info 
+                                // $fileName = basename($_FILES["chellan_img"]["name"]);
+                                // $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+                                // // Allow certain file formats 
+                                // $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
+                                // if (in_array($fileType, $allowTypes)) {
+                                //     $image = $_FILES['chellan_img']['tmp_name'];
+                                //     $imgContent = addslashes(file_get_contents($image));
+                                // } else {
+                                //     $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
+                                //     $status = "NOTOK";
+                                // }
                             } else {
                                 if (!$chellan_img && !$imgChellan) {
                                     $msg = 'Please select an image file to upload.';
@@ -285,13 +331,13 @@ function generateInvoice($invoiceNo)
                                                </div>"; //printing error if found in validation
                             } else {
                                 if ($chellan['id'] > 0) {
-                                    if ($imgContent) {
-                                        $query = "UPDATE challan SET user_id = '$user_id', bank_name = '$bank_name', paid_amt = '$paid_amt', trnctn_no = '$trnctn_no', trnctn_type = '$trnctn_type', trnctn_date = '$trnctn_dt', challan_img = '$imgContent', updated_date = '$date', paye_name = '$payee', ifsc = '$ifsc' WHERE user_id = '$user_id';";
+                                    if ($newFileName) {
+                                        $query = "UPDATE challan SET user_id = '$user_id', bank_name = '$bank_name', paid_amt = '$paid_amt', trnctn_no = '$trnctn_no', trnctn_type = '$trnctn_type', trnctn_date = '$trnctn_dt', challan_img = '$newFileName', updated_date = '$date', paye_name = '$payee', ifsc = '$ifsc' WHERE user_id = '$user_id';";
                                     } else {
                                         $query = "UPDATE challan SET user_id = '$user_id', bank_name = '$bank_name', paid_amt = '$paid_amt', trnctn_no = '$trnctn_no', trnctn_type = '$trnctn_type', trnctn_date = '$trnctn_dt', updated_date = '$date', paye_name = '$payee', ifsc = '$ifsc' WHERE user_id = '$user_id';";
                                     }
                                 } else {
-                                    $query = "INSERT INTO challan (user_id, bank_name, paid_amt, trnctn_no, trnctn_type, trnctn_date, challan_img, status, updated_date, paye_name, ifsc) VALUES ('$user_id', '$bank_name', '$paid_amt', '$trnctn_no', '$trnctn_type', '$trnctn_dt', '$imgContent', 'E', '$date',  '$payee', '$ifsc');";
+                                    $query = "INSERT INTO challan (user_id, bank_name, paid_amt, trnctn_no, trnctn_type, trnctn_date, challan_img, status, updated_date, paye_name, ifsc) VALUES ('$user_id', '$bank_name', '$paid_amt', '$trnctn_no', '$trnctn_type', '$trnctn_dt', '$newFileName', 'E', '$date',  '$payee', '$ifsc');";
                                 }
                                 $querygst = "UPDATE users_profile SET gst_no = '$gst' WHERE user_id = '$user_id';";
                                 $result = mysqli_query($con, $query);
@@ -324,7 +370,7 @@ function generateInvoice($invoiceNo)
                                     $gst3x3 = ($rate3x3 * 18) / 100;
                                     $gst3x2 = ($rate3x2 * 18) / 100;
                                     $tot_amt3x3 = $rate3x3 + $gst3x3;
-                                    $tot_amt3x2 = $rate3x2 +  $gst3x2;
+                                    $tot_amt3x2 = $rate3x2 + $gst3x2;
                                     // $stall_status = $user_stall['status'];
                                     // if ($stall_status != 'S') {
                                     //     $edit_count = '';
@@ -348,7 +394,7 @@ function generateInvoice($invoiceNo)
                                     $trnctn_type = $chellan['trnctn_type'];
                                     $gst = $user_prof['gst_no'];
                                     $chellanStatus = $chellan['status'];
-                                    $imgChellan = base64_encode($chellan['challan_img']);
+                                    $imgChellan = $chellan['challan_img'];
                                 } else {
                                     $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -409,9 +455,19 @@ function generateInvoice($invoiceNo)
                                             </tbody>
                                         </table>
                                         <div class="col-md-4 right">
-                                            <button name="print" class="btn btn-primary" id="print-slip" onclick="printSlip()">Print Payment Slip</button>
+                                            <button name="print" class="btn btn-primary" id="print-slip"
+                                                onclick="printSlip()">Print Payment Slip</button>
                                         </div>
-                                    </div><br>
+                                        <br><br><br>
+                                        <div class="text-danger">Disclaimer:
+                                            <medium>
+                                                <br>* Print the payment slip for bank
+                                                details.
+                                                <br>* Do ypur payment first , then upload the payment details.
+                                                <br>* Once your payment is made, the amount should not refund.<br>
+                                            </medium>
+                                        </div>
+                                    </div>
                                     <hr>
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
@@ -421,7 +477,8 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <br>*Mode of Payment
-                                                <select class="form-control form-group" name="trnctn_type" id="trnctn_type" required="required" style="height:37px;" <?= $edit; ?> onchange="paymentMode()">
+                                                <select class="form-control form-group" name="trnctn_type"
+                                                    id="trnctn_type" required="required" style="height:37px;" <?= $edit; ?> onchange="paymentMode()">
                                                     <option value="0" <?= $select0; ?>>Select</option>
                                                     <option value="D" <?= $selectd; ?>>Cash Deposit</option>
                                                     <option value="O" <?= $selecto; ?>>Online Transfer</option>
@@ -430,67 +487,84 @@ function generateInvoice($invoiceNo)
                                             <div class="form-group col-12 col-md-9" id="bank-name-div" hidden>
                                                 <br>
                                                 Bank Name
-                                                <input type="text" class="form-control" name="bank_name" placeholder="Bank Name" id="bank_name" value="<?= $bank_name; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="bank_name"
+                                                    placeholder="Bank Name" id="bank_name" value="<?= $bank_name; ?>"
+                                                    <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <br>
                                                 *Transaction Amount (in ₹ &nbsp;)
-                                                <input type="text" class="form-control" name="paid_amt" id="paid_amt" placeholder="*Paid Amount (in  ₹ &nbsp;)" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" <?= $edit; ?> value="<?= $total_amt; ?>">
+                                                <input type="text" class="form-control" name="paid_amt" id="paid_amt"
+                                                    placeholder="*Paid Amount (in  ₹ &nbsp;)" required="required"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    <?= $edit; ?> value="<?= $total_amt; ?>">
                                             </div>
                                             <div class="form-group col-12 col-md-3" hidden id="trnctn-no-div">
                                                 <br>
                                                 Transaction No
-                                                <input type="text" class="form-control" name="trnctn_no" id="trnctn_no" placeholder="Transaction No" value="<?= $trnctn_no; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="trnctn_no" id="trnctn_no"
+                                                    placeholder="Transaction No" value="<?= $trnctn_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-3" hidden id="ifsc-div">
                                                 <br>
                                                 IFSC
-                                                <input type="text" class="form-control" name="ifsc" id="ifsc" placeholder="IFSC" value="<?= $ifsc; ?>" maxlength="11" minlength="11" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="ifsc" id="ifsc"
+                                                    placeholder="IFSC" value="<?= $ifsc; ?>" maxlength="11"
+                                                    minlength="11" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <br>
                                                 *Transaction Date
-                                                <input type="date" class="form-control" name="trnctn_dt" id="trnctn_dt" placeholder="*Transaction Date" required="required" value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
+                                                <input type="date" class="form-control" name="trnctn_dt" id="trnctn_dt"
+                                                    placeholder="*Transaction Date" required="required"
+                                                    value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 Organization Name
-                                                <input type="text" class="form-control" value="<?= $user_prof['org_name']; ?>" disabled>
+                                                <input type="text" class="form-control"
+                                                    value="<?= $user_prof['org_name']; ?>" disabled>
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 *Payee Name
-                                                <input type="text" class="form-control" name="payee_nme" id="payee_nme" placeholder="*Payee Name" required="required" value="<?= $payee; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="payee_nme" id="payee_nme"
+                                                    placeholder="*Payee Name" required="required" value="<?= $payee; ?>"
+                                                    <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 GST Number
-                                                <input type="text" class="form-control" name="gst_num" id="gst_num" placeholder="GST Number" minlength="15" maxlength="15" value="<?= $gst; ?>" <?= $edit; ?>>
+                                                <input type="text" class="form-control" name="gst_num" id="gst_num"
+                                                    placeholder="GST Number" minlength="15" maxlength="15"
+                                                    value="<?= $gst; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 </br>
                                                 *Upload Payment Image
                                                 </br>
-                                                <input type="file" class="form-control" name="chellan_img" id="chellan_img" placeholder="*Upload Chellan Image" <?= $edit; ?> <?= $hideimg; ?>>
+                                                <input type="file" class="form-control" name="chellan_img"
+                                                    id="chellan_img" placeholder="*Upload Chellan Image" <?= $edit; ?>
+                                                    <?= $hideimg; ?>>
                                                 <label id="chellan_image">
-                                                    <img src="data:image/jpg;charset=utf8;base64,<?= $imgChellan; ?>" height="100vh" id="image_chellan" <?= $edit; ?>>
+                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chelln_img/<?= $imgChellan; ?>"
+                                                        height="100vh" id="image_chellan" <?= $edit; ?>>
                                                 </label>
                                                 <span id="changeChellan" onclick="changeChellan();" <?= $edit; ?>><u>Change Chellan Image</u></span>
                                             </div>
                                         </div> <br>
                                         <div class="col-lg-12">
-                                            <?php if ($chellan['status'] != 'A') {  ?>
-                                                <button type="submit" name="save_payment" class="btn btn-primary" id="save_payment">Save</button>
+                                            <?php if ($chellan['status'] != 'A') { ?>
+                                                <button type="submit" name="save_payment" class="btn btn-primary"
+                                                    id="save_payment">Save</button>
                                             <?php } ?>
-                                            <br><br>
-                                            <medium class="text-danger">Disclaimer: <br>* Once your payment is made, the amount should not refund.<br></medium>
-
                                         </div>
                                     </form>
-                                    <?php if ($chellan['status'] == 'A') {  ?>
+                                    <?php if ($chellan['status'] == 'A') { ?>
                                         <hr><br>
                                         <div class="col-md-4 right">
-                                            <button name="print-invoice" class="btn btn-primary" id="print-invoice" onclick="printInvoice()">Print Invoice</button>
+                                            <button name="print-invoice" class="btn btn-primary" id="print-invoice"
+                                                onclick="printInvoice()">Print Invoice</button>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -506,12 +580,10 @@ function generateInvoice($invoiceNo)
     <!-- End Page-content -->
 
     <?php include "../footer.php"; ?>
-    
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
         var _URL = window.URL || window.webkitURL;
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             paymentMode();
         });
 
@@ -538,21 +610,21 @@ function generateInvoice($invoiceNo)
         }
 
         function printSlip() {
-            var orgName = <?php echo json_encode($user_prof['org_name']) ?>;
-            var stall3x3 = <?php echo json_encode($stall3x3) ?>;
-            var stall3x3 = <?php echo json_encode($stall3x3) ?>;
-            var rate3x3 = <?php echo json_encode($rate3x3) ?>;
-            var gst3x3 = <?php echo json_encode($gst3x3) ?>;
-            var totAmt3x3 = <?php echo json_encode($tot_amt3x3) ?>;
-            var stall3x2 = <?php echo json_encode($stall3x2) ?>;
-            var rate3x2 = <?php echo json_encode($rate3x2) ?>;
-            var gst3x2 = <?php echo json_encode($gst3x2) ?>;
-            var totAmt3x2 = <?php echo json_encode($tot_amt3x2) ?>;
-            var totalAmt = <?php echo json_encode($total_amt) ?>;
-            var totwords = <?php echo json_encode($totalinword) ?>
+            var orgName = <?= json_encode($user_prof['org_name']) ?>;
+            var stall3x3 = <?= json_encode($stall3x3) ?>;
+            var stall3x3 = <?= json_encode($stall3x3) ?>;
+            var rate3x3 = <?= json_encode($rate3x3) ?>;
+            var gst3x3 = <?= json_encode($gst3x3) ?>;
+            var totAmt3x3 = <?= json_encode($tot_amt3x3) ?>;
+            var stall3x2 = <?= json_encode($stall3x2) ?>;
+            var rate3x2 = <?= json_encode($rate3x2) ?>;
+            var gst3x2 = <?= json_encode($gst3x2) ?>;
+            var totAmt3x2 = <?= json_encode($tot_amt3x2) ?>;
+            var totalAmt = <?= json_encode($total_amt) ?>;
+            var totwords = <?= json_encode($totalinword) ?>
             // ... (other variables)
 
-            var htmlContent = '<html><head> <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" /><link href="assets/css/app.min.css" rel="stylesheet" type="text/css" /><link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" /></head><body><br><label><img src="assets/images/Logo_01.png" height="70vh" style="float: left;"></label><h3><b>PAYMENT SLIP</b></h3><br><h4><b>Organization:' + orgName + '</h4><table class="table table-info table-responsive" id="pay-slip"><tr><th>Stalls</th><th>Alloted</th><th>Rate</th><th>GST(18%)</th><th>Amount</th></tr><tbody><tr><th>3m X 3m</th><td class="text-justify">' + stall3x3 + '</td><td>' + rate3x3 + '</td><td>' + gst3x3 + '</td><td>' + totAmt3x3 + '</td></tr><tr><th>3m X 2m</th><td>' + stall3x2 + '</td><td>' + rate3x2 + '</td><td>' + gst3x2 + '</td><td>' + totAmt3x2 + '</td></tr><tr><td colspan="4">Total amount payable (in ₹&nbsp;&nbsp;).</td><td><b>' + totalAmt + '</b></td></tr><tr><td colspan="2">Total amount payable (in words).</td><td colspan="3"><b>' + totwords + '</b></td></tr></tbody></table><br><br><b><u>Details of bank account to which payment is to be made:</u></b><br><br>Bank Account Number - 67279812893<br>Name of Bank, Branch  - State Bank of India, Trivandrum City<br>Account holder’s name  - Finance Officer, Kerala Legislature Secretariat<br>IFS Code - SBIN0070028</body></html>';
+            var htmlContent = '<html><head> <link href="<?= $base_url; ?>/dashboard/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="<?= $base_url; ?>/dashboard/assets/css/icons.min.css" rel="stylesheet" type="text/css" /><link href="<?= $base_url; ?>/dashboard/assets/css/app.min.css" rel="stylesheet" type="text/css" /><link href="<?= $base_url; ?>/dashboard/assets/css/custom.min.css" rel="stylesheet" type="text/css" /></head><body><br><label><img src="<?= $base_url; ?>/assets/img/Logo_KLIBF03.png" height="70vh" style="float: left;"></label><h3><b>PAYMENT SLIP</b></h3><br><h4><b>Organization:' + orgName + '</h4><table class="table table-info table-responsive" id="pay-slip"><tr><th>Stalls</th><th>Alloted</th><th>Rate</th><th>GST(18%)</th><th>Amount</th></tr><tbody><tr><th>3m X 3m</th><td class="text-justify">' + stall3x3 + '</td><td>' + rate3x3 + '</td><td>' + gst3x3 + '</td><td>' + totAmt3x3 + '</td></tr><tr><th>3m X 2m</th><td>' + stall3x2 + '</td><td>' + rate3x2 + '</td><td>' + gst3x2 + '</td><td>' + totAmt3x2 + '</td></tr><tr><td colspan="4">Total amount payable (in ₹&nbsp;&nbsp;).</td><td><b>' + totalAmt + '</b></td></tr><tr><td colspan="2">Total amount payable (in words).</td><td colspan="3"><b>' + totwords + '</b></td></tr></tbody></table><br><br><b><u>Details of bank account to which payment is to be made:</u></b><br><br>Bank Account Number - 67279812893<br>Name of Bank, Branch  - State Bank of India, Trivandrum City<br>Account holder’s name  - Finance Officer, Kerala Legislature Secretariat<br>IFS Code - SBIN0070028</body></html>';
 
             var iframe = document.getElementById("print-frame");
             iframe.contentDocument.write(htmlContent);
@@ -562,24 +634,24 @@ function generateInvoice($invoiceNo)
         }
 
         function printInvoice() {
-            var stall3x3 = <?php echo json_encode($stall3x3) ?>;
-            var stall3x2 = <?php echo json_encode($stall3x2) ?>;
+            var stall3x3 = <?= json_encode($stall3x3) ?>;
+            var stall3x2 = <?= json_encode($stall3x2) ?>;
             var slno = 0;
             var desc3x3 = "";
             var desc3x2 = "";
             var divToPrint = document.getElementById("pay-slip");
             newWin = window.open("");
             newWin.document.write('<html><head> <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" /><link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" /><link href="assets/css/app.min.css" rel="stylesheet" type="text/css" /><link href="assets/css/custom.min.css" rel="stylesheet" type="text/css" /></head><body><style>td, th {font-size:12;} .center {display: block; margin-left: auto; margin-right: auto;width: auto; }</style>');
-            newWin.document.write('<br><div class="text-center"><img src="assets/images/Govt_Logo.png" height="70vh" class="center"><br></div><table><tr><th colspan="11" class="text-center">SECRETARIAT OF THE KERALA LEGISLATURE<br></th></tr><tr><td>Post Box No:</td><td>5430</td><td colspan="6"></td><td>GSTN: </td><td><b>32AAAGK0786J1ZD</b></td></tr><tr><td>PIN:</td><td>695 033</td></tr><tr><td>Email:</td><td>secretary@niyamasabha.nic.in</td></tr><tr><th class="text-center" colspan="11"><br><br><br><br>INVOICE<br></th></tr><tr><td rowspan="2">Bill To</td><td rowspan="2">');
-            newWin.document.write(<?php echo json_encode($user_prof['org_name']) ?>);
+            newWin.document.write('<br><div class="text-center"><img src="<?= $base_url; ?>/dashboard/assets/images/Govt_Logo.png" height="70vh" class="center"><br></div><table><tr><th colspan="11" class="text-center">SECRETARIAT OF THE KERALA LEGISLATURE<br></th></tr><tr><td>Post Box No:</td><td>5430</td><td colspan="6"></td><td>GSTN: </td><td><b>32AAAGK0786J1ZD</b></td></tr><tr><td>PIN:</td><td>695 033</td></tr><tr><td>Email:</td><td>secretary@niyamasabha.nic.in</td></tr><tr><th class="text-center" colspan="11"><br><br><br><br>INVOICE<br></th></tr><tr><td rowspan="2">Bill To</td><td rowspan="2">');
+            newWin.document.write(<?= json_encode($user_prof['org_name']); ?>);
             newWin.document.write('<br>');
-            newWin.document.write(<?php echo json_encode($user_prof['head_org_email']) ?>);
+            newWin.document.write(<?= json_encode($user_prof['head_org_email']); ?>);
             newWin.document.write('</td><td colspan="4"></td><td colspan="3">Invoice No</td><td>');
-            newWin.document.write(<?php echo json_encode($invoice) ?>);
+            newWin.document.write(<?= json_encode($invoice); ?>);
             newWin.document.write('</td></tr><tr><td colspan="4"></td><td colspan="3">Invoice Date</td><td>');
-            newWin.document.write(<?php echo json_encode($chellan['updated_date']) ?>);
+            newWin.document.write(<?= json_encode($chellan['updated_date']); ?>);
             newWin.document.write('</td></tr><tr><td>GSTIN: </td><td>');
-            newWin.document.write(<?php echo json_encode($user_prof['gst_no']) ?>);
+            newWin.document.write(<?= json_encode($user_prof['gst_no']) ?>);
             newWin.document.write('</td></tr><tr><td colspan="11"><br><br></td></tr><tr><td rowspan="2" style="text-align: center;">No</td><td rowspan="2" style="text-align: center;">Item Description</td><td rowspan="2" style="text-align: center;">HSN/<br>SAC</td><td rowspan="2" style="text-align: center;">Qty</td><td rowspan="2" style="text-align: center;">Unit Price</td><td rowspan="2" style="text-align: center;">Taxable Amount</td><td colspan="3" style="text-align: center;">GST</td><td rowspan="2" style="text-align: center;">Total</td></tr><tr><td style="text-align: center;">%</td><td style="text-align: center;">SGST</td><td style="text-align: center;">CGST</td></tr><tr><td style="text-align: center;">');
 
             if (stall3x3 > 0) {
@@ -587,47 +659,47 @@ function generateInvoice($invoiceNo)
                 newWin.document.write('</td><td>Rent for Stall 3x3m 01/11/2023-07/11/2023</td><td>997222</td><td style="text-align: right;">&emsp;');
                 newWin.document.write(stall3x3);
                 newWin.document.write('</td><td style="text-align: right;">10000</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($rate3x3) ?>);
+                newWin.document.write(<?= json_encode($rate3x3) ?>);
                 newWin.document.write('</td><td style="text-align: right;">18</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($gst3x3 / 2) ?>);
+                newWin.document.write(<?= json_encode($gst3x3 / 2) ?>);
                 newWin.document.write('</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($gst3x3 / 2) ?>);
+                newWin.document.write(<?= json_encode($gst3x3 / 2) ?>);
                 newWin.document.write('</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($tot_amt3x3) ?>);
+                newWin.document.write(<?= json_encode($tot_amt3x3) ?>);
             }
             if (stall3x2 > 0) {
                 newWin.document.write(++slno);
                 newWin.document.write('</td><td>Rent for Stall 3x2m 01/11/2023-07/11/2023</td><td>997222</td><td style="text-align: right;">');
                 newWin.document.write(stall3x2);
                 newWin.document.write('</td><td style="text-align: right;">8500</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($rate3x2) ?>);
+                newWin.document.write(<?= json_encode($rate3x2) ?>);
                 newWin.document.write('</td><td style="text-align: right;">18</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($gst3x2 / 2) ?>);
+                newWin.document.write(<?= json_encode($gst3x2 / 2) ?>);
                 newWin.document.write('</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($gst3x2 / 2) ?>);
+                newWin.document.write(<?= json_encode($gst3x2 / 2) ?>);
                 newWin.document.write('</td><td style="text-align: right;">');
-                newWin.document.write(<?php echo json_encode($tot_amt3x2) ?>);
+                newWin.document.write(<?= json_encode($tot_amt3x2) ?>);
             }
             newWin.document.write('</td></tr><tr><td colspan="11"><br><br></td></tr><tr><td colspan="3" style="text-align: right;">Total</td><td style="text-align: right;">');
             newWin.document.write(stall3x3 + stall3x2);
             newWin.document.write('</td><td></td><td style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode($rate3x3 + $rate3x2) ?>);
+            newWin.document.write(<?= json_encode($rate3x3 + $rate3x2) ?>);
             newWin.document.write('</td><td></td><td style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode(($gst3x3 + $gst3x2) / 2) ?>);
+            newWin.document.write(<?= json_encode(($gst3x3 + $gst3x2) / 2) ?>);
             newWin.document.write('</td><td style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode(($gst3x3 + $gst3x2) / 2) ?>);
+            newWin.document.write(<?= json_encode(($gst3x3 + $gst3x2) / 2) ?>);
             newWin.document.write('</td><td style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode($total_amt) ?>);
+            newWin.document.write(<?= json_encode($total_amt) ?>);
             newWin.document.write('</td></tr><tr><td colspan="11"><br><br></td></tr><tr><td colspan="4" style="text-align: right;">Total Taxable Amount</td><td colspan="7" style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode($rate3x3 + $rate3x2) ?>);
+            newWin.document.write(<?= json_encode($rate3x3 + $rate3x2) ?>);
             newWin.document.write('</td></tr><tr><td colspan="4" style="text-align: right;">Total Tax Amount</td><td colspan="7" style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode(($gst3x3 + $gst3x2)) ?>);
+            newWin.document.write(<?= json_encode(($gst3x3 + $gst3x2)) ?>);
             newWin.document.write('</td></tr><tr><td colspan="4" style="text-align: right;">Total Amount</td><td colspan="7" style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode($total_amt) ?>);
+            newWin.document.write(<?= json_encode($total_amt) ?>);
             newWin.document.write('</td></tr><tr><td colspan="4" style="text-align: right;">Amount Due</td><td colspan="7" style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode($total_amt) ?>);
+            newWin.document.write(<?= json_encode($total_amt) ?>);
             newWin.document.write('</td></tr><tr><td colspan="4" style="text-align: right;">Total (in words)</td><td colspan="7" style="text-align: right;">');
-            newWin.document.write(<?php echo json_encode($totalinword) ?>);
+            newWin.document.write(<?= json_encode($totalinword) ?>);
             newWin.document.write('</td></tr><tr><td colspan="11" style="text-align: right;"><br><br><br><br><br><br><br>Authorized Signatory</td></tr></table></body></html>');
             newWin.print();
             newWin.close();

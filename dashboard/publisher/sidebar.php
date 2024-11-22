@@ -58,13 +58,13 @@
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Booking</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
                         href="<?= $base_url ?>/dashboard/publisher/chellan_upload.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Stall Payment
                             Details</span>
                     </a>
-                </li> -->
+                </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
                         href="<?= $base_url ?>/dashboard/publisher/catalog_upload.php">
