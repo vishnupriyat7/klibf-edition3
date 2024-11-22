@@ -183,12 +183,6 @@ function generateInvoice($invoiceNo)
                             $gst3x2 = ($rate3x2 * 18) / 100;
                             $tot_amt3x3 = $rate3x3 + $gst3x3;
                             $tot_amt3x2 = $rate3x2 + $gst3x2;
-                            // $stall_status = $user_stall['status'];
-                            // if ($stall_status != 'S') {
-                            //     $edit_count = '';
-                            // } else {
-                            //     $edit_count = 'disabled';
-                            // }
                             $total_amt = $tot_amt3x3 + $tot_amt3x2;
                             $totalinword = convertNumberToWordsForIndia($total_amt);
                             $chellanQuery = "SELECT * FROM challan WHERE user_id = ?";
@@ -301,29 +295,12 @@ function generateInvoice($invoiceNo)
                                     $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
                                     $status = "NOTOK";
                                 }
-
-
-
-
-                                // Get file info 
-                                // $fileName = basename($_FILES["chellan_img"]["name"]);
-                                // $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-                                // // Allow certain file formats 
-                                // $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'pdf');
-                                // if (in_array($fileType, $allowTypes)) {
-                                //     $image = $_FILES['chellan_img']['tmp_name'];
-                                //     $imgContent = addslashes(file_get_contents($image));
-                                // } else {
-                                //     $msg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.';
-                                //     $status = "NOTOK";
-                                // }
                             } else {
                                 if (!$chellan_img && !$imgChellan) {
                                     $msg = 'Please select an image file to upload.';
                                     $status = "NOTOK";
                                 }
                             }
-                            // $imgChellan =  base64_encode($imgContent);
                             $errormsg = "";
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
@@ -371,12 +348,6 @@ function generateInvoice($invoiceNo)
                                     $gst3x2 = ($rate3x2 * 18) / 100;
                                     $tot_amt3x3 = $rate3x3 + $gst3x3;
                                     $tot_amt3x2 = $rate3x2 + $gst3x2;
-                                    // $stall_status = $user_stall['status'];
-                                    // if ($stall_status != 'S') {
-                                    //     $edit_count = '';
-                                    // } else {
-                                    //     $edit_count = 'disabled';
-                                    // }
                                     $total_amt = $tot_amt3x3 + $tot_amt3x2;
                                     $totalinword = convertNumberToWordsForIndia($total_amt);
                                     $chellanQuery = "SELECT * FROM challan WHERE user_id = ?";
@@ -418,31 +389,33 @@ function generateInvoice($invoiceNo)
                                     </div>
                                     <div class="row">
                                         <table class="table table-info table-responsive" id="pay-slip">
-                                            <tr>
-                                                <th>
-                                                    Stalls
-                                                </th>
-                                                <th>
-                                                    Alloted
-                                                </th>
-                                                <th>
-                                                    Rate
-                                                </th>
-                                                <th>
-                                                    GST(18%)
-                                                </th>
-                                                <th>Amount</th>
-                                            </tr>
+                                            <thead style="text-align: right;">
+                                                <tr>
+                                                    <th>
+                                                        Stalls
+                                                    </th>
+                                                    <th>
+                                                        Alloted
+                                                    </th>
+                                                    <th>
+                                                        Rate
+                                                    </th>
+                                                    <th>
+                                                        GST(18%)
+                                                    </th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th>3m X 3m</th>
-                                                    <td class="text-justify"><?= $stall3x3; ?></td>&emsp;
+                                                    <th style="text-align: right;">3m X 3m</th>
+                                                    <td><?= $stall3x3; ?></td>&emsp;
                                                     <td><?= $rate3x3; ?></td>
                                                     <td><?= $gst3x3; ?></td>
                                                     <td><?= $tot_amt3x3; ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>3m X 2m</th>
+                                                    <th style="text-align: right;">3m X 2m</th>
                                                     <td><?= $stall3x2; ?></td>
                                                     <td><?= $rate3x2; ?></td>
                                                     <td><?= $gst3x2; ?></td>
