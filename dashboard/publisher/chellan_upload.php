@@ -520,7 +520,7 @@ function generateInvoice($invoiceNo)
                                                     id="chellan_img" placeholder="*Upload Chellan Image" <?= $edit; ?>
                                                     <?= $hideimg; ?>>
                                                 <label id="chellan_image">
-                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chelln_img/<?= $imgChellan; ?>"
+                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $imgChellan; ?>"
                                                         height="100vh" id="image_chellan" <?= $edit; ?>>
                                                 </label>
                                                 <span id="changeChellan" onclick="changeChellan();" <?= $edit; ?>><u>Change Chellan Image</u></span>
