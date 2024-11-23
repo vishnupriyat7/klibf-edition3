@@ -98,7 +98,7 @@ include "sidebar.php";
                                             $transaction_date = "$book[trnctn_date]";
                                             $status = $book["status"];
                                             $chellan_id = $book["chid"];
-                                            ?>
+                                        ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
                                                 <td><?= $org_name; ?></td>
@@ -119,9 +119,29 @@ include "sidebar.php";
                                                 <td><?= $transaction_number; ?></td>
                                                 <td><?= $transaction_date; ?></td>
                                                 <td>
-                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/<?= $book["challan_img"]; ?>"
+                                                    <!-- <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $book["challan_img"]; ?>"
                                                         height="auto" width="auto" style="max-width: 100%;"
-                                                        class="hover-image">
+                                                        class="hover-image"> -->
+                                                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal<?= $id; ?>">View</button>
+                                                    <div class="modal overflow-auto" id="myModal<?= $id; ?>">
+                                                        <div class="modal-dialog "> 
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title"><?= $org_name; ?></h4>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <?php
+                                                                    $imgQuery = "select challan_img from challan where id = $chellan_id";
+                                                                    $imgStmt = mysqli_query($con, $imgQuery);
+                                                                    $challan_image = $imgStmt->fetch_assoc();
+                                                                    $img_chellan = $challan_image["challan_img"];
+                                                                    ?>
+                                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $img_chellan; ?>" height="auto" width="auto" style="max-width: 100%;" class="hover-image">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php } ?>
