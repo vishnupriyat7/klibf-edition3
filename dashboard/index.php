@@ -23,7 +23,7 @@ switch ($user['user_type']) {
         include "cultural_committee/sidebar.php";
         break;
     case 'FC':
-        include "sidebar_finance.php";
+        include "finance_committee/sidebar.php";
         break;
     case 'RC':
         include "sidebar_reception.php";
@@ -63,7 +63,7 @@ switch ($user['user_type']) {
                     include "cultural_committee/dashboard.php";
                     break;
                 case 'FC':
-                    include "sidebar_finance.php";
+                    include "finance_committee/dashboard.php";
                     break;
                 case 'RC':
                     include "sidebar_reception.php";
