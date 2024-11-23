@@ -74,6 +74,9 @@
                                             <?php } ?>
                                         </select>
                                     </div>
+                                    <div class="form-group col-xxl-4 co-xl-4 col-lg-4 col-sm-12">
+                                      <input class="form-control form-group" type="text" value="" id="quiz_total">
+                                    </div>
                                 </div>
                             </div>
                             <div class="card" style="width:150vw;">
@@ -178,8 +181,10 @@
             },
             dataType: "json",
             success: function (data) {
+                console.log(data);
                 $('#quiz-data-list').empty();
-                $('#quiz-data-list').append(data);
+                $('#quiz-data-list').append(data.quiz_data);
+                document.getElementById("quiz_total").value =  "Total No.of Teams: " + data.total_quiz
             }
         });
     }
@@ -195,7 +200,7 @@
             },
             dataType: "json",
             success: function (data) {
-                if(!data) {
+                if (!data) {
                     swal("Unable to mark attendance");
                     document.getElementById("quiz_prsnt" + quizId).checked = false;
                 }
