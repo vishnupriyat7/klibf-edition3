@@ -73,6 +73,14 @@
                         <span data-key="t-dashboards"> News Upload </span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/media_committee/video_link_upload.php" class="nav-link" data-key="t-analytics">
+                        <!-- <i class="ri-dashboard-2-line"></i> -->
+                        <i class="ri-image-add-line"></i>
+                        <span data-key="t-dashboards"> Video Upload </span>
+                    </a>
+                </li>
                 <!-- <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/media_committee/quiz_mark_team.php" class="nav-link" data-key="t-analytics">
                         <i class="mdi mdi-account-check"></i>
