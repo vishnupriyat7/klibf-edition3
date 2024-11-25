@@ -214,7 +214,7 @@
                 dataType: "json",
                 success: function(data) {
                     $('#quiz-data-list').empty();
-                    $('#quiz-data-list').append(data);
+                    $('#quiz-data-list').append(data.quiz_data);
                 }
             });
         }
