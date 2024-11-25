@@ -64,41 +64,41 @@ include "sidebar.php";
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT up.*, sb.*, ch.user_id, ch.bank_name, ch.paid_amt, ch.trnctn_no, ch.trnctn_type, ch.trnctn_date, ch.paye_name, ch.ifsc, ch.status, ch.updated_date, ch.invoice_no, ch.id as chid, ch.challan_img FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id JOIN challan ch ON up.user_id = ch.user_id ORDER BY up.id DESC";
+                                        $query = "SELECT up.*, sb.*, ch.user_id, ch.bank_name, ch.paid_amt, ch.trnctn_no, ch.trnctn_type, ch.trnctn_date, ch.paye_name, ch.ifsc, ch.status, ch.updated_date, ch.invoice_no, ch.id as chid FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id JOIN challan ch ON up.user_id = ch.user_id ORDER BY up.id DESC";
                                         $bookstall = mysqli_query($con, $query);
                                         $counter = 0;
                                         while ($book = mysqli_fetch_array($bookstall)) {
-                                            $id = "$book[id]";
+                                            $id = $book['id'];
                                             $amt3x3 = 10000;
                                             $amt3x2 = 7500;
-                                            $pub_user_id = "$book[user_id]";
-                                            $org_name = "$book[org_name]";
-                                            $gst_no = "$book[gst_no]";
-                                            $cntct_prsn_name = "$book[cntct_prsn_name]";
-                                            $cntct_prsn_addr = "$book[cntct_prsn_addr]";
-                                            $cntct_prsn_mobile = "$book[cntct_prsn_mobile]";
-                                            $cntct_prsn_email = "$book[cntct_prsn_email]";
-                                            $cntct_prsn_watsapp = "$book[cntct_prsn_watsapp]";
-                                            $alloted_stall3x3 = "$book[confirm_3X3]";
-                                            $alloted_stall3x2 = "$book[confirm_3X2]";
+                                            $pub_user_id = $book['user_id'];
+                                            $org_name = $book['org_name'];
+                                            $gst_no = $book['gst_no'];
+                                            $cntct_prsn_name = $book['cntct_prsn_name'];
+                                            $cntct_prsn_addr = $book['cntct_prsn_addr'];
+                                            $cntct_prsn_mobile = $book['cntct_prsn_mobile'];
+                                            $cntct_prsn_email = $book['cntct_prsn_email'];
+                                            $cntct_prsn_watsapp = $book['cntct_prsn_watsapp'];
+                                            $alloted_stall3x3 = $book['confirm_3X3'];
+                                            $alloted_stall3x2 = $book['confirm_3X2'];
                                             $rate = ($amt3x3 * $alloted_stall3x3) + ($amt3x2 * $alloted_stall3x2);
                                             $gst = ($amt3x3 * $alloted_stall3x3 * 18 / 100) + ($amt3x2 * $alloted_stall3x2 * 18 / 100);
                                             $amounttobe_paid = $gst + $rate;
-                                            $paid_amount = "$book[paid_amt]";
-                                            $payee_name = "$book[paye_name]";
-                                            $bank_name = "$book[bank_name]";
-                                            $ifsc = "$book[ifsc]";
-                                            $transaction_natr = "$book[trnctn_type]";
+                                            $paid_amount = $book['paid_amt'];
+                                            $payee_name = $book['paye_name'];
+                                            $bank_name = $book['bank_name'];
+                                            $ifsc = $book['ifsc'];
+                                            $transaction_natr = $book['trnctn_type'];
                                             if ($transaction_natr == 'O') {
                                                 $transaction_type = "Online Transaction";
                                             } else {
                                                 $transaction_type = "Offline Transaction";
                                             }
-                                            $transaction_number = "$book[trnctn_no]";
-                                            $transaction_date = "$book[trnctn_date]";
-                                            $status = $book["status"];
-                                            $chellan_id = $book["chid"];
-                                        ?>
+                                            $transaction_number = $book['trnctn_no'];
+                                            $transaction_date = $book['trnctn_date'];
+                                            $status = $book['status'];
+                                            $chellan_id = $book['chid'];
+                                            ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
                                                 <td><?= $org_name; ?></td>
@@ -119,29 +119,10 @@ include "sidebar.php";
                                                 <td><?= $transaction_number; ?></td>
                                                 <td><?= $transaction_date; ?></td>
                                                 <td>
-                                                    <!-- <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $book["challan_img"]; ?>"
-                                                        height="auto" width="auto" style="max-width: 100%;"
-                                                        class="hover-image"> -->
-                                                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal<?= $id; ?>">View</button>
-                                                    <div class="modal overflow-auto" id="myModal<?= $id; ?>">
-                                                        <div class="modal-dialog "> 
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title"><?= $org_name; ?></h4>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <?php
-                                                                    $imgQuery = "select challan_img from challan where id = $chellan_id";
-                                                                    $imgStmt = mysqli_query($con, $imgQuery);
-                                                                    $challan_image = $imgStmt->fetch_assoc();
-                                                                    $img_chellan = $challan_image["challan_img"];
-                                                                    ?>
-                                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $img_chellan; ?>" height="auto" width="auto" style="max-width: 100%;" class="hover-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $book['challan_img']; ?>"
+                                                        height="10%" width="auto" style="max-width: 100%;"
+                                                        class="hover-image">
+                                                  
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -161,3 +142,60 @@ include "sidebar.php";
 
 <!-- End Page-content -->
 <?php include "../footer.php"; ?>
+
+<script>
+    function exportTableToExcel(example, filename = '') {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(example);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'excel_data.xls';
+        // Create download link element
+        downloadLink = document.createElement("a");
+        document.body.appendChild(downloadLink);
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            // Setting the file name
+            downloadLink.download = filename;
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+</script>
+
+
+
+
+
+
+  <!-- <button class="btn btn-info" data-bs-toggle="modal"
+                                                        data-bs-target="#myModal<?= $id; ?>">View</button>
+                                                    <div class="modal overflow-auto" id="myModal<?= $id; ?>">
+                                                        <div class="modal-dialog ">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title"><?= $org_name; ?></h4>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                <?php
+                                                                    $imgQuery = "select challan_img from challan where id = $chellan_id";
+                                                                    $imgStmt = mysqli_query($con, $imgQuery);
+                                                                    $challan_image = $imgStmt->fetch_assoc();
+                                                                    $img_chellan = $challan_image['challan_img'];
+                                                                    ?>
+                                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $img_chellan; ?>"
+                                                                        height="auto" width="auto" style="max-width: 100%;"
+                                                                        class="hover-image">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
