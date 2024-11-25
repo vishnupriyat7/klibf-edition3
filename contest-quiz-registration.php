@@ -205,7 +205,11 @@
                             </div>
                             <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content mt-2">
+                                    <!-- <div class="d-flex justify-content-end">
+                                        <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
+                                    </div> -->
                                     <div class="d-flex justify-content-end">
+                                        <a href="contest_quiz_reg_details.php" class="mr-2 btn btn-success fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a>
                                     </div>
                                     <div class="align-items-center text-center">
