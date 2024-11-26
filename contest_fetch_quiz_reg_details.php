@@ -1,5 +1,5 @@
 <style>
-     .print-table {
+    .print-table {
         font-size: 16px;
         font-weight: bold;
         font-family: sans-serif;
@@ -7,6 +7,7 @@
         width: 80%;
         border-collapse: collapse;
     }
+
     .print-btn {
         margin: 20px;
         padding: 10px 20px;
@@ -16,6 +17,7 @@
         border-radius: 5px;
         cursor: pointer;
     }
+
     .print-btn:hover {
         background-color: #0056b3;
     }
@@ -114,15 +116,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($result->num_rows > 0) {
                 $data = $result->fetch_assoc();
-               
+
                 // Table structure
+
+
+                echo "<button class='print-btn' onclick='printTable()' style='text-align: right;'>Print</button>";
                 echo "<h4 style='text-align: center;'>Registration Details</h4>";
                 echo "<table class='table table-bordered print-table' style='font-size: 16px; font-weight: bold; font-family: sans-serif;'>";
-                echo "<tr><th style='font-weight: bold;'>Institution Name</th><td>{$data['inst_name']}</td></tr>";
-                echo "<tr><th style='font-weight: bold;'>Faculty Name</th><td>{$data['inst_faclt_name']}</td></tr>";
-                echo "<tr><th style='font-weight: bold;'>Category</th><td>{$data['category']}</td></tr>";
-                echo "<tr><th style='font-weight: bold;'>Zone</th><td>{$data['zone_name']}</td></tr>";
-                echo "<tr><th style='font-weight: bold;'>District</th><td>{$data['district_name']}</td></tr>";
+                if ($data['category'] !== 'Public') {
+                    echo "<tr><th style='font-weight: bold;'>Institution Name</th><td>{$data['inst_name']}</td></tr>";
+                    echo "<tr><th style='font-weight: bold;'>Faculty Name</th><td>{$data['inst_faclt_name']}</td></tr>";
+                    echo "<tr><th style='font-weight: bold;'>Category</th><td>{$data['category']}</td></tr>";
+                    echo "<tr><th style='font-weight: bold;'>Zone</th><td>{$data['zone_name']}</td></tr>";
+                    echo "<tr><th style='font-weight: bold;'>District</th><td>{$data['district_name']}</td></tr>";
+                }
+                if($data['team_name'] == 'Team 1'){
+                    echo "<tr><th colspan='2' style='text-align: center; font-weight: bold;'>Registration No- KLIBFQ03-{$data['id']} A </th></tr>";
+                }
+                else{
+                    echo "<tr><th colspan='2' style='text-align: center; font-weight: bold;'>Registration No- KLIBFQ03-{$data['id']} B </th></tr>";
+
+                }
+               
+
                 echo "<tr><th colspan='2' style='text-align: center; font-weight: bold;'>{$data['team_name']} Details</th></tr>";
 
                 // Participant Details Header
@@ -138,11 +154,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "</tr>";
 
                 // Participant Classes
-                echo "<tr>";
-                echo "<td><b>Class:</b> {$data['team_mem1_class']}</td>";
-                echo "<td><b>Class:</b> {$data['team_mem2_class']}</td>";
-                echo "</tr>";
-
+                if ($data['category'] !== 'Public') {
+                    echo "<tr>";
+                    echo "<td><b>Class:</b> {$data['team_mem1_class']}</td>";
+                    echo "<td><b>Class:</b> {$data['team_mem2_class']}</td>";
+                    echo "</tr>";
+                }
                 // Participant Genders
                 echo "<tr>";
                 echo "<td><b>Gender:</b> {$data['team_mem1_gender']}</td>";
@@ -162,8 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "</tr>";
 
                 echo "</table>";
-                echo "<button class='print-btn' onclick='printTable()'>Print</button>";
-
+               
             } else {
                 echo "<p class='text-danger'>No registration details found for the provided phone number.</p>";
             }
