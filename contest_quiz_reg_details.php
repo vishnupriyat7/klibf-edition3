@@ -215,7 +215,7 @@ include "config.php"; ?>
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a>
                                     </div> -->
 
-                                   
+
                                     <div class="align-items-center text-center">
                                         <h3><b>Quiz Registration Details</b></h3>
                                         <!-- <p class="text-danger"><b>കണ്ണൂർ മേഖലാതല ക്വിസ് രജിസ്‌ട്രേഷൻ 26-11-2024 വരെ ദീർഘിപ്പിച്ചിരിക്കുന്നു.</b></p> -->
@@ -243,14 +243,19 @@ include "config.php"; ?>
                                                                 </span>View</button>
                                                         </div>
 
-                                                        <div id="quiz-details" class="mt-3"></div>
-
                                                     </div>
 
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
+                                    <div class="card mt-5">
+                                        <div class="card-body">
+                                            <div id="quiz-details" class="mt-3"></div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -286,7 +291,7 @@ include "config.php"; ?>
         xhr.open("POST", "contest_fetch_quiz_reg_details.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-        xhr.onload = function () {
+        xhr.onload = function() {
             if (this.status === 200) {
                 // Display the fetched data in the required area
                 document.getElementById("quiz-details").innerHTML = this.responseText;
@@ -298,6 +303,66 @@ include "config.php"; ?>
         // Send data
         xhr.send("phone_no=" + encodeURIComponent(phone_no));
     }
+
+
+    function printTable() {
+    // Get the content of the div you want to print
+    var divContent = document.getElementById('quiz-details').innerHTML;
+
+    // Open a new blank window
+    var printWindow = window.open('', '_blank', 'width=800,height=600');
+
+    // Write the content to the new window
+    printWindow.document.open();
+    printWindow.document.write(`
+        <html>
+            <head>
+            <style>
+                    /* Add any styles you want for the printed content */
+                    body {
+                        font-family: Arial, sans-serif;
+                        margin: 20px;
+                    }
+                    .header-logo {
+                        text-align: left;
+                        margin-bottom: 20px;
+                    }
+                    .header-logo img {
+                        max-width: 150px; /* Adjust size as needed */
+                        height: auto;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+                    table th, table td {
+                        border: 1px solid black;
+                        padding: 8px;
+                        text-align: left;
+                    }
+                </style>
+                <div class="header-logo">
+                    <img src="assets/img/Logo_KLIBF03.png" alt="Logo">
+                </div>
+                <title>Print Quiz Details</title>
+               
+            </head>
+            <body>
+                ${divContent}
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+
+    // Trigger the print dialog
+    printWindow.print();
+}
+
+
+    
 </script>
+
+
+      
 
 </html>
