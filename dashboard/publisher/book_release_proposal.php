@@ -149,6 +149,68 @@ $bkrls_id = $_GET['bkrlsid'];
                                     mysqli_real_escape_string($con, $_POST['remark']);
                                 $current_date = new DateTime();
                                 $date = date_format($current_date, "Y-m-d H:i:s");
+
+
+
+                                //     $queryDayTimePrefer = "SELECT
+                                //     COUNT(CASE WHEN (day_prfr1 = '$evnt_day1' AND time_prfr1 = '$time_slot1') THEN 1 ELSE
+                                // NULL END) AS prf1_count,
+                                //     COUNT(CASE WHEN (day_prfr2 = '$evnt_day2' AND time_prfr2 = '$time_slot2') THEN 1 ELSE
+                                // NULL END) AS prf2_count,
+                                //     COUNT(CASE WHEN (day_prfr3 = '$evnt_day3' AND time_prfr3 = '$time_slot3') THEN 1 ELSE
+                                // NULL END) AS prf3_count
+                                // FROM day_time_prefer;";
+                                //     $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
+                                //     $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
+                                //     var_dump($dayTimeCount);
+                                //     die;
+                            
+
+
+                                //                                 $queryDayTimePrefer = "SELECT
+//     COUNT(CASE WHEN '$evnt_day1' IN (day_prfr1, day_prfr2, day_prfr3) AND
+// time_prfr1 = '$time_slot1' THEN 1 ELSE NULL END) AS prf1_count,
+//     COUNT(CASE WHEN '$evnt_day2' IN (day_prfr1, day_prfr2, day_prfr3) AND
+// time_prfr2 = '$time_slot2' THEN 1 ELSE NULL END) AS prf2_count,
+//     COUNT(CASE WHEN '$evnt_day3' IN (day_prfr1, day_prfr2, day_prfr3) AND
+// time_prfr3 = '$time_slot3' THEN 1 ELSE NULL END) AS prf3_count
+// FROM day_time_prefer;";
+//                                 $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
+//                                 $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
+//                                 var_dump($dayTimeCount);
+//                                 die;
+                            
+
+
+
+                                $queryDayTimePrefer = "SELECT
+    COUNT(CASE
+        WHEN ('$evnt_day1', '$time_slot1') IN ((day_prfr1, time_prfr1), (day_prfr2,
+time_prfr2), (day_prfr3, time_prfr3))
+        THEN 1
+        ELSE NULL
+    END) AS prf1_count,
+    COUNT(CASE
+        WHEN ('$evnt_day2', '$time_slot2') IN ((day_prfr1, time_prfr1), (day_prfr2,
+time_prfr2), (day_prfr3, time_prfr3))
+        THEN 1
+        ELSE NULL
+    END) AS prf2_count,
+    COUNT(CASE
+        WHEN ('$evnt_day3', '$time_slot3') IN ((day_prfr1, time_prfr1), (day_prfr2,
+time_prfr2), (day_prfr3, time_prfr3))
+        THEN 1
+        ELSE NULL
+    END) AS prf3_count
+FROM day_time_prefer";
+                                $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
+                                $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
+                                var_dump($dayTimeCount);
+                                die;
+
+
+
+
                                 if (!empty($_FILES["book_cover"]["name"])) {
                                     $fileName = basename($_FILES["book_cover"]["name"]);
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -357,7 +419,7 @@ $bkrls_id = $_GET['bkrlsid'];
                                                     id="guest3_cntct" placeholder="Guest3 Contact"
                                                     value="<?= $guest3_cntct; ?>" <?= $edit; ?>>
                                             </div>
-                                            <?php 
+                                            <?php
                                             $day_query = "SELECT * FROM event_date";
                                             $day_stmt = $con->prepare($day_query);
                                             $day_stmt->execute();
