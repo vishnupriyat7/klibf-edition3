@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "head-style.php"; ?>
+<?php
+ini_set('display_errors', 1);
+include "head-style.php";
+include "config.php"; ?>
+
 <link href="https://fonts.googleapis.com/css2?family=Meera&display=swap" rel="stylesheet">
 
 
@@ -210,6 +214,8 @@
                                         <a href="contest_quiz_reg_details.php" class="mr-2 btn btn-success fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a>
                                     </div> -->
+
+                                   
                                     <div class="align-items-center text-center">
                                         <h3><b>Quiz Registration Details</b></h3>
                                         <!-- <p class="text-danger"><b>കണ്ണൂർ മേഖലാതല ക്വിസ് രജിസ്‌ട്രേഷൻ 26-11-2024 വരെ ദീർഘിപ്പിച്ചിരിക്കുന്നു.</b></p> -->
@@ -237,6 +243,8 @@
                                                                 </span>View</button>
                                                         </div>
 
+                                                        <div id="quiz-details" class="mt-3"></div>
+
                                                     </div>
 
                                                 </div>
@@ -259,5 +267,37 @@
     <?php include "footer.php" ?>
 
 </body>
+<script>
+    function viewRegDetails() {
+        // Prevent the form from submitting the traditional way
+        event.preventDefault();
+
+        // Get the entered contact number
+        const phone_no = document.getElementById('phone_no').value;
+        alert(phone_no);
+
+        if (!phone_no) {
+            alert('Please enter a phone number.');
+            return;
+        }
+
+        // AJAX request
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "contest_fetch_quiz_reg_details.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function () {
+            if (this.status === 200) {
+                // Display the fetched data in the required area
+                document.getElementById("quiz-details").innerHTML = this.responseText;
+            } else {
+                alert("Error: Unable to fetch data.");
+            }
+        };
+
+        // Send data
+        xhr.send("phone_no=" + encodeURIComponent(phone_no));
+    }
+</script>
 
 </html>
