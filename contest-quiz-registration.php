@@ -205,12 +205,16 @@
                             </div>
                             <div class="card-body" style="margin-top: -10%;">
                                 <div class="tab-content mt-2">
+                                    <!-- <div class="d-flex justify-content-end">
+                                        <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
+                                    </div> -->
                                     <div class="d-flex justify-content-end">
+                                        <a href="contest_quiz_reg_details.php" class="mr-2 btn btn-success fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a>
                                     </div>
                                     <div class="align-items-center text-center">
                                         <h3><b>ക്വിസ് മത്സരം - പൊതുമാർഗ്ഗനിർദ്ദേശങ്ങൾ</b></h3>
-                                        <!-- <p class="text-danger"><b>കണ്ണൂർ മേഖലാതല ക്വിസ് രജിസ്‌ട്രേഷൻ 26-11-2024 വരെ ദീർഘിപ്പിച്ചിരിക്കുന്നു.</b></p> -->
+                                        <p class="text-danger"><b>കണ്ണൂർ മേഖലാതല ക്വിസ് രജിസ്‌ട്രേഷൻ 26-11-2024 വരെ ദീർഘിപ്പിച്ചിരിക്കുന്നു.</b></p>
                                     </div>
 
 
@@ -342,7 +346,7 @@
                                                             </td>
                                                             <td data-label="മേഖല">കണ്ണൂര്‍</td>
                                                             <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">22.11.2024
-                                                                <!-- <p class="text-danger fw-bold">Extended Date</p>26.11.2024 -->
+                                                                <p class="text-danger fw-bold">Extended Date<br>26.11.2024</p>
                                                             </td>
                                                             <td data-label="പ്രാഥമിക മത്സര തീയതി">29.11.2024</td>
                                                             <td data-label="വേദി">ശിക്ഷക് സദൻ , കണ്ണൂർ</td>
