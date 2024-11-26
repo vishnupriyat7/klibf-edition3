@@ -79,6 +79,9 @@
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/program_committee/stall_payment_report.php" class="nav-link" data-key="t-nft-landing">Chellan Payment Report </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/program_committee/not_paid_report.php" class="nav-link" data-key="t-nft-landing">Payment Not Done Report </a>
+                            </li>
                             <!-- <li class="nav-item">
                                 <a href="pgmcmtee-evnt-bkrls-report.php" class="nav-link" data-key="t-nft-landing">Event
                                     Proposal Book Release Report </a>
