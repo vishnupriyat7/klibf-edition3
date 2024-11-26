@@ -152,35 +152,6 @@ $bkrls_id = $_GET['bkrlsid'];
 
 
 
-                                //     $queryDayTimePrefer = "SELECT
-                                //     COUNT(CASE WHEN (day_prfr1 = '$evnt_day1' AND time_prfr1 = '$time_slot1') THEN 1 ELSE
-                                // NULL END) AS prf1_count,
-                                //     COUNT(CASE WHEN (day_prfr2 = '$evnt_day2' AND time_prfr2 = '$time_slot2') THEN 1 ELSE
-                                // NULL END) AS prf2_count,
-                                //     COUNT(CASE WHEN (day_prfr3 = '$evnt_day3' AND time_prfr3 = '$time_slot3') THEN 1 ELSE
-                                // NULL END) AS prf3_count
-                                // FROM day_time_prefer;";
-                                //     $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
-                                //     $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
-                                //     var_dump($dayTimeCount);
-                                //     die;
-                            
-
-
-                                //                                 $queryDayTimePrefer = "SELECT
-//     COUNT(CASE WHEN '$evnt_day1' IN (day_prfr1, day_prfr2, day_prfr3) AND
-// time_prfr1 = '$time_slot1' THEN 1 ELSE NULL END) AS prf1_count,
-//     COUNT(CASE WHEN '$evnt_day2' IN (day_prfr1, day_prfr2, day_prfr3) AND
-// time_prfr2 = '$time_slot2' THEN 1 ELSE NULL END) AS prf2_count,
-//     COUNT(CASE WHEN '$evnt_day3' IN (day_prfr1, day_prfr2, day_prfr3) AND
-// time_prfr3 = '$time_slot3' THEN 1 ELSE NULL END) AS prf3_count
-// FROM day_time_prefer;";
-//                                 $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
-//                                 $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
-//                                 var_dump($dayTimeCount);
-//                                 die;
-                            
-
 
 
                                 $queryDayTimePrefer = "SELECT
@@ -205,11 +176,24 @@ time_prfr2), (day_prfr3, time_prfr3))
 FROM day_time_prefer";
                                 $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
                                 $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
-                                var_dump($dayTimeCount);
-                                die;
+                                // var_dump($dayTimeCount);
+                                // die;
 
+                                if ($dayTimeCount['prf1_count'] > 5) {
+                                    $msg = 'Sorry, Your Event Date Preference 1 with Time Slot Preference 1 is full. Please select another one for booking. Thank you for your co-operartion.';
+                                    $status = "NOTOK";
+                                }
+                                if ($dayTimeCount['prf2_count'] > 5) {
+                                    $msg = 'Sorry, Your Event Date Preference 2 with Time Slot Preference 2 is full. Please select another one for booking. Thank you for your co-operartion.';
+                                    $status = "NOTOK";
+                                }
+                                if ($dayTimeCount['prf3_count'] > 5) {
+                                    $msg = 'Sorry, Your Event Date Preference 3 with Time Slot Preference 3 is full. Please select another one for booking. Thank you for your co-operartion.';
+                                    $status = "NOTOK";
+                                }
 
-
+                                // { ["prf1_count"]=> string(1) "0" ["prf2_count"]=> string(1) "0" ["prf3_count"]=> string(1) "0" }
+                            
 
                                 if (!empty($_FILES["book_cover"]["name"])) {
                                     $fileName = basename($_FILES["book_cover"]["name"]);
@@ -221,7 +205,7 @@ FROM day_time_prefer";
                                         $targetFilePath = $targetDir . $newFileName;
                                         if (move_uploaded_file($_FILES["book_cover"]["tmp_name"], $targetFilePath)) {
                                             $filePathForDB = addslashes($targetFilePath); // Add slashes for safety in SQL
-                                            $status = "OK";
+                                            // $status = "OK";
                                         } else {
                                             $msg = 'Sorry, there was an error uploading your file.';
                                             $status = "NOTOK";
@@ -255,6 +239,7 @@ FROM day_time_prefer";
                                     $evnt_day3 = '8';
                                 }
                                 $errormsg = "";
+                                var_dump($status);
                                 if ($status == "NOTOK") {
                                     $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                         $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
@@ -435,8 +420,8 @@ FROM day_time_prefer";
                                                 <br>
                                                 <label>Event Date Preference 1</label>
                                                 <select class="form-control form-group" name="evnt_day1" id="evnt_day1"
-                                                    style="height:35px;" onchange="listTimeSlot1();">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
+                                                    style="height:35px;" onchange="listTimeSlot1();" required>
+                                                    <option <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
                                                         $evnt_day1_selected = $days[0] == $evnt_day1 ? 'selected' : "";
@@ -451,8 +436,8 @@ FROM day_time_prefer";
                                                 <br>
                                                 <label> Time Slot Preference 1</label>
                                                 <select class="form-control form-group" name="time_slot1"
-                                                    id="time_slot1" style="height:35px;">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Time
+                                                    id="time_slot1" style="height:35px;" required>
+                                                    <option <?= $select0; ?>>Select Proposed Event Time
                                                     </option>
                                                     <?php
                                                     foreach ($event_slots as $event_slot) {
@@ -468,8 +453,8 @@ FROM day_time_prefer";
                                                 <br>
                                                 <label>Event Date Preference 2</label>
                                                 <select class="form-control form-group" name="evnt_day2" id="evnt_day2"
-                                                    style="height:35px;" onchange="listTimeSlot2();">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
+                                                    style="height:35px;" onchange="listTimeSlot2();" required>
+                                                    <option <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
                                                         $evnt_day2_selected = $days[0] == $evnt_day2 ? "selected" : "";
@@ -484,8 +469,8 @@ FROM day_time_prefer";
                                                 <br>
                                                 <label> Time Slot Preference 2</label>
                                                 <select class="form-control form-group" name="time_slot2"
-                                                    id="time_slot2" style="height:35px;">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Time
+                                                    id="time_slot2" style="height:35px;" required>
+                                                    <option <?= $select0; ?>>Select Proposed Event Time
                                                     </option>
                                                     <?php
                                                     foreach ($event_slots as $event_slot) {
@@ -501,8 +486,8 @@ FROM day_time_prefer";
                                                 <br>
                                                 <label>Event Date Preference 3</label>
                                                 <select class="form-control form-group" name="evnt_day3" id="evnt_day3"
-                                                    style="height:35px;" onchange="listTimeSlot3();">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Day</option>
+                                                    style="height:35px;" onchange="listTimeSlot3();" required>
+                                                    <option <?= $select0; ?>>Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
                                                         $evnt_day3_selected = $days[0] == $evnt_day3 ? "selected" : "";
@@ -517,8 +502,8 @@ FROM day_time_prefer";
                                                 <br>
                                                 <label> Time Slot Preference 3</label>
                                                 <select class="form-control form-group" name="time_slot3"
-                                                    id="time_slot3" style="height:35px;">
-                                                    <option value="0" <?= $select0; ?>>Select Proposed Event Time
+                                                    id="time_slot3" style="height:35px;" required>
+                                                    <option <?= $select0; ?>>Select Proposed Event Time
                                                     </option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         $time_slot3_selected = $event_slot[0] == $time_slot3 ? "selected" : "";
