@@ -149,52 +149,6 @@ $bkrls_id = $_GET['bkrlsid'];
                                     mysqli_real_escape_string($con, $_POST['remark']);
                                 $current_date = new DateTime();
                                 $date = date_format($current_date, "Y-m-d H:i:s");
-
-
-
-
-
-                                $queryDayTimePrefer = "SELECT
-    COUNT(CASE
-        WHEN ('$evnt_day1', '$time_slot1') IN ((day_prfr1, time_prfr1), (day_prfr2,
-time_prfr2), (day_prfr3, time_prfr3))
-        THEN 1
-        ELSE NULL
-    END) AS prf1_count,
-    COUNT(CASE
-        WHEN ('$evnt_day2', '$time_slot2') IN ((day_prfr1, time_prfr1), (day_prfr2,
-time_prfr2), (day_prfr3, time_prfr3))
-        THEN 1
-        ELSE NULL
-    END) AS prf2_count,
-    COUNT(CASE
-        WHEN ('$evnt_day3', '$time_slot3') IN ((day_prfr1, time_prfr1), (day_prfr2,
-time_prfr2), (day_prfr3, time_prfr3))
-        THEN 1
-        ELSE NULL
-    END) AS prf3_count
-FROM day_time_prefer";
-                                $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
-                                $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
-                                // var_dump($dayTimeCount);
-                                // die;
-
-                                if ($dayTimeCount['prf1_count'] > 5) {
-                                    $msg = 'Sorry, Your Event Date Preference 1 with Time Slot Preference 1 is full. Please select another one for booking. Thank you for your co-operartion.';
-                                    $status = "NOTOK";
-                                }
-                                if ($dayTimeCount['prf2_count'] > 5) {
-                                    $msg = 'Sorry, Your Event Date Preference 2 with Time Slot Preference 2 is full. Please select another one for booking. Thank you for your co-operartion.';
-                                    $status = "NOTOK";
-                                }
-                                if ($dayTimeCount['prf3_count'] > 5) {
-                                    $msg = 'Sorry, Your Event Date Preference 3 with Time Slot Preference 3 is full. Please select another one for booking. Thank you for your co-operartion.';
-                                    $status = "NOTOK";
-                                }
-
-                                // { ["prf1_count"]=> string(1) "0" ["prf2_count"]=> string(1) "0" ["prf3_count"]=> string(1) "0" }
-                            
-
                                 if (!empty($_FILES["book_cover"]["name"])) {
                                     $fileName = basename($_FILES["book_cover"]["name"]);
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -205,7 +159,6 @@ FROM day_time_prefer";
                                         $targetFilePath = $targetDir . $newFileName;
                                         if (move_uploaded_file($_FILES["book_cover"]["tmp_name"], $targetFilePath)) {
                                             $filePathForDB = addslashes($targetFilePath); // Add slashes for safety in SQL
-                                            // $status = "OK";
                                         } else {
                                             $msg = 'Sorry, there was an error uploading your file.';
                                             $status = "NOTOK";
@@ -220,26 +173,7 @@ FROM day_time_prefer";
                                         $status = "NOTOK";
                                     }
                                 }
-                                if ($time_slot1 == '0') {
-                                    $time_slot1 = '9';
-                                }
-                                if ($evnt_day1 == '0') {
-                                    $evnt_day1 = '8';
-                                }
-                                if ($time_slot2 == '0') {
-                                    $time_slot2 = '9';
-                                }
-                                if ($evnt_day2 == '0') {
-                                    $evnt_day2 = '8';
-                                }
-                                if ($time_slot3 == '0') {
-                                    $time_slot3 = '9';
-                                }
-                                if ($evnt_day3 == '0') {
-                                    $evnt_day3 = '8';
-                                }
                                 $errormsg = "";
-                                var_dump($status);
                                 if ($status == "NOTOK") {
                                     $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                         $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
@@ -313,8 +247,8 @@ FROM day_time_prefer";
                                                 $book_generes = $bookgenere_result->fetch_all();
                                                 ?>
                                                 <select class="form-control form-group" name="book_genere"
-                                                    id="book_genere">
-                                                    <option value="0">Select Book Genre</option>
+                                                    id="book_genere" required>
+                                                    <option value="">Select Book Genre</option>
                                                     <?php foreach ($book_generes as $genere) {
                                                         if ($genere[0] == $book_genere) {
                                                             $genere_selected = 'selected';
@@ -405,12 +339,12 @@ FROM day_time_prefer";
                                                     value="<?= $guest3_cntct; ?>" <?= $edit; ?>>
                                             </div>
                                             <?php
-                                            $day_query = "SELECT * FROM event_date";
+                                            $day_query = "SELECT * FROM event_date WHERE id != 8";
                                             $day_stmt = $con->prepare($day_query);
                                             $day_stmt->execute();
                                             $day_result = $day_stmt->get_result();
                                             $event_days = $day_result->fetch_all();
-                                            $slot_query = "SELECT * FROM time_slot";
+                                            $slot_query = "SELECT * FROM time_slot WHERE id != 9";
                                             $slot_stmt = $con->prepare($slot_query);
                                             $slot_stmt->execute();
                                             $slot_result = $slot_stmt->get_result();
@@ -421,7 +355,7 @@ FROM day_time_prefer";
                                                 <label>Event Date Preference 1</label>
                                                 <select class="form-control form-group" name="evnt_day1" id="evnt_day1"
                                                     style="height:35px;" onchange="listTimeSlot1();" required>
-                                                    <option <?= $select0; ?>>Select Proposed Event Day</option>
+                                                    <option <?= $select0; ?> value="">Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
                                                         $evnt_day1_selected = $days[0] == $evnt_day1 ? 'selected' : "";
@@ -437,7 +371,7 @@ FROM day_time_prefer";
                                                 <label> Time Slot Preference 1</label>
                                                 <select class="form-control form-group" name="time_slot1"
                                                     id="time_slot1" style="height:35px;" required>
-                                                    <option <?= $select0; ?>>Select Proposed Event Time
+                                                    <option <?= $select0; ?> value="">Select Proposed Event Time
                                                     </option>
                                                     <?php
                                                     foreach ($event_slots as $event_slot) {
@@ -454,7 +388,7 @@ FROM day_time_prefer";
                                                 <label>Event Date Preference 2</label>
                                                 <select class="form-control form-group" name="evnt_day2" id="evnt_day2"
                                                     style="height:35px;" onchange="listTimeSlot2();" required>
-                                                    <option <?= $select0; ?>>Select Proposed Event Day</option>
+                                                    <option <?= $select0; ?> value="">Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
                                                         $evnt_day2_selected = $days[0] == $evnt_day2 ? "selected" : "";
@@ -470,7 +404,7 @@ FROM day_time_prefer";
                                                 <label> Time Slot Preference 2</label>
                                                 <select class="form-control form-group" name="time_slot2"
                                                     id="time_slot2" style="height:35px;" required>
-                                                    <option <?= $select0; ?>>Select Proposed Event Time
+                                                    <option <?= $select0; ?> value="">Select Proposed Event Time
                                                     </option>
                                                     <?php
                                                     foreach ($event_slots as $event_slot) {
@@ -487,7 +421,7 @@ FROM day_time_prefer";
                                                 <label>Event Date Preference 3</label>
                                                 <select class="form-control form-group" name="evnt_day3" id="evnt_day3"
                                                     style="height:35px;" onchange="listTimeSlot3();" required>
-                                                    <option <?= $select0; ?>>Select Proposed Event Day</option>
+                                                    <option <?= $select0; ?> value="">Select Proposed Event Day</option>
                                                     <?php
                                                     foreach ($event_days as $days) {
                                                         $evnt_day3_selected = $days[0] == $evnt_day3 ? "selected" : "";
@@ -503,7 +437,7 @@ FROM day_time_prefer";
                                                 <label> Time Slot Preference 3</label>
                                                 <select class="form-control form-group" name="time_slot3"
                                                     id="time_slot3" style="height:35px;" required>
-                                                    <option <?= $select0; ?>>Select Proposed Event Time
+                                                    <option <?= $select0; ?> value="">Select Proposed Event Time
                                                     </option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         $time_slot3_selected = $event_slot[0] == $time_slot3 ? "selected" : "";
@@ -585,12 +519,12 @@ FROM day_time_prefer";
         }
 
         function listTimeSlot1() {
-            var eventDt = document.getElementById("evnt_day1").value;
+            var eventDt1 = document.getElementById("evnt_day1").value;
             $.ajax({
                 url: "<?= $base_url; ?>/dashboard/publisher/list_time_slot.php",
                 type: "POST",
                 data: {
-                    eventDt_id: eventDt
+                    eventDt_id: eventDt1,
                 },
                 dataType: "json",
                 success: function (data) {
@@ -610,7 +544,7 @@ FROM day_time_prefer";
                 url: "<?= $base_url; ?>/dashboard/publisher/list_time_slot.php",
                 type: "POST",
                 data: {
-                    eventDt_id: eventDt2
+                    eventDt_id: eventDt2,
                 },
                 dataType: "json",
                 success: function (data) {
@@ -630,7 +564,7 @@ FROM day_time_prefer";
                 url: "<?= $base_url; ?>/dashboard/publisher/list_time_slot.php",
                 type: "POST",
                 data: {
-                    eventDt_id: eventDt3
+                    eventDt_id: eventDt3,
                 },
                 dataType: "json",
                 success: function (data) {
