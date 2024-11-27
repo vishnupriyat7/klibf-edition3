@@ -492,6 +492,14 @@ include "head-style.php";
                                                         <i class="fas fa-paper-plane"></i>
                                                     </span>Register</button>
                                             </div>
+                                            <div class="col-12" id="spot-message">
+                                                <div class="alert alert-info">
+                                                    <h5>Spot Registration</h5>
+                                                    <p>
+                                                        <large>ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി കഴിഞ്ഞിട്ടുള്ളതിനാൽ, താങ്കളുടെ സ്കൂൾ/കോളേജിൽ നിന്നും പരമാവധി 2 ടീമുകൾ ഓൺലൈൻ രജിസ്ട്രേഷൻ നടത്തിയിട്ടില്ലാത്തപക്ഷം, പൊതുമാർഗനിർദ്ദേശങ്ങൾ പാലിച്ച് സ്കൂൾ/കോളേജ് ഐ. ഡി, അധികാരികളുടെ സാക്ഷ്യപത്രം എന്നിവയിലേതെങ്കിലും ഹാജരാക്കി ടീം/ടീമുകൾക്ക് നേരിട്ട് മത്സരത്തിന് ഹാജരാകാവുന്നതാണ്.</large>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </form>
                                     <p class="form-message"></p>
@@ -532,6 +540,7 @@ include "head-style.php";
             document.getElementById("team2").style.display = "none";
             addressDiv1.style.display = "block";
             addressDiv2.style.display = "block";
+            document.getElementById("spot-message").style.display = "none";
         } else if (catgry === '1' || catgry === '2') {
             document.getElementById("quiz_zone").style.display = "block";
             document.getElementById("quiz_district").style.display = "block";
@@ -543,6 +552,7 @@ include "head-style.php";
             addressDiv1.style.display = "none";
             addressDiv2.style.display = "none";
             document.getElementById("message").style.display = "block";
+            document.getElementById("spot-message").style.display = "none";
         }
     }
 
@@ -576,22 +586,25 @@ include "head-style.php";
         var selectedOption = zoneElement.options[zoneElement.selectedIndex];
         var closedDate = selectedOption.getAttribute('data-closedt');
         var today = new Date();
-
-// Extract year, month, and day
-var year = today.getFullYear();
-var month = (today.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
-var day = today.getDate().toString().padStart(2, '0');          // Add leading zero if needed
-
-// Combine in YYYY/MM/DD format
-var formattedDate = `${year}-${month}-${day}`;
-if(formattedDate >= closedDate) {
-alert("same");
-document.getElementById("inst_details").style.display = "none";
-document.getElementById("team1").style.display = "none";
-document.getElementById("team2").style.display = "none";
-}
-
-console.log(formattedDate);
-        console.log('Closed Date:', closedDate);
+        var year = today.getFullYear();
+        var month = (today.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
+        var day = today.getDate().toString().padStart(2, '0');          // Add leading zero if needed
+        var formattedDate = `${year}-${month}-${day}`;
+        var formattedDateObj = new Date(formattedDate);
+        var closedDateObj = new Date(closedDate);
+        if(formattedDate >= closedDate) {
+            document.getElementById("inst_details").style.display = "none";
+            document.getElementById("team1").style.display = "none";
+            document.getElementById("team2").style.display = "none";
+            document.getElementById("team2_dtls").style.display = "none";
+            document.getElementById("register-quiz").style.display = "none";
+            document.getElementById("spot-message").style.display = "block";
+        } else {
+            document.getElementById("inst_details").style.display = "block";
+            document.getElementById("team1").style.display = "block";
+            document.getElementById("team2_dtls").style.display = "block";
+            document.getElementById("register-quiz").style.display = "block";
+            document.getElementById("spot-message").style.display = "none";
+        }
     }
 </script>
