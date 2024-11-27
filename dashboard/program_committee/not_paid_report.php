@@ -44,11 +44,12 @@
                                         <th data-ordering="false">Sl.No</th>
                                         <th data-ordering="false">Organization Name</th>
                                         <th data-ordering="false">Contact Number</th>
+                                        <th data-ordering="false">Mail Id</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $queryNotPaid = "SELECT up.id, up.org_name, up.cntct_prsn_mobile FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id where sb.user_id not in (SELECT user_id FROM challan) and sb.status='A' ORDER BY up.id DESC";
+                                    $queryNotPaid = "SELECT up.id, up.org_name, up.cntct_prsn_mobile, up.head_org_email FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id where sb.user_id not in (SELECT user_id FROM challan) and sb.status='A' ORDER BY up.id DESC";
                                     $pubsNotPaid = mysqli_query($con, $queryNotPaid);
                                     $counter = 0;
                                     while ($pubs = mysqli_fetch_array($pubsNotPaid)) {
@@ -57,6 +58,7 @@
                                             <td><?= ++$counter; ?></td>
                                             <td><?= $pubs['org_name']; ?></td>
                                             <td><?= $pubs['cntct_prsn_mobile']; ?></td>
+                                            <td><?= $pubs['head_org_email']; ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

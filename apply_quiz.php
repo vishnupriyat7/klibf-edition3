@@ -216,7 +216,7 @@ include "head-style.php";
                                                         <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
                                                             <?php
                                                             $current_date = (new \DateTime())->format('Y-m-d');
-                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6 and reg_closing_date != '$current_date';";
+                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6";
                                                             $quiz_zone_stmt = $conn->prepare($quiz_zone_qry);
                                                             $quiz_zone_stmt->execute();
                                                             $quiz_zone_res = $quiz_zone_stmt->get_result();
@@ -228,7 +228,7 @@ include "head-style.php";
                                                                 onclick="selectDistrict();">
                                                                 <option value="0">*Select Zone</option>
                                                                 <?php foreach ($quiz_zones as $quiz_zone) { ?>
-                                                                    <option value="<?= $quiz_zone[0] ?>">
+                                                                    <option value="<?= $quiz_zone[0] ?>" data-closedt="<?=$quiz_zone[3];?>">
                                                                         <?= $quiz_zone[2] ?>
                                                                     </option>
                                                                 <?php } ?>
@@ -572,5 +572,26 @@ include "head-style.php";
                 });
             }
         });
+        var zoneElement = document.getElementById("quiz_zone");
+        var selectedOption = zoneElement.options[zoneElement.selectedIndex];
+        var closedDate = selectedOption.getAttribute('data-closedt');
+        var today = new Date();
+
+// Extract year, month, and day
+var year = today.getFullYear();
+var month = (today.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
+var day = today.getDate().toString().padStart(2, '0');          // Add leading zero if needed
+
+// Combine in YYYY/MM/DD format
+var formattedDate = `${year}-${month}-${day}`;
+if(formattedDate >= closedDate) {
+alert("same");
+document.getElementById("inst_details").style.display = "none";
+document.getElementById("team1").style.display = "none";
+document.getElementById("team2").style.display = "none";
+}
+
+console.log(formattedDate);
+        console.log('Closed Date:', closedDate);
     }
 </script>
