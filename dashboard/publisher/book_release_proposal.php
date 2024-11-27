@@ -202,7 +202,7 @@ $bkrls_id = $_GET['bkrlsid'];
                                         if ($resultdaytime) {
                                             $errormsg = "
                                       <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                        Your Proposal for Book Release is Successfully Saved. 
+                                                        Your Proposal for Book Release is Successfully Submitted. 
                                                         <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                         </div>";
                                         } else {

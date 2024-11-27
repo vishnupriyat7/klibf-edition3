@@ -79,7 +79,7 @@
                 </li> -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse">
-                        <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Event Proposals</span>
+                        <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Book Release/Discussion Proposals</span>
                     </a>
                     <div class="menu-dropdown collapse" id="sidebarEvent">
                         <ul class="nav nav-sm flex-column">
