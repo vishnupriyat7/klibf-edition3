@@ -279,7 +279,7 @@ include "config.php"; ?>
 
         // Get the entered contact number
         const phone_no = document.getElementById('phone_no').value;
-        alert(phone_no);
+        // alert(phone_no);
 
         if (!phone_no) {
             alert('Please enter a phone number.');

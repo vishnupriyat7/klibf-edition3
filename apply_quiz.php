@@ -221,6 +221,7 @@ include "head-style.php";
                                                             $quiz_zone_stmt->execute();
                                                             $quiz_zone_res = $quiz_zone_stmt->get_result();
                                                             $quiz_zones = $quiz_zone_res->fetch_all();
+                                                            // var_dump( $quiz_zones)
                                                             ?>
                                                             <select class="form-control form-group" name="quiz_zone"
                                                                 id="quiz_zone" style="height:35px;" require="required"

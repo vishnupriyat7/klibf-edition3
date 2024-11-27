@@ -209,12 +209,12 @@
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
                                     </div> -->
                                     <div class="d-flex justify-content-end">
-                                        <a href="contest_quiz_reg_details.php" class="mr-2 btn btn-success fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a>
+                                        <!-- <a href="contest_quiz_reg_details.php" class="mr-2 btn btn-success fw-bold fs-10"><i class="fa fa-download"></i> Click Here to View Registration Details</a> -->
                                         <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a>
                                     </div>
                                     <div class="align-items-center text-center">
                                         <h3><b>ക്വിസ് മത്സരം - പൊതുമാർഗ്ഗനിർദ്ദേശങ്ങൾ</b></h3>
-                                        <p class="text-danger"><b>കണ്ണൂർ മേഖലാതല ക്വിസ് രജിസ്‌ട്രേഷൻ 26-11-2024 വരെ ദീർഘിപ്പിച്ചിരിക്കുന്നു.</b></p>
+                                        <p class="text-danger"><b>കോഴിക്കോട് മേഖലാതല ക്വിസ് രജിസ്‌ട്രേഷൻ 30.11.2024 വരെ ദീർഘിപ്പിച്ചിരിക്കുന്നു.</b></p>
                                     </div>
 
 
@@ -241,9 +241,9 @@
                                             <li>
                                                 <p> രജിസ്‌ട്രേഷൻ നടപടികൾ <a href="https://klibf.niyamasabha.org/" target="_blank">www.klibf.niyamasabha.org</a> മുഖേന പൂർത്തിയാക്കേണ്ടതാണ്.</p>
                                             </li>
-                                            <li>
+                                            <!-- <li>
                                                 <p>മേഖലാതല മത്സരങ്ങള്‍ക്ക് സ്പോട്ട് രജിസ്‌ട്രേഷൻ ഉണ്ടായിരിക്കുന്നതല്ല.</p>
-                                            </li>
+                                            </li> -->
                                             <li>
                                                 <p>മേഖലാ അടിസ്ഥാനത്തില്‍ നടത്തുന്ന പ്രാഥമിക മത്സരത്തിന്റെ ഒന്നാം റൗണ്ട് എഴുത്തു പരീക്ഷയിൽ നിന്നും തെരഞ്ഞെടുക്കുന്ന 6 ടീമുകൾക്കായി രണ്ടാം റൗണ്ട് മത്സരങ്ങൾ സംഘടിപ്പിക്കുന്നതും ആയതിൽ ആദ്യ സ്ഥാനങ്ങളിൽ എത്തുന്ന 3 ടീമുകൾ സെമിഫൈനലിലേക്ക് തെരഞ്ഞെടുക്കപ്പെടുന്നതുമാണ്.</p>
                                             </li>
@@ -362,7 +362,7 @@
 
                                                             </td>
                                                             <td data-label="മേഖല">കോഴിക്കോട്</td>
-                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">26.11.2024</td>
+                                                            <td data-label="ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി">30.11.2024</td>
                                                             <td data-label="പ്രാഥമിക മത്സര തീയതി">3.12.2024</td>
                                                             <td data-label="വേദി">കാരപറമ്പ ഗവ.ഹയർസെക്കന്ററി സ്‌കൂൾ, കോഴിക്കോട്</td>
                                                         </tr>
