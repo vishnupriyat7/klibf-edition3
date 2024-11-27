@@ -196,7 +196,7 @@ $bkdscn_id = $_GET['bkdscnid'];
                                     if ($resultdaytime) {
                                         $errormsg = "
                               <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your Proposal for Book Discussion is Successfully Saved.
+                                                Your Proposal for Book Discussion is Successfully Submitted.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                     } else {
