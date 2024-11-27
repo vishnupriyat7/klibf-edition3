@@ -152,7 +152,7 @@ $bkdscn_id = $_GET['bkdscnid'];
                                     $targetFilePath = $targetDir . $newFileName;
                                     if (move_uploaded_file($_FILES["disc_book_cover"]["tmp_name"], $targetFilePath)) {
                                         $filePathForDB = addslashes($targetFilePath); // Add slashes for safety in SQL
-                                        $status = "OK";
+                                        // $status = "OK";
                                     } else {
                                         $msg = 'Sorry, there was an error uploading your file.';
                                         $status = "NOTOK";
@@ -166,24 +166,6 @@ $bkdscn_id = $_GET['bkdscnid'];
                                     $msg = 'Please select an image file to upload.';
                                     $status = "NOTOK";
                                 }
-                            }
-                            if ($time_slot1 == '0') {
-                                $time_slot1 = '9';
-                            }
-                            if ($evnt_day1 == '0') {
-                                $evnt_day1 = '8';
-                            }
-                            if ($time_slot2 == '0') {
-                                $time_slot2 = '9';
-                            }
-                            if ($evnt_day2 == '0') {
-                                $evnt_day2 = '8';
-                            }
-                            if ($time_slot3 == '0') {
-                                $time_slot3 = '9';
-                            }
-                            if ($evnt_day3 == '0') {
-                                $evnt_day3 = '8';
                             }
                             $errormsg = "";
                             if ($status == "NOTOK") {
@@ -322,12 +304,12 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                     value="<?= $prtcpnt4_cntct; ?>" <?= $edit; ?>>
                                             </div>
                                             <?php
-                                            $day_query = "SELECT * FROM event_date";
+                                            $day_query = "SELECT * FROM event_date WHERE id != 8";
                                             $day_stmt = $con->prepare($day_query);
                                             $day_stmt->execute();
                                             $day_result = $day_stmt->get_result();
                                             $event_days = $day_result->fetch_all();
-                                            $slot_query = "SELECT * FROM time_slot";
+                                            $slot_query = "SELECT * FROM time_slot WHERE id != 9";
                                             $slot_stmt = $con->prepare($slot_query);
                                             $slot_stmt->execute();
                                             $slot_result = $slot_stmt->get_result();
@@ -337,8 +319,8 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                 <br>
                                                 Event Date Preference 1
                                                 <select class="form-control form-group" name="evnt_day1"
-                                                    id="disc_evnt_day1" style="height:35px;" onchange="listDiscSlot1()">
-                                                    <option value="0">Select Proposed Event Day</option>
+                                                    id="disc_evnt_day1" style="height:35px;" onchange="listDiscSlot1()" required>
+                                                    <option value="">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) {
                                                         if ($event_day[0] == $evnt_day1) {
                                                             $evntDay1Select = 'selected';
@@ -356,8 +338,8 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                 <br>
                                                 Time Slot Preference 1
                                                 <select class="form-control form-group" name="time_slot1"
-                                                    id="disc_time_slot1" style="height:35px;">
-                                                    <option value="0">Select Proposed Event Time</option>
+                                                    id="disc_time_slot1" style="height:35px;" required>
+                                                    <option value="">Select Proposed Event Time</option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         if ($event_slot[0] == $time_slot1) {
                                                             $evntTme1Select = 'selected';
@@ -375,8 +357,8 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                 <br>
                                                 Event Date Preference 2
                                                 <select class="form-control form-group" name="evnt_day2"
-                                                    id="disc_evnt_day2" style="height:35px;" onchange="listDiscSlot2()">
-                                                    <option value="0">Select Proposed Event Day</option>
+                                                    id="disc_evnt_day2" style="height:35px;" onchange="listDiscSlot2()" required>
+                                                    <option value="">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) {
                                                         if ($event_day[0] == $evnt_day2) {
                                                             $evntDay2Select = 'selected';
@@ -394,8 +376,8 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                 <br>
                                                 Time Slot Preference 2
                                                 <select class="form-control form-group" name="time_slot2"
-                                                    id="disc_time_slot2" style="height:35px;">
-                                                    <option value="0">Select Proposed Event Time</option>
+                                                    id="disc_time_slot2" style="height:35px;" required>
+                                                    <option value="">Select Proposed Event Time</option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         if ($event_slot[0] == $time_slot2) {
                                                             $evntTme2Select = 'selected';
@@ -413,8 +395,8 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                 <br>
                                                 Event Date Preference 3
                                                 <select class="form-control form-group" name="evnt_day3"
-                                                    id="disc_evnt_day3" style="height:35px;" onchange="listDiscSlot3()">
-                                                    <option value="0">Select Proposed Event Day</option>
+                                                    id="disc_evnt_day3" style="height:35px;" onchange="listDiscSlot3()" required>
+                                                    <option value="">Select Proposed Event Day</option>
                                                     <?php foreach ($event_days as $event_day) {
                                                         if ($event_day[0] == $evnt_day3) {
                                                             $evntDay3Select = 'selected';
@@ -432,8 +414,8 @@ $bkdscn_id = $_GET['bkdscnid'];
                                                 <br>
                                                 Time Slot Preference 3
                                                 <select class="form-control form-group" name="time_slot3"
-                                                    id="disc_time_slot3" style="height:35px;">
-                                                    <option value="0">Select Proposed Event Time</option>
+                                                    id="disc_time_slot3" style="height:35px;" required>
+                                                    <option value="">Select Proposed Event Time</option>
                                                     <?php foreach ($event_slots as $event_slot) {
                                                         if ($event_slot[0] == $time_slot3) {
                                                             $evntTme3Select = 'selected';
