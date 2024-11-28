@@ -108,7 +108,6 @@ include "sidebar.php";
                                                         <button class="btn btn-success">Approved</button>
                                                     <?php } else { ?>
                                                         <?php if ($user['user_type'] != 'PC') { ?>
-                                                            <!-- href='finance_stall_report_update.php?id=<?= $chellan_id ?>' -->
                                                             <i class='align-bottom me-2'>
                                                                 <button class="btn btn-primary"
                                                                     onclick="approvePayment(<?= $chellan_id ?>)">
@@ -151,9 +150,6 @@ include "sidebar.php";
                                                 <td><?= $transaction_number; ?></td>
                                                 <td><?= $transaction_date; ?></td>
                                                 <td>
-                                                    <!-- <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $book["challan_img"]; ?>"
-                                                        height="auto" width="auto" style="max-width: 100%;"
-                                                        class="hover-image"> -->
                                                     <button class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#myModal<?= $id; ?>">View</button>
                                                     <div class="modal overflow-auto" id="myModal<?= $id; ?>">
@@ -234,6 +230,31 @@ include "sidebar.php";
             } else {
                 swal("Cancelled", "Further verification needed.", "error");
             }
-        })
+        });
+    }
+
+    function exportTableToExcel(example, filename = '') {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(example);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'excel_data.xls';
+        // Create download link element
+        downloadLink = document.createElement("a");
+        document.body.appendChild(downloadLink);
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            // Setting the file name
+            downloadLink.download = filename;
+            //triggering the function
+            downloadLink.click();
+        }
     }
 </script>
