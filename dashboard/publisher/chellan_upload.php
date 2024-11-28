@@ -607,8 +607,11 @@ function generateInvoice($invoiceNo)
         }
 
         function printInvoice() {
+            // alert("hii");
             var stall3x3 = <?= json_encode($stall3x3) ?>;
+            // alert(stall3x3);
             var stall3x2 = <?= json_encode($stall3x2) ?>;
+            // alert(stall3x2);
             var slno = 0;
             var desc3x3 = "";
             var desc3x2 = "";
