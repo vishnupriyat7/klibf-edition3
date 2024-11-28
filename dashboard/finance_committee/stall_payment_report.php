@@ -152,30 +152,31 @@ include "sidebar.php";
                                                 <td>
                                                     <button class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#myModal<?= $id; ?>">View</button>
-                                                    <div class="modal overflow-auto" id="myModal<?= $id; ?>">
-                                                        <div class="modal-dialog ">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h4 class="modal-title"><?= $org_name; ?></h4>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <?php
-                                                                    $imgQuery = "select challan_img from challan where id = $chellan_id";
-                                                                    $imgStmt = mysqli_query($con, $imgQuery);
-                                                                    $challan_image = $imgStmt->fetch_assoc();
-                                                                    $img_chellan = $challan_image["challan_img"];
-                                                                    ?>
-                                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $img_chellan; ?>"
-                                                                        height="auto" width="auto" style="max-width: 100%;"
-                                                                        class="hover-image">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+
                                                 </td>
                                             </tr>
+                                            <div class="modal overflow-auto" id="myModal<?= $id; ?>">
+                                                <div class="modal-dialog ">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title"><?= $org_name; ?></h4>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                            $imgQuery = "select challan_img from challan where id = $chellan_id";
+                                                            $imgStmt = mysqli_query($con, $imgQuery);
+                                                            $challan_image = $imgStmt->fetch_assoc();
+                                                            $img_chellan = $challan_image["challan_img"];
+                                                            ?>
+                                                            <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $img_chellan; ?>"
+                                                                height="auto" width="auto" style="max-width: 100%;"
+                                                                class="hover-image">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <?php } ?>
                                     </tbody>
                                 </table>
@@ -236,24 +237,34 @@ include "sidebar.php";
     function exportTableToExcel(example, filename = '') {
         var downloadLink;
         var dataType = 'application/vnd.ms-excel';
+
+        // Clone the table to avoid modifying the original
         var tableSelect = document.getElementById(example);
-        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+        var tableClone = tableSelect.cloneNode(true);
+
+        // Remove all buttons and other non-data elements
+        var buttons = tableClone.querySelectorAll('button, a, input');
+        buttons.forEach(button => button.remove());
+
+        // Prepare the HTML for export
+        var tableHTML = tableClone.outerHTML.replace(/ /g, '%20');
+
         // Specify file name
         filename = filename ? filename + '.xls' : 'excel_data.xls';
+
         // Create download link element
         downloadLink = document.createElement("a");
         document.body.appendChild(downloadLink);
+
         if (navigator.msSaveOrOpenBlob) {
-            var blob = new Blob(['\ufeff', tableHTML], {
-                type: dataType
-            });
+            var blob = new Blob(['\ufeff', tableHTML], { type: dataType });
             navigator.msSaveOrOpenBlob(blob, filename);
         } else {
             // Create a link to the file
             downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
             // Setting the file name
             downloadLink.download = filename;
-            //triggering the function
+            // Triggering the download
             downloadLink.click();
         }
     }
