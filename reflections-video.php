@@ -4,7 +4,37 @@
 <?php
 ini_set('display_errors', 1);
 include "head-style.php";
-include "config.php"; ?>
+include "config.php";
+
+$query = "SELECT video_ctgry, video_dtls, video_link, video_date FROM video_dtls_upload ORDER BY video_date DESC";
+$result = mysqli_query($conn, $query);
+
+// Fetch all rows into an array
+$videoDetails = [];
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $videoDetails[] = $row;
+    }
+}
+// var_dump($videoDetails);die;
+
+
+
+// Number of images per page
+$videosPerPage = 6;
+
+// Current page number
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
+// Calculate the total number of pages
+$totalPages = ceil(count($videoDetails) / $videosPerPage);
+
+// Calculate the starting index of images for the current page
+$startIndex = ($currentPage - 1) * $videosPerPage;
+
+// Slice the image files for the current page
+$videoDataOnPage = array_slice($videoDetails, $startIndex, $videosPerPage);
+?>
 
 <head>
 
@@ -68,59 +98,10 @@ include "config.php"; ?>
 
                     <div id="search">
                         <form method="GET" action="" class="d-flex justify-content-center mb-4">
-                            <input type="text" name="search" class="form-control w-50" placeholder="Search videos..." value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <input type="text" name="search" class="form-control w-50" placeholder="Search videos...">
                         </form>
                     </div>
                     <?php
-
-                    // $query = "SELECT video_ctgry, video_dtls, video_link, video_date FROM video_dtls_upload ORDER BY video_date DESC WHERE 1";
-
-                    $query = "SELECT video_ctgry, video_dtls, video_link, video_date 
-          FROM video_dtls_upload 
-          WHERE 1";
-
-                    // Append search conditions if a search term is provided
-                    if (!empty($search)) {
-                        $query .= " AND (
-                    video_ctgry LIKE '%" . mysqli_real_escape_string($conn, $search) . "%' OR
-                    video_dtls LIKE '%" . mysqli_real_escape_string($conn, $search) . "%' OR
-                    video_link LIKE '%" . mysqli_real_escape_string($conn, $search) . "%' OR
-                    video_date LIKE '%" . mysqli_real_escape_string($conn, $search) . "%'
-                )";
-                    }
-
-                    $query .= " ORDER BY video_date DESC";
-                    $result = mysqli_query($conn, $query);
-
-
-
-                    // Fetch all rows into an array
-                    $videoDetails = [];
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $videoDetails[] = $row;
-                        }
-                    }
-                    // var_dump($videoDetails);die;
-
-
-
-                    // Number of images per page
-                    $videosPerPage = 6;
-
-                    // Current page number
-                    $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-
-                    // Calculate the total number of pages
-                    $totalPages = ceil(count($videoDetails) / $videosPerPage);
-
-                    // Calculate the starting index of images for the current page
-                    $startIndex = ($currentPage - 1) * $videosPerPage;
-
-                    // Slice the image files for the current page
-                    $videoDataOnPage = array_slice($videoDetails, $startIndex, $videosPerPage);
-
 
                     foreach ($videoDataOnPage as $index => $data) {
                         // $imagePath = "dashboard/media_committee/news_uploads/" . $data['img'];
@@ -157,19 +138,19 @@ include "config.php"; ?>
                     <ul class="pagination justify-content-center">
                         <?php if ($currentPage > 1) : ?>
                             <li class="page-item">
-                                <a class="page-link" href="?page=<?= $currentPage - 1 ?>&search=<?= urlencode($search) ?>">Previous</a>
+                                <a class="page-link" href="?page=<?= $currentPage - 1 ?>">Previous</a>
                             </li>
                         <?php endif; ?>
 
                         <?php for ($page = 1; $page <= $totalPages; $page++) : ?>
                             <li class="page-item <?= ($page == $currentPage) ? 'active' : '' ?>">
-                                <a class="page-link" href="?page=<?= $page ?>&search=<?= urlencode($search) ?>"><?= $page ?></a>
+                                <a class="page-link" href="?page=<?= $page ?>"><?= $page ?></a>
                             </li>
                         <?php endfor; ?>
 
                         <?php if ($currentPage < $totalPages) : ?>
                             <li class="page-item">
-                                <a class="page-link" href="?page=<?= $currentPage + 1 ?>&search=<?= urlencode($search) ?>">Next</a>
+                                <a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a>
                             </li>
                         <?php endif; ?>
                     </ul>
