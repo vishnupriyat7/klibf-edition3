@@ -282,7 +282,7 @@ include "config.php"; ?>
         // alert(phone_no);
 
         if (!phone_no) {
-            alert('Please enter a phone number.');
+            alert('Please enter Registered Phone Number.');
             return;
         }
 
@@ -296,7 +296,7 @@ include "config.php"; ?>
                 // Display the fetched data in the required area
                 document.getElementById("quiz-details").innerHTML = this.responseText;
             } else {
-                alert("Error: Unable to fetch data.");
+                alert("Error: Not a Registered Phone Number.");
             }
         };
 
