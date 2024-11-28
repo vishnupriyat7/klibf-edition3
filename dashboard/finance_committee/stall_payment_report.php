@@ -36,13 +36,14 @@ include "sidebar.php";
                         <div class="card-body overflow-auto">
                             <button onclick="exportTableToExcel('example', 'stall_payment_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
-                            <div class="card" style="width:110vw;">
+                            <div class="card" style="width:150vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                     style="font-style:normal; font-size: 12px;">
-                                    <thead>
+                                    <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false">Sl.No</th>
                                             <th data-ordering="false">Action</th>
+                                            <th data-ordering="false">Invoice Number</th>
                                             <th data-ordering="false">Organization Name</th>
                                             <th data-ordering="false">GST Number</th>
                                             <th data-ordering="false">Contact Person Name</th>
@@ -65,57 +66,72 @@ include "sidebar.php";
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $query = "SELECT up.*, sb.*, ch.user_id, ch.bank_name, ch.paid_amt, ch.trnctn_no, ch.trnctn_type, ch.trnctn_date, ch.paye_name, ch.ifsc, ch.status, ch.updated_date, ch.invoice_no, ch.id as chid, ch.challan_img FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id JOIN challan ch ON up.user_id = ch.user_id ORDER BY up.id DESC";
+                                        $query = "SELECT up.*, sb.*, ch.user_id, ch.bank_name, ch.paid_amt, ch.trnctn_no, ch.trnctn_type, ch.trnctn_date, ch.paye_name, ch.ifsc, ch.status, ch.updated_date, ch.invoice_no, ch.id as chid, ch.challan_img FROM users_profile up JOIN stall_booking sb ON up.user_id = sb.user_id JOIN challan ch ON up.user_id = ch.user_id";
                                         $bookstall = mysqli_query($con, $query);
                                         $counter = 0;
                                         while ($book = mysqli_fetch_array($bookstall)) {
-                                            $id = "$book[id]";
+                                            $id = $book['id'];
                                             $amt3x3 = 10000;
                                             $amt3x2 = 7500;
-                                            $pub_user_id = "$book[user_id]";
-                                            $org_name = "$book[org_name]";
-                                            $gst_no = "$book[gst_no]";
-                                            $cntct_prsn_name = "$book[cntct_prsn_name]";
-                                            $cntct_prsn_addr = "$book[cntct_prsn_addr]";
-                                            $cntct_prsn_mobile = "$book[cntct_prsn_mobile]";
-                                            $cntct_prsn_email = "$book[cntct_prsn_email]";
-                                            $cntct_prsn_watsapp = "$book[cntct_prsn_watsapp]";
-                                            $alloted_stall3x3 = "$book[confirm_3X3]";
-                                            $alloted_stall3x2 = "$book[confirm_3X2]";
+                                            $pub_user_id = $book['user_id'];
+                                            $org_name = $book['org_name'];
+                                            $gst_no = $book['gst_no'];
+                                            $cntct_prsn_name = $book['cntct_prsn_name'];
+                                            $cntct_prsn_addr = $book['cntct_prsn_addr'];
+                                            $cntct_prsn_mobile = $book['cntct_prsn_mobile'];
+                                            $cntct_prsn_email = $book['cntct_prsn_email'];
+                                            $cntct_prsn_watsapp = $book['cntct_prsn_watsapp'];
+                                            $alloted_stall3x3 = $book['confirm_3X3'];
+                                            $alloted_stall3x2 = $book['confirm_3X2'];
                                             $rate = ($amt3x3 * $alloted_stall3x3) + ($amt3x2 * $alloted_stall3x2);
                                             $gst = ($amt3x3 * $alloted_stall3x3 * 18 / 100) + ($amt3x2 * $alloted_stall3x2 * 18 / 100);
                                             $amounttobe_paid = $gst + $rate;
-                                            $paid_amount = "$book[paid_amt]";
-                                            $payee_name = "$book[paye_name]";
-                                            $bank_name = "$book[bank_name]";
-                                            $ifsc = "$book[ifsc]";
-                                            $transaction_natr = "$book[trnctn_type]";
+                                            $paid_amount = $book['paid_amt'];
+                                            $payee_name = $book['paye_name'];
+                                            $bank_name = $book['bank_name'];
+                                            $ifsc = $book['ifsc'];
+                                            $transaction_natr = $book['trnctn_type'];
                                             if ($transaction_natr == 'O') {
                                                 $transaction_type = "Online Transaction";
                                             } else {
                                                 $transaction_type = "Offline Transaction";
                                             }
-                                            $transaction_number = "$book[trnctn_no]";
-                                            $transaction_date = "$book[trnctn_date]";
+                                            $transaction_number = $book['trnctn_no'];
+                                            $transaction_date = $book['trnctn_date'];
                                             $status = $book["status"];
                                             $chellan_id = $book["chid"];
                                             ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
                                                 <td>
-                                                    <!-- <?php if ($status == 'A') { ?>
+                                                    <?php if ($status == 'A') { ?>
                                                         <button class="btn btn-success">Approved</button>
                                                     <?php } else { ?>
                                                         <?php if ($user['user_type'] != 'PC') { ?>
-                                                            <a href='finance_stall_report_update.php?id=<?= $chellan_id ?>'
-                                                                class='dropdown-item remove-item-btn' <?= $btnenbl; ?>>
-                                                                <button class="btn btn-primary"> <i
-                                                                        class='ri-user-follow-fill align-bottom me-2 text-white'></i>
-                                                                    <span class="text-white">Verify / Approve</span></button>
-                                                            </a>
+                                                            <!-- href='finance_stall_report_update.php?id=<?= $chellan_id ?>' -->
+                                                            <i class='align-bottom me-2'>
+                                                                <button class="btn btn-primary"
+                                                                    onclick="approvePayment(<?= $chellan_id ?>)">
+                                                                    <span class="mdi mdi-bank-check"></span> Verify
+                                                                </button>
+                                                            </i>
                                                         <?php } ?>
                                                     <?php }
-                                                    ?> -->
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    if ($book['invoice_no']) {
+                                                        if (strlen((string) $book['invoice_no']) == 1) {
+                                                            $invoice_no = 'KLIBF III-01-2025-000' . (string) $book['invoice_no'];
+                                                        } else if (strlen((string) $book['invoice_no']) == 2) {
+                                                            $invoice_no = 'KLIBF III-01-2025-00' . (string) $book['invoice_no'];
+                                                        } else {
+                                                            $invoice_no = 'KLIBF III-01-2025-0' . (string) $book['invoice_no'];
+                                                        }
+                                                        echo $invoice_no;
+                                                    }
+                                                    ?>
                                                 </td>
                                                 <td><?= $org_name; ?></td>
                                                 <td><?= $gst_no; ?></td>
@@ -181,3 +197,43 @@ include "sidebar.php";
 
 <!-- End Page-content -->
 <?php include "../footer.php"; ?>
+<script type="text/javascript">
+    function approvePayment(chellanId) {
+        swal({
+            title: "Approve",
+            text: "Verified the details!",
+            icon: "warning",
+            buttons: [
+                'No, cancel it!',
+                'Yes, Approve!'
+            ],
+            // dangerMode: true,
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: "<?= $base_url; ?>/dashboard/finance_committee/payment_approve.php",
+                    type: "POST",
+                    data: {
+                        chellanId: chellanId
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        // console.log(data);
+                        if (data) {
+                            location.reload();
+                        } else {
+                            swal({
+                                title: 'Error!',
+                                text: 'Something went wrong!',
+                                icon: 'warning'
+
+                            });
+                        }
+                    }
+                });
+            } else {
+                swal("Cancelled", "Further verification needed.", "error");
+            }
+        })
+    }
+</script>
