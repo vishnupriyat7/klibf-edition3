@@ -42,6 +42,7 @@ include "sidebar.php";
                                     <thead>
                                         <tr>
                                             <th data-ordering="false">Sl.No</th>
+                                            <th data-ordering="false">Status</th>
                                             <th data-ordering="false">Organization Name</th>
                                             <th data-ordering="false">GST Number</th>
                                             <th data-ordering="false">Contact Person Name</th>
@@ -101,6 +102,11 @@ include "sidebar.php";
                                             ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
+                                                <td><?php if ($book['status'] == 'A') {
+                                                    echo 'Approved';
+                                                } else {
+                                                    echo '';
+                                                } ?></td>
                                                 <td><?= $org_name; ?></td>
                                                 <td><?= $gst_no; ?></td>
                                                 <td><?= $cntct_prsn_name; ?></td>
@@ -122,7 +128,7 @@ include "sidebar.php";
                                                     <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $book['challan_img']; ?>"
                                                         height="10%" width="auto" style="max-width: 100%;"
                                                         class="hover-image">
-                                                  
+
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -175,7 +181,7 @@ include "sidebar.php";
 
 
 
-  <!-- <button class="btn btn-info" data-bs-toggle="modal"
+<!-- <button class="btn btn-info" data-bs-toggle="modal"
                                                         data-bs-target="#myModal<?= $id; ?>">View</button>
                                                     <div class="modal overflow-auto" id="myModal<?= $id; ?>">
                                                         <div class="modal-dialog ">
@@ -187,11 +193,11 @@ include "sidebar.php";
                                                                 </div>
                                                                 <div class="modal-body">
                                                                 <?php
-                                                                    $imgQuery = "select challan_img from challan where id = $chellan_id";
-                                                                    $imgStmt = mysqli_query($con, $imgQuery);
-                                                                    $challan_image = $imgStmt->fetch_assoc();
-                                                                    $img_chellan = $challan_image['challan_img'];
-                                                                    ?>
+                                                                $imgQuery = "select challan_img from challan where id = $chellan_id";
+                                                                $imgStmt = mysqli_query($con, $imgQuery);
+                                                                $challan_image = $imgStmt->fetch_assoc();
+                                                                $img_chellan = $challan_image['challan_img'];
+                                                                ?>
                                                                     <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $img_chellan; ?>"
                                                                         height="auto" width="auto" style="max-width: 100%;"
                                                                         class="hover-image">
