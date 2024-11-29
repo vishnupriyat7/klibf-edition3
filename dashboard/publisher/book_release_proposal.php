@@ -149,6 +149,43 @@ $bkrls_id = $_GET['bkrlsid'];
                                     mysqli_real_escape_string($con, $_POST['remark']);
                                 $current_date = new DateTime();
                                 $date = date_format($current_date, "Y-m-d H:i:s");
+                                $queryDayTimePrefer = "SELECT
+                                COUNT(CASE
+                                    WHEN ('$evnt_day1', '$time_slot1') IN ((day_prfr1, time_prfr1), (day_prfr2,
+                            time_prfr2), (day_prfr3, time_prfr3))
+                                    THEN 1
+                                    ELSE NULL
+                                END) AS prf1_count,
+                                COUNT(CASE
+                                    WHEN ('$evnt_day2', '$time_slot2') IN ((day_prfr1, time_prfr1), (day_prfr2,
+                            time_prfr2), (day_prfr3, time_prfr3))
+                                    THEN 1
+                                    ELSE NULL
+                                END) AS prf2_count,
+                                COUNT(CASE
+                                    WHEN ('$evnt_day3', '$time_slot3') IN ((day_prfr1, time_prfr1), (day_prfr2,
+                            time_prfr2), (day_prfr3, time_prfr3))
+                                    THEN 1
+                                    ELSE NULL
+                                END) AS prf3_count
+                            FROM day_time_prefer";
+                                $resultDayTimePrefer = mysqli_query($con, $queryDayTimePrefer);
+                                $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
+                                // var_dump($dayTimeCount);
+                                // die;
+                                if ($dayTimeCount['prf1_count'] > 5) {
+                                    $msg = 'Sorry, Your Event Date Preference 1 with Time Slot Preference 1 is full. Please select another one for booking. Thank you for your co-operartion.';
+                                    $status = "NOTOK";
+                                }
+                                if ($dayTimeCount['prf2_count'] > 5) {
+                                    $msg = 'Sorry, Your Event Date Preference 2 with Time Slot Preference 2 is full. Please select another one for booking. Thank you for your co-operartion.';
+                                    $status = "NOTOK";
+                                }
+                                if ($dayTimeCount['prf3_count'] > 5) {
+                                    $msg = 'Sorry, Your Event Date Preference 3 with Time Slot Preference 3 is full. Please select another one for booking. Thank you for your co-operartion.';
+                                    $status = "NOTOK";
+                                }
+                                // { ["prf1_count"]=> string(1) "0" ["prf2_count"]=> string(1) "0" ["prf3_count"]=> string(1) "0" }
                                 if (!empty($_FILES["book_cover"]["name"])) {
                                     $fileName = basename($_FILES["book_cover"]["name"]);
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
