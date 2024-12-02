@@ -45,6 +45,7 @@ include "sidebar.php";
                                         <th data-ordering="false">Sl.No</th>
                                         <th data-ordering="false">Name</th>
                                         <th data-ordering="false">Email Id</th>
+                                        <th data-ordering="false">Password</th>
                                         <th data-ordering="false">Contact Number</th>
                                         <th>Delete</th>
                                         <!-- <th></th> -->
@@ -59,6 +60,7 @@ include "sidebar.php";
                                         $id = "$bookuser[id]";
                                         $name = "$bookuser[name]";
                                         $email = "$bookuser[email]";
+                                        $password = "$bookuser[password]";
                                         $contactno = "$bookuser[contact_no]";
                                         ?>
                                         <tr>
@@ -70,6 +72,9 @@ include "sidebar.php";
                                             </td>
                                             <td>
                                                 <?= $email; ?>
+                                            </td>
+                                            <td>
+                                                <?=  $password; ?>
                                             </td>
                                             <td>
                                                 <?= $contactno; ?>
