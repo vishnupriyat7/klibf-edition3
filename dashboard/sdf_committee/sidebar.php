@@ -39,8 +39,14 @@
                         <span data-key="t-dashboards"> Dashboard </span>
                     </a>
                 </li>
-
                 <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_denomination.php" class="nav-link" data-key="t-analytics">
+                    <i class="ri-file-list-3-line"></i>
+                        <span data-key="t-dashboards"> Coupon Denomination </span>
+                    </a>
+                </li>
+
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarX" data-bs-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="sidebarLanding">
                         <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Quiz Register Report</span>
@@ -65,22 +71,20 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-                <li class="nav-item">
+                </li> -->
+                <!-- <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/media_committee/news_upload.php" class="nav-link" data-key="t-analytics">
-                        <!-- <i class="ri-dashboard-2-line"></i> -->
                         <i class="ri-image-add-line"></i>
                         <span data-key="t-dashboards"> News Upload </span>
                     </a>
-                </li>
-
+                </li> -->
+<!-- 
                 <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/media_committee/video_link_upload.php" class="nav-link" data-key="t-analytics">
-                        <!-- <i class="ri-dashboard-2-line"></i> -->
                         <i class="ri-image-add-line"></i>
                         <span data-key="t-dashboards"> Video Upload </span>
                     </a>
-                </li>
+                </li> -->
                 <!-- <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/media_committee/quiz_mark_team.php" class="nav-link" data-key="t-analytics">
                         <i class="mdi mdi-account-check"></i>
