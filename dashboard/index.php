@@ -25,11 +25,11 @@ switch ($user['user_type']) {
     case 'FC':
         include "finance_committee/sidebar.php";
         break;
+    case 'SD':
+        include "sdf_committee/sidebar.php";
+        break;
     case 'RC':
         include "sidebar_reception.php";
-        break;
-    case 'SD':
-        include "sidebar_sdf.php";
         break;
 }
 ?>
@@ -65,11 +65,11 @@ switch ($user['user_type']) {
                 case 'FC':
                     include "finance_committee/dashboard.php";
                     break;
+                case 'SD':
+                    include "sdf_committee/dashboard.php";
+                    break;
                 case 'RC':
                     include "sidebar_reception.php";
-                    break;
-                case 'SD':
-                    include "sidebar_sdf.php";
                     break;
             }
             ?>
