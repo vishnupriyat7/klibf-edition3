@@ -116,6 +116,47 @@ include "sidebar.php";
                                             </div>
                                         </div>
                                     </form>
+                                    <div class="card-body overflow-auto">
+                                        <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
+                                        <!-- <button onclick="exportTableToExcel('example', 'quiz_public_category_report')"
+                                            class="btn btn-primary">Export Table Data To Excel File</button> -->
+                                        <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                            style="font-style:normal; font-size: 12px;">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th data-ordering="false" rowspan="2">Sl.No</th>
+                                                    <th data-ordering="false" rowspan="2">Coupon Denomination</th>
+                                                   
+                                                </tr>
+                                              
+                                            </thead>
+                                            <tbody>
+                                                <!-- <?php
+                                                $quiz_public_query = "SELECT * FROM reg_quiz where category_id=3";
+                                                $quiz_public_registrations = mysqli_query($con, $quiz_public_query);
+                                                $counter = 0;
+                                                while ($quiz_public_reg = mysqli_fetch_array($quiz_public_registrations)) { ?>
+                                                    <tr>
+                                                        <td><?= ++$counter ?></td>
+                                                        <td>KLIBF03-Q<?= $quiz_public_reg['id'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem1_name'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem1_gndr'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem1_addr'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem1_cntct'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem1_email'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem2_name'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem2_gndr'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem2_addr'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem2_cntct'] ?></td>
+                                                        <td><?= $quiz_public_reg['team1_mem2_email'] ?></td>
+                                                        <td><?= $quiz_public_reg['updated_date'] ?></td>
+                                                        <td> </td>
+                                                    </tr>
+                                                <?php } ?> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
