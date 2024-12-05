@@ -174,7 +174,7 @@
                                 <div class="tab-content mt-2">
                                     <div class="d-flex justify-content-end">
                                         <!-- <a href="apply_quiz.php" class="mr-2 btn btn-success horizontal-shake fw-bold fs-10"><i class="fa fa-download"></i> Click Here to Apply</a> -->
-                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdF5Vsl1E-ZEDNW4yBr6E6IZVNAvozMkHEiPn6VUt70BEtgDw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake" style="font-size: 16px;">Click Here to Apply</button></a>
+                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSdF5Vsl1E-ZEDNW4yBr6E6IZVNAvozMkHEiPn6VUt70BEtgDw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake" style="font-size: 16px;">Click Here to Apply</button></a> -->
                                     </div>
                                     <div class="align-items-center text-center">
                                         <h3><b>മാതൃക നിയമസഭ - പൊതുമാർഗ്ഗനിർദ്ദേശങ്ങൾ</b></h3>

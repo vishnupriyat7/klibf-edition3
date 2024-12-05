@@ -167,7 +167,7 @@
                         <img src="assets/img/contests/modelassembly-poster.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSdF5Vsl1E-ZEDNW4yBr6E6IZVNAvozMkHEiPn6VUt70BEtgDw/viewform" target="_blank" class="img-fluid" alt="">
                         <div class="gallery-links">
                             <a href="assets/img/contests/pdf/modelassembly-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
-                            <a href="contest-modelassembly-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="contest-modelassembly-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
                             <!-- <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
                         </div>
