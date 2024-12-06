@@ -39,6 +39,13 @@
                         <span data-key="t-dashboards"> Dashboard </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_sponsers_details.php" class="nav-link"
+                        data-key="t-one-page">
+                        <i class="mdi mdi-cash-multiple"></i>
+                        <span data-key="t-dashboards">Coupon Sponsers</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarX" data-bs-toggle="collapse" role="button"
@@ -60,14 +67,15 @@
                                     class="nav-link" data-key="t-nft-landing">Public Category Report </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_report.php"
-                                    class="nav-link" data-key="t-nft-landing">Total Registration Report </a>
+                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_report.php" class="nav-link"
+                                    data-key="t-nft-landing">Total Registration Report </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/media_committee/news_upload.php" class="nav-link" data-key="t-analytics">
+                    <a href="<?= $base_url ?>/dashboard/media_committee/news_upload.php" class="nav-link"
+                        data-key="t-analytics">
                         <!-- <i class="ri-dashboard-2-line"></i> -->
                         <i class="ri-image-add-line"></i>
                         <span data-key="t-dashboards"> News Upload </span>
@@ -75,7 +83,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/media_committee/video_link_upload.php" class="nav-link" data-key="t-analytics">
+                    <a href="<?= $base_url ?>/dashboard/media_committee/video_link_upload.php" class="nav-link"
+                        data-key="t-analytics">
                         <!-- <i class="ri-dashboard-2-line"></i> -->
                         <i class="ri-image-add-line"></i>
                         <span data-key="t-dashboards"> Video Upload </span>

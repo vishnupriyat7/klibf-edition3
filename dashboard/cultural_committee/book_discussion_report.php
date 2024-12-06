@@ -39,6 +39,7 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">ID No.</th>
                                             <th data-ordering="false" rowspan="2">Publisher</th>
                                             <th data-ordering="false" rowspan="2">Subject</th>
                                             <th data-ordering="false" rowspan="2">Book Name</th>
@@ -109,6 +110,7 @@
                                             ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
+                                                <td><?= $id ?></td>
                                                 <td><?= $discDiscProp['org_name']; ?></td>
                                                 <td><?= $subject; ?></td>
                                                 <td><?= $bookName; ?></td>

@@ -38,6 +38,7 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">ID No.</th>
                                             <th data-ordering="false" rowspan="2">Publisher</th>
                                             <th data-ordering="false" rowspan="2">Book Title</th>
                                             <th data-ordering="false" rowspan="2">Author</th>
@@ -115,6 +116,7 @@
                                             ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
+                                                <td><?= $id ?></td>
                                                 <td><?= $bookprp['org_name']; ?></td>
                                                 <td><?= $booktitle; ?></td>
                                                 <td><?= $author; ?></td>
