@@ -40,62 +40,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_denomination.php" class="nav-link" data-key="t-analytics">
+                    <i class="ri-file-list-3-line"></i>
+                        <span data-key="t-dashboards"> Coupon Denomination </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_sponsers_details.php" class="nav-link"
                         data-key="t-one-page">
                         <i class="mdi mdi-cash-multiple"></i>
                         <span data-key="t-dashboards">Coupon Sponsers</span>
                     </a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarX" data-bs-toggle="collapse" role="button"
-                        aria-expanded="true" aria-controls="sidebarLanding">
-                        <i class="ri-file-list-3-line"></i> <span data-key="t-landing">Quiz Register Report</span>
-                    </a>
-                    <div class="menu-dropdown collapse" id="sidebarX">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_zone_report.php"
-                                    class="nav-link" data-key="t-nft-landing">Zone Wise Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_zone_district_report.php"
-                                    class="nav-link" data-key="t-nft-landing">District Wise Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_public_report.php"
-                                    class="nav-link" data-key="t-nft-landing">Public Category Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/media_committee/quiz_report.php" class="nav-link"
-                                    data-key="t-nft-landing">Total Registration Report </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/media_committee/news_upload.php" class="nav-link"
-                        data-key="t-analytics">
-                        <!-- <i class="ri-dashboard-2-line"></i> -->
-                        <i class="ri-image-add-line"></i>
-                        <span data-key="t-dashboards"> News Upload </span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/media_committee/video_link_upload.php" class="nav-link"
-                        data-key="t-analytics">
-                        <!-- <i class="ri-dashboard-2-line"></i> -->
-                        <i class="ri-image-add-line"></i>
-                        <span data-key="t-dashboards"> Video Upload </span>
-                    </a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/media_committee/quiz_mark_team.php" class="nav-link" data-key="t-analytics">
-                        <i class="mdi mdi-account-check"></i>
-                        <span data-key="t-landing"> Mark Attendance </span>
-                    </a>
-                </li> -->
             </ul>
         </div>
         <!-- Sidebar -->

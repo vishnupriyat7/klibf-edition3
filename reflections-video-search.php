@@ -57,7 +57,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $videosHTML = "<p class='text-center'>No videos found.</p>";
 }
 
-// Pagination
+// Pagination 
 $totalPages = ceil($totalVideos / $videosPerPage);
 $paginationHTML = '<ul class="pagination justify-content-center">';
 if ($currentPage > 1) {
