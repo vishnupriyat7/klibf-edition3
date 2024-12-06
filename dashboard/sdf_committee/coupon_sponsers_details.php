@@ -405,8 +405,12 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 *Total Sponsership Amount (in ₹)
-                                                <input type="text" class="form-control" name="spnsr_tot_amt"
-                                                    placeholder="Total Sponsership Amount" id="spnsr_tot_amt" value="">
+                                                <input type="text" class="form-control" name="spnsr_tot_amt" id="spnsr_tot_amt"
+                                                    placeholder="*Total Sponsership Amount (in  ₹)" required="required"
+                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                                    <?= $edit; ?> value="<?= $total_amt; ?>">
+                                                <!-- <input type="text" class="form-control" name="spnsr_tot_amt"
+                                                    placeholder="Total Sponsership Amount" id="spnsr_tot_amt" value=""> -->
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <?php
@@ -426,30 +430,21 @@ function generateInvoice($invoiceNo)
                                                 </select>
                                             </div>
                                             <div class="form-group col-12 col-md-9" id="spnsr_pay_other_div" hidden>
-                                                <br>Bank Name
+                                                <br>Others Description
                                                 <input type="text" class="form-control" name="spnsr_pay_other"
-                                                    placeholder="Bank Name" id="spnsr_pay_other" value="">
+                                                    placeholder="Description" id="spnsr_pay_other" value="">
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <br>
-                                                *Transaction Amount (in ₹ &nbsp;)
-                                                <input type="text" class="form-control" name="paid_amt" id="paid_amt"
-                                                    placeholder="*Paid Amount (in  ₹ &nbsp;)" required="required"
-                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                                    <?= $edit; ?> value="<?= $total_amt; ?>">
-                                            </div>
-                                            <div class="form-group col-12 col-md-3" hidden id="trnctn-no-div">
-                                                <br>
                                                 Transaction No
                                                 <input type="text" class="form-control" name="trnctn_no" id="trnctn_no"
-                                                    placeholder="Transaction No" value="<?= $trnctn_no; ?>" <?= $edit; ?>>
+                                                    placeholder="*Transaction No" value="<?= $trnctn_no; ?>" <?= $edit; ?> required>
                                             </div>
-                                            <div class="form-group col-12 col-md-3" hidden id="ifsc-div">
+                                            <div class="form-group col-12 col-md-3">
                                                 <br>
-                                                IFSC
-                                                <input type="text" class="form-control" name="ifsc" id="ifsc"
-                                                    placeholder="IFSC" value="<?= $ifsc; ?>" maxlength="11"
-                                                    minlength="11" <?= $edit; ?>>
+                                                Bank Reference No
+                                                <input type="text" class="form-control" name="bnk_ref_no" id="bnk_ref_no"
+                                                    placeholder="Bank Reference No" value="<?= $ifsc; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <br>
@@ -458,54 +453,12 @@ function generateInvoice($invoiceNo)
                                                     placeholder="*Transaction Date" required="required"
                                                     value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
                                             </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <br>
-                                                Organization Name
-                                                <input type="text" class="form-control"
-                                                    value="<?= $user_prof['org_name']; ?>" disabled>
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <br>
-                                                *Payee Name
-                                                <input type="text" class="form-control" name="payee_nme" id="payee_nme"
-                                                    placeholder="*Payee Name" required="required" value="<?= $payee; ?>"
-                                                    <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <br>
-                                                GST Number
-                                                <input type="text" class="form-control" name="gst_num" id="gst_num"
-                                                    placeholder="GST Number" minlength="15" maxlength="15"
-                                                    value="<?= $gst; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                </br>
-                                                *Upload Payment Image
-                                                </br>
-                                                <input type="file" class="form-control" name="chellan_img"
-                                                    id="chellan_img" placeholder="*Upload Chellan Image" <?= $edit; ?>
-                                                    <?= $hideimg; ?>>
-                                                <label id="chellan_image">
-                                                    <img src="<?= $base_url; ?>/dashboard/publisher/uploads/chellan_img/<?= $imgChellan; ?>"
-                                                        height="100vh" id="image_chellan" <?= $edit; ?>>
-                                                </label>
-                                                <span id="changeChellan" onclick="changeChellan();" <?= $edit; ?>><u>Change Chellan Image</u></span>
-                                            </div>
-                                        </div> <br>
+                                        </div><br>
                                         <div class="col-lg-12">
-                                            <?php if ($chellan['status'] != 'A') { ?>
-                                                <button type="submit" name="save_payment" class="btn btn-primary"
-                                                    id="save_payment">Save</button>
-                                            <?php } ?>
+                                                <button type="submit" name="save_sponser" class="btn btn-primary"
+                                                    id="save_sponser">Save</button>
                                         </div>
                                     </form>
-                                    <?php if ($chellan['status'] == 'A') { ?>
-                                        <hr><br>
-                                        <div class="col-md-4 right">
-                                            <button name="print-invoice" class="btn btn-primary" id="print-invoice"
-                                                onclick="printInvoice()">Print Invoice</button>
-                                        </div>
-                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
