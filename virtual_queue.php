@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <?php
 include 'config.php';
 include "head-style.php"; ?>
 
 <body>
-
     <!-- ======= Header ======= -->
     <?php include "header-inner.php"; ?>
     <!-- End Header -->
-
     <main id="queue-inner-main">
         <!-- ======= Breadcrumbs Section ======= -->
         <section class="breadcrumbs">
             <div class="container">
-
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Virtual Queue</h2>
                     <ol>
@@ -31,57 +26,78 @@ include "head-style.php"; ?>
             <div class="container">
                 <div class="justify-content-between align-items-center">
                     <!-- <div class="col-12 col-lg-3 col-md-2 col-sm-12"></div> -->
-                    <div class="col-12 col-lg-8 col-md-12 col-sm-12 contact-info color-1 bg-hover active hover-bottom" style="margin: 0 auto;">
+                    <div class="col-12 col-lg-8 col-md-12 col-sm-12 contact-info color-1 bg-hover active hover-bottom"
+                        style="margin: 0 auto;">
                         <!-- Register Box -->
                         <div class="contact-box col-lg-12 col-md-12 col-sm-12 text-center">
                             <?php
                             $status = "OK";
                             $msg = "";
                             if (isset($_POST['register_queue'])) {
-                                $inst_name =
-                                    mysqli_real_escape_string($conn, $_POST['inst_name']);
-                                $inst_addr =
-                                    mysqli_real_escape_string($conn, $_POST['inst_addr']);
-                                $cntct_prsn1 =
-                                    mysqli_real_escape_string($conn, $_POST['cntct_prsn1']);
-                                $cntct_no1 =
-                                    mysqli_real_escape_string($conn, $_POST['cntct_no1']);
-                                $cntct_prsn2 =
-                                    mysqli_real_escape_string($conn, $_POST['cntct_prsn2']);
-                                $cntct_no2 =
-                                    mysqli_real_escape_string($conn, $_POST['cntct_no2']);
-                                $cntct_mail =
-                                    mysqli_real_escape_string($conn, $_POST['cntct_mail']);
-                                $queue_date =
+                                $queue_district =
+                                    mysqli_real_escape_string($conn, $_POST['queue_district']);
+                                $queue_inst_name =
+                                    mysqli_real_escape_string($conn, $_POST['queue_inst_name']);
+                                $queue_head_name =
+                                    mysqli_real_escape_string($conn, $_POST['queue_head_name']);
+                                $queue_head_desig =
+                                    mysqli_real_escape_string($conn, $_POST['queue_head_desig']);
+                                $queue_inst_email =
+                                    mysqli_real_escape_string($conn, $_POST['queue_inst_email']);
+                                $queue_inst_type =
+                                    mysqli_real_escape_string($conn, $_POST['queue_inst_type']);
+                                $queue_cntct_no =
+                                    mysqli_real_escape_string($conn, $_POST['queue_cntct_no']);
+                                $prsn_lp_count =
+                                    mysqli_real_escape_string($conn, $_POST['prsn_lp_count']);
+                                $prsn_hs_count =
+                                    mysqli_real_escape_string($conn, $_POST['prsn_hs_count']);
+                                $queue_prsn_count =
+                                    mysqli_real_escape_string($conn, $_POST['queue_prsn_count']);
+                                $date_select =
                                     mysqli_real_escape_string($conn, $_POST['date_select']);
-                                $queue_slot =
+                                $slot_select =
                                     mysqli_real_escape_string($conn, $_POST['slot_select']);
-                                $prsn_count =
-                                    mysqli_real_escape_string($conn, $_POST['prsn_count']);
                                 $current_date = (new \DateTime())->format('Y-m-d H:i:s');
+                                $prsn_lp_count = $prsn_lp_count == '' ? 0 : $prsn_lp_count;
+                                $prsn_hs_count = $prsn_hs_count == '' ? 0 : $prsn_hs_count;
                                 $errormsg = "";
+                                if ($slot_select == '') {
+                                    $status = "NOTOK";
+                                    $msg = "Your selected Slot is full. Please select another.";
+                                } else if ((int) $queue_prsn_count > 500) {
+                                    $status = "NOTOK";
+                                    $msg = "A Slot can accomodate only 500 members.";
+                                } else {
+                                    $query_slot_count = "select sum(count_tot) as tot_count from queue where date_id=$date_select and slot_id=$slot_select";
+                                    $result_slot_count = mysqli_query($conn, $query_slot_count);
+                                    $tot_count = $result_slot_count->fetch_all();
+                                    if ($tot_count[0][0]) {
+                                        $new_tot_count = $tot_count[0][0] + (int) $queue_prsn_count;
+                                        if ($new_tot_count > 500) {
+                                            $status = "NOTOK";
+                                            $msg = "Your selected Slot is Exceeded. Please select another.";
+                                        }
+                                    }
+                                }
                                 if ($status == "NOTOK") {
                                     $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                         $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                                 } else {
-                                    $query = "INSERT INTO queue (inst_name, inst_addr, cntct_name1, cntct_no1, cntct_name2, cntct_no2, email, count, date_id, slot_id, booked_date, status) VALUES ('$inst_name', '$inst_addr', '$cntct_prsn1','$cntct_no1', '$cntct_prsn2', '$cntct_no2', '$cntct_mail', '$prsn_count', '$queue_date', '$queue_slot', '$current_date', 'E')";
+                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
                                     $result = mysqli_query($conn, $query);
-                                    $query_date = "SELECT event_date FROM event_date WHERE id = $queue_date";
+                                    $query_date = "SELECT event_date FROM event_date WHERE id = $date_select";
                                     $result_date = mysqli_query($conn, $query_date);
-                                    $query_slot = "SELECT slot_name FROM queue_slot WHERE id = $queue_slot";
+                                    $query_slot = "SELECT * FROM queue_slot WHERE id = $slot_select";
                                     $result_slot = mysqli_query($conn, $query_slot);
                                     $book_date = $result_date->fetch_all();
                                     $book_slot = $result_slot->fetch_all();
-                                    // var_dump($result_date->fetch_all(), $result_slot->fetch_all());
-                                    if ($result) { 
-                                        $errormsg = "
-                              <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                <b>Registered Successfully. <br>Your booking has been confirmed for " . $book_date[0][0] . " at " . $book_slot[0][0] . ".</b></div>
-                               ";
+                                    if ($result) {
+                                        $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                                <b>Registered Successfully. <br>Your booking has been confirmed for " . $book_date[0][0] . " at " . $book_slot[0][2] . " (" . $book_slot[0][1] . ").</b></div>";
                                     } else {
-                                        $errormsg = "
-                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                        $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>";
@@ -94,36 +110,76 @@ include "head-style.php"; ?>
                             ?>
                             <form action="" method="post" enctype="multipart/form-data">
                                 <div class="row bg-grey col-lg-12 col-md-12 col-sm-12">
-                                    <div class="form-group col-12 col-lg-12 col-md-12 col-sm-12">
-                                        <input type="text" class="form-control col-sm-12" name="inst_name" placeholder="*Name of Institution" id="inst_name" required>
+                                    <div class="form-group col-12 col-lg-3 col-md-3 col-sm-12">
+                                        <?php
+                                        $districtQuery = "SELECT * FROM district";
+                                        $districtStmt = $conn->prepare($districtQuery);
+                                        $districtStmt->execute();
+                                        $districtResult = $districtStmt->get_result();
+                                        $districts = $districtResult->fetch_all();
+                                        ?>
+                                        <br><select class="form-control form-group" name="queue_district"
+                                            id="queue_district" style="height:35px;" required>
+                                            <option value="">Select District</option>
+                                            <?php foreach ($districts as $district) { ?>
+                                                <option value="<?= $district[0] ?>"><?= $district[2]; ?> </option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-12 col-lg-12 col-md-12 col-sm-12">
-                                        <br>
-                                        <input type="text" class="form-control col-sm-12" name="inst_addr" id="inst_addr" placeholder="*Address" required="required">
+                                    <div class="form-group col-12 col-lg-9 col-md-9 col-sm-12">
+                                        <br> <input type="text" class="form-control col-sm-12" name="queue_inst_name"
+                                            placeholder="*Name of Institution" id="inst_name" required>
                                     </div>
-                                    <div class="form-group col-12 col-lg-8 col-md-6 col-sm-12">
+                                    <div class="form-group col-12 col-lg-6 col-md-6 col-sm-12">
                                         <br>
-                                        <input type="text" class="form-control col-sm-12" name="cntct_prsn1" id="cntct_prsn1" placeholder="*Name of Contact Person 1" required="required">
+                                        <input type="text" class="form-control col-sm-12" name="queue_head_name"
+                                            id="queue_head_name" placeholder="*Name of Institution Head" required>
                                     </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group col-12 col-lg-6 col-md-6 col-sm-12">
                                         <br>
-                                        <input type="text" class="form-control col-sm-12" name="cntct_no1" id="cntct_no1" placeholder="*Mobile No." required="required" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                        <input type="text" class="form-control col-sm-12" name="queue_head_desig"
+                                            id="queue_head_desig" placeholder="*Designation" required>
                                     </div>
-                                    <div class="form-group col-12 col-lg-8 col-md-6 col-sm-12">
+                                    <div class="form-group col-12 col-lg-9 col-md-9 col-sm-12">
                                         <br>
-                                        <input type="text" class="form-control col-sm-12" name="cntct_prsn2" id="cntct_prsn2" placeholder="*Name of Contact Person 2" required="required">
+                                        <input type="text" class="form-control col-sm-12" name="queue_inst_email"
+                                            id="queue_inst_email" placeholder="*Institution Mail Id" required>
                                     </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group col-12 col-lg-3 col-md-3 col-sm-12">
                                         <br>
-                                        <input type="text" class="form-control col-sm-12" name="cntct_no2" id="cntct_no2" placeholder="*Mobile No." required="required" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                        <select class="form-control form-group" name="queue_inst_type"
+                                            id="queue_inst_type" style="height:35px;" onchange="studentCount();"
+                                            required>
+                                            <option value="">Institution Type</option>
+                                            <option value="S">School</option>
+                                            <option value="C">College</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                                         <br>
-                                        <input type="email" class="form-control col-sm-12" name="cntct_mail" id="cntct_mail" placeholder="*Email">
+                                        <input type="text" class="form-control col-sm-12" name="queue_cntct_no"
+                                            id="queue_cntct_no" placeholder="*Contact No." required
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12" hidden
+                                        id="prsn_lp_count_div">
                                         <br>
-                                        <input type="number" class="form-control col-sm-12" name="prsn_count" id="prsn_count" placeholder="*No.of persons" required="required" min="0" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                        <input type="number" class="form-control col-sm-12" name="prsn_lp_count"
+                                            id="prsn_lp_count" placeholder="*No.of Pupils upto Class 7" min="0"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); getTotalStudents();">
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12" hidden
+                                        id="prsn_hs_count_div">
+                                        <br>
+                                        <input type="number" class="form-control col-sm-12" name="prsn_hs_count"
+                                            id="prsn_hs_count" placeholder="*No.of Pupils from Class 8 Onwards" min="0"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); getTotalStudents();">
+                                    </div>
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                                        <br>
+                                        <input type="number" class="form-control col-sm-12" name="queue_prsn_count"
+                                            id="queue_prsn_count" placeholder="*Total No.of Students" required min="0"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                     <?php
                                     $day_query = "SELECT * FROM event_date";
@@ -137,44 +193,28 @@ include "head-style.php"; ?>
                                     $slot_result = $slot_stmt->get_result();
                                     $event_slots = $slot_result->fetch_all();
                                     ?>
-                                    <div class="form-group col-12 col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                                         <br>
-                                        <!-- <div class="col-2"> -->
-                                        <!-- <b>Select Date</b> -->
-                                        <!-- </div> -->
-                                        <!-- <div class="form-group col-6"> -->
-                                        <!-- <b>Select Date</b> -->
-                                        <select class="form-control form-group" name="date_select" id="date_select" style="height:35px;" onchange="loadSlot();">
+                                        <select class="form-control form-group" name="date_select" id="date_select"
+                                            style="height:35px;" onchange="loadSlot();">
                                             <option value="0">Select Proposed Visit Day</option>
                                             <?php foreach ($event_days as $days) { ?>
-                                                <option value="<?= $days[0] ?>" <?= $evnt_day1_selected ?>><?= $days[1]; ?> - <?= $days[2]; ?></option>
+                                                <option value="<?= $days[0] ?>" <?= $evnt_day1_selected ?>><?= $days[1]; ?> -
+                                                    <?= $days[2]; ?>
+                                                </option>
                                             <?php } ?>
                                         </select>
-                                        <!-- <input type="date" id="part2_dob" name="part2_dob" placeholder="Date of Birth"> -->
-                                        <!-- </div> -->
                                     </div>
-                                    <!-- <div class="form-group col-12 col-lg-4 col-md-6 col-sm-12">
-                                        <br>
-                                        <select class="form-control form-group" name="slot_select" id="slot_select" style="height:35px;">
-                                            <option value="0">Select Proposed Visit Time</option>
-                                            <?php foreach ($event_slots as $event_slot) {
-                                                // if ($event_slot[0] == $time_slot1) {
-                                                //     $time_slot1_selected = 'selected';
-                                                // } else {
-                                                //     $time_slot1_selected = '';
-                                                // } ?>
-                                                <option value="<?= $event_slot[0] ?>"><?= $event_slot[1]; ?> - <?= $event_slot[2]; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div> -->
                                     <input type="hidden" id="slot_select" name="slot_select">
                                     <div class="form-group col-12" id="avail_slot"></div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-bordered btn-success btn-block mt-3" name="register_queue" id="register_queue"><span class="text-white pr-3"><i class="fas fa-paper-plane"></i></span>Book Queue</button>
+                                        <button type="submit" class="btn btn-bordered btn-success btn-block mt-3"
+                                            name="register_queue" id="register_queue"><span class="text-white pr-3"><i
+                                                    class="fas fa-paper-plane"></i></span>Book Queue</button>
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                <br>
+                                    <br>
                                     <p><b>For any queries, please contact:</b><br>
                                         Shaji R, Deputy Secretary - 9497015937<br>
                                         Sheeja P K, Under Secretary- 9446334859 <br>
@@ -186,25 +226,19 @@ include "head-style.php"; ?>
                             <p class="form-message"></p>
                         </div>
                     </div>
-                    <!-- <div class="col-12 col-lg-3 col-md-2 col-sm-12"></div> -->
                 </div>
             </div>
         </section>
     </main><!-- End #main -->
-
     <!-- ======= Footer ======= -->
     <?php include "footer.php" ?>
-
 </body>
 
 </html>
 
-<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script> -->
 <script type="text/javascript">
     function loadSlot() {
-        // event.preventDefault();
-        var date_id = $("#date_select").val(); 
+        var date_id = $("#date_select").val();
         if (date_id === 0) {
             $("#avail_slot").empty();
         } else {
@@ -216,10 +250,9 @@ include "head-style.php"; ?>
                     date: date_id
                 },
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     $("#avail_slot").empty();
-                    // var add_slot = "";
-                    var add_slot = "<b>Choose your Slot</b><div class='row'>";
+                    var add_slot = "<br><b>Choose your Slot</b><div class='row'>";
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].count === null) {
                             var avail = 500 - 0;
@@ -231,11 +264,9 @@ include "head-style.php"; ?>
                             // var btn_style = 'btn-danger';
                         } else {
                             // var btn_style = 'btn-info';
-
                             add_slot = add_slot + "<div class='form-group col-12 col-lg-3 col-md-4 col-sm-12'><button class='col-12 btn btn-info mt-3' onclick='checkSlot(" + data[i].id + ");' style='margin:0;'>" + data[i].slot + "<br>Availability: " + avail + "</button></div>";
                         }
                     }
-                    // add_slot = add_slot + "<button class='col-12 btn-danger col-lg-3 col-md-6 col-sm-12' style='padding:0 !important;margin:.5% !important;' onclick='checkSlot(" + data[i].id + ");'>" + data[i].slot + "<br>Availability: " + avail + "</button>";
                     add_slot = add_slot + "</div>";
                     document.getElementById("avail_slot").innerHTML = add_slot;
                 }
@@ -256,7 +287,7 @@ include "head-style.php"; ?>
                 slot: slot_id
             },
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 if (data !== null) {
                     var avail_count = 500 - data;
                     if (avail_count <= 0) {
@@ -280,5 +311,25 @@ include "head-style.php"; ?>
             }
 
         });
+    }
+
+    function studentCount() {
+        var instType = document.getElementById("queue_inst_type").value;
+        if (instType === 'S') {
+            document.getElementById("prsn_lp_count_div").removeAttribute("hidden", "")
+            document.getElementById("prsn_hs_count_div").removeAttribute("hidden", "");
+        } else {
+            document.getElementById("prsn_lp_count_div").setAttribute("hidden", "")
+            document.getElementById("prsn_hs_count_div").setAttribute("hidden", "");
+        }
+    }
+
+    function getTotalStudents() {
+        var lpCount = document.getElementById("prsn_lp_count").value;
+        var hsCount = document.getElementById("prsn_hs_count").value;
+        lpCount = lpCount === "" ? 0 : Number(lpCount);
+        hsCount = hsCount === "" ? 0 : Number(hsCount);
+        var totalCount = lpCount + hsCount;
+        document.getElementById("queue_prsn_count").value = totalCount;
     }
 </script>
