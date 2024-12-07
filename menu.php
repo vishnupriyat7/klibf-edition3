@@ -84,6 +84,9 @@
       </ul>
     </li>
     <li>
+      <a class="nav-link scrollto" href="virtual_queue.php">Virtual Queue</a>
+    </li>
+    <li>
       <a class="nav-link scrollto" href="#contact">Contact</a>
     </li>
     <li>
