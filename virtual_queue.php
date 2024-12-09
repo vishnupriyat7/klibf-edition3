@@ -85,7 +85,7 @@ include "head-style.php"; ?>
                                         $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                                 } else {
-                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
+                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no1, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
                                     $result = mysqli_query($conn, $query);
                                     $query_date = "SELECT event_date FROM event_date WHERE id = $date_select";
                                     $result_date = mysqli_query($conn, $query_date);
@@ -158,7 +158,7 @@ include "head-style.php"; ?>
                                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                                         <br>
                                         <input type="text" class="form-control col-sm-12" name="queue_cntct_no"
-                                            id="queue_cntct_no" placeholder="*Contact No." required
+                                            id="queue_cntct_no" placeholder="*Contact No. of Team" required
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12" hidden
@@ -218,9 +218,10 @@ include "head-style.php"; ?>
                                     <p><b>For any queries, please contact:</b><br>
                                         Shaji R, Deputy Secretary - 9497015937<br>
                                         Sheeja P K, Under Secretary- 9446334859 <br>
-                                        Jayasree V L, Under Secretary- 9207196761 <br>
-                                        Bindhuraj, Section Officer- 9447036221 <br>
-                                        Remya H R, Section Officer- 9446284522 </p>
+                                        <!-- Jayasree V L, Under Secretary- 9207196761 <br> -->
+                                        Remya H R, Section Officer- 9446284522 <br>
+                                        Asha S Kumar, Assistant - 9447427609 <br>
+                                        Lekshmi C K, Assistant - 9497454054 <br></p>
                                 </div>
                             </form>
                             <p class="form-message"></p>
