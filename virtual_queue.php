@@ -250,7 +250,7 @@ include "head-style.php"; ?>
                     date: date_id
                 },
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     $("#avail_slot").empty();
                     var add_slot = "<br><b>Choose your Slot</b><div class='row'>";
                     for (var i = 0; i < data.length; i++) {
@@ -287,7 +287,7 @@ include "head-style.php"; ?>
                 slot: slot_id
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 if (data !== null) {
                     var avail_count = 500 - data;
                     if (avail_count <= 0) {
