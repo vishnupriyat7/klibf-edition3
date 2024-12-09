@@ -73,7 +73,9 @@ $bookdscn_result_count = $bookdscn_result->fetch_all();
             <!--end row-->
 
             <div class="row h-100">
-                <div class="col-sm-12 col-md-12">
+                
+                <?php if(!in_array($user['id'], [203, 199,99,185,174, 53])) { ?>
+                    <div class="col-sm-12 col-md-12">
                     <div class="alert alert-success">
                         <h5>Event Proposal</h5>
                         <p>
@@ -82,7 +84,6 @@ $bookdscn_result_count = $bookdscn_result->fetch_all();
                         </p>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -172,6 +173,16 @@ $bookdscn_result_count = $bookdscn_result->fetch_all();
                         </div><!-- end card body -->
                     </div><!-- end card -->
                 </div><!-- end col -->
+                <?php } else { ?>
+                    <div class="col-sm-12 col-md-12">
+                    <div class="alert alert-danger">
+                        <h5>Cancelled</h5>
+                        <p>
+                            <strong>Your stall booking has been cancelled due to non receipt of payment.</strong>
+                        </p>
+                    </div>
+                </div>
+            <?php } ?>
             </div>
         </div> <!-- end .h-100-->
     </div> <!-- end col -->

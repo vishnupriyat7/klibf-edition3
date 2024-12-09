@@ -52,6 +52,7 @@
                         <i class="ri-account-box-line"></i> <span data-key="t-landing">Profile</span>
                     </a>
                 </li>
+                <?php if(!in_array($user['id'], [203, 199,99,185,174, 53])) { ?>
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-controls="sidebarLanding"
                         href="<?= $base_url ?>/dashboard/publisher/stall_booking.php">
@@ -148,6 +149,7 @@
                         </ul>
                     </div>
                 </li>
+                <?php } ?>
             </ul>
         </div>
         <!-- Sidebar -->
