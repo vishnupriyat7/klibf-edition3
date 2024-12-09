@@ -71,12 +71,12 @@
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Coupon Entry</span>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
                         href="<?= $base_url ?>/dashboard/publisher/catalog_upload.php">
                         <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Catalogue Upload</span>
                     </a>
-                </li> -->
+                </li>
                 <!--  -->
                 <li class="nav-item">
                     <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse">
