@@ -221,7 +221,7 @@ include "head-style.php"; ?>
                                         <!-- Jayasree V L, Under Secretary- 9207196761 <br> -->
                                         Remya H R, Section Officer- 9446284522 <br>
                                         Asha S Kumar, Assistant - 9447427609 <br>
-                                        Lekshmi C K, Assistant - 9497454054 <br></p>
+                                        Lekshmi C K, Assistant - 9497454054  <br></p>
                                 </div>
                             </form>
                             <p class="form-message"></p>
