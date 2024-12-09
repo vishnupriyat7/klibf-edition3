@@ -1,3 +1,16 @@
+<style>
+  /* CSS for the modal */
+
+
+
+  .img-fluid:hover {
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); */
+
+    cursor: pointer;
+  }
+</style>
+
+
 <!-- ======= About Section ======= -->
 <section id="about" class="about">
   <div class="container">
@@ -7,7 +20,8 @@
         <div class="content">
           <h3>About Us</h3>
           <p>
-          The Kerala Legislature International Book Festival is a coalescence of cultural economic and political developments. The Book Festival encompasses the world. Innovative ideas are discussed and shared to bring significant changes in our society. A retreat from the mundane is the trigger behind this event. Kerala is on the road to create more of its celebrated models. Our endeavor to create a better world will be futile unless our people are knowledgeable. Reading helps to refine our contemplation and perception. It is insignificant whether burgeoning thoughts come from a school kid, teenager or youth. Exhilarating visions soar from young minds and hence it is our prerogative to ensure the whole hearted participation of our youth.
+            The Kerala Legislature International Book Festival is a coalescence of cultural economic and political developments. The Book Festival encompasses the world. Innovative ideas are discussed and shared to bring significant changes in our society. A retreat from the mundane is the trigger behind this event. Kerala is on the road to create more of its celebrated models. Our endeavor to create a better world will be futile unless our people are knowledgeable. Reading helps to refine our contemplation and perception. It is insignificant whether burgeoning thoughts come from a school kid, teenager or youth. Exhilarating visions soar from young minds and hence it is our prerogative to ensure the whole hearted participation of our youth.<br><br>
+            The Kerala Legislature International Book Festival offers diverse opportunities for the brilliant participation of students and youth by way of debates, quiz competitions, women parliament and the like. Their involvement was overwhelming as evident from the earlier editions of the festival. The book festival is an opportunity to experience the lesser explored path. Seminars and discussion are worthwhile only when reading is nurtured. Reading kindles the social responsibility in us. We tend to be more receptive to challenges and socially committed to the well being of fellow citizens. A signature event of the Kerala Legislative Assembly, the Book Festival, is an instance of yet another Kerala Model with the profound participation of the populace.
 
           </p> <a href="about-inner-page.php">Read More...</a>
           </p>
@@ -22,11 +36,19 @@
       <div class="col-md-6 row" data-aos="fade-left">
         <div class="content">
           <h3>Speaker's Words</h3>
-          <img src="assets/img/about-msg/speaker1.jpeg" alt="" class="img-fluid">
-          <p>
-            The Kerala Legislature International Book Festival transcends socio-economic, cultural, and political
-            barriers. The festival is a celebration of democracy incorporating novel thoughts from...    
-            <!-- Legislatures are law-making bodies, and this new tradition of conducting book festivals by
+          <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 p-2">
+            <div class="spkr-thumb text-center wow fadeInLeft slow">
+           
+              <iframe width="600" height="300" src="https://www.youtube.com/embed/2A3DEm3AiPE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen></iframe>
+              </iframe>
+              <!-- <p class="text-lg text-center mt-3">Shri. A N Shamseer, Hon’ble Speaker, Kerala Legislative Assembly</p> -->
+            </div>
+          </div>
+        </div>
+        <p>
+          The Kerala Legislature International Book Festival transcends socio-economic, cultural, and political
+          barriers. The festival is a celebration of democracy incorporating novel thoughts from...
+          <!-- Legislatures are law-making bodies, and this new tradition of conducting book festivals by
             a legislature is a leap towards enhancement, the courage to think differently. Our society vouches for
             evolution and transformation at a fast pace to improve the lives of the marginalized. Ground-breaking ideas
             emanate from reading, and unless the reading habit is nourished, our thought and vision will lose its
@@ -34,12 +56,12 @@
             better place to live. Together, we can create a space of equality and alliance to learn and share new
             knowledge. I am sure the Kerala Legislature International Book Festival will be a significant milestone
             cherished by future generations. -->
-          </p> <a href="speaker-message-inner.php">Read More...</a>
-        </div>
+        </p> <a href="speaker-message-inner.php">Read More...</a>
       </div>
-      <!-- Speaker's Image (6 columns) -->
-
     </div>
+    <!-- Speaker's Image (6 columns) -->
+
+  </div>
   </div>
 
 </section>

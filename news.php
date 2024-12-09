@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "head-style.php"; ?>
+<?php
+ini_set('display_errors', 1);
+include "head-style.php";
+include "config.php"; ?>
+
 
 <head>
     <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -46,25 +50,22 @@
             </div>
         </section><!-- End Breadcrumbs Section -->
 
-        <section class="section d-flex align-items-center ptb_50">
+        <section class="section d-flex align-items-center">
             <div class="container">
+
                 <div class="row">
-                    <!-- Grid column -->
                     <?php
-                    // Directory where your images are located
-                    $imageDirectory = "assets/img/Newpaper/";
 
-                    // Get all image files from the directory
-                    $imageFiles = glob($imageDirectory . "*.{jpg,jpeg,png}", GLOB_BRACE);
+                    $query = "SELECT img, news_paper, news_date FROM newspaper_upload ORDER BY news_date DESC";
+                    $result = mysqli_query($conn, $query);
 
-                    // Function to compare image files based on modification time
-                    function compareByModificationTime($a, $b)
-                    {
-                        return filemtime($b) - filemtime($a);
+                    // Fetch all rows into an array
+                    $imageData = [];
+                    if ($result) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $imageData[] = $row;
+                        }
                     }
-
-                    // Sort the image files based on modification time
-                    usort($imageFiles, 'compareByModificationTime');
 
                     // Number of images per page
                     $imagesPerPage = 6;
@@ -73,67 +74,50 @@
                     $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
 
                     // Calculate the total number of pages
-                    $totalPages = ceil(count($imageFiles) / $imagesPerPage);
+                    $totalPages = ceil(count($imageData) / $imagesPerPage);
 
                     // Calculate the starting index of images for the current page
                     $startIndex = ($currentPage - 1) * $imagesPerPage;
 
                     // Slice the image files for the current page
-                    $imageFilesOnPage = array_slice($imageFiles, $startIndex, $imagesPerPage);
+                    $imageDataOnPage = array_slice($imageData, $startIndex, $imagesPerPage);
 
-                    // Loop through the image files and generate HTML for each
-                    foreach ($imageFilesOnPage as $index => $imagePath) {
-                        $imageName = basename($imagePath);
+                    foreach ($imageDataOnPage as $index => $data) {
+                        $imagePath = "dashboard/media_committee/news_uploads/" . $data['img'];
+                        // $newsPaper = $data['news_paper'];
+                        $newsPaper = ucwords(trim($data['news_paper']));
+
+                    
+                        $newsDate = $data['news_date']; // Assuming 'news_date' is in 'yy-mm-dd' format
+                        $newsDateFormatted = date('d-m-Y', strtotime($newsDate));
                     ?>
                         <div class="col-lg-4 col-md-6 mb-0 p-2">
-                            <!-- Modal: Name -->
                             <div class="modal fade" id="modal<?php echo $index; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
-                                    <!-- Content -->
                                     <div class="modal-content">
-                                        <!-- Body -->
                                         <div class="modal-body mb-0 p-0 d-flex justify-content-center align-items-center">
                                             <div class="embed-responsive">
                                                 <img class="card-img-top mx-auto" src="<?php echo $imagePath; ?>" alt="">
                                             </div>
                                         </div>
-                                        <!-- Footer -->
                                         <div class="modal-footer justify-content-center">
                                             <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
-                                    <!--/.Content-->
                                 </div>
                             </div>
-                            <!-- Modal: Name -->
-                            <a href="#" data-toggle="modal" data-target="#modal<?php echo $index; ?>" data-html="true" data-placement="bottom" title="<b>Click to Read</b>" class="image-link">
-                                <img class="img-fluid z-depth-1 equal-proportion" src="<?php echo $imagePath; ?>" alt="image" data-toggle="modal" data-target="#modal<?php echo $index; ?>">
+                            <a href="#" data-toggle="modal" data-target="#modal<?php echo $index; ?>" data-html="true" data-placement="bottom" title="<b>Click to View</b>" class="image-link">
+                                <img class="img-fluid z-depth-1 equal-proportion" src="<?php echo $imagePath; ?>" alt="image">
                             </a>
-                            <p style="text-align: center; font-weight: bold;"><?php echo pathinfo($imageName, PATHINFO_FILENAME); ?></p>
+                            <p style="text-align: center; font-weight: bold;"><?php echo $newsPaper . " - " .  $newsDateFormatted; ?></p>
                         </div>
                     <?php
                     }
                     ?>
-
-                    <!-- Grid column -->
                 </div>
 
                 <!-- Pagination -->
-                <!-- <div class="text-center mt-4">
-                    <ul class="pagination">
-                        <?php
-                        for ($page = 1; $page <= $totalPages; $page++) {
-                            $activeClass = ($page == $currentPage) ? 'active' : '';
-                        ?>
-                            <li class="page-item <?php echo $activeClass; ?>">
-                                <a class="page-link" href="?page=<?php echo $page; ?>"><?php echo $page; ?></a>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
-                </div> -->
-                <!-- End Pagination -->
+
                 <div class="text-center mt-4">
                     <ul class="pagination justify-content-center">
                         <?php if ($currentPage > 1) : ?>

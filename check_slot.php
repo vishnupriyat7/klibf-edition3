@@ -2,7 +2,7 @@
 include "config.php";
 $date_id = $_POST['date'];
 $slot_id = $_POST['slot'];
-$query_slot = "select sum(count) as tot_count from queue where date_id=$date_id and slot_id=$slot_id";
+$query_slot = "select sum(count_tot) as tot_count from queue where date_id=$date_id and slot_id=$slot_id";
 // var_dump($query_slot);
 // die;
 $result_slot = mysqli_query($conn, $query_slot);

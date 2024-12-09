@@ -11,7 +11,8 @@
   <!-- <link href="assets/img/Logo_KLIBF03.png" rel="icon"> -->
   <!-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
-
+<!-- Malayalam Font -->
+<link href="https://fonts.googleapis.com/css2?family=Meera&display=swap" rel="stylesheet">
 
 
   <!-- Google Fonts -->

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php
+include "config.php";
+include "head-style.php";
+?>
+
+<body>
+    <!-- ======= Header ======= -->
+    <?php include "header-inner.php"; ?>
+    <!-- End Header -->
+    <main id="main">
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Quiz Competition</h2>
+                    <ol>
+                        <li><a href="index.php">Home</a></li>
+                        <li>Contest</li>
+                        <li>Quiz</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- End Breadcrumbs Section -->
+        <section>
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="row">
+                    <div class="col-xxl-12 col-md-12 col-lg-12 col-sm-12">
+                        <div class="card">
+                            <!-- Register Box -->
+                            <div class="contact-box text-center">
+                                <!-- Register Form -->
+                                <div class="card-body p-5">
+                                    <?php
+                                    $status = "OK";
+                                    $msg = "";
+                                    if (isset($_POST['save-quiz'])) {
+                                        $category = mysqli_real_escape_string($conn, $_POST['quiz_category']);
+                                        $zone = mysqli_real_escape_string($conn, $_POST['quiz_zone']);
+                                        $district = mysqli_real_escape_string($conn, $_POST['quiz_district']);
+                                        $inst_name = mysqli_real_escape_string($conn, $_POST['inst_name']);
+                                        $addr_inst = mysqli_real_escape_string($conn, $_POST['addr_inst']);
+                                        $principal_cntct = mysqli_real_escape_string($conn, $_POST['principal_cntct']);
+                                        $faclty_cntct = mysqli_real_escape_string($conn, $_POST['faclty_cntct']);
+                                        $faclty_name = mysqli_real_escape_string($conn, $_POST['faclty_name']);
+                                        $team1_memb1_name = mysqli_real_escape_string($conn, $_POST['team1_memb1_name']);
+                                        $team1_memb1_class = mysqli_real_escape_string($conn, $_POST['team1_memb1_class']);
+                                        $team1_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team1_memb1_gndr']);
+                                        $team1_memb1_addr = mysqli_real_escape_string($conn, $_POST['team1_memb1_addr']);
+                                        $team1_memb1_mail = mysqli_real_escape_string($conn, $_POST['team1_memb1_mail']);
+                                        $team1_memb1_cntct = mysqli_real_escape_string($conn, $_POST['team1_memb1_cntct']);
+                                        $team1_memb2_name = mysqli_real_escape_string($conn, $_POST['team1_memb2_name']);
+                                        $team1_memb2_class = mysqli_real_escape_string($conn, $_POST['team1_memb2_class']);
+                                        $team1_memb2_gndr = mysqli_real_escape_string($conn, $_POST['team1_memb2_gndr']);
+                                        $team1_memb2_addr = mysqli_real_escape_string($conn, $_POST['team1_memb2_addr']);
+                                        $team1_memb2_mail = mysqli_real_escape_string($conn, $_POST['team1_memb2_mail']);
+                                        $team1_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team1_memb2_cntct']);
+                                        $team2_memb1_name = mysqli_real_escape_string($conn, $_POST['team2_memb1_name']);
+                                        $team2_memb1_class = mysqli_real_escape_string($conn, $_POST['team2_memb1_class']);
+                                        $team2_memb1_gndr = mysqli_real_escape_string($conn, $_POST['team2_memb1_gndr']);
+                                        $team2_memb1_mail = mysqli_real_escape_string($conn, $_POST['team2_memb1_mail']);
+                                        $team2_memb1_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb1_cntct']);
+                                        $team2_memb2_name = mysqli_real_escape_string($conn, $_POST['team2_memb2_name']);
+                                        $team2_memb2_class = mysqli_real_escape_string($conn, $_POST['team2_memb2_class']);
+                                        $team2_memb2_gndr = mysqli_real_escape_string($conn, $_POST['team2_memb2_gndr']);
+                                        $team2_memb2_mail = mysqli_real_escape_string($conn, $_POST['team2_memb2_mail']);
+                                        $team2_memb2_cntct = mysqli_real_escape_string($conn, $_POST['team2_memb2_cntct']);
+                                        $current_date = (new \DateTime())->format('Y-m-d H:i:s');
+                                        // if(strlen($team1_memb1_cntct) < 10 || strlen($team1_memb1_cntct) > 11 || strlen($team1_memb2_cntct) < 10 || strlen($team1_memb2_cntct) > 11) {
+                                        //     $msg .= "Partcipants contact number should contain 10 digits.<BR>";
+                                        //         $status = "NOTOK";
+                                        // }
+                                        if ($category == 3) {
+                                            $zone = 6;
+                                            $district = 15;
+                                            $team2_memb1_gndr = $team2_memb2_gndr = null;
+                                            if ($team1_memb1_name == '') {
+                                                $msg .= "Please enter first participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_name == '') {
+                                                $msg .= "Please enter second participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_addr == '') {
+                                                $msg .= "Please enter first participant's address.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_addr == '') {
+                                                $msg .= "Please enter second participant's address.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_cntct == '') {
+                                                $msg .= "Please enter first participant's contact no.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_cntct == '') {
+                                                $msg .= "Please enter second participant's contact no.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_mail == '') {
+                                                $msg .= "Please enter first participant's mail id.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_mail == '') {
+                                                $msg .= "Please enter second participant's mail id.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct' or team1_mem2_cntct = '$team1_memb1_cntct' or team1_mem1_cntct = '$team1_memb2_cntct' or team1_mem1_cntct = '$team1_memb2_cntct'";
+                                            $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
+                                            if ($sel_reg_quiz_res->num_rows > 0) {
+                                                $msg .= "You have already registered with this contact number.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                        } else {
+                                            if ($team1_memb1_name == '') {
+                                                $msg .= "Please enter first participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_name == '') {
+                                                $msg .= "Please enter second participant's name.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb1_class == '') {
+                                                $msg .= "Please enter first participant's class / course.<BR>";
+                                                $status = "NOTOK";
+                                            } elseif ($team1_memb2_class == '') {
+                                                $msg .= "Please enter second participant's class / course.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                            if ($principal_cntct == '') {
+                                                $msg .= "Please enter principal's contact number.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                            if ($faclty_cntct == '') {
+                                                $msg .= "Please enter contact person number.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                            // if(strlen($team2_memb1_cntct) < 10 || strlen($team2_memb1_cntct) > 11 || strlen($team2_memb2_cntct) < 10 || strlen($team2_memb2_cntct) > 11) {
+                                            //     $msg .= "Partcipants contact number should contain 10 digits.<BR>";
+                                            //         $status = "NOTOK";
+                                            // }
+                                            // if(strlen($principal_cntct) < 10 || strlen($principal_cntct) > 11 || strlen($faclty_cntct) < 10 || strlen($faclty_cntct) > 11) {
+                                            //     $msg .= "Contact number should contain 10 digits.<BR>";
+                                            //         $status = "NOTOK";
+                                            // }
+                                            $sel_reg_quiz_qry = "SELECT id from reg_quiz where inst_prnci_cntct = '$principal_cntct'";
+                                            $sel_reg_quiz_res = mysqli_query($conn, $sel_reg_quiz_qry);
+                                            if ($sel_reg_quiz_res->num_rows > 1) {
+                                                $msg .= "You have already registered 2 teams from this institution. More than 2 teams not allowed from the same institution.<BR>";
+                                                $status = "NOTOK";
+                                            }
+                                        }
+                                        $errormsg = "";
+                                        if ($status == "NOTOK") {
+                                            $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
+                                                $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>"; //printing error if found in validation
+                                        } else {
+                                            $insrt_reg_quiz_query = "INSERT INTO reg_quiz (category_id, zone_id, district_id, inst_name, inst_addr, inst_prnci_cntct, inst_faclt_name, inst_faclt_cntct, team1_mem1_name, team1_mem1_class, team1_mem1_gndr, team1_mem1_email, team1_mem1_cntct, team1_mem1_addr, team1_mem2_name, team1_mem2_class, team1_mem2_gndr, team1_mem2_email, team1_mem2_cntct, team1_mem2_addr, team2_mem1_name, team2_mem1_class, team2_mem1_gndr, team2_mem1_email, team2_mem1_cntct, team2_mem2_name, team2_mem2_class, team2_mem2_gndr, team2_mem2_email, team2_mem2_cntct, updated_date) VALUES ('$category', '$zone', '$district', '$inst_name', '$addr_inst', '$principal_cntct', '$faclty_name', '$faclty_cntct', '$team1_memb1_name', '$team1_memb1_class', '$team1_memb1_gndr', '$team1_memb1_mail', '$team1_memb1_cntct', '$team1_memb1_addr', '$team1_memb2_name', '$team1_memb2_class', '$team1_memb2_gndr', '$team1_memb2_mail', '$team1_memb2_cntct', '$team1_memb2_addr', '$team2_memb1_name', '$team2_memb1_class', '$team2_memb1_gndr', '$team2_memb1_mail', '$team2_memb1_cntct', '$team2_memb2_name', '$team2_memb2_class', '$team2_memb2_gndr', '$team2_memb2_mail', '$team2_memb2_cntct', '$current_date')";
+                                            $result = mysqli_query($conn, $insrt_reg_quiz_query);
+                                            if ($result) {
+                                                if ($category != 3) {
+                                                    $sel_registered_query = "SELECT max(id) as regid from reg_quiz where inst_prnci_cntct = '$principal_cntct';";
+                                                } else {
+                                                    $sel_registered_query = "SELECT id as regid from reg_quiz where team1_mem1_cntct = '$team1_memb1_cntct';";
+                                                }
+                                                $sel_registered_res = mysqli_query($conn, $sel_registered_query);
+                                                $quiz_reg_id = $sel_registered_res->fetch_assoc();
+                                                $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                                You have been registered successfully. Your Registration Number is KLIBF03-Q" . $quiz_reg_id['regid']. ". <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                                </div>";
+                                            } else {
+                                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
+                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>";
+                                            }
+                                        }
+                                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                                            print $errormsg;
+                                        }
+                                    }
+                                    ?>
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        <div class="row bg-grey">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="section-heading text-center mb-3">
+                                                        <h2>Apply Now!</h2>
+                                                    </div>
+                                                    <p class="text-primary" id="message">Registration for <b>Schools</b> and <b>Colleges</b> should be handled through <b>Institutional Heads</b>.</p>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row align-items-center justify-content-center">
+                                                        <div class="form-group col-xxl-12 col-xl-12 col-lg-12 col-sm-12 d-flex flex-row">
+                                                            <label class="me-3">*Select Category:</label>
+                                                            <?php
+                                                            $quiz_cat_qry = "SELECT * FROM quiz_category;";
+                                                            $quiz_cat_stmt = $conn->prepare($quiz_cat_qry);
+                                                            $quiz_cat_stmt->execute();
+                                                            $quiz_cat_res = $quiz_cat_stmt->get_result();
+                                                            $quiz_categories = $quiz_cat_res->fetch_all();
+                                                            $first = true; // Variable to check if it's the first radio button
+                                                            foreach ($quiz_categories as $quiz_category) { ?>
+                                                                <div class="form-check me-3">
+                                                                    <input type="radio"
+                                                                        class="form-check-input"
+                                                                        name="quiz_category"
+                                                                        id="quiz_category_<?= $quiz_category[0] ?>"
+                                                                        value="<?= $quiz_category[0] ?>"
+                                                                        onchange="hideZoneDistInst()"
+                                                                        <?php if ($first) echo 'checked'; // Set checked attribute for the first radio button 
+                                                                        ?>
+                                                                        required>
+                                                                    <label class="form-check-label" for="quiz_category_<?= $quiz_category[0] ?>">
+                                                                        <?= $quiz_category[1] ?>
+                                                                    </label>
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
+                                                            <?php
+                                                            $current_date = (new \DateTime())->format('Y-m-d');
+                                                            $quiz_zone_qry = "SELECT * FROM quiz_zone where id != 6";
+                                                            $quiz_zone_stmt = $conn->prepare($quiz_zone_qry);
+                                                            $quiz_zone_stmt->execute();
+                                                            $quiz_zone_res = $quiz_zone_stmt->get_result();
+                                                            $quiz_zones = $quiz_zone_res->fetch_all();
+                                                            // var_dump( $quiz_zones)
+                                                            ?>
+                                                            <select class="form-control form-group" name="quiz_zone"
+                                                                id="quiz_zone" style="height:35px;" require="required"
+                                                                onclick="selectDistrict();">
+                                                                <option value="0">*Select Zone</option>
+                                                                <?php foreach ($quiz_zones as $quiz_zone) { ?>
+                                                                    <option value="<?= $quiz_zone[0] ?>" data-closedt="<?=$quiz_zone[3];?>">
+                                                                        <?= $quiz_zone[2] ?>
+                                                                    </option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 co-xl-6 col-lg-6 col-sm-12">
+                                                            <select class="form-control form-group" name="quiz_district"
+                                                                id="quiz_district" style="height:35px;"
+                                                                require="required">
+                                                                <option value="0">*Select District</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mt-2" id="inst_details" class="inst_details">
+                                                <div class="card-header text-center fw-bold">
+                                                    Institution Details
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="text" class="form-control" name="inst_name"
+                                                                placeholder="*Name of Institution" id="inst_name">
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <textarea class="form-control" name="addr_inst"
+                                                                id="addr_inst"
+                                                                placeholder="*Address of Institution"></textarea>
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="email" class="form-control" name="inst_email"
+                                                                placeholder="*Email of Institution" id="inst_email">
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="number" class="form-control"
+                                                                name="principal_cntct" id="principal_cntct"
+                                                                placeholder="*Principal's Contact Number">
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="text" class="form-control" name="faclty_name"
+                                                                placeholder="*Name of Faculty In Charge"
+                                                                id="faclty_name">
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <input type="number" class="form-control"
+                                                                name="faclty_cntct" id="faclty_cntct"
+                                                                placeholder="*Contact Number of Faculty In Charge">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card mt-2" id="team1">
+                                                <div class="card-header text-center fw-bold">
+                                                    Team 1
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <div class="form-group col-12">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb1_name"
+                                                                    placeholder="*Name of first participant"
+                                                                    id="team1_memb1_name">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team1_memb1_gndr"
+                                                                        class="gender_team1_memb1" value="M" checked>
+                                                                    Male
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team1_memb1_gndr"
+                                                                        class="gender_team1_memb1" value="F"> Female
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team1_memb1_gndr"
+                                                                        class="gender_team1_memb1" value="T">
+                                                                    Trans-Person
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-12"
+                                                                id="team1_memb1_class_course">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb1_class" placeholder="*Class/Course"
+                                                                    id="team1_memb1_class">
+                                                            </div>
+                                                            <div class="form-group col-12" style="display: none;"
+                                                                id="tm1_meb1_addr">
+                                                                <textarea class="form-control" name="team1_memb1_addr"
+                                                                    id="team1_memb1_addr"
+                                                                    placeholder="* Address"></textarea>
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="number" class="form-control"
+                                                                    name="team1_memb1_cntct" placeholder="*Contact Number"
+                                                                    id="team1_memb1_cntct">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="email" class="form-control"
+                                                                    name="team1_memb1_mail" placeholder="* E-mail"
+                                                                    id="team1_memb1_mail">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <div class="form-group col-12">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb2_name"
+                                                                    placeholder="*Name of second participant"
+                                                                    id="team1_memb2_name">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team1_memb2_gndr"
+                                                                        class="gender_team1_memb2" value="M" checked>
+                                                                    Male
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team1_memb2_gndr"
+                                                                        class="gender_team1_memb2" value="F"> Female
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team1_memb2_gndr"
+                                                                        class="gender_team1_memb2" value="T">
+                                                                    Trans-Person
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-12"
+                                                                id="team1_memb2_class_course">
+                                                                <input type="text" class="form-control"
+                                                                    name="team1_memb2_class" placeholder="*Class/Course"
+                                                                    id="team1_memb2_class">
+                                                            </div>
+                                                            <div class="form-group col-12" style="display: none;"
+                                                                id="tm1_meb2_addr">
+                                                                <textarea class="form-control" name="team1_memb2_addr"
+                                                                    id="team1_memb1_addr"
+                                                                    placeholder="* Address"></textarea>
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="number" class="form-control"
+                                                                    name="team1_memb2_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team1_memb2_cntct">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="email" class="form-control"
+                                                                    name="team1_memb2_mail" placeholder="* E-mail"
+                                                                    id="team1_memb2_mail">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-end mt-4">
+                                                <a class="mr-2 btn btn-primary" id="team2_dtls" onclick="displayTeam2()">Team 2 Details</a>
+                                            </div>
+                                            <div class="card mt-2" id="team2">
+                                                <div class="card-header text-center fw-bold">
+                                                    Team 2
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <div class="form-group col-12">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb1_name"
+                                                                    placeholder="*Name of first participant"
+                                                                    id="team2_memb1_name">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team2_memb1_gndr"
+                                                                        class="gender_team2_memb1" value="M" checked>
+                                                                    Male
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team2_memb1_gndr"
+                                                                        class="gender_team2_memb1" value="F"> Female
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" class="gender_team2_memb1"
+                                                                        name="team2_memb1_gndr" value="T"> Trans-Person
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb1_class" placeholder="*Class/Course"
+                                                                    id="team2_memb1_class">
+                                                            </div>
+                                                            <!-- <div class="form-group col-12">
+                                                                <textarea class="form-control" name="team2_memb1_addr"
+                                                                    id="team2_memb1_addr" placeholder="* Address"></textarea>
+                                                            </div> -->
+                                                            <div class="form-group col-12">
+                                                                <input type="number" class="form-control"
+                                                                    name="team2_memb1_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team2_memb1_cntct">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="email" class="form-control"
+                                                                    name="team2_memb1_mail" placeholder="* E-mail"
+                                                                    id="team2_memb1_mail">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-xxl-6 col-lg-12 col-sm-12">
+                                                            <div class="form-group col-12">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb2_name"
+                                                                    placeholder="*Name of second participant"
+                                                                    id="team2_memb2_name">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team2_memb2_gndr"
+                                                                        class="gender_team2_memb2" value="M" checked>
+                                                                    Male
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team2_memb2_gndr"
+                                                                        class="gender_team2_memb2" value="F"> Female
+                                                                </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="team2_memb2_gndr"
+                                                                        class="gender_team2_memb2" value="T">
+                                                                    Trans-Person
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="text" class="form-control"
+                                                                    name="team2_memb2_class" placeholder="*Class/Course"
+                                                                    id="team2_memb2_class">
+                                                            </div>
+                                                            <!-- <div class="form-group col-12">
+                                                                <textarea class="form-control" name="team2_memb2_addr"
+                                                                    id="team2_memb2_addr" placeholder="* Address"></textarea>
+                                                            </div> -->
+                                                            <div class="form-group col-12">
+                                                                <input type="number" class="form-control"
+                                                                    name="team2_memb2_cntct"
+                                                                    placeholder="*Contact Number"
+                                                                    id="team2_memb2_cntct">
+                                                            </div>
+                                                            <div class="form-group col-12">
+                                                                <input type="email" class="form-control"
+                                                                    name="team2_memb2_mail" placeholder="* E-mail"
+                                                                    id="team2_memb2_mail">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <!-- <button class="btn btn-bordered active btn-block mt-3" id="preview_quiz_btn"
+                                                    target="#preview-quiz-modal"><span class="text-white pr-3"><i
+                                                            class="fa fa-eye"></i></span>Preview</button> -->
+                                                <button type="submit" class="btn btn-bordered btn-success btn-block mt-3"
+                                                    name="save-quiz" id="register-quiz">
+                                                    <span class="text-white pr-3">
+                                                        <i class="fas fa-paper-plane"></i>
+                                                    </span>Register</button>
+                                            </div>
+                                            <div class="col-12" id="spot-message">
+                                                <div class="alert alert-info">
+                                                    <h5>Spot Registration</h5>
+                                                    <p>
+                                                        <large>ഓൺലൈൻ രജിസ്ട്രേഷനുള്ള അവസാന തീയതി കഴിഞ്ഞിട്ടുള്ളതിനാൽ, താങ്കളുടെ സ്കൂൾ/കോളേജിൽ നിന്നും പരമാവധി 2 ടീമുകൾ ഓൺലൈൻ രജിസ്ട്രേഷൻ നടത്തിയിട്ടില്ലാത്തപക്ഷം, പൊതുമാർഗനിർദ്ദേശങ്ങൾ പാലിച്ച് സ്കൂൾ/കോളേജ് ഐ. ഡി, അധികാരികളുടെ സാക്ഷ്യപത്രം എന്നിവയിലേതെങ്കിലും ഹാജരാക്കി ടീം/ടീമുകൾക്ക് നേരിട്ട് മത്സരത്തിന് ഹാജരാകാവുന്നതാണ്.</large>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <p class="form-message"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+</body>
+<br>
+<br>
+
+<?php include "footer.php"; ?>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const defaultCategory = '1';
+        document.querySelector(`input[name="quiz_category"][value="${defaultCategory}"]`).checked = true;
+        hideZoneDistInst();
+    });
+
+    function hideZoneDistInst() {
+        // Get the selected radio button value for category
+        const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
+        const addressDiv1 = document.getElementById('tm1_meb1_addr');
+        const addressDiv2 = document.getElementById('tm1_meb2_addr');
+        const team2_details = document.getElementById("team2_dtls");
+        if (catgry === '3') {
+            document.getElementById("quiz_zone").style.display = "none";
+            document.getElementById("quiz_district").style.display = "none";
+            document.getElementById("inst_details").style.display = "none";
+            document.getElementById("team1_memb1_class_course").style.display = "none";
+            document.getElementById("team1_memb2_class_course").style.display = "none";
+            document.getElementById("message").style.display = "none";
+            team2_details.style.display = "none";
+            document.getElementById("team2").style.display = "none";
+            addressDiv1.style.display = "block";
+            addressDiv2.style.display = "block";
+            document.getElementById("spot-message").style.display = "none";
+        } else if (catgry === '1' || catgry === '2') {
+            document.getElementById("quiz_zone").style.display = "block";
+            document.getElementById("quiz_district").style.display = "block";
+            document.getElementById("inst_details").style.display = "";
+            document.getElementById("team1_memb1_class_course").style.display = "";
+            document.getElementById("team1_memb2_class_course").style.display = "";
+            document.getElementById("team2").style.display = "none";
+            team2_details.style.display = "block";
+            addressDiv1.style.display = "none";
+            addressDiv2.style.display = "none";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("spot-message").style.display = "none";
+        }
+    }
+
+    function displayTeam2() {
+        const catgry = document.querySelector('input[name="quiz_category"]:checked').value;
+        if (catgry === '1' || catgry === '2') {
+            document.getElementById("team2").style.display = "block";
+        }
+    }
+
+    function selectDistrict() {
+        var zone = document.getElementById("quiz_zone").value;
+        $.ajax({
+            dataType: "json",
+            url: "list_district.php",
+            type: "POST",
+            data: {
+                zone_id: zone
+            },
+            dataType: "json",
+            success: function(data) {
+                $('#quiz_district').empty();
+                var add_slot = "";
+                $("#quiz_district").append('<option value="">Select District</option>');
+                $.each(data, function(key, value) {
+                    $("#quiz_district").append('<option value=' + value[0] + '>' + value[2] + '</option>');
+                });
+            }
+        });
+        var zoneElement = document.getElementById("quiz_zone");
+        var selectedOption = zoneElement.options[zoneElement.selectedIndex];
+        var closedDate = selectedOption.getAttribute('data-closedt');
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = (today.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
+        var day = today.getDate().toString().padStart(2, '0');          // Add leading zero if needed
+        var formattedDate = `${year}-${month}-${day}`;
+        var formattedDateObj = new Date(formattedDate);
+        var closedDateObj = new Date(closedDate);
+        if(formattedDate >= closedDate) {
+            document.getElementById("inst_details").style.display = "none";
+            document.getElementById("team1").style.display = "none";
+            document.getElementById("team2").style.display = "none";
+            document.getElementById("team2_dtls").style.display = "none";
+            document.getElementById("register-quiz").style.display = "none";
+            document.getElementById("spot-message").style.display = "block";
+        } else {
+            document.getElementById("inst_details").style.display = "block";
+            document.getElementById("team1").style.display = "block";
+            document.getElementById("team2_dtls").style.display = "block";
+            document.getElementById("register-quiz").style.display = "block";
+            document.getElementById("spot-message").style.display = "none";
+        }
+    }
+</script>

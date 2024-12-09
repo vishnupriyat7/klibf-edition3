@@ -64,14 +64,14 @@ if (isset($_POST['submit'])) {
                     <div class="alert-close">
                         <!-- <span class="fa fa-close"></span> -->
                     </div>
-                    <div class="w3l_form align-self">
+                    <div class="w3l_form login align-self">
                         <div class="left_grid_info">
-                            <img src="assets/img/images/Opt1_Login.svg" alt="">
+                            <!-- <img src="assets/img/Login.jpg" alt="" class="responsive"> -->
                         </div>
                     </div>
                     <div class="content-wthree">
                         <h2>Login</h2>
-                        <p>Welcome to Kerala Legislature International Book Festival Edition II.</p>
+                        <p>Welcome to Kerala Legislature International Book Festival Edition III.</p>
                         <?php echo $msg; ?>
                         <form action="" method="post">
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" required>
@@ -79,9 +79,9 @@ if (isset($_POST['submit'])) {
                             <p><a href="forgot-password.php" style="margin-bottom: 15px; display: block; text-align: right;">Forgot Password?</a></p>
                             <button name="submit" class="btn" type="submit">Login</button>
                         </form>
-                        <div class="social-icons">
-                            <!-- <p>Create Account! <a href="register.php"><b>Register</b></a>.</p> -->
-                        </div>
+                        <!-- <div class="social-icons">
+                            <p>Create Account! <a href="register.php"><b>Register</b></a>.</p>
+                        </div> -->
                     </div>
                 </div>
             </div>

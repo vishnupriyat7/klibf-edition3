@@ -1,0 +1,198 @@
+<?php include "../header.php"; ?>
+<?php include "sidebar.php"; ?>
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Report</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <a class="dropdown-item" href="../logout.php">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                </a>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Book Release Proposal Report</h5>
+                        </div>
+                        <div class="card-body overflow-auto">
+                            <button onclick="exportTableToExcel('example', 'book_release_report')"
+                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <div class="card" style="width:150vw;">
+                                <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                    style="font-style:normal; font-size: 12px;">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th data-ordering="false" rowspan="2">Sl.No</th>
+                                            <th data-ordering="false" rowspan="2">ID No.</th>
+                                            <th data-ordering="false" rowspan="2">Publisher</th>
+                                            <th data-ordering="false" rowspan="2">Book Title</th>
+                                            <th data-ordering="false" rowspan="2">Author</th>
+                                            <th data-ordering="false" rowspan="2">Book Genere</th>
+                                            <th data-ordering="false" rowspan="2">Book Cover</th>
+                                            <th data-ordering="false" rowspan="2">Brief Description</th>
+                                            <th data-ordering="false" colspan="2">Releasing By</th>
+                                            <th data-ordering="false" colspan="2">Receiving By</th>
+                                            <th data-ordering="false" colspan="2">Guest1</th>
+                                            <th data-ordering="false" colspan="2">Guest2</th>
+                                            <th data-ordering="false" colspan="2">Guest3</th>
+                                            <th data-ordering="false" colspan="3">Date and Time Slot Proposed</th>
+                                            <th data-ordering="false" colspan="3">Contact Person Details</th>
+                                            <th data-ordering="false" rowspan="2">Remarks</th>
+                                            <th data-ordering="false" rowspan="2">Updated Date</th>
+                                        </tr>
+                                        <tr>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Contact No</th>
+                                            <th data-ordering="false">First</th>
+                                            <th data-ordering="false">Second</th>
+                                            <th data-ordering="false">Third</th>
+                                            <th data-ordering="false">Name</th>
+                                            <th data-ordering="false">Mobile</th>
+                                            <th data-ordering="false">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $userId = $user['id'];
+                                        $querybookRls = "SELECT epb.*, ed1.event_date as day1_date, ed1.event_day as day1, ed2.event_date as day2_date, ed2.event_day as day2, ed3.event_date as day3_date, ed3.event_day as day3, ts1.slot_time as slotime1, ts1.slot_name as slotname1, ts2.slot_time as slotime2, ts2.slot_name as slotname2, ts3.slot_time as slotime3, ts3.slot_name as slotname3, bg.genere, up.org_name as org_name FROM event_propsl_bkrls epb join book_genere bg on epb.book_genere = bg.id join day_time_prefer dtp on epb.id = dtp.book_rls_id join event_date ed1 on dtp.day_prfr1 = ed1.id join event_date ed2 on dtp.day_prfr2 = ed2.id join event_date ed3 on dtp.day_prfr3 = ed3.id join time_slot ts1 on dtp.time_prfr1 = ts1.id join time_slot ts2 on dtp.time_prfr2 = ts2.id join time_slot ts3 on dtp.time_prfr3 = ts3.id join users_profile up on epb.users_id = up.user_id ORDER BY epb.id DESC";
+                                        $bookprps = mysqli_query($con, $querybookRls);
+                                        $counter = 0;
+                                        while ($bookprp = mysqli_fetch_array($bookprps)) {
+                                            $id = $bookprp['id'];
+                                            $booktitle = $bookprp['book_title'];
+                                            $author = $bookprp['author'];
+                                            $book_genere = $bookprp['genere'];
+                                            $book_cover = $bookprp['book_cover'];
+                                            $brf_description = $bookprp['brf_description'];
+                                            $released_by = $bookprp['released_by'];
+                                            $relcd_by_cntct = $bookprp['relcd_by_cntct'];
+                                            $recived_by = $bookprp['recived_by'];
+                                            $recvd_by_contact = $bookprp['recvd_by_contact'];
+                                            $guest1 = $bookprp['guest1'];
+                                            $guest1_contct = $bookprp['guest1_contct'];
+                                            $guest2 = $bookprp['guest2'];
+                                            $guest2_contct = $bookprp['guest2_contct'];
+                                            $guest3 = $bookprp['guest3'];
+                                            $guest3_contct = $bookprp['guest3_contct'];
+                                            $contact_persn_name = $bookprp['contact_persn_name'];
+                                            $contact_persn_email = $bookprp['contact_persn_email'];
+                                            $contact_persn_mobile = $bookprp['contact_persn_mobile'];
+                                            $remark = $bookprp['remarks'];
+                                            $day1_date = $bookprp['day1_date'];
+                                            $day1 = $bookprp['day1'];
+                                            $day2_date = $bookprp['day2_date'];
+                                            $day2 = $bookprp['day2'];
+                                            $day3_date = $bookprp['day3_date'];
+                                            $day3 = $bookprp['day3'];
+                                            $slotime1 = $bookprp['slotime1'];
+                                            $slotname1 = $bookprp['slotname1'];
+                                            $slotime2 = $bookprp['slotime2'];
+                                            $slotname2 = $bookprp['slotname2'];
+                                            $slotime3 = $bookprp['slotime3'];
+                                            $slotname3 = $bookprp['slotname3'];
+                                            ?>
+                                            <tr>
+                                                <td><?= ++$counter; ?></td>
+                                                <td><?= $id ?></td>
+                                                <td><?= $bookprp['org_name']; ?></td>
+                                                <td><?= $booktitle; ?></td>
+                                                <td><?= $author; ?></td>
+                                                <td><?= $book_genere; ?></td>
+                                                <td class="text-center">
+                                                    <img src="<?= $base_url ?>/dashboard/publisher/uploads/book_release_img/<?= $book_cover; ?>"
+                                                        height="70vh">
+                                                </td>
+                                                <td><?= $brf_description; ?></td>
+                                                <td><?= $released_by; ?> </td>
+                                                <td><?= $relcd_by_cntct; ?></td>
+                                                <td><?= $recived_by; ?></td>
+                                                <td><?= $recvd_by_contact; ?></td>
+                                                <td><?= $guest1; ?></td>
+                                                <td><?= $guest1_contct; ?></td>
+                                                <td><?= $guest2; ?></td>
+                                                <td><?= $guest2_contct; ?></td>
+                                                <td><?= $guest3; ?></td>
+                                                <td><?= $guest3_contct; ?></td>
+                                                <td>
+                                                    <?= $day1; ?> - <?= $day1_date; ?> <br>
+                                                    <?= $slotname1; ?>(<?= $slotime1; ?>)
+                                                </td>
+                                                <td>
+                                                    <?= $day2; ?> - <?= $day2_date; ?><br>
+                                                    <?= $slotname2 ?> (<?= $slotime2; ?>)
+                                                </td>
+                                                <td>
+                                                    <?= $day3; ?> - <?= $day3_date; ?><br>
+                                                    <?= $slotname3; ?> (<?= $slotime3; ?>)
+                                                </td>
+                                                <td><?= $contact_persn_name; ?></td>
+                                                <td><?= $contact_persn_mobile; ?></td>
+                                                <td><?= $contact_persn_email; ?></td>
+                                                <td><?= $remark; ?></td>
+                                                <td><?= $bookprp['updated_at']; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    <?php include "../footer.php"; ?>
+
+    <script>
+        function exportTableToExcel(example, filename = '') {
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(example);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            // Specify file name
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
+            // Create download link element
+            downloadLink = document.createElement("a");
+            document.body.appendChild(downloadLink);
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+                // Setting the file name
+                downloadLink.download = filename;
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+    </script>

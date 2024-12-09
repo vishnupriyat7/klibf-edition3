@@ -11,8 +11,9 @@
 --------------------------------------------------------------*/
 /* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Meera&display=swap"); */
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins",  sans-serif;
   color: #444444;
 }
 
@@ -32,11 +33,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins",'Meera', 'Rachana', sans-serif;
 }
 
 #main {
-  margin-top: 7%;
+  margin-top: 6%;
 }
 #about-inner-main,
 #queue-inner-main {
@@ -675,6 +676,10 @@ body {
   display: inline-block; /* Make sure the span is inline-block to apply transforms */
   animation: shake 2s infinite;
 }
+.form-control {
+    margin-top: 10px; /* Adjust the value as needed */
+    padding: 0;/* Adjust padding to maintain overall input height */
+}
 
 @keyframes shake {
   0%,
@@ -817,7 +822,22 @@ section {
 .section-title p {
   margin-bottom: 0;
 }
+/*--------------------------------------------------------------
+# section-speaker-message
+--------------------------------------------------------------*/
 
+.spkr-thumb iframe {
+  aspect-ratio: 16 / 9;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 0px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 2px 3px 10px #df527c;
+  -webkit-box-shadow: 2px 3x 10px #a1eb40;
+  box-shadow: 2px 3px 10px #344dbd;
+}
 /*--------------------------------------------------------------
 # section-Contest-bookreview
 --------------------------------------------------------------*/
@@ -829,7 +849,7 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
+  padding: 0;
   background-color: #f8fbfd;
   min-height: 40px;
 }
@@ -902,7 +922,7 @@ section {
 }
 
 .about .content {
-  padding: 30px 30px 30px 0;
+  padding: 30px 30px 30px -1;
 }
 .about .content-only {
   /* padding: 0px 0px 30px 0; */
@@ -975,7 +995,7 @@ section {
 
 @media (max-width: 1200px) {
   .about .content {
-    padding-right: 10px;
+    padding-right: 0px;
   }
   .about img {
     padding: 3%;
@@ -1029,9 +1049,9 @@ section {
   z-index: 10;
 }
 
-.dysecmsg .content {
+/* .dysecmsg .content {
   padding: 30px 30px 30px 0;
-}
+} */
 .dysecmsg .content-only {
   /* padding: 0px 0px 30px 0; */
   margin-left: 30px;
@@ -1096,7 +1116,7 @@ section {
 .dysecmsg img {
   margin-bottom: 20px;
   /* max-height: 10vh; */
-  width: 40%;
+  width: 80%;
   height: auto;
   border-radius: 2%;
 }
@@ -1220,37 +1240,11 @@ section {
   /* max-height: 10vh; */
   width: 100%;
   height: 25vh;
-  border-radius: 25%;
+  /* border-radius: 25%; */
   box-shadow: 0px 0px 10px rgba(111, 153, 32, 0.9);
 }
 
-@media (max-width: 1200px) {
-  .reflections .content {
-    padding-right: 10px;
-  }
-  .reflections iframe {
-    /* padding: 3%; */
-    margin-bottom: 20px;
-    /* max-height: 10vh; */
-    width: 95%;
-    height: 25vh;
-    border-radius: 20%;
-  }
-}
 
-@media (max-width: 768px) {
-  .reflections {
-    text-align: center;
-  }
-  .reflections iframe {
-    /* padding: 3%; */
-    margin-bottom: 20px;
-    /* max-height: 10vh; */
-    width: 75%;
-    height: 20vh;
-    /* border-radius: 88%; */
-  }
-}
 
 /* Reflections */
 
@@ -1487,6 +1481,10 @@ section {
   display: flex;
   justify-content: center;
 }
+.gallery .gallery-wrap img{
+  height: auto;
+  width: 50vw;
+}
 
 .gallery .gallery-wrap .gallery-links a {
   color: #fff;
@@ -1494,7 +1492,8 @@ section {
   text-align: center;
   /* background: rgba(103, 176, 209, 0.75); */
   /* background: #117525; */
-  background: rgba(95, 45, 110, 0.9);
+  /* background: rgba(95, 45, 110, 0.9); */
+  background: rgba(3, 61, 92);
 
   transition: 0.3s;
   width: 50%;
@@ -2099,7 +2098,7 @@ section {
   position: relative;
   min-height: 100vh;
   z-index: 0;
-  background: rgba(99, 194, 110, 0.1);
+  /* background: rgba(99, 194, 110, 0.1); */
   padding: 190px 270px;
   /* margin-top: 7%; */
 }
@@ -2110,33 +2109,34 @@ section {
 }
 
 .w3l_form {
-  padding: 0px;
-  flex-basis: 50%;
-  -webkit-flex-basis: 50%;
-  /* background: #00c16e; */
-  /* background: #117525; */
-  /* background: rgba(111, 153, 32, 0.9); */
-  background: #7da71b;
-
-  padding: 100px 50px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  padding: 0px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  -webkit-flex-basis: 50%;
+  box-sizing: border-box;
+
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-size: cover;
+  background-position: center;
 }
-.w3l_form img {
-  /* height: 25%; */
-  width: 100%;
-  position: relative;
+.w3l_form.login {
+  background: url("../img/Login.jpg");
+}
+.w3l_form.register {
+  background: url("../img/Reg.jpg");
 }
 
 .content-wthree {
-  flex-basis: 60%;
-  -webkit-flex-basis: 60%;
+  flex-basis: 50%;
+  -webkit-flex-basis: 50%;
   box-sizing: border-box;
   padding: 3em 3.5em;
   background: #fff;
+  /* background-size: contain; */
   box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -2225,7 +2225,9 @@ section {
   /* background: #117525; */
   /* background: rgba(111, 153, 32, 0.9); */
   /* background: #00c16e; */
-  background: rgba(95, 45, 110, 0.9);
+  /* background: rgba(95, 45, 110, 0.9); */
+  /* background: rgba(10, 130, 173); */
+  background: rgba(3, 61, 92);
 
   border: none;
   padding: 14px 15px;
@@ -2323,68 +2325,58 @@ p.copy-footer-29 a:hover {
 }
 
 /*-- responsive design --*/
+/* Register & Login */
 
-@media (max-width: 736px) {
+/* New Responsive Dimension */
+
+
+@media (min-width: 300px) and (max-width: 1185px) {
   .w3l-mockup-form .main-mockup {
+    /* Adjust the flex direction if needed for these dimensions */
     flex-direction: column;
+  }
+  .w3l-mockup-form {
+    padding: 150px 20px;
   }
 
   .w3l_form {
-    order: 2;
-    padding: 50px;
-    border-radius: 0;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    /* Customize padding, border radius, and ordering as needed */
+    padding: 120px;
+    border-radius: 10px;
+  }
+  .w3l_form.login {
+    background: url("../img/Login.jpg") no-repeat center center;
+    background-size: cover; /* Makes the login background image responsive */
+  }
+  
+  .w3l_form.register {
+    background: url("../img/Reg.jpg") no-repeat center center;
+    background-size: cover; /* Makes the register background image responsive */
   }
 
   .content-wthree {
+    /* Adjust padding and radius */
+    padding: 2em;
+    /* border-radius: 10px; */
     order: 1;
     border-radius: 0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
-}
-
-@media (max-width: 568px) {
-  .w3l-mockup-form h1 {
-    font-size: 30px;
-  }
-
-  .w3l-mockup-form .main-mockup {
-    margin: 30px 0;
-  }
-
-  .content-wthree {
-    padding: 2.5em;
-  }
-}
-
-@media (max-width: 415px) {
-  .w3l-mockup-form {
-    padding: 40px 30px;
-  }
-}
-
-@media (max-width: 384px) {
-  .w3l-mockup-form {
-    padding: 30px 15px;
-  }
-
-  .content-wthree {
-    padding: 2em;
-  }
 
   .w3l-mockup-form h1 {
-    font-size: 28px;
+    /* Adjust font size if necessary */
+    font-size: 32px;
   }
 
   .w3l-mockup-form h2 {
-    font-size: 22px;
-    line-height: 32px;
+    /* Adjust font size and line-height for larger screens */
+    font-size: 24px;
+    line-height: 34px;
   }
 
   .copyright p {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
@@ -2396,12 +2388,44 @@ p.copy-footer-29 a:hover {
   text-align: center;
   /* justify-content: center; */
   /* font-size: large; */
-  
 }
 
 .logo-video {
   width: 100vw; /* Full width of the viewport */
   height: 50vh;
+}
+
+/*Malayalam Font*/
+
+/* .contest_rule_mala h1,h2,h3,h4,h5,p  {
+  font-family: 'Meera', 'Rachana', sans-serif;
+} */
+.youtube-thumbnail-words{
+  width: 50vw;
+  height: 50vh;
+
+}
+
+@media (min-width: 1186px) {
+  .w3l-mockup-form {
+    padding: 200px 150px; /* Adjust padding for larger screens */
+  }
+
+  .w3l_form {
+    padding: 150px; /* Adjust padding as needed */
+    border-radius: 12px; /* Optionally increase border radius for a smoother look */
+    background-size: cover; /* Ensures the background image covers the container */
+  }
+
+  .w3l_form.login {
+    background: url("../img/Login.jpg") no-repeat center center;
+    background-size: cover; /* Keeps the login background responsive */
+  }
+  
+  .w3l_form.register {
+    background: url("../img/Reg.jpg") no-repeat center center;
+    background-size: cover; /* Keeps the register background responsive */
+  }
 }
 /*-- //responsive design --*/
 /*-- //form styling --*/
