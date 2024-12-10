@@ -87,16 +87,66 @@ include "head-style.php"; ?>
                                 } else {
                                     $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
                                     $result = mysqli_query($conn, $query);
-                                    $query_date = "SELECT event_date FROM event_date WHERE id = $date_select";
+                                    $query_date = "SELECT * FROM event_date WHERE id = $date_select";
                                     $result_date = mysqli_query($conn, $query_date);
                                     $query_slot = "SELECT * FROM queue_slot WHERE id = $slot_select";
                                     $result_slot = mysqli_query($conn, $query_slot);
                                     $book_date = $result_date->fetch_all();
                                     $book_slot = $result_slot->fetch_all();
                                     if ($result) {
+
+
+
+
+                                        echo "<div style='display: none;'>";
+                                        //Create an instance; passing `true` enables exceptions
+                                        $mail = new PHPMailer(true);
+
+                                        try {
+                                            //Server settings
+                                            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                                            $mail->isSMTP();                                            //Send using SMTP
+                                            $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
+                                            $mail->SMTPAuth = true;                                   //Enable SMTP authentication
+                                            $mail->Username = 'klibf.kla@gmail.com';                     //SMTP username
+                                            // $mail->Password   = 'akdamxborrvlmqjv';   
+                                            // $mail->Password   = 'nxjynhzxvqigqpbn';                             //SMTP password
+                                            $mail->Password = 'xbmeccqvahrxxdbm';
+                                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                                            $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                            
+                                            //Recipients
+                                            $mail->setFrom('klibf.kla@gmail.com');
+                                            $mail->addAddress($queue_inst_email);
+
+                                            //Content
+                                            $mail->isHTML(true);                                  //Set email format to HTML
+                                            $mail->Subject = 'no reply';
+                                            $mail->Body = 'You have successfully booked ' . $book_date[0][2] . " (" . $book_date[0][1] . ") at " . $book_slot[0][2] . " (" . $book_slot[0][1] . ') KLIBF 3rd Edition.</b>';
+
+                                            $mail->send();
+                                            echo 'Message has been sent';
+                                        } catch (Exception $e) {
+                                            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                                        }
+                                        echo "</div>";
+
+
                                         $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                <b>Registered Successfully. <br>Your booking has been confirmed for " . $book_date[0][0] . " at " . $book_slot[0][2] . " (" . $book_slot[0][1] . ").</b></div>";
+                                        <b>Registered Successfully. <br>Your booking has been confirmed for " . $book_date[0][2] . " (" . $book_date[0][1] . ") at " . $book_slot[0][2] . " (" . $book_slot[0][1] . "). A confirmation mail also sent to your registered mailid</b></div>";
+
+
+
+
+
+
+
+
+
+
+
                                     } else {
+                                        $msg = "<div class='alert alert-danger'>Something wrong went.</div>";
                                         $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
                                                Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help.
                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
@@ -221,7 +271,7 @@ include "head-style.php"; ?>
                                         <!-- Jayasree V L, Under Secretary- 9207196761 <br> -->
                                         Remya H R, Section Officer- 9446284522 <br>
                                         Asha S Kumar, Assistant - 9447427609 <br>
-                                        Lekshmi C K, Assistant - 9497454054  <br></p>
+                                        Lekshmi C K, Assistant - 9497454054 <br></p>
                                 </div>
                             </form>
                             <p class="form-message"></p>
@@ -251,7 +301,7 @@ include "head-style.php"; ?>
                     date: date_id
                 },
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     $("#avail_slot").empty();
                     var add_slot = "<br><b>Choose your Slot</b><div class='row'>";
                     for (var i = 0; i < data.length; i++) {
@@ -308,7 +358,7 @@ include "head-style.php"; ?>
                 slot: slot_id
             },
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 if (data !== null) {
                     var avail_count = 500 - data;
                     if (avail_count <= 0) {
