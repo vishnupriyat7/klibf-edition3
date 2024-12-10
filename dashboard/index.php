@@ -29,7 +29,7 @@ switch ($user['user_type']) {
         include "sdf_committee/sidebar.php";
         break;
     case 'RC':
-        include "sidebar_reception.php";
+        include "reception_committee/sidebar.php";
         break;
 }
 ?>
@@ -69,7 +69,7 @@ switch ($user['user_type']) {
                     include "sdf_committee/dashboard.php";
                     break;
                 case 'RC':
-                    include "sidebar_reception.php";
+                    include "reception_committee/dashboard.php";
                     break;
             }
             ?>
