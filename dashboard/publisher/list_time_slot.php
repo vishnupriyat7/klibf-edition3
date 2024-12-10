@@ -14,7 +14,7 @@ FROM day_time_prefer
 ) AS filtered_slots
 WHERE time_slot IS NOT NULL
 GROUP BY time_slot
-HAVING COUNT(*) >=10;";
+HAVING COUNT(*) >=50;";
 $time_slots_full = mysqli_query($con, $querySlotFull);
 $timeSlotsFullResult = $time_slots_full->fetch_all();
 $slotFullArray = [];
