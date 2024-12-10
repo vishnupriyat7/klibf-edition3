@@ -126,33 +126,30 @@ include "sidebar.php";
                                                 <tr>
                                                     <th data-ordering="false" rowspan="2">Sl.No</th>
                                                     <th data-ordering="false" rowspan="2">Coupon Denomination</th>
-                                                   
+
                                                 </tr>
-                                              
+
                                             </thead>
                                             <tbody>
-                                                <!-- <?php
-                                                $quiz_public_query = "SELECT * FROM reg_quiz where category_id=3";
-                                                $quiz_public_registrations = mysqli_query($con, $quiz_public_query);
-                                                $counter = 0;
-                                                while ($quiz_public_reg = mysqli_fetch_array($quiz_public_registrations)) { ?>
-                                                    <tr>
-                                                        <td><?= ++$counter ?></td>
-                                                        <td>KLIBF03-Q<?= $quiz_public_reg['id'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem1_name'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem1_gndr'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem1_addr'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem1_cntct'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem1_email'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem2_name'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem2_gndr'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem2_addr'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem2_cntct'] ?></td>
-                                                        <td><?= $quiz_public_reg['team1_mem2_email'] ?></td>
-                                                        <td><?= $quiz_public_reg['updated_date'] ?></td>
-                                                        <td> </td>
-                                                    </tr>
-                                                <?php } ?> -->
+                                                <?php
+                                                // Fetch all coupon denominations
+                                                $query = "SELECT * FROM coupon_denomination ORDER BY id ASC";
+                                                $result = mysqli_query($con, $query);
+
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    $counter = 0;
+                                                    while ($row = mysqli_fetch_assoc($result)) {
+                                                        echo "<tr>
+                                                    <td  class='text-center'>" . ++$counter . "</td>
+                                                    <td  class='text-center'>" . $row['denomination'] . "</td>
+                                                </tr>";
+                                                    }
+                                                } else {
+                                                    echo "<tr>
+                                                <td colspan='2' class='text-center text-danger'>No Denomination Details found, Please Enter Coupon Denomination.</td>
+                                            </tr>";
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
