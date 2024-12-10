@@ -38,100 +38,59 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
-                                            <th data-ordering="false" rowspan="2">Reg.No</th>
-                                            <th data-ordering="false" rowspan="2">Category</th>
-                                            <th data-ordering="false" rowspan="2">Zone</th>
                                             <th data-ordering="false" rowspan="2">District</th>
-                                            <th data-ordering="false" rowspan="2">Institute Name</th>
-                                            <th data-ordering="false" rowspan="2">Institute Address</th>
-                                            <th data-ordering="false" rowspan="2">Principal Contact</th>
-                                            <th data-ordering="false" rowspan="2">In-Charge Name</th>
-                                            <th data-ordering="false" rowspan="2">In-Charge Contact</th>
-                                            <th data-ordering="false" colspan="6">Team1 Member1 Details</th>
-                                            <th data-ordering="false" colspan="6">Team1 Member2 Details</th>
-                                            <th data-ordering="false" colspan="5">Team2 Member1 Details</th>
-                                            <th data-ordering="false" colspan="5">Team2 Member2 Details</th>
-                                            <th data-ordering="false" rowspan="2">Date Registered</th>
-                                            <th data-ordering="false" rowspan="2">Action</th>
-                                        </tr>
-                                        <tr>
-                                            <th data-ordering="false">Name</th>
-                                            <th data-ordering="false">Class / Course</th>
-                                            <th data-ordering="false">Gender</th>
-                                            <th data-ordering="false">Phone</th>
-                                            <th data-ordering="false">Email</th>
-                                            <th data-ordering="false">Address</th>
-                                            <th data-ordering="false">Name</th>
-                                            <th data-ordering="false">Class / Course</th>
-                                            <th data-ordering="false">Gender</th>
-                                            <th data-ordering="false">Phone</th>
-                                            <th data-ordering="false">Email</th>
-                                            <th data-ordering="false">Address</th>
-                                            <th data-ordering="false">Name</th>
-                                            <th data-ordering="false">Class / Course</th>
-                                            <th data-ordering="false">Gender</th>
-                                            <th data-ordering="false">Phone</th>
-                                            <th data-ordering="false">Email</th>
-                                            <th data-ordering="false">Name</th>
-                                            <th data-ordering="false">Class / Course</th>
-                                            <th data-ordering="false">Gender</th>
-                                            <th data-ordering="false">Phone</th>
-                                            <th data-ordering="false">Email</th>
-                                        </tr>
+                                            <th data-ordering="false" rowspan="2">Institution Name</th>
+                                            <th data-ordering="false" rowspan="2">Head of Institution</th>
+                                            <th data-ordering="false" rowspan="2">Designation</th>
+                                            <th data-ordering="false" rowspan="2">Contact Number1</th>
+                                            <th data-ordering="false" rowspan="2">Contact Number2</th>
+                                            <th data-ordering="false" rowspan="2">Email</th>
+                                            <th data-ordering="false" rowspan="2">Institution Type</th>
+                                            <th data-ordering="false" rowspan="2">Count Upto STD 7</th>
+                                            <th data-ordering="false" rowspan="2">Count STD 8 Onwards</th>
+                                            <th data-ordering="false" rowspan="2">Total Count</th>
+                                            <th data-ordering="false" rowspan="2">Event Day</th>
+                                            <th data-ordering="false" rowspan="2">Date</th>
+                                            <th data-ordering="false" rowspan="2">Slot Name</th>
+                                            <th data-ordering="false" rowspan="2">Slot Time</th>
+                                            <th data-ordering="false" rowspan="2">Booked Date</th>
+                                            <!-- <th data-ordering="false" rowspan="2">Date Registered</th>
+                                            <th data-ordering="false" rowspan="2">Action</th> -->
+
                                     </thead>
                                     <tbody id="quiz-data-list">
                                         <?php
-                                        $quiz_reg_query = "SELECT q.*, d.dt_name, ed.event_date, ed.event_day, qs.slot_time, qs.slot_name FROM queue q JOIN district d ON q.dist_id = d.id JOIN event_date ed ON q.date_id = ed.id JOIN queue_slot qs ON q.slot_id = qs.id ORDER BY id DESC";
-                                        $quiz_registrations = mysqli_query($con, $quiz_reg_query);
+                                        $virtualq_reg_query = "SELECT q.*, d.dt_name, ed.event_date, ed.event_day, qs.slot_time, qs.slot_name FROM queue q JOIN district d ON q.dist_id = d.id JOIN event_date ed ON q.date_id = ed.id JOIN queue_slot qs ON q.slot_id = qs.id ORDER BY id DESC";
+                                        $virtualq_registrations = mysqli_query($con, $virtualq_reg_query);
                                         $counter = 0;
-                                        while ($quiz_reg = mysqli_fetch_array($quiz_registrations)) {
-                                            // if (!$quiz_reg['team2_mem1_name']) {
-                                            //     $quiz_reg['team2_mem1_gndr'] = '';
+                                        while ($virtualq_reg = mysqli_fetch_array($virtualq_registrations)) {
+                                            // if (!$virtualq_reg['team2_mem1_name']) {
+                                            //     $virtualq_reg['team2_mem1_gndr'] = '';
                                             // }
-                                            // if (!$quiz_reg['team2_mem2_name']) {
-                                            //     $quiz_reg['team2_mem2_gndr'] = '';
+                                            // if (!$virtualq_reg['team2_mem2_name']) {
+                                            //     $virtualq_reg['team2_mem2_gndr'] = '';
                                             // }
                                         ?>
-                                            <tr>
+                                            <tr class="text-center">
                                                 <td><?= ++$counter ?></td>
-                                                <td><?= $quiz_reg['category'] ?></td>
-                                                <td><?= $quiz_reg['zone'] ?></td>
-                                                <td><?= $quiz_reg['dist_name'] ?></td>
-                                                <td><?= $quiz_reg['inst_name'] ?></td>
-                                                <td><?= $quiz_reg['inst_addr'] ?></td>
-                                                <td><?= $quiz_reg['inst_prnci_cntct'] ?></td>
-                                                <td><?= $quiz_reg['inst_faclt_name'] ?></td>
-                                                <td><?= $quiz_reg['inst_faclt_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_name'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_class'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_email'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem1_addr'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_name'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_class'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_email'] ?></td>
-                                                <td><?= $quiz_reg['team1_mem2_addr'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_name'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_class'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem1_email'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_name'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_class'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_gndr'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_cntct'] ?></td>
-                                                <td><?= $quiz_reg['team2_mem2_email'] ?></td>
-                                                <td><?= $quiz_reg['updated_date'] ?></td>
-                                                <td>
-                                                    <a class='dropdown-item remove-item-btn'
-                                                        onclick="delete_quiz_reg(<?= $quiz_reg['id']; ?>);">
-                                                        <i
-                                                            class='ri-delete-bin-fill align-bottom me-2 text-danger'></i>Delete
-                                                    </a>
-                                                </td>
+                                                <td><?= $virtualq_reg['dt_name'] ?></td>
+                                                <td><?= $virtualq_reg['inst_name'] ?></td>
+                                                <td><?= $virtualq_reg['head_of_inst_name'] ?></td>
+                                                <td><?= $virtualq_reg['designation'] ?></td>
+                                                <td><?= $virtualq_reg['cntct_no1'] ?></td>
+                                                <td><?= $virtualq_reg['cntct_no2'] ?></td>
+                                                <td><?= $virtualq_reg['email'] ?></td>
+                                                <td><?= $virtualq_reg['inst_type'] ?></td>
+                                                <td><?= $virtualq_reg['count_lp'] ?></td>
+                                                <td><?= $virtualq_reg['count_hs'] ?></td>
+                                                <td><?= $virtualq_reg['count_tot'] ?></td>
+                                                <td><?= $virtualq_reg['event_day'] ?></td>
+                                                <td><?= $virtualq_reg['event_date'] ?></td>
+                                                <td><?= $virtualq_reg['slot_name'] ?></td>
+                                                <td><?= $virtualq_reg['slot_time'] ?></td>
+
+
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -175,9 +134,9 @@
             }
         }
 
-        function delete_quiz_reg(quiz_id) {
+        function delete_virtualq_reg(quiz_id) {
             $.ajax({
-                url: "delete_quiz_registration.php",
+                url: "delete_virtualq_registration.php",
                 type: "POST",
                 data: {
                     quiz_id: quiz_id

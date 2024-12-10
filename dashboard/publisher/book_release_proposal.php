@@ -173,15 +173,15 @@ $bkrls_id = $_GET['bkrlsid'];
                                 $dayTimeCount = $resultDayTimePrefer->fetch_assoc();
                                 // var_dump($dayTimeCount);
                                 // die;
-                                if ($dayTimeCount['prf1_count'] > 10) {
+                                if ($dayTimeCount['prf1_count'] > 20) {
                                     $msg = 'Sorry, Your Event Date Preference 1 with Time Slot Preference 1 is full. Please select another one for booking. Thank you for your co-operartion.';
                                     $status = "NOTOK";
                                 }
-                                if ($dayTimeCount['prf2_count'] > 10) {
+                                if ($dayTimeCount['prf2_count'] > 20) {
                                     $msg = 'Sorry, Your Event Date Preference 2 with Time Slot Preference 2 is full. Please select another one for booking. Thank you for your co-operartion.';
                                     $status = "NOTOK";
                                 }
-                                if ($dayTimeCount['prf3_count'] > 10) {
+                                if ($dayTimeCount['prf3_count'] > 20) {
                                     $msg = 'Sorry, Your Event Date Preference 3 with Time Slot Preference 3 is full. Please select another one for booking. Thank you for your co-operartion.';
                                     $status = "NOTOK";
                                 }
