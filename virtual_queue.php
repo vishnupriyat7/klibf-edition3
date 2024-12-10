@@ -1,8 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require 'assets/vendor/autoload.php';
 include 'config.php';
 include "head-style.php"; ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <body>
     <!-- ======= Header ======= -->
@@ -46,8 +50,8 @@ include "head-style.php"; ?>
                                     mysqli_real_escape_string($conn, $_POST['queue_inst_email']);
                                 $queue_inst_type =
                                     mysqli_real_escape_string($conn, $_POST['queue_inst_type']);
-                                $queue_cntct_no =
-                                    mysqli_real_escape_string($conn, $_POST['queue_cntct_no']);
+                                $queue_cntct_no1 =
+                                    mysqli_real_escape_string($conn, $_POST['queue_cntct_no1']);
                                 $prsn_lp_count =
                                     mysqli_real_escape_string($conn, $_POST['prsn_lp_count']);
                                 $prsn_hs_count =
@@ -64,7 +68,7 @@ include "head-style.php"; ?>
                                 $errormsg = "";
                                 if ($slot_select == '') {
                                     $status = "NOTOK";
-                                    $msg = "Your selected Slot is full. Please select another.";
+                                    $msg = "Your selected Slot can't accomodate ".$queue_prsn_count." members. Please select other.";
                                 } else if ((int) $queue_prsn_count > 500) {
                                     $status = "NOTOK";
                                     $msg = "A Slot can accomodate only 500 members.";
@@ -79,13 +83,20 @@ include "head-style.php"; ?>
                                             $msg = "Your selected Slot is Exceeded. Please select another.";
                                         }
                                     }
+                                    $queue_duplicate_query = "SELECT id FROM queue WHERE cntct_no1 = '$queue_cntct_no1' AND date_id  = $date_select AND slot_id = $slot_select AND count_tot = $queue_prsn_count;";
+                                    $queue_duplicate_result = mysqli_query($conn, $queue_duplicate_query);
+                                    if (mysqli_num_rows($queue_duplicate_result) > 0) {
+                                        $status = "NOTOK";
+                                        $msg = "You have already registered with same details.";
+                                    }
                                 }
                                 if ($status == "NOTOK") {
                                     $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                         $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                                 } else {
-                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
+
+                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no1, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no1', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
                                     $result = mysqli_query($conn, $query);
                                     $query_date = "SELECT * FROM event_date WHERE id = $date_select";
                                     $result_date = mysqli_query($conn, $query_date);
@@ -94,14 +105,9 @@ include "head-style.php"; ?>
                                     $book_date = $result_date->fetch_all();
                                     $book_slot = $result_slot->fetch_all();
                                     if ($result) {
-
-
-
-
                                         echo "<div style='display: none;'>";
                                         //Create an instance; passing `true` enables exceptions
                                         $mail = new PHPMailer(true);
-
                                         try {
                                             //Server settings
                                             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
@@ -109,42 +115,24 @@ include "head-style.php"; ?>
                                             $mail->Host = 'smtp.gmail.com';                     //Set the SMTP server to send through
                                             $mail->SMTPAuth = true;                                   //Enable SMTP authentication
                                             $mail->Username = 'klibf.kla@gmail.com';                     //SMTP username
-                                            // $mail->Password   = 'akdamxborrvlmqjv';   
-                                            // $mail->Password   = 'nxjynhzxvqigqpbn';                             //SMTP password
                                             $mail->Password = 'xbmeccqvahrxxdbm';
                                             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                                             $mail->Port = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-                            
                                             //Recipients
                                             $mail->setFrom('klibf.kla@gmail.com');
                                             $mail->addAddress($queue_inst_email);
-
                                             //Content
                                             $mail->isHTML(true);                                  //Set email format to HTML
                                             $mail->Subject = 'no reply';
                                             $mail->Body = 'You have successfully booked ' . $book_date[0][2] . " (" . $book_date[0][1] . ") at " . $book_slot[0][2] . " (" . $book_slot[0][1] . ') KLIBF 3rd Edition.</b>';
-
                                             $mail->send();
                                             echo 'Message has been sent';
                                         } catch (Exception $e) {
                                             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                                         }
                                         echo "</div>";
-
-
                                         $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                        <b>Registered Successfully. <br>Your booking has been confirmed for " . $book_date[0][2] . " (" . $book_date[0][1] . ") at " . $book_slot[0][2] . " (" . $book_slot[0][1] . "). A confirmation mail also sent to your registered mailid</b></div>";
-
-
-
-
-
-
-
-
-
-
-
+                                        <b>Registered Successfully. <br>Your booking has been confirmed for " . $book_date[0][2] . " (" . $book_date[0][1] . ") at " . $book_slot[0][2] . " (" . $book_slot[0][1] . "). A confirmation mail also sent to your registered mail id.</b></div>";
                                     } else {
                                         $msg = "<div class='alert alert-danger'>Something wrong went.</div>";
                                         $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -205,27 +193,33 @@ include "head-style.php"; ?>
                                             <option value="C">College</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
-                                        <br>
-                                        <input type="text" class="form-control col-sm-12" name="queue_cntct_no"
-                                            id="queue_cntct_no" placeholder="*Contact No." required
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                                    </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12" hidden
+                                    <div class="form-group col-12 col-lg-6 col-md-6 col-sm-12" hidden
                                         id="prsn_lp_count_div">
                                         <br>
                                         <input type="number" class="form-control col-sm-12" name="prsn_lp_count"
                                             id="prsn_lp_count" placeholder="*No.of Pupils upto Class 7" min="0"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, ''); getTotalStudents();">
                                     </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12" hidden
+                                    <div class="form-group col-12 col-lg-6 col-md-6 col-sm-12" hidden
                                         id="prsn_hs_count_div">
                                         <br>
                                         <input type="number" class="form-control col-sm-12" name="prsn_hs_count"
                                             id="prsn_hs_count" placeholder="*No.of Pupils from Class 8 Onwards" min="0"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, ''); getTotalStudents();">
                                     </div>
-                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <div class="form-group col-12 col-lg-3 col-md-3 col-sm-12">
+                                        <br>
+                                        <input type="text" class="form-control col-sm-12" name="queue_cntct_no1"
+                                            id="queue_cntct_no1" placeholder="*Contact No. 1" required
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    </div>
+                                    <div class="form-group col-12 col-lg-3 col-md-3 col-sm-12">
+                                        <br>
+                                        <input type="text" class="form-control col-sm-12" name="queue_cntct_no2"
+                                            id="queue_cntct_no2" placeholder="*Contact No. 2" required
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    </div>
+                                    <div class="form-group col-12 col-lg-3 col-md-3 col-sm-12">
                                         <br>
                                         <input type="number" class="form-control col-sm-12" name="queue_prsn_count"
                                             id="queue_prsn_count" placeholder="*Total No.of Students" required min="0"
@@ -243,11 +237,11 @@ include "head-style.php"; ?>
                                     $slot_result = $slot_stmt->get_result();
                                     $event_slots = $slot_result->fetch_all();
                                     ?>
-                                    <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
+                                    <div class="form-group col-12 col-lg-3 col-md-3 col-sm-12">
                                         <br>
                                         <select class="form-control form-group" name="date_select" id="date_select"
                                             style="height:35px;" onchange="loadSlot();">
-                                            <option value="0">Select Proposed Visit Day</option>
+                                            <option value="0">Select Visit Day</option>
                                             <?php foreach ($event_days as $days) { ?>
                                                 <option value="<?= $days[0] ?>" <?= $evnt_day1_selected ?>><?= $days[1]; ?> -
                                                     <?= $days[2]; ?>
