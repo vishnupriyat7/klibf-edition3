@@ -16,23 +16,32 @@
 </div>
 <!-- end page title -->
 <?php
-$total_quiz_qry = "SELECT count(id) FROM reg_quiz;";
-$total_quiz_stmt = $con->prepare($total_quiz_qry);
-$total_quiz_stmt->execute();
-$total_quiz_res = $total_quiz_stmt->get_result();
-$tot_quiz_reg_count = $total_quiz_res->fetch_assoc();
+$total_virtual_qu_qry = "SELECT sum(count_tot) AS total_qu_reg_count FROM queue;";
+$total_virtual_qu_stmt = $con->prepare($total_virtual_qu_qry);
+$total_virtual_qu_stmt->execute();
+$total_virtual_qu_res = $total_virtual_qu_stmt->get_result();
+$tot_virtual_qu_count = $total_virtual_qu_res->fetch_assoc();
 
-$total_quiz_school_qry = "SELECT count(id) FROM reg_quiz where category_id = 1;";
-$total_quiz_school_stmt = $con->prepare($total_quiz_school_qry);
-$total_quiz_school_stmt->execute();
-$total_quiz_school_res = $total_quiz_school_stmt->get_result();
-$tot_quiz_school_count = $total_quiz_school_res->fetch_assoc();
+// $total_quiz_school_qry = "SELECT count(id) FROM reg_quiz where category_id = 1;";
+// $total_quiz_school_stmt = $con->prepare($total_quiz_school_qry);
+// $total_quiz_school_stmt->execute();
+// $total_quiz_school_res = $total_quiz_school_stmt->get_result();
+// $tot_quiz_school_count = $total_quiz_school_res->fetch_assoc();
 
-$total_quiz_college_qry = "SELECT count(id) FROM reg_quiz where category_id = 2;";
-$total_quiz_college_stmt = $con->prepare($total_quiz_college_qry);
-$total_quiz_college_stmt->execute();
-$total_quiz_college_res = $total_quiz_college_stmt->get_result();
-$total_quiz_college_count = $total_quiz_college_res->fetch_assoc();
+$total_school_qry = "SELECT COUNT(*) AS school_count FROM queue WHERE inst_type = 's';";
+$total_school_stmt = $con->prepare($total_school_qry);
+$total_school_stmt->execute();
+$total_school_res = $total_school_stmt->get_result();
+$total_school_count = $total_school_res->fetch_assoc();
+
+
+$total_college_qry = "SELECT COUNT(*) AS college_count FROM queue WHERE inst_type = 'c';";
+$total_college_stmt = $con->prepare($total_college_qry);
+$total_college_stmt->execute();
+$total_college_res = $total_college_stmt->get_result();
+$total_college_count = $total_college_res->fetch_assoc();
+
+
 
 $total_quiz_public_qry = "SELECT count(id) FROM reg_quiz where category_id = 3;";
 $total_quiz_public_stmt = $con->prepare($total_quiz_public_qry);
@@ -74,10 +83,10 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Virtual Queue
                                         Registration</p>
                                     <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $tot_quiz_reg_count['count(id)']; ?>"></span></h4>
+                                            data-target="<?= $tot_virtual_qu_count['total_qu_reg_count']; ?>"></span></h4>
                                 </div>
 
                             </div>
@@ -98,7 +107,7 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Schools
                                         Registered</p>
                                     <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $tot_quiz_school_count['count(id)']; ?>"></span></h4>
+                                            data-target="<?= $total_school_count['school_count']; ?>"></span></h4>
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -118,7 +127,7 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Colleges
                                         Registered</p>
                                     <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $total_quiz_college_count['count(id)']; ?>"></span></h4>
+                                            data-target="<?= $total_college_count['college_count']; ?>"></span></h4>
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -135,10 +144,29 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Public
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Count Upto STD 7
                                         Registered</p>
-                                    <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4>
+                                    <!-- <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4> -->
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Count STD 8 Onwards
+                                        Registered</p>
+                                    <!-- <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4> -->
                                 </div>
                             </div>
                         </div><!-- end card body -->
