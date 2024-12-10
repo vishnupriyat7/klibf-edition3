@@ -148,7 +148,7 @@ $bkdscn_id = $_GET['bkdscnid'];
                                 $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
                                 if (in_array($fileType, $allowTypes)) {
                                     $targetDir = "uploads/book_discussion_img/";
-                                    $newFileName = $disc_sub . '-' . uniqid() . '.' . $fileType;
+                                    $newFileName = uniqid() . '.' . $fileType;
                                     $targetFilePath = $targetDir . $newFileName;
                                     // var_dump($targetFilePath);die;
                                     if (move_uploaded_file($_FILES["disc_book_cover"]["tmp_name"], $targetFilePath)) {
