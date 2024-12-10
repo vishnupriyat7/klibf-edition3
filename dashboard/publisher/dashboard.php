@@ -76,11 +76,10 @@ $bookdscn_result_count = $bookdscn_result->fetch_all();
                 
                 <?php if(!in_array($user['id'], [203, 199,99,185,174, 53])) { ?>
                     <div class="col-sm-12 col-md-12">
-                    <div class="alert alert-success">
+                    <div class="alert alert-danger">
                         <h5>Event Proposal</h5>
                         <p>
-                            <strong>You now have access to the Event Proposal menu. Submit your proposals
-                                today!</strong>
+                            <strong>The submission window for event proposal entries is now officially closed. Our team will begin the review process, and selected proposals will be notified shortly. </strong>
                         </p>
                     </div>
                 </div>
