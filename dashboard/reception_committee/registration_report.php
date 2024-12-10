@@ -30,7 +30,7 @@
                             <h5 class="card-title mb-0">Virtual Queue Registration Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
-                            <button onclick="exportTableToExcel('example', 'quiz_report_all')"
+                            <button onclick="exportTableToExcel('example', 'virtual_queue_registration_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <div class="card" style="width:200vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
@@ -94,7 +94,6 @@
                                         ?>
                                             <tr>
                                                 <td><?= ++$counter ?></td>
-                                                <td>KLIBF03-Q<?= $quiz_reg['id'] ?></td>
                                                 <td><?= $quiz_reg['category'] ?></td>
                                                 <td><?= $quiz_reg['zone'] ?></td>
                                                 <td><?= $quiz_reg['dist_name'] ?></td>
