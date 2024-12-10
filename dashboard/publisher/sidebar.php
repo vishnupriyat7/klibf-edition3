@@ -90,7 +90,7 @@
                                     class="nav-link" data-key="t-one-page"> Terms and Conditions
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
                                     class="nav-link" data-key="t-one-page"> Book Release Proposal
                                 </a>
@@ -98,22 +98,6 @@
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
                                     data-key="t-nft-landing"> Book Discussion Proposal </a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/bookrelease_report.php" class="nav-link" data-key="t-nft-landing">
-                                    Book Release Proposal Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php" class="nav-link"
-                                    data-key="t-nft-landing"> Book Discussion Proposal Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/special_event_proposal_report.php" class="nav-link"
-                                    data-key="t-nft-landing"> Special Event Proposal Report </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
-                                    data-key="t-nft-landing">Coupon List Report</a>
                             </li> -->
                         </ul>
                     </div>
