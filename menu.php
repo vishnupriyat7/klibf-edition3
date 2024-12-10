@@ -28,9 +28,9 @@
       </ul>
     </li> -->
 
-    <li>
+    <!-- <li>
       <a class="nav-link scrollto" href="news.php">News</a>
-    </li>
+    </li> -->
 
 
     <!-- <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>

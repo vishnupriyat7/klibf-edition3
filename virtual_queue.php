@@ -85,7 +85,7 @@ include "head-style.php"; ?>
                                         $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                                 } else {
-                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no1, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
+                                    $query = "INSERT INTO queue (dist_id, inst_name, head_of_inst_name, designation, cntct_no, email, inst_type, count_lp, count_hs, count_tot, date_id, slot_id, booked_date, status) VALUES ('$queue_district', '$queue_inst_name', '$queue_head_name','$queue_head_desig', '$queue_cntct_no', '$queue_inst_email', '$queue_inst_type', '$prsn_lp_count', '$prsn_hs_count', '$queue_prsn_count', '$date_select', '$slot_select', '$current_date', 'E')";
                                     $result = mysqli_query($conn, $query);
                                     $query_date = "SELECT event_date FROM event_date WHERE id = $date_select";
                                     $result_date = mysqli_query($conn, $query_date);
@@ -158,7 +158,7 @@ include "head-style.php"; ?>
                                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12">
                                         <br>
                                         <input type="text" class="form-control col-sm-12" name="queue_cntct_no"
-                                            id="queue_cntct_no" placeholder="*Contact No. of Team" required
+                                            id="queue_cntct_no" placeholder="*Contact No." required
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                     <div class="form-group col-12 col-lg-4 col-md-4 col-sm-12" hidden
@@ -251,22 +251,26 @@ include "head-style.php"; ?>
                     date: date_id
                 },
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     $("#avail_slot").empty();
                     var add_slot = "<br><b>Choose your Slot</b><div class='row'>";
                     for (var i = 0; i < data.length; i++) {
-                        if (data[i].count === null) {
-                            var avail = 500 - 0;
-                        } else {
-                            var avail = 500 - data[i].count;
-                        }
-                        if (avail <= 0) {
-                            add_slot = add_slot + "<div class='form-group col-12 col-lg-3 col-md-4 col-sm-12'><button class='col-12 btn btn-danger mt-3' onclick='checkSlot(" + data[i].id + ");' style='margin:0;'>" + data[i].slot + "<br>Availability: " + avail + "</button></div>";
-                            // var btn_style = 'btn-danger';
-                        } else {
-                            // var btn_style = 'btn-info';
-                            add_slot = add_slot + "<div class='form-group col-12 col-lg-3 col-md-4 col-sm-12'><button class='col-12 btn btn-info mt-3' onclick='checkSlot(" + data[i].id + ");' style='margin:0;'>" + data[i].slot + "<br>Availability: " + avail + "</button></div>";
-                        }
+                        var avail = data[i].count === null ? 500 : 500 - data[i].count;
+
+                        // Determine button class based on availability
+                        var btnClass = avail <= 0 ? "btn-danger" : "btn-info";
+                        var isDisabled = avail <= 0 ? "disabled" : "";
+
+                        add_slot += `
+                        <div class='form-group col-12 col-lg-3 col-md-4 col-sm-12'>
+                            <button 
+                                class='col-12 btn ${btnClass} mt-3' 
+                                data-slot-id='${data[i].id}' 
+                                onclick='highlightSlot(this, ${data[i].id});' 
+                                style='margin:0;' ${isDisabled}>
+                                ${data[i].slot}<br>Availability: ${avail}
+                            </button>
+                        </div>`;
                     }
                     add_slot = add_slot + "</div>";
                     document.getElementById("avail_slot").innerHTML = add_slot;
@@ -275,10 +279,26 @@ include "head-style.php"; ?>
         }
     }
 
+    function highlightSlot(button, slot_id) {
+        // Highlight the selected slot
+        document.querySelectorAll('#avail_slot button').forEach(btn => {
+            btn.classList.remove('btn-primary');
+            if (!btn.disabled) {
+                btn.classList.add('btn-info'); // Reset available buttons to green
+            }
+        });
+        button.classList.remove('btn-info', 'btn-danger');
+        button.classList.add('btn-primary');
+
+        // Perform slot validation
+        checkSlot(slot_id);
+    }
+
+
     function checkSlot(slot_id) {
         event.preventDefault();
         var date_id = $("#date_select").val();
-        var prsn_count = $("#prsn_count").val();
+        var prsn_count = $("#queue_prsn_count").val();
         $.ajax({
             dataType: "json",
             url: "check_slot.php",
@@ -288,7 +308,7 @@ include "head-style.php"; ?>
                 slot: slot_id
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 if (data !== null) {
                     var avail_count = 500 - data;
                     if (avail_count <= 0) {

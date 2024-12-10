@@ -34,7 +34,7 @@ $user_id = $user['id'];
                 $current_date = new DateTime();
                 $date = date_format($current_date, "Y-m-d H:i:s");
                 if (!empty($_FILES['catalogue'])) {
-                    $idir = "../catalogue/"; //my directory file is supposed to be saved in
+                    $idir = "uploads/catalogue/"; //my directory file is supposed to be saved in
                     $randomd = rand(0000000, 9999999); //creates a random number as filename
                     $domain = "http://" . $_SERVER['HTTP_HOST'];
                     $file_ext = strrchr($_FILES['catalogue']['name'], '.');
@@ -42,7 +42,7 @@ $user_id = $user['id'];
                     $destination = $randomd . $file_ext; //new filename
                     if ($file_ext == '.pdf') {
                         $fileupload = move_uploaded_file($_FILES['catalogue']['tmp_name'], "$idir" . $destination);
-                        $pdf = $domain . "/catalogue/" . $destination;
+                        $pdf = $domain . "uploads/catalogue/" . $destination;
                         if ($fileupload) {
                             $query = "INSERT INTO publisher_catalogue (user_id, filename, updated_date) VALUES ('$user_id', '$destination', '$date')";
                             $result = mysqli_query($con, $query);
@@ -64,7 +64,7 @@ $user_id = $user['id'];
                         $errormsg = "
               <div class='alert alert-success alert-dismissible alert-outline fade show'>
                                 Your Catalogue is Successfully Saved.
-                                <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                 </div>
                ";
                     }
@@ -95,7 +95,7 @@ $user_id = $user['id'];
                                             if ($user_cat['filename']) { ?>
                                                 <br>
                                                 <label><b>You have already uploaded a Catalogue</b></label>
-                                                <iframe src="../catalogue/<?= $user_cat['filename'] ?>" height="600vh"></iframe>
+                                                <iframe src="uploads/catalogue/<?= $user_cat['filename'] ?>" height="600vh"></iframe>
                                             <?php } else { ?>
                                                 <div class="form-group col-12">
                                                     <br>
