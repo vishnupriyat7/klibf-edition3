@@ -1,6 +1,5 @@
 <?php
-// var_dump("hiii");
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 include "../header.php";
 include "sidebar.php";
 $user_id = $user['id'];
@@ -8,34 +7,12 @@ function convertNumberToWordsForIndia($number)
 {
     //A function to convert numbers into Indian readable words with Cores, Lakhs and Thousands.
     $words = array(
-        '0' => '',
-        '1' => 'one',
-        '2' => 'two',
-        '3' => 'three',
-        '4' => 'four',
-        '5' => 'five',
-        '6' => 'six',
-        '7' => 'seven',
-        '8' => 'eight',
-        '9' => 'nine',
-        '10' => 'ten',
-        '11' => 'eleven',
-        '12' => 'twelve',
-        '13' => 'thirteen',
-        '14' => 'fouteen',
-        '15' => 'fifteen',
-        '16' => 'sixteen',
-        '17' => 'seventeen',
-        '18' => 'eighteen',
-        '19' => 'nineteen',
-        '20' => 'twenty',
-        '30' => 'thirty',
-        '40' => 'fourty',
-        '50' => 'fifty',
-        '60' => 'sixty',
-        '70' => 'seventy',
-        '80' => 'eighty',
-        '90' => 'ninty'
+        '0' => '', '1' => 'one', '2' => 'two', '3' => 'three', '4' => 'four', '5' => 'five',
+        '6' => 'six', '7' => 'seven', '8' => 'eight', '9' => 'nine', '10' => 'ten',
+        '11' => 'eleven', '12' => 'twelve', '13' => 'thirteen', '14' => 'fouteen', '15' => 'fifteen',
+        '16' => 'sixteen', '17' => 'seventeen', '18' => 'eighteen', '19' => 'nineteen', '20' => 'twenty',
+        '30' => 'thirty', '40' => 'fourty', '50' => 'fifty', '60' => 'sixty', '70' => 'seventy',
+        '80' => 'eighty', '90' => 'ninty'
     );
 
     //First find the length of the number
@@ -159,7 +136,7 @@ function generateInvoice($invoiceNo)
                         $msg = "";
                         $current_date = new DateTime();
                         $date = date_format($current_date, "Y-m-d H:i:s");
-                        $select_pub_bank_query = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = ?";
+                        $select_pub_bank_query = "SELECT * FROM coupon_bankdtls WHERE user_id = ?";
                         $stmt_pub_cpn_bank = $con->prepare($select_pub_bank_query);
                         $stmt_pub_cpn_bank->bind_param("s", $user_id);
                         $stmt_pub_cpn_bank->execute();
@@ -194,14 +171,14 @@ function generateInvoice($invoiceNo)
                             $total_cpn_amt = ($count100 * 100) + ($count200 * 200) + ($count50 * 50);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-                            $select_pub_bank_query = "SELECT * FROM pub_coupon_bankdtls WHERE users_id = ?";
+                            $select_pub_bank_query = "SELECT * FROM coupon_bankdtls WHERE users_id = ?";
                             $stmt_pub_cpn_bank = $con->prepare($select_pub_bank_query);
                             $stmt_pub_cpn_bank->bind_param("s", $user_id);
                             $stmt_pub_cpn_bank->execute();
                             $res_pub_cpn_bank = $stmt_pub_cpn_bank->get_result();
                             $cpn_bank_det = $res_pub_cpn_bank->fetch_assoc();
                             if (!$cpn_bank_det) {
-                                $query_cpn_pub_bank = "INSERT INTO pub_coupon_bankdtls (users_id, bank_name, account_no, bank_ifsc, bank_branch, updated_date) values ('$user_id', '$cpn_bank_name', '$cpn_acc_no', '$cpn_ifsc', '$cpn_bank_branch', '$date')";
+                                $query_cpn_pub_bank = "INSERT INTO coupon_bankdtls (users_id, bank_name, account_no, bank_ifsc, bank_branch, updated_date) values ('$user_id', '$cpn_bank_name', '$cpn_acc_no', '$cpn_ifsc', '$cpn_bank_branch', '$date')";
                                 $res_cpn_pub_bank = mysqli_query($con, $query_cpn_pub_bank);
                                 if (!$res_cpn_pub_bank) {
                                     $status = "NOTOK";
@@ -226,7 +203,7 @@ function generateInvoice($invoiceNo)
                                     $cpn_bank_name = $cpn_bank_det['bank_name'];
                                     $cpn_bank_branch = $cpn_bank_det['account_no'];
                                     $cpn_acc_no = $cpn_bank_det['bank_branch'];
-                                    $cpn_ifsc = $cpn_bank_det['bank_ifsc'];
+                                    $cpn_ifsc = $cpn_bank_det['bank_ifsc'];                                    
                                 } else {
                                     $errormsg = "
                                     <div class='alert alert-danger alert-dismissible alert-outline fade show'>
@@ -259,9 +236,9 @@ function generateInvoice($invoiceNo)
                                                     <br>
                                                     <input type="text" class="form-control" name="cpn_invoice" id="cpn_invoice" placeholder="Invoice Number" required="required">
                                                 </div>
-                                            </div><br>
+                                            </div>
                                             <!--  -->
-                                            <!-- <div class="form-group col-12 col-md-1">
+                                            <div class="form-group col-12 col-md-1">
                                                 <br>
                                                 Coupon
                                                 <input type="text" class="form-control" placeholder="50" disabled>
@@ -276,7 +253,11 @@ function generateInvoice($invoiceNo)
                                                 *Serial Number
                                                 <input type="text" class="form-control" name="cpn_serial_50" id="cpn_serial_50" required="required" placeholder="Serial Numbers">
                                             </div>
-                                        
+                                            <!-- <div class="form-group col-12 col-md-1">
+                                                <br>
+                                                *Bill No
+                                                <input type="text" class="form-control" name="cpn_bill_50" id="cpn_bill_50" required="required"  placeholder="Bill No.">
+                                            </div> -->
                                             <div class="form-group col-12 col-md-2">
                                                 <br>
                                                 Amount (in ₹ )
@@ -294,7 +275,10 @@ function generateInvoice($invoiceNo)
                                                 <br>
                                                 <input type="text" class="form-control" name="cpn_serial_100" id="cpn_serial_100" required="required" placeholder="Serial Numbers">
                                             </div>
-                                           
+                                            <!-- <div class="form-group col-12 col-md-1">
+                                                <br>
+                                                <input type="text" class="form-control" name="cpn_bill_100" id="cpn_bill_100" required="required"  placeholder="Bill No.">
+                                            </div> -->
                                             <div class="form-group col-12 col-md-2">
                                                 <br>
                                                 <input type="text" class="form-control" name="total100" id="total100" placeholder="0" required="required" disabled>
@@ -311,7 +295,10 @@ function generateInvoice($invoiceNo)
                                                 <br>
                                                 <input type="text" class="form-control" name="cpn_serial_200" id="cpn_serial_200" required="required" placeholder="Serial Numbers">
                                             </div>
-                                          
+                                            <!-- <div class="form-group col-12 col-md-1">
+                                                <br>
+                                                <input type="text" class="form-control" name="cpn_bill_200" id="cpn_bill_200" required="required"  placeholder="Bill No.">
+                                            </div> -->
                                             <div class="form-group col-12 col-md-2">
                                                 <br>
                                                 <input type="text" class="form-control" name="total200" id="total200" placeholder="0" required="required" disabled>
@@ -324,70 +311,8 @@ function generateInvoice($invoiceNo)
                                             <div class="form-group col-12 col-md-6">
                                                 <input type="text" class="form-control" name="total_claim" id="total_claim" placeholder="0" required="required" disabled>
                                                 <br>
-                                            </div> -->
-
-                                            <!-- <hr class="mt-3"><br> -->
-                                            <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-                                            <!-- <div class="row bg-grey"> -->
-                                            <!-- <div class="form-group col-12">
-                                                <label><b>Sponser's Coupon Details</b></label>
-                                            </div> -->
-                                            <div id="dynamic-form-container" class="mt-5">
-                                                <div class="row dynamic-form">
-                                                    <div class="form-group col-12 col-md-3">
-                                                        <?php
-                                                        $denominationQry = "SELECT * FROM coupon_denomination";
-                                                        $denominations = mysqli_query($con, $denominationQry);
-                                                        $counter = 0;
-                                                        ?>
-                                                        *Coupon Denomination
-                                                        <select class="form-control form-group" name="spnsr_cpn_deno[]"
-                                                            id="spnsr_cpn_deno" required="required" style="height:37px;">
-                                                            <option value="">Select Denomination</option>
-                                                            <?php while ($denomination = mysqli_fetch_array($denominations)) { ?>
-                                                                <option value="<?= $denomination['id']; ?>">
-                                                                    <?= $denomination['denomination']; ?>
-                                                                </option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-12 col-md-3">
-                                                        Serial No.
-                                                        <input type="text" class="form-control" name="spnsr_cpn_slno[]"
-                                                            placeholder="Coupon Serial No." id="spnsr_cpn_slno"
-                                                            value="0">
-                                                    </div>
-                                                    <!-- <div class="form-group col-12 col-md-3">
-                                                        Serial No. To
-                                                        <input type="text" class="form-control" name="spnsr_cpn_slno_to[]"
-                                                            placeholder="Coupon Serial No. To" id="spnsr_cpn_slno_to"
-                                                            value="0">
-                                                    </div> -->
-                                                    <div class="form-group col-12 col-md-3">
-                                                        Amount
-                                                        <input type="text" class="form-control" name="spnsr_cpn_deno_amt[]"
-                                                            placeholder="Coupon Serial No. To" id="spnsr_cpn_deno_amt"
-                                                            value="0"><br>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <div class="col-12">
-                                                <button type="button" id="add_cpn_row_btn" class="btn btn-info">Add
-                                                    More</button>
-                                            </div>
-
-                                            <hr class="mt-3">
-                                            <div class="form-group col-12 col-md-6">
-                                                <label>Total Coupon Value (in ₹)</label>
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <input type="text" class="form-control" name="total_claim" id="total_claim" placeholder="0" required="required" disabled>
-                                                <br>
-                                            </div>
-                                     
-
-
-                                            <hr class="mt-3">
+                                            <hr>
                                             <div class="form-group col-12"><br>
                                                 <label><b>Bank Details</b></label>
                                             </div>
@@ -430,7 +355,8 @@ function generateInvoice($invoiceNo)
     <!-- End Page-content -->
 
     <?php include "../footer.php"; ?>
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
     <script type="text/javascript">
         function claim_amount() {
             // var amt50 = 10000;
@@ -446,21 +372,4 @@ function generateInvoice($invoiceNo)
             $("#total200").val(amt200);
             $("#total_claim").val(total_amt);
         }
-        document.getElementById("add_cpn_row_btn").addEventListener("click", function() {
-            // Select the first dynamic form block
-            const original = document.querySelector(".dynamic-form");
-
-            // Clone the original block
-            const clone = original.cloneNode(true);
-
-            // Reset input values in the cloned block
-            const inputs = clone.querySelectorAll("input");
-            inputs.forEach(input => input.value = "0");
-
-            const selects = clone.querySelectorAll("select");
-            selects.forEach(select => select.selectedIndex = 0);
-
-            // Append the cloned block to the container
-            document.getElementById("dynamic-form-container").appendChild(clone);
-        });
     </script>

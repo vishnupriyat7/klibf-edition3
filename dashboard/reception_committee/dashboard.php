@@ -22,11 +22,6 @@ $total_virtual_qu_stmt->execute();
 $total_virtual_qu_res = $total_virtual_qu_stmt->get_result();
 $tot_virtual_qu_count = $total_virtual_qu_res->fetch_assoc();
 
-// $total_quiz_school_qry = "SELECT count(id) FROM reg_quiz where category_id = 1;";
-// $total_quiz_school_stmt = $con->prepare($total_quiz_school_qry);
-// $total_quiz_school_stmt->execute();
-// $total_quiz_school_res = $total_quiz_school_stmt->get_result();
-// $tot_quiz_school_count = $total_quiz_school_res->fetch_assoc();
 
 $total_school_qry = "SELECT COUNT(*) AS school_count FROM queue WHERE inst_type = 's';";
 $total_school_stmt = $con->prepare($total_school_qry);
@@ -43,11 +38,18 @@ $total_college_count = $total_college_res->fetch_assoc();
 
 
 
-$total_quiz_public_qry = "SELECT count(id) FROM reg_quiz where category_id = 3;";
-$total_quiz_public_stmt = $con->prepare($total_quiz_public_qry);
-$total_quiz_public_stmt->execute();
-$total_quiz_public_res = $total_quiz_public_stmt->get_result();
-$total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
+$total_count_7_qry = "SELECT SUM(count_lp) AS count_7 FROM queue;";
+$total_count_7_stmt = $con->prepare($total_count_7_qry);
+$total_count_7_stmt->execute();
+$total_count_7_res = $total_count_7_stmt->get_result();
+$total_count_7 = $total_count_7_res->fetch_assoc();
+
+
+$total_count_8_qry = "SELECT SUM(count_hs) AS count_8_onwards FROM queue;";
+$total_count_8_stmt = $con->prepare($total_count_8_qry);
+$total_count_8_stmt->execute();
+$total_count_8_res = $total_count_8_stmt->get_result();
+$total_count_8 = $total_count_8_res->fetch_assoc();
 ?>
 
 
@@ -146,8 +148,8 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Count Upto STD 7
                                         Registered</p>
-                                    <!-- <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4> -->
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_count_7['count_7']; ?>"></span></h4>
                                 </div>
                             </div>
                         </div><!-- end card body -->
@@ -165,13 +167,15 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Count STD 8 Onwards
                                         Registered</p>
-                                    <!-- <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4> -->
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_count_8['count_8_onwards']; ?>"></span></h4>
                                 </div>
                             </div>
                         </div><!-- end card body -->
                     </div><!-- end card -->
                 </div><!-- end col -->
+
+                
             </div>
         </div> <!-- end .h-100-->
     </div> <!-- end col -->

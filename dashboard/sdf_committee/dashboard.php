@@ -75,9 +75,9 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
-                                        Registration</p>
-                                    <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $tot_quiz_reg_count['count(id)']; ?>"></span></h4>
+                                    Sponser's</p>
+                                    <!-- <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $tot_quiz_reg_count['count(id)']; ?>"></span></h4> -->
                                 </div>
 
                             </div>
@@ -85,7 +85,7 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                     </div><!-- end card -->
                 </div><!-- end col -->
 
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -101,11 +101,11 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                             data-target="<?= $tot_quiz_school_count['count(id)']; ?>"></span></h4>
                                 </div>
                             </div>
-                        </div><!-- end card body -->
-                    </div><!-- end card -->
-                </div><!-- end col -->
+                        </div>
+                    </div>
+                </div> -->
 
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -121,11 +121,11 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                             data-target="<?= $total_quiz_college_count['count(id)']; ?>"></span></h4>
                                 </div>
                             </div>
-                        </div><!-- end card body -->
-                    </div><!-- end card -->
-                </div><!-- end col -->
+                        </div>
+                    </div>
+                </div> -->
 
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -141,9 +141,11 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                             data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4>
                                 </div>
                             </div>
-                        </div><!-- end card body -->
-                    </div><!-- end card -->
-                </div><!-- end col -->
+                        </div>
+                    </div>
+                </div> -->
+
+
             </div>
         </div> <!-- end .h-100-->
     </div> <!-- end col -->
