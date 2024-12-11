@@ -178,59 +178,56 @@ function generateInvoice($invoiceNo)
                             $spnsr_trnctn_dt = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_dt']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-                            if ($total_amt != $paid_amt) {
-                                $msg = 'Transaction amount mismatch. Please enter total amount.';
-                                $status = "NOTOK";
-                            }
-                            if ($trnctn_type == '0') {
-                                $msg = 'Please select mode of transaction.';
-                                $status = "NOTOK";
-                            }
-
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
                             } else {
-                                $query = "INSERT INTO challan (user_id, bank_name, paid_amt, trnctn_no, trnctn_type, trnctn_date, challan_img, status, updated_date, paye_name, ifsc) VALUES ('$user_id', '$bank_name', '$paid_amt', '$trnctn_no', '$trnctn_type', '$trnctn_dt', '$newFileName', 'E', '$date',  '$payee', '$ifsc');";
+                                $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, trnct_dt, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$spnsr_trnctn_dt', '$date');";
                             }
-                            $result = mysqli_query($con, $query);
-                            if ($result) {
-                                $errormsg = "
-                          <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                            Your payment details is Successfully Saved.
+                            $result_sponser = mysqli_query($con, $query_sponser);
+                            if ($result_sponser) {
+                                $last_id = mysqli_insert_id($con);
+                                $denominations = $_POST['spnsr_cpn_deno'];
+                                $serials_from = $_POST['spnsr_cpn_slno_frm'];
+                                $serials_to = $_POST['spnsr_cpn_slno_to'];
+                                $amounts = $_POST['spnsr_cpn_deno_amt'];
+                                // Loop through and insert into the database
+                                for ($i = 0; $i < count($denominations); $i++) {
+                                    $denomination_id = mysqli_real_escape_string($con, $denominations[$i]);
+                                    $serial_no_from = mysqli_real_escape_string($con, $serials_from[$i]);
+                                    $serial_no_to = mysqli_real_escape_string($con, $serials_to[$i]);
+                                    var_dump($serial_no_from);
+                                    var_dump($serial_no_to);
+                                    $total_coupons = ($serial_no_to - $serial_no_from) + 1;
+                                    for ($j = 0; $j < $total_coupons; $j++) {
+                                        $coupon_serial_no = $serial_no_from + $j;
+                                        $query_sponser_coupon = "INSERT INTO coupon_distribution (sponser_id, denom_id, serial_no, updated_date) VALUES ('$last_id', '$denomination_id', '$coupon_serial_no', '$date');";
+                                        $result_sponser_coupon = mysqli_query($con, $query_sponser_coupon);
+                                        if (!$result_sponser_coupon) {
+                                            $status = "NOTOK";
+                                            $msg = "Something went wrong!";
+                                        }
+                                    }
+                                    // $amount = mysqli_real_escape_string($con, $amounts[$i]);
+                                }
+                                $errormsg = "";
+                                if ($status == "NOTOK") {
+                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
+                                        $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                               </div>"; //printing error if found in validation
+                                } else {
+                                    $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                            Your Coupon Sponser details is Successfully Saved.
                                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                                            </div>
-                           ";
-
+                                            </div>";
+                                }
                             } else {
                                 $errormsg = "
-                                <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                           Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
-                                           <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                           </div>";
-                            }
-                            $denominations = $_POST['spnsr_cpn_deno'];
-                            $serials_from = $_POST['spnsr_cpn_slno_frm'];
-                            $serials_to = $_POST['spnsr_cpn_slno_to'];
-                            $amounts = $_POST['spnsr_cpn_deno_amt'];
-                            // Loop through and insert into the database
-                            for ($i = 0; $i < count($denominations); $i++) {
-                                $denomination_id = mysqli_real_escape_string($con, $denominations[$i]);
-                                $serial_no_from = mysqli_real_escape_string($con, $serials_from[$i]);
-                                $serial_no_to = mysqli_real_escape_string($con, $serials_to[$i]);
-                                var_dump($serial_no_from);
-                                var_dump($serial_no_to);
-                                // $amount = mysqli_real_escape_string($con, $amounts[$i]);
-                            }
-                            $errormsg = "";
-                            if ($status == "NOTOK") {
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
-                                    $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                               </div>"; //printing error if found in validation
-                            } else {
-
-
+                            <div class='alert alert-danger alert-dismissible alert-outline fade show'>
+                                       Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
+                                       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                       </div>";
                             }
                         }
                         ?>
@@ -316,8 +313,9 @@ function generateInvoice($invoiceNo)
                                         <!-- <form action="" method="post" enctype="multipart/form-data"> -->
                                         <!-- <div class="row bg-grey"> -->
                                         <div class="form-group col-12">
-                                            <label><b>Sponser's Coupon Details</b></label>
+                                            <label><b>Sponsor's Coupon Details</b></label>
                                         </div>
+
                                         <div id="dynamic-form-container">
                                             <div class="row dynamic-form">
                                                 <div class="form-group col-12 col-md-3">
@@ -325,42 +323,49 @@ function generateInvoice($invoiceNo)
                                                     $denominationQry = "SELECT * FROM coupon_denomination";
                                                     $denominations = mysqli_query($con, $denominationQry);
                                                     $counter = 0;
+                                                    $denominationData = []; // Store denominations for JavaScript
                                                     ?>
                                                     *Coupon Denomination
-                                                    <select class="form-control form-group" name="spnsr_cpn_deno[]"
-                                                        id="spnsr_cpn_deno" required="required" style="height:37px;">
+                                                    <select class="form-control spnsr_cpn_deno" name="spnsr_cpn_deno[]"
+                                                        required="required" style="height:37px;">
                                                         <option value="">Select Denomination</option>
-                                                        <?php while ($denomination = mysqli_fetch_array($denominations)) { ?>
+                                                        <?php while ($denomination = mysqli_fetch_array($denominations)) {
+                                                            // Store denomination data in a PHP array
+                                                            $denominationData[$denomination['id']] = $denomination['denomination'];
+                                                            ?>
                                                             <option value="<?= $denomination['id']; ?>">
                                                                 <?= $denomination['denomination']; ?>
                                                             </option>
                                                         <?php } ?>
                                                     </select>
                                                 </div>
+
                                                 <div class="form-group col-12 col-md-3">
                                                     Serial No. From
-                                                    <input type="text" class="form-control" name="spnsr_cpn_slno_frm[]"
-                                                        placeholder="Coupon Serial No. From" id="spnsr_cpn_slno_frm"
+                                                    <input type="text" class="form-control spnsr_cpn_slno_frm"
+                                                        name="spnsr_cpn_slno_frm[]" placeholder="Coupon Serial No. From"
                                                         value="0">
                                                 </div>
                                                 <div class="form-group col-12 col-md-3">
                                                     Serial No. To
-                                                    <input type="text" class="form-control" name="spnsr_cpn_slno_to[]"
-                                                        placeholder="Coupon Serial No. To" id="spnsr_cpn_slno_to"
+                                                    <input type="text" class="form-control spnsr_cpn_slno_to"
+                                                        name="spnsr_cpn_slno_to[]" placeholder="Coupon Serial No. To"
                                                         value="0">
                                                 </div>
                                                 <div class="form-group col-12 col-md-3">
                                                     Amount
-                                                    <input type="text" class="form-control" name="spnsr_cpn_deno_amt[]"
-                                                        placeholder="Coupon Serial No. To" id="spnsr_cpn_deno_amt"
-                                                        value="0"><br>
+                                                    <input type="text" class="form-control spnsr_cpn_deno_amt"
+                                                        name="spnsr_cpn_deno_amt[]" placeholder="Amount" value="0"
+                                                        readonly><br>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-12">
                                             <button type="button" id="add_cpn_row_btn" class="btn btn-info">Add
                                                 More</button>
                                         </div>
+
                                         <div class="col-lg-12"><br>
                                             <button type="submit" name="save_sponser" class="btn btn-primary"
                                                 id="save_sponser">Save Sponser</button>
@@ -397,22 +402,59 @@ function generateInvoice($invoiceNo)
             }
         }
 
-        document.getElementById("add_cpn_row_btn").addEventListener("click", function () {
-            // Select the first dynamic form block
-            const original = document.querySelector(".dynamic-form");
+        // Store denomination data
+        const denominationData = <?= json_encode($denominationData); ?>;
 
-            // Clone the original block
-            const clone = original.cloneNode(true);
+        // Function to update amount dynamically
+        function updateAmount(row) {
+            const dropdown = row.querySelector('.spnsr_cpn_deno');
+            const serialFrom = row.querySelector('.spnsr_cpn_slno_frm');
+            const serialTo = row.querySelector('.spnsr_cpn_slno_to');
+            const amountField = row.querySelector('.spnsr_cpn_deno_amt');
 
-            // Reset input values in the cloned block
-            const inputs = clone.querySelectorAll("input");
-            inputs.forEach(input => input.value = "0");
+            dropdown.addEventListener('change', () => {
+                const denominationId = dropdown.value;
+                const denominationValue = denominationData[denominationId] || 0;
 
-            const selects = clone.querySelectorAll("select");
-            selects.forEach(select => select.selectedIndex = 0);
+                // Calculate amount dynamically
+                const from = parseInt(serialFrom.value) || 0;
+                const to = parseInt(serialTo.value) || 0;
+                const count = to - from + 1;
 
-            // Append the cloned block to the container
-            document.getElementById("dynamic-form-container").appendChild(clone);
+                const totalAmount = denominationValue * count;
+                amountField.value = totalAmount > 0 ? totalAmount : 0;
+            });
+
+            // Add event listeners for serial number inputs
+            [serialFrom, serialTo].forEach(input => {
+                input.addEventListener('input', () => {
+                    const denominationId = dropdown.value;
+                    const denominationValue = denominationData[denominationId] || 0;
+
+                    const from = parseInt(serialFrom.value) || 0;
+                    const to = parseInt(serialTo.value) || 0;
+                    const count = to - from + 1;
+
+                    const totalAmount = denominationValue * count;
+                    amountField.value = totalAmount > 0 ? totalAmount : 0;
+                });
+            });
+        }
+
+        // Attach event listeners to all current rows
+        document.querySelectorAll('.dynamic-form').forEach(row => updateAmount(row));
+
+        // Add more rows dynamically
+        document.getElementById('add_cpn_row_btn').addEventListener('click', () => {
+            const container = document.getElementById('dynamic-form-container');
+            const newRow = container.querySelector('.dynamic-form').cloneNode(true);
+
+            // Reset input values in the new row
+            newRow.querySelectorAll('input, select').forEach(field => field.value = '');
+            newRow.querySelector('.spnsr_cpn_deno_amt').value = 0;
+
+            container.appendChild(newRow);
+            updateAmount(newRow); // Attach event listener to new row
         });
 
     </script>
