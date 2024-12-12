@@ -176,10 +176,11 @@ function generateInvoice($invoiceNo)
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $con->begin_transaction();
+                            // var_dump("mbdb");die;
                             try {
                                 $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, trnct_dt, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$spnsr_trnctn_dt', '$date');";
-                                // $result_sponser = mysqli_query($con, $query_sponser);
-                                if ($con->query($query_sponser)) {
+                                $result_sponser = mysqli_query($con, $query_sponser);
+                                if ($result_sponser) {
                                     $last_id = mysqli_insert_id($con);
                                     $denominations = $_POST['spnsr_cpn_deno'];
                                     $serials_from = $_POST['spnsr_cpn_slno_frm'];
@@ -198,7 +199,7 @@ function generateInvoice($invoiceNo)
                                             $coupon_serial_no = $serial_no_from + $j;
                                             $query_sponser_coupon = "INSERT INTO coupon_distribution (sponser_id, denom_id, serial_no, updated_date) VALUES ('$last_id', '$denomination_id', '$coupon_serial_no', '$date');";
                                             $result_sponser_coupon = mysqli_query($con, $query_sponser_coupon);
-                                            if (!$con->query($result_sponser_coupon)) {
+                                            if (!$result_sponser_coupon) {
                                                 $status = "NOTOK";
                                                 throw new Exception("Query failed: " . $con->error);
                                             }
@@ -309,14 +310,7 @@ function generateInvoice($invoiceNo)
                                                     required="required" value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
                                             </div>
                                         </div><br>
-                                        <!-- <div class="col-lg-12">
-                                            <button type="submit" name="save_spnsr_bnk" class="btn btn-primary"
-                                                id="save_spnsr_bnk">Save Sponser</button>
-                                        </div>
-                                    </form><br> -->
-                                        <hr><br>
-                                        <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-                                        <!-- <div class="row bg-grey"> -->
+                                    
                                         <div class="form-group col-12">
                                             <label><b>Sponsor's Coupon Details</b></label>
                                         </div>
