@@ -553,7 +553,9 @@ include "head-style.php";
             addressDiv2.style.display = "none";
             document.getElementById("message").style.display = "block";
             document.getElementById("spot-message").style.display = "none";
+            selectDistrict();
         }
+        
     }
 
     function displayTeam2() {
