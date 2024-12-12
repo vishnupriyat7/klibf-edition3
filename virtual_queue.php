@@ -226,7 +226,7 @@ include "head-style.php"; ?>
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                     </div>
                                     <?php
-                                    $day_query = "SELECT * FROM event_date";
+                                    $day_query = "SELECT * FROM event_date WHERE id !='8'";
                                     $day_stmt = $conn->prepare($day_query);
                                     $day_stmt->execute();
                                     $day_result = $day_stmt->get_result();

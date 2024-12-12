@@ -18,7 +18,7 @@
         </li>
       </ul>
     </li>
-
+    <li><a href="publishers_catalog.php">Publishers</a></li>
 
     <!-- <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
       <ul>

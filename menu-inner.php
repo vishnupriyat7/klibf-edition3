@@ -22,6 +22,7 @@
         </li>
       </ul>
     </li>
+    <li><a href="publishers_catalog.php">Publishers</a></li>
     <li>
       <a class="nav-link scrollto" href="news.php">News</a>
     </li>
