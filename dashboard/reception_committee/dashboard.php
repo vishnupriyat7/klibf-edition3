@@ -16,6 +16,15 @@
 </div>
 <!-- end page title -->
 <?php
+
+$total_count_inst_qry = "SELECT count(id) AS total_count_inst FROM queue;";
+$total_count_inst_stmt = $con->prepare($total_count_inst_qry);
+$total_count_inst_stmt->execute();
+$total_count_inst_res = $total_count_inst_stmt->get_result();
+$total_count_inst = $total_count_inst_res->fetch_assoc();
+
+
+
 $total_virtual_qu_qry = "SELECT sum(count_tot) AS total_qu_reg_count FROM queue;";
 $total_virtual_qu_stmt = $con->prepare($total_virtual_qu_qry);
 $total_virtual_qu_stmt->execute();
@@ -38,18 +47,25 @@ $total_college_count = $total_college_res->fetch_assoc();
 
 
 
-$total_count_7_qry = "SELECT SUM(count_lp) AS count_7 FROM queue;";
+$total_count_7_qry = "SELECT SUM(count_lp) AS count_7 FROM queue WHERE inst_type = 's';";
 $total_count_7_stmt = $con->prepare($total_count_7_qry);
 $total_count_7_stmt->execute();
 $total_count_7_res = $total_count_7_stmt->get_result();
 $total_count_7 = $total_count_7_res->fetch_assoc();
 
 
-$total_count_8_qry = "SELECT SUM(count_hs) AS count_8_onwards FROM queue;";
+$total_count_8_qry = "SELECT SUM(count_hs) AS count_8_onwards FROM queue WHERE inst_type = 's';";
 $total_count_8_stmt = $con->prepare($total_count_8_qry);
 $total_count_8_stmt->execute();
 $total_count_8_res = $total_count_8_stmt->get_result();
 $total_count_8 = $total_count_8_res->fetch_assoc();
+
+$total_count_college_students_qry = "SELECT sum(count_tot) AS total_college_student FROM queue WHERE inst_type = 'c';";
+$total_count_college_students_stmt = $con->prepare($total_count_college_students_qry);
+$total_count_college_students_stmt->execute();
+$total_count_college_students_res = $total_count_college_students_stmt->get_result();
+$total_count_college_students = $total_count_college_students_res->fetch_assoc();
+
 ?>
 
 
@@ -74,6 +90,8 @@ $total_count_8 = $total_count_8_res->fetch_assoc();
             </div>
             <!--end row-->
 
+
+
             <div class="row h-100">
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
@@ -85,10 +103,9 @@ $total_count_8 = $total_count_8_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Virtual Queue
-                                        Registration</p>
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Institutions </p>
                                     <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $tot_virtual_qu_count['total_qu_reg_count']; ?>"></span></h4>
+                                            data-target="<?= $total_count_inst['total_count_inst']; ?>"></span></h4>
                                 </div>
 
                             </div>
@@ -146,8 +163,30 @@ $total_count_8 = $total_count_8_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Count Upto STD 7
-                                        Registered</p>
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Students </p>
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $tot_virtual_qu_count['total_qu_reg_count']; ?>"></span></h4>
+                                </div>
+
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Students Upto STD 7
+                                    </p>
                                     <h4 class=" mb-0"><span class="counter-value"
                                             data-target="<?= $total_count_7['count_7']; ?>"></span></h4>
                                 </div>
@@ -165,8 +204,8 @@ $total_count_8 = $total_count_8_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Count STD 8 Onwards
-                                        Registered</p>
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Students STD 8 Onwards
+                                    </p>
                                     <h4 class=" mb-0"><span class="counter-value"
                                             data-target="<?= $total_count_8['count_8_onwards']; ?>"></span></h4>
                                 </div>
@@ -175,7 +214,27 @@ $total_count_8 = $total_count_8_res->fetch_assoc();
                     </div><!-- end card -->
                 </div><!-- end col -->
 
-                
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of Students from College
+                                    </p>
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_count_college_students['total_college_student']; ?>"></span></h4>
+                                </div>
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+
             </div>
         </div> <!-- end .h-100-->
     </div> <!-- end col -->
