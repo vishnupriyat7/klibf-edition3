@@ -52,6 +52,13 @@
                         <span data-key="t-dashboards">Coupon Sponsers</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_report.php" class="nav-link"
+                        data-key="t-one-page">
+                        <i class="mdi mdi-cash-multiple"></i>
+                        <span data-key="t-dashboards">Coupon Report</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

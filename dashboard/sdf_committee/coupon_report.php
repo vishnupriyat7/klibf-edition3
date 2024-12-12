@@ -38,81 +38,40 @@ include "sidebar.php";
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'publisher_profile_report-data')" class="btn btn-primary">Export Table Data To Excel File</button>
-                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
+                            <button onclick="exportTableToExcel('example', 'publisher_profile_report-data')"
+                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                style="font-style:normal; font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th data-ordering="false">Sl.No</th>
-                                        <th data-ordering="false">Name</th>
-                                        <th data-ordering="false">Email Id</th>
-                                        <th data-ordering="false">Password</th>
-                                        <th data-ordering="false">Contact Number</th>
-                                        <th>Delete</th>
-                                        <!-- <th></th> -->
+                                        <th data-ordering="false">Sl No</th>
+                                        <th data-ordering="false">Coupon No</th>
+                                        <th data-ordering="false">Denomination</th>
+                                        <th data-ordering="false">Sponser</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $query = "SELECT * FROM users where user_type='P' ORDER BY id DESC";
-                                    $bookusers = mysqli_query($con, $query);
+                                    $coupon_query = "SELECT * FROM coupon_distribution cd JOIN coupon_sponsers cs ON cd.sponser_id = cs.id JOIN coupon_denomination cdn ON cd.denom_id = cdn.id ORDER BY cd.serial_no ASC";
+                                    $coupons = mysqli_query($con, $coupon_query);
                                     $counter = 0;
-                                    while ($bookuser = mysqli_fetch_array($bookusers)) {
-                                        $id = "$bookuser[id]";
-                                        $name = "$bookuser[name]";
-                                        $email = "$bookuser[email]";
-                                        $password = "$bookuser[password]";
-                                        $contactno = "$bookuser[contact_no]";
+                                    while ($coupon = mysqli_fetch_array($coupons)) {
                                         ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
                                             <td>
-                                                <?= $name; ?>
+                                                <?= $coupon['serial_no']; ?>
                                             </td>
                                             <td>
-                                                <?= $email; ?>
+                                                <?= $coupon['denomination']; ?>
                                             </td>
                                             <td>
-                                                <?=  $password; ?>
-                                            </td>
-                                            <td>
-                                                <?= $contactno; ?>
-                                            </td>
-                                            <td>
-                                                <!-- <div class='dropdown d-inline-block'>
-                                                    <button class='btn btn-soft-secondary btn-sm dropdown' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
-                                                        <i class='ri-more-fill align-middle'></i>
-                                                    </button> -->
-                                                <!-- <ul class='dropdown-menu dropdown-menu-end'> -->
-                                                <!-- <li>
-                                                            <a href='editstall_registration.php?id=$id' class='dropdown-item edit-item-btn'>
-                                                                <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Edit
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href='deletesocial.php?id=$id' class='dropdown-item remove-item-btn'>
-                                                                <i class='ri-delete-bin-fill align-bottom me-2 text-muted'></i> Approve
-                                                            </a>
-                                                        </li> -->
-                                                <!-- <li> -->
-                                                <?php
-                                                $query = "SELECT * FROM users_profile where user_id='$id'";
-                                                $profileusers = mysqli_query($con, $query);
-                                                $user_profile_row = mysqli_fetch_row($profileusers);
-                                                $btnenbl = $user_profile_row ? "" : "hidden";
-                                                ?>
-                                                <a href='delete_reg_pblshr.php?id=<?= $id; ?>'
-                                                    class='dropdown-item remove-item-btn' <?= $btnenbl; ?>>
-                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i>Delete
-                                                </a>
-                                                <!-- </li> -->
-                                                <!-- </ul> -->
-                                                <!-- </div> -->
+                                                <?= $coupon['spnsr_org_name']; ?>
                                             </td>
                                         </tr>
-                                    <?php }
-                                    ?>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
