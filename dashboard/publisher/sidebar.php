@@ -80,7 +80,7 @@
                                         class="nav-link" data-key="t-one-page"> Terms and Conditions
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item">
+                                <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
                                     class="nav-link" data-key="t-one-page"> Book Release Proposal
                                 </a>
@@ -88,7 +88,7 @@
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
                                     data-key="t-nft-landing"> Book Discussion Proposal </a>
-                            </li> -->
+                            </li>
                             </ul>
                         </div>
                     </li>
@@ -96,17 +96,17 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
                             href="<?= $base_url ?>/dashboard/publisher/catalog_upload.php">
-                            <i class="ri-checkbox-multiple-line"></i> <span data-key="t-landing">Catalogue Upload</span>
+                            <i class="ri-file-upload-line"></i> <span data-key="t-landing">Catalogue Upload</span>
                         </a>
                     </li>
                   
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
                             href="<?= $base_url ?>/dashboard/publisher/coupon_old.php">
                             <i class="mdi mdi-cash-multiple"></i>
                             <span data-key="t-landing">Coupon Entry Old</span>
                         </a>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse">
@@ -128,12 +128,6 @@
                             </ul>
                         </div>
                     </li>
-
-
-
-
-
-
 
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"

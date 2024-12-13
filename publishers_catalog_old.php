@@ -170,7 +170,7 @@
                         <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="80vh" width="95vw">
                       </div> -->
                       <div class="logo-popup" onclick="showPopup('<?= $logo; ?>');">
-                        <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="80vh" width="95vw">
+                        <img src="data:image/jpg;charset=utf8;base64,<?= $logo; ?>" height="80vh" width="80vw">
                       </div>
                     </td>
 

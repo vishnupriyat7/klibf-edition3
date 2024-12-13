@@ -152,7 +152,14 @@ include "config.php"; ?>
                             </thead>
                             <tbody id="table-body">
                                 <?php
-                                $query = "SELECT up.id, up.user_id, up.fascia, up.logo, ch.user_id, ch.status, pc.* FROM users_profile up JOIN publisher_catalogue pc ON up.user_id = pc.user_id JOIN challan ch ON up.user_id = ch.user_id WHERE ch.status = 'A' ORDER BY up.fascia ASC";
+                                // $query = "SELECT up.id, up.user_id, up.fascia, up.logo, ch.user_id, ch.status, pc.* FROM users_profile up JOIN publisher_catalogue pc ON up.user_id = pc.user_id JOIN challan ch ON up.user_id = ch.user_id WHERE ch.status = 'A' ORDER BY up.fascia ASC";
+
+                                $query = "SELECT up.id, up.user_id, up.fascia, up.logo, ch.user_id AS challan_user_id, ch.status, pc.filename 
+          FROM users_profile up
+          LEFT JOIN publisher_catalogue pc ON up.user_id = pc.user_id
+          LEFT JOIN challan ch ON up.user_id = ch.user_id
+          WHERE ch.status = 'A'
+          ORDER BY up.fascia ASC";
                                 $publshrdetls = mysqli_query($conn, $query);
                                 $counter = 0;
                                 while ($publshr = mysqli_fetch_array($publshrdetls)) {
@@ -169,7 +176,7 @@ include "config.php"; ?>
                                         <td>
 
                                             <div class="logo-popup" onclick="showPopup('dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>');">
-                                                <img class="card-img-top mx-auto" src="dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>" alt="Publisher Logo" height="80vh" width="95vw">
+                                                <img src="dashboard/publisher/uploads/publisher_logo/<?= $logo; ?>" alt="Publisher Logo" height="80vh" width="95vw">
 
                                             </div>
                                         </td>
@@ -187,7 +194,9 @@ include "config.php"; ?>
                                             $result1 = $stmt1->get_result();
                                             $publsr_catalogue = $result1->fetch_assoc();
                                             // var_dump($result1);
-                                            $filename = "$publsr_catalogue[filename]";
+                                            // $filename = "$publsr_catalogue[filename]";
+                                            $filename = isset($publshr['filename']) ? $publshr['filename'] : null;
+
                                             $file_dir = 'dashboard/publisher/uploads/catalogue';
                                             // var_dump($filename);
                                             if ($filename) {
@@ -196,7 +205,7 @@ include "config.php"; ?>
 
                                                 <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#myModal<?= $pub_user_id ?>">View</button>
                                                 <div class="modal" id="myModal<?= $pub_user_id ?>">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-dialog modal-dialog-centered modal-xl">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h4 class="modal-title"><?= $org_name; ?></h4>
@@ -251,6 +260,9 @@ include "config.php"; ?>
             const popupContainer = document.getElementById('popupContainer');
             const popupImage = document.getElementById('popupImage');
             popupImage.src = `${imageData}`;
+            // popupImage.height = '100vh';
+            popupImage.style.height = '60vh'; // Adjust height as needed
+            popupImage.style.width = 'auto'; // Maintains aspect ratio
             popupContainer.style.display = 'block';
         }
 
