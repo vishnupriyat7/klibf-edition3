@@ -1,3 +1,5 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
 <?php
 // var_dump("hiii");
 ini_set('display_errors', '1');
@@ -264,78 +266,7 @@ function generateInvoice($invoiceNo)
                                                     <input type="text" class="form-control" name="cpn_invoice" id="cpn_invoice" placeholder="Invoice Number" required="required">
                                                 </div>
                                             </div><br>
-                                            <!--  -->
-                                            <!-- <div class="form-group col-12 col-md-1">
-                                                <br>
-                                                Coupon
-                                                <input type="text" class="form-control" placeholder="50" disabled>
-                                            </div>
-                                            <div class="form-group col-12 col-md-1">
-                                                <br>
-                                                *Count
-                                                <input type="text" class="form-control" name="count50" id="count50" placeholder="0" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onchange="claim_amount();">
-                                            </div>
-                                            <div class="form-group col-12 col-md-8">
-                                                <br>
-                                                *Serial Number
-                                                <input type="text" class="form-control" name="cpn_serial_50" id="cpn_serial_50" required="required" placeholder="Serial Numbers">
-                                            </div>
-                                        
-                                            <div class="form-group col-12 col-md-2">
-                                                <br>
-                                                Amount (in ₹ )
-                                                <input type="text" class="form-control" name="total50" id="total50" placeholder="0" required="required" disabled>
-                                            </div>
-                                            <div class="form-group col-12 col-md-1">
-                                                <br>
-                                                <input type="text" class="form-control" placeholder="100" disabled>
-                                            </div>
-                                            <div class="form-group col-12 col-md-1">
-                                                <br>
-                                                <input type="text" class="form-control" name="count100" id="count100" placeholder="0" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onchange="claim_amount();">
-                                            </div>
-                                            <div class="form-group col-12 col-md-8">
-                                                <br>
-                                                <input type="text" class="form-control" name="cpn_serial_100" id="cpn_serial_100" required="required" placeholder="Serial Numbers">
-                                            </div>
-                                           
-                                            <div class="form-group col-12 col-md-2">
-                                                <br>
-                                                <input type="text" class="form-control" name="total100" id="total100" placeholder="0" required="required" disabled>
-                                            </div>
-                                            <div class="form-group col-12 col-md-1">
-                                                <br>
-                                                <input type="text" class="form-control" placeholder="200" disabled>
-                                            </div>
-                                            <div class="form-group col-12 col-md-1">
-                                                <br>
-                                                <input type="text" class="form-control" name="count200" id="count200" placeholder="0" required="required" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" onchange="claim_amount();">
-                                            </div>
-                                            <div class="form-group col-12 col-md-8">
-                                                <br>
-                                                <input type="text" class="form-control" name="cpn_serial_200" id="cpn_serial_200" required="required" placeholder="Serial Numbers">
-                                            </div>
-                                          
-                                            <div class="form-group col-12 col-md-2">
-                                                <br>
-                                                <input type="text" class="form-control" name="total200" id="total200" placeholder="0" required="required" disabled>
-                                                <br>
-                                            </div>
-                                            <hr>
-                                            <div class="form-group col-12 col-md-6">
-                                                <label>Total Coupon Value (in ₹)</label>
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <input type="text" class="form-control" name="total_claim" id="total_claim" placeholder="0" required="required" disabled>
-                                                <br>
-                                            </div> -->
 
-                                            <!-- <hr class="mt-3"><br> -->
-                                            <!-- <form action="" method="post" enctype="multipart/form-data"> -->
-                                            <!-- <div class="row bg-grey"> -->
-                                            <!-- <div class="form-group col-12">
-                                                <label><b>Sponser's Coupon Details</b></label>
-                                            </div> -->
                                             <div id="dynamic-form-container" class="mt-5">
                                                 <div class="row dynamic-form">
                                                     <div class="form-group col-12 col-md-3">
@@ -356,7 +287,7 @@ function generateInvoice($invoiceNo)
                                                         $counter = 0;
                                                         ?>
                                                         *Coupon Denomination
-                                                        <select class="form-control form-group" name="cpn_denom"
+                                                        <select class="form-control form-group" name="cpn_denom[]"
                                                             id="cpn_denom" onchange="listCouponsrlNo();" style="height:37px;" required>
                                                             <option value="">Select Denomination</option>
 
@@ -371,16 +302,24 @@ function generateInvoice($invoiceNo)
                                                         </select>
 
                                                     </div>
-                                                    <div class="form-group col-12 col-md-3">
+                                                    <!-- <div class="form-group col-12 col-md-3">
 
                                                         Serial No.
-                                                     
-                                                        <select class="form-control form-group" name="cpn_slno"
+
+                                                        <select class="form-control form-group" name="cpn_slno[]"
                                                             id="cpn_slno" style="height:37px;" required>
                                                             <option value="">Select Serial No.</option>
                                                         </select>
 
+                                                    </div> -->
+
+                                                    <div class="form-group col-12 col-md-3">
+                                                        Serial No.
+                                                        <select class="form-control form-group" name="cpn_slno[]" id="cpn_slno" style="width: 100%;" required>
+                                                            <option value="">Select or Type Serial No.</option>
+                                                        </select>
                                                     </div>
+
 
 
                                                 </div>
@@ -448,6 +387,10 @@ function generateInvoice($invoiceNo)
     <!-- End Page-content -->
 
     <?php include "../footer.php"; ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <script type="text/javascript">
         function claim_amount() {
@@ -493,14 +436,37 @@ function generateInvoice($invoiceNo)
                     couponDenom_id: couponDenom,
                 },
                 dataType: "json",
+                // success: function(data) {
+                //     console.log(data);
+                //     $('#cpn_slno').empty();
+                //     var add_slno = "";
+                //     $("#cpn_slno").append('<option value="">Select Serial Number</option>');
+                //     $.each(data, function(key, value) {
+
+                //         $("#cpn_slno").append('<option value=' + value[3] + ' >' + value[3] + '</option>');
+                //     });
+                // }
+
                 success: function(data) {
-                    $('#cpn_slno').empty();
-                    var add_slno = "";
-                    $("#cpn_slno").append('<option value="">Select Serial Number</option>');
-                    $.each(data, function(key, value) {
-                        $("#cpn_slno").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
+                    $('#cpn_slno').empty(); // Clear existing options
+                    $('#cpn_slno').append('<option value="">Select or Type Serial No.</option>');
+
+                    data.forEach(item => {
+                        $('#cpn_slno').append(`<option value="${item[3]}">${item[3]}</option>`);
+                    });
+
+                    // Reinitialize Select2 for dynamic content
+                    $('#cpn_slno').select2({
+                        placeholder: "Select or Type Serial No.",
+                        allowClear: true
                     });
                 }
             });
         }
+        $(document).ready(function() {
+            $('#cpn_slno').select2({
+                placeholder: "Select or Type Serial No.",
+                allowClear: true
+            });
+        });
     </script>
