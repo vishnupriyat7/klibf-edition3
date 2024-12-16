@@ -197,23 +197,31 @@ function generateInvoice($invoiceNo)
                                         $total_coupons = ($serial_no_to - $serial_no_from) + 1;
                                         for ($j = 0; $j < $total_coupons; $j++) {
                                             $coupon_serial_no = $serial_no_from + $j;
-                                            $query_sponser_coupon = "INSERT INTO coupon_distribution (sponser_id, denom_id, serial_no, updated_date) VALUES ('$last_id', '$denomination_id', '$coupon_serial_no', '$date');";
-                                            $result_sponser_coupon = mysqli_query($con, $query_sponser_coupon);
-                                            if (!$result_sponser_coupon) {
+                                            $duplicate_serial_query = "SELECT id FROM coupon_distribution WHERE serial_no='$coupon_serial_no';";
+                                            $duplicate_serial_result = mysqli_query($con, $duplicate_serial_query);
+                                            if ($duplicate_serial_result->num_rows > 0) {
                                                 $status = "NOTOK";
-                                                throw new Exception("Query failed: " . $con->error);
+                                                $msg = "Serial Number already exists";
+                                                throw new Exception("Serial Number already exists" . $con->error);
+                                            } else {
+                                                $query_sponser_coupon = "INSERT INTO coupon_distribution (sponser_id, denom_id, serial_no, updated_date) VALUES ('$last_id', '$denomination_id', '$coupon_serial_no', '$date');";
+                                                $result_sponser_coupon = mysqli_query($con, $query_sponser_coupon);
+                                                if (!$result_sponser_coupon) {
+                                                    $status = "NOTOK";
+                                                    $msg = "Query Failed. Coupon data not able to save.";
+                                                    throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
+                                                }
                                             }
                                         }
                                     }
                                     if ($tot_deno_amt != (int) $spnsr_tot_amt) {
                                         $status = "NOTOK";
-                                        $msg = "Total amount missmatch";
+                                        $msg = "Missmatch in total amount and denomination total. Please verify.";
+                                        throw new Exception("Missmatch in total amount and denomination total. Please verify." . $con->error);
                                     }
                                     $errormsg = "";
                                     if ($status == "NOTOK") {
-                                        $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
-                                            $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                               </div>"; //printing error if found in validation
+                                        throw new Exception($msg . $con->error);
                                     } else {
                                         $con->commit();
                                         $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
@@ -222,18 +230,12 @@ function generateInvoice($invoiceNo)
                                             </div>";
                                     }
                                 } else {
-                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                       Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
-                                       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                       </div>";
-                                    throw new Exception("Query failed: " . $con->error);
+                                    throw new Exception("Query Failed. Sponser data not able to save." . $con->error);
                                 }
                             } catch (Exception $e) {
                                 $con->rollback();
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                       Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
-                                       <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                       </div>" . $e->getMessage();
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" . $e->getMessage() . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                       </div>";
                             }
                         }
                         ?>
@@ -310,9 +312,11 @@ function generateInvoice($invoiceNo)
                                                     required="required" value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
                                             </div>
                                         </div><br>
-                                    
+                                        <hr>
                                         <div class="form-group col-12">
-                                            <label><b>Sponsor's Coupon Details</b></label>
+                                            <label>
+                                                <b>Sponsor's Coupon Details</b>
+                                            </label>
                                         </div>
 
                                         <div id="dynamic-form-container">
@@ -358,7 +362,19 @@ function generateInvoice($invoiceNo)
                                                         readonly><br>
                                                 </div>
                                             </div>
+                                            <div class="form-group col-12 col-md-3">
+                                                <select class="form-control select2">
+                                                    <option>Select</option>
+                                                    <option>Car</option>
+                                                    <option>Bike</option>
+                                                    <option>Scooter</option>
+                                                    <option>Cycle</option>
+                                                    <option>Horse</option>
+                                                </select>
+                                            </div>
                                         </div>
+
+
 
                                         <div class="col-12">
                                             <button type="button" id="add_cpn_row_btn" class="btn btn-info">Add
@@ -386,6 +402,7 @@ function generateInvoice($invoiceNo)
 
     <?php include "../footer.php"; ?>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript">
         var _URL = window.URL || window.webkitURL;
         document.addEventListener("DOMContentLoaded", function () {
@@ -455,5 +472,5 @@ function generateInvoice($invoiceNo)
             container.appendChild(newRow);
             updateAmount(newRow); // Attach event listener to new row
         });
-
+        $('.select2').select2();
     </script>
