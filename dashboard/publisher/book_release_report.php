@@ -38,7 +38,7 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
-                                            <th data-ordering="false" rowspan="2">Action</th>
+                                            <!-- <th data-ordering="false" rowspan="2">Action</th> -->
                                             <th data-ordering="false" rowspan="2">Book Title</th>
                                             <th data-ordering="false" rowspan="2">Author</th>
                                             <th data-ordering="false" rowspan="2">Book Genere</th>
@@ -115,12 +115,12 @@
                                             ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
-                                                <td>
+                                                <!-- <td>
                                                     <a href='book_release_proposal.php?bkrlsid=<?= $id; ?>'
                                                         class='dropdown-item'>
                                                         <i class='mdi mdi-book-edit'></i>
                                                     </a>
-                                                </td>
+                                                </td> -->
                                                 <td><?= $booktitle; ?></td>
                                                 <td><?= $author; ?></td>
                                                 <td><?= $book_genere; ?></td>

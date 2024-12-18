@@ -39,7 +39,7 @@
                                     <thead class="text-center">
                                         <tr>
                                             <th data-ordering="false" rowspan="2">Sl.No</th>
-                                            <th data-ordering="false" rowspan="2">Action</th>
+                                            <!-- <th data-ordering="false" rowspan="2">Action</th> -->
                                             <th data-ordering="false" rowspan="2">Subject</th>
                                             <th data-ordering="false" rowspan="2">Book Name</th>
                                             <th data-ordering="false" rowspan="2">Book Cover</th>
@@ -118,12 +118,12 @@
                                             ?>
                                             <tr>
                                                 <td><?= ++$counter; ?></td>
-                                                <td>
+                                                <!-- <td>
                                                     <a href='book_discussion_proposal.php?bkdscnid=<?= $id; ?>'
                                                         class='dropdown-item'>
                                                         <i class='mdi mdi-book-edit'></i>
                                                     </a>
-                                                </td>
+                                                </td> -->
                                                 <td><?= $subject; ?></td>
                                                 <td><?= $bookName; ?></td>
                                                 <td class="text-center">
