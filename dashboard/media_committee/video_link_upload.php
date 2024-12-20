@@ -79,7 +79,7 @@ include "sidebar.php";
                                     $result = mysqli_query($con, $query);
                                     if ($result) {
                                         $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your Image is Successfully Uploaded.
+                                                Your Video is Successfully Uploaded.
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                     }

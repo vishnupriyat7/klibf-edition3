@@ -67,10 +67,11 @@
                         </a>
                     </li>
 
-                  
+
                     <!--  -->
                     <li class="nav-item">
-                        <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse">
+                        <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse"
+                            data-bs-target="#sidebarEvent">
                             <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Book Release/Discussion Proposals</span>
                         </a>
                         <div class="menu-dropdown collapse" id="sidebarEvent">
@@ -81,14 +82,14 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
-                                    class="nav-link" data-key="t-one-page"> Book Release Proposal
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
-                                    data-key="t-nft-landing"> Book Discussion Proposal </a>
-                            </li>
+                                    <a href="<?= $base_url ?>/dashboard/publisher/book_release_proposal.php"
+                                        class="nav-link" data-key="t-one-page"> Book Release Proposal
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
+                                        data-key="t-nft-landing"> Book Discussion Proposal </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -99,7 +100,7 @@
                             <i class="ri-file-upload-line"></i> <span data-key="t-landing">Catalogue Upload</span>
                         </a>
                     </li>
-                  
+
                     <!-- <li class="nav-item">
                         <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
                             href="<?= $base_url ?>/dashboard/publisher/coupon_old.php">
@@ -109,10 +110,11 @@
                     </li> -->
 
                     <li class="nav-item">
-                        <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse">
-                        <i class="mdi mdi-cash-multiple"></i> <span data-key="t-landing">Coupon</span>
+                        <a class="nav-link menu-link" role="button" href="#sidebarCoupon" data-bs-toggle="collapse"
+                            data-bs-target="#sidebarCoupon">
+                            <i class="mdi mdi-cash-multiple"></i> <span data-key="t-landing">Coupon</span>
                         </a>
-                        <div class="menu-dropdown collapse" id="sidebarEvent">
+                        <div class="menu-dropdown collapse" id="sidebarCoupon">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="<?= $base_url ?>/dashboard/publisher/coupon.php"
@@ -124,7 +126,7 @@
                                         class="nav-link" data-key="t-one-page"> Bank Details
                                     </a>
                                 </li>
-                              
+
                             </ul>
                         </div>
                     </li>

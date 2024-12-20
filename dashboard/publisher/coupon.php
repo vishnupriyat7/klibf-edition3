@@ -1,5 +1,20 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<style>
+    .remove-row-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        font-size: 0.8rem;
+        padding: 2px 5px;
+        margin-left: 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
 
+    .remove-row-btn:hover {
+        background-color: darkred;
+    }
+</style>
 <?php
 // var_dump("hiii");
 ini_set('display_errors', '1');
@@ -385,50 +400,138 @@ function generateInvoice($invoiceNo)
     </div>
     <iframe id="print-frame" style="display: none;"></iframe>
     <!-- End Page-content -->
+</div>
 
-    <?php include "../footer.php"; ?>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<?php include "../footer.php"; ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Select2 JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<!-- Select2 JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
-    <script type="text/javascript">
-        function claim_amount() {
-            // var amt50 = 10000;
-            var count50 = $("#count50").val();
-            amt50 = 50 * count50;
-            var count100 = $("#count100").val();
-            amt100 = 100 * count100;
-            var count200 = $("#count200").val();
-            amt200 = 200 * count200;
-            total_amt = amt50 + amt100 + amt200;
-            $("#total50").val(amt50);
-            $("#total100").val(amt100);
-            $("#total200").val(amt200);
-            $("#total_claim").val(total_amt);
-        }
-        document.getElementById("add_cpn_row_btn").addEventListener("click", function() {
-            // Select the first dynamic form block
-            const original = document.querySelector(".dynamic-form");
+<script type="text/javascript">
+    function claim_amount() {
+        // var amt50 = 10000;
+        var count50 = $("#count50").val();
+        amt50 = 50 * count50;
+        var count100 = $("#count100").val();
+        amt100 = 100 * count100;
+        var count200 = $("#count200").val();
+        amt200 = 200 * count200;
+        total_amt = amt50 + amt100 + amt200;
+        $("#total50").val(amt50);
+        $("#total100").val(amt100);
+        $("#total200").val(amt200);
+        $("#total_claim").val(total_amt);
+    }
+    document.getElementById("add_cpn_row_btn").addEventListener("click", function() {
+        // Select the first dynamic form block
+        const original = document.querySelector(".dynamic-form");
 
-            // Clone the original block
-            const clone = original.cloneNode(true);
+        // Clone the original block
+        const clone = original.cloneNode(true);
 
-            // Reset input values in the cloned block
-            const inputs = clone.querySelectorAll("input");
-            inputs.forEach(input => input.value = "0");
+        // Generate a unique identifier for the cloned block
+        const uniqueIdSuffix = Date.now();
 
-            const selects = clone.querySelectorAll("select");
-            selects.forEach(select => select.selectedIndex = 0);
+        // Reset input values in the cloned block
+        const inputs = clone.querySelectorAll("input");
+        inputs.forEach(input => input.value = "");
 
-            // Append the cloned block to the container
-            document.getElementById("dynamic-form-container").appendChild(clone);
+        const selects = clone.querySelectorAll("select");
+        selects.forEach(select => {
+            select.selectedIndex = 0;
+
+            // Remove existing IDs and events to prevent duplication
+            if (select.id.includes("cpn_denom")) {
+                select.id = `cpn_denom_${uniqueIdSuffix}`;
+                select.setAttribute("onchange", `listCouponsrlNo('${uniqueIdSuffix}')`);
+            }
+            if (select.id.includes("cpn_slno")) {
+                select.id = `cpn_slno_${uniqueIdSuffix}`;
+                select.innerHTML = '<option value="">Select or Type Serial No.</option>'; // Clear options
+            }
         });
 
+        // Remove any extra dropdowns or fields accidentally appended
+        clone.querySelectorAll(".select2-container").forEach(select2Element => select2Element.remove());
 
-        function listCouponsrlNo() {
-            // var eventDt1 = document.getElementById("evnt_day1").value;
-            var couponDenom = document.getElementById("cpn_denom").value;
+        // Add a small "Remove" button to remove the row
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "remove-row-btn btn btn-sm btn-danger";
+        removeButton.textContent = "Remove";
+        removeButton.style.cssText = `
+        margin-top: 10px;
+        margin-left: 10px;
+        font-size: 0.8rem;
+        padding: 2px 5px;
+    `;
+        removeButton.addEventListener("click", function() {
+            clone.remove();
+        });
+
+        // Append the "Remove" button to the cloned block
+        clone.appendChild(removeButton);
+
+        // Append the cloned block to the container
+        document.getElementById("dynamic-form-container").appendChild(clone);
+
+        // Reinitialize Select2 for the new select element
+        $(`#cpn_slno_${uniqueIdSuffix}`).select2({
+            placeholder: "Select or Type Serial No.",
+            allowClear: true
+        });
+    });
+
+    function listCouponsrlNo(uniqueIdSuffix) {
+        const couponDenom = document.getElementById(`cpn_denom_${uniqueIdSuffix}`).value;
+
+        // Clear the serial number dropdown if no denomination is selected
+        const serialNoSelect = $(`#cpn_slno_${uniqueIdSuffix}`);
+        serialNoSelect.empty();
+        serialNoSelect.append('<option value="">Select or Type Serial No.</option>');
+
+        if (!couponDenom) return; // Exit if no denomination is selected
+
+        $.ajax({
+            url: "<?= $base_url; ?>/dashboard/publisher/list_srlno.php",
+            type: "POST",
+            data: {
+                couponDenom_id: couponDenom,
+            },
+            dataType: "json",
+            success: function(data) {
+                data.forEach(item => {
+                    serialNoSelect.append(`<option value="${item[3]}">${item[3]}</option>`);
+                });
+
+                // Reinitialize Select2 for dynamic content
+                serialNoSelect.select2({
+                    placeholder: "Select or Type Serial No.",
+                    allowClear: true
+                });
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        // Initialize Select2 for the first row's serial number select box
+        $('#cpn_slno').select2({
+            placeholder: "Select or Type Serial No.",
+            allowClear: true
+        });
+
+        // Bind onchange event to the first row's coupon denomination dropdown
+        $('#cpn_denom').on('change', function() {
+            const couponDenom = $(this).val();
+            const serialNoSelect = $('#cpn_slno');
+
+            // Clear the serial number dropdown if no denomination is selected
+            serialNoSelect.empty();
+            serialNoSelect.append('<option value="">Select or Type Serial No.</option>');
+
+            if (!couponDenom) return; // Exit if no denomination is selected
+
             $.ajax({
                 url: "<?= $base_url; ?>/dashboard/publisher/list_srlno.php",
                 type: "POST",
@@ -436,37 +539,18 @@ function generateInvoice($invoiceNo)
                     couponDenom_id: couponDenom,
                 },
                 dataType: "json",
-                // success: function(data) {
-                //     console.log(data);
-                //     $('#cpn_slno').empty();
-                //     var add_slno = "";
-                //     $("#cpn_slno").append('<option value="">Select Serial Number</option>');
-                //     $.each(data, function(key, value) {
-
-                //         $("#cpn_slno").append('<option value=' + value[3] + ' >' + value[3] + '</option>');
-                //     });
-                // }
-
                 success: function(data) {
-                    $('#cpn_slno').empty(); // Clear existing options
-                    $('#cpn_slno').append('<option value="">Select or Type Serial No.</option>');
-
                     data.forEach(item => {
-                        $('#cpn_slno').append(`<option value="${item[3]}">${item[3]}</option>`);
+                        serialNoSelect.append(`<option value="${item[3]}">${item[3]}</option>`);
                     });
 
                     // Reinitialize Select2 for dynamic content
-                    $('#cpn_slno').select2({
+                    serialNoSelect.select2({
                         placeholder: "Select or Type Serial No.",
                         allowClear: true
                     });
                 }
             });
-        }
-        $(document).ready(function() {
-            $('#cpn_slno').select2({
-                placeholder: "Select or Type Serial No.",
-                allowClear: true
-            });
         });
-    </script>
+    });
+</script>

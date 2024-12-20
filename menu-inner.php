@@ -25,10 +25,10 @@
     <li><a href="publishers_catalog.php">Publishers</a></li>
     <!-- <li>
       <a class="nav-link scrollto" href="news.php">News</a>
-    </li>
+    </li> -->
     <li>
       <a class="nav-link scrollto" href="reflections-video.php">Reflections</a>
-    </li> -->
+    </li>
     <li class="dropdown">
       <a href="#">
         <span>Previous KLIBF</span>
