@@ -34,7 +34,7 @@
     </li>
     <li><a href="sudents_corner.php">Student's Corner</a></li>
     <li><a href="publishers_catalog.php">Publishers</a></li>
-   
+
     <li class="dropdown">
       <a href="#">
         <span>Previous KLIBF</span>
