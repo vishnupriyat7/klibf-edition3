@@ -16,7 +16,7 @@ include "sidebar.php";
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">News Upload</h4>
+                        <h4 class="mb-sm-0">Video Upload</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <a class="dropdown-item" href="../logout.php"><i
@@ -33,7 +33,7 @@ include "sidebar.php";
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Upload News</h5>
+                            <h5 class="card-title mb-0">Upload Videos</h5>
                         </div>
                         <div class="card-body overflow-auto">
 

@@ -8,7 +8,7 @@
     </li>
     <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
       <ul>
-        <li><a href="news.php">News</a></li>
+        <!-- <li><a href="news.php">News</a></li> -->
         <li>
           <a class="nav-link scrollto" href="reflections-video.php">Videos</a>
         </li>
