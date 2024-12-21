@@ -1,18 +1,33 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <style>
+    .dynamic-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        /* Space between elements */
+    }
+
+    .dynamic-form select,
+    .dynamic-form input {
+        flex: 1;
+        /* Allow inputs and selects to grow */
+    }
+
     .remove-row-btn {
-        background-color: red;
-        color: white;
+        background-color: #dc3545;
+        /* Bootstrap danger color */
+        color: #fff;
         border: none;
-        font-size: 0.8rem;
-        padding: 2px 5px;
-        margin-left: 10px;
-        cursor: pointer;
         border-radius: 3px;
+        padding: 0 5px;
+        font-size: 0.7rem;
+        line-height: 1.2;
+        cursor: pointer;
     }
 
     .remove-row-btn:hover {
-        background-color: darkred;
+        background-color: #c82333;
+        /* Slightly darker for hover effect */
     }
 </style>
 <?php
@@ -435,7 +450,7 @@ function generateInvoice($invoiceNo)
 
         // Reset input values in the cloned block
         const inputs = clone.querySelectorAll("input");
-        inputs.forEach(input => input.value = "");
+        inputs.forEach(input => (input.value = ""));
 
         const selects = clone.querySelectorAll("select");
         selects.forEach(select => {
@@ -455,23 +470,27 @@ function generateInvoice($invoiceNo)
         // Remove any extra dropdowns or fields accidentally appended
         clone.querySelectorAll(".select2-container").forEach(select2Element => select2Element.remove());
 
-        // Add a small "Remove" button to remove the row
+        // Create a small "Remove" button to remove the row
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.className = "remove-row-btn btn btn-sm btn-danger";
-        removeButton.textContent = "Remove";
+        removeButton.textContent = "X";
         removeButton.style.cssText = `
-        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 0 5px;
+        cursor: pointer;
+        line-height: 1.2;
         margin-left: 10px;
-        font-size: 0.8rem;
-        padding: 2px 5px;
     `;
         removeButton.addEventListener("click", function() {
             clone.remove();
         });
 
-        // Append the "Remove" button to the cloned block
-        clone.appendChild(removeButton);
+        // Add the button inline to the right of the "Coupon Serial Number" dropdown
+        const serialNumberContainer = clone.querySelector("select[id*='cpn_slno']");
+        if (serialNumberContainer) {
+            serialNumberContainer.parentNode.appendChild(removeButton);
+        }
 
         // Append the cloned block to the container
         document.getElementById("dynamic-form-container").appendChild(clone);
@@ -482,6 +501,7 @@ function generateInvoice($invoiceNo)
             allowClear: true
         });
     });
+
 
     function listCouponsrlNo(uniqueIdSuffix) {
         const couponDenom = document.getElementById(`cpn_denom_${uniqueIdSuffix}`).value;

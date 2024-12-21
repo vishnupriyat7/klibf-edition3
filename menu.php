@@ -2,6 +2,16 @@
   <ul>
     <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
     <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
+    <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
+      <ul>
+        <li><a href="news.php">News</a></li>
+        <li>
+          <a class="nav-link scrollto" href="reflections-video.php">Videos</a>
+        </li>
+
+      </ul>
+    </li>
+
     <li class="dropdown">
       <a href="#contests">
         <span>Contests</span>
@@ -18,31 +28,10 @@
         </li>
       </ul>
     </li>
+    <li><a href="sudents_corner.php">Student's Corner</a></li>
     <li><a href="publishers_catalog.php">Publishers</a></li>
-    <li>
-      <a class="nav-link scrollto" href="reflections-video.php">Reflections</a>
-    </li>
-
-    <!-- <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
-      <ul>
-        <li><a href="news.php">News</a></li>
-        <li><a href="#reflections">Reflections</a></li>
-        
-      </ul>
-    </li> -->
-
-    <!-- <li>
-      <a class="nav-link scrollto" href="news.php">News</a>
-    </li> -->
 
 
-    <!-- <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
-      <ul>
-        <li><a href="news.php">News</a></li>
-        <li><a href="#reflections">Reflections</a></li>
-        
-      </ul>
-    </li> -->
     <!-- <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
     <li><a class="nav-link scrollto" href="#testimonials">Publishers</a></li>
     <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
