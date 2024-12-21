@@ -362,7 +362,7 @@ function generateInvoice($invoiceNo)
                                                         readonly><br>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-12 col-md-3">
+                                            <!-- <div class="form-group col-12 col-md-3">
                                                 <select class="form-control select2">
                                                     <option>Select</option>
                                                     <option>Car</option>
@@ -371,7 +371,7 @@ function generateInvoice($invoiceNo)
                                                     <option>Cycle</option>
                                                     <option>Horse</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                         </div>
 
 
