@@ -1,3 +1,35 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<style>
+    .dynamic-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        /* Space between elements */
+    }
+
+    .dynamic-form select,
+    .dynamic-form input {
+        flex: 1;
+        /* Allow inputs and selects to grow */
+    }
+
+    .remove-row-btn {
+        background-color: #dc3545;
+        /* Bootstrap danger color */
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 0 5px;
+        font-size: 0.7rem;
+        line-height: 1.2;
+        cursor: pointer;
+    }
+
+    .remove-row-btn:hover {
+        background-color: #c82333;
+        /* Slightly darker for hover effect */
+    }
+</style>
 <?php
 // var_dump("hiii");
 ini_set('display_errors', '1');
@@ -117,13 +149,19 @@ function generateInvoice($invoiceNo)
     return $generatedNo;
 }
 ?>
-
+<style>
+    #pay-slip td {
+        text-align: right !important;
+        width: 20%;
+    }
+</style>
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
+
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -141,8 +179,10 @@ function generateInvoice($invoiceNo)
                 </div>
             </div>
             <!-- end page title -->
+
             <br><br>
             <div class="row">
+
                 <!--end col-->
                 <div class="col-xxl-9">
                     <div class="card mt-xxl-n5">
@@ -243,54 +283,38 @@ function generateInvoice($invoiceNo)
                                     ?>
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
-                                            <div class="form-group col-12">
-                                                <label>
-                                                    <b>Invoice Details</b>
-                                                </label><br><br>
+                                            <div class="form-group col-12"><br>
+                                                <label><b>Coupon Details</b></label>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-12 col-md-2">
-                                                    Invoice Number
-                                                    <input type="text" class="form-control" name="pub_cpn_invc_no" id="pub_cpn_invc_no" placeholder="Invoice Number" required="required">
+                                                    <br>
+                                                    *Enter Invoice Number
                                                 </div>
                                                 <div class="form-group col-12 col-md-2">
-                                                    Invoice Date
-                                                    <input type="date" class="form-control" name="pub_cpn_invc_dt" id="pub_cpn_invc_dt"
-                                                    placeholder="*Invoice Date" required="required">
+                                                    <br>
+                                                    <input type="text" class="form-control" name="cpn_invoice" id="cpn_invoice" placeholder="Invoice Number" required="required">
                                                 </div>
-                                                <div class="form-group col-12 col-md-3">
-                                                    Total Invoice Amount (in ₹)
-                                                    <input type="text" class="form-control" name="pub_cpn_invc_tot_amt" id="pub_cpn_invc_tot_amt" placeholder="Total Invoice Amount" required="required">
-                                                </div>
-                                                <div class="form-group col-12 col-md-3">
-                                                    Total Coupon Amount (in ₹)
-                                                    <input type="text" class="form-control" name="pub_cpn_invc_cpn_amt" id="pub_cpn_invc_cpn_amt" placeholder="Total Cupon Amount" required="required"><br>
-                                                </div>
-                                            </div>
-                                            <hr>
-                                            <div class="form-group col-12">
-                                                <br><label>
-                                                    <b>Coupon Details</b>
-                                                </label><br><br>
-                                            </div>
-                                            <div id="dynamic-form-container">
+                                            </div><br>
+
+                                            <div id="dynamic-form-container" class="mt-5">
                                                 <div class="row dynamic-form">
                                                     <div class="form-group col-12 col-md-3">
                                                         <?php
 
-                                                        // $denominationQry = "SELECT * FROM coupon_denomination";
-                                                        // $denominations_stmt = $con->prepare($denominationQry);
-                                                        // $denominations_stmt->execute();
-                                                        // $denominations_result = $denominations_stmt->get_result();
-                                                        // $denominations = $denominations_result->fetch_all();
+                                                        $denominationQry = "SELECT * FROM coupon_denomination";
+                                                        $denominations_stmt = $con->prepare($denominationQry);
+                                                        $denominations_stmt->execute();
+                                                        $denominations_result = $denominations_stmt->get_result();
+                                                        $denominations = $denominations_result->fetch_all();
 
-                                                        // $couponSlnos_Qry = "SELECT * FROM coupon_distribution";
-                                                        // $couponSlnos_stmt = $con->prepare($couponSlnos_Qry);
-                                                        // $couponSlnos_stmt->execute();
-                                                        // $couponSlnos_result =  $couponSlnos_stmt->get_result();
-                                                        // $couponSlnos = $couponSlnos_result->fetch_all();
+                                                        $couponSlnos_Qry = "SELECT * FROM coupon_distribution";
+                                                        $couponSlnos_stmt = $con->prepare($couponSlnos_Qry);
+                                                        $couponSlnos_stmt->execute();
+                                                        $couponSlnos_result =  $couponSlnos_stmt->get_result();
+                                                        $couponSlnos = $couponSlnos_result->fetch_all();
 
-                                                        // $counter = 0;
+                                                        $counter = 0;
                                                         ?>
                                                         *Coupon Denomination
                                                         <select class="form-control form-group" name="cpn_denom[]"
