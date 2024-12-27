@@ -275,86 +275,28 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div id="dynamic-form-container">
                                                 <div class="row dynamic-form">
-                                                    <div class="form-group col-12 col-md-3">
-                                                        <?php
+                                                   
 
-                                                        // $denominationQry = "SELECT * FROM coupon_denomination";
-                                                        // $denominations_stmt = $con->prepare($denominationQry);
-                                                        // $denominations_stmt->execute();
-                                                        // $denominations_result = $denominations_stmt->get_result();
-                                                        // $denominations = $denominations_result->fetch_all();
-
-                                                        // $couponSlnos_Qry = "SELECT * FROM coupon_distribution";
-                                                        // $couponSlnos_stmt = $con->prepare($couponSlnos_Qry);
-                                                        // $couponSlnos_stmt->execute();
-                                                        // $couponSlnos_result =  $couponSlnos_stmt->get_result();
-                                                        // $couponSlnos = $couponSlnos_result->fetch_all();
-
-                                                        // $counter = 0;
-                                                        ?>
-                                                        *Coupon Denomination
-                                                        <select class="form-control form-group" name="cpn_denom[]"
-                                                            id="cpn_denom" onchange="listCouponsrlNo();" style="height:37px;" required>
-                                                            <option value="">Select Denomination</option>
-
-                                                            <?php
-                                                            foreach ($denominations as  $denomination) {
-                                                                $denomination_selected = $denomination[0] ==  $denomination ? 'selected' : "";
-                                                            ?>
-                                                                <option value="<?= $denomination[0] ?>" <?= $denomination_selected ?>>
-                                                                    <?= $denomination[1] ?>
-                                                                </option>
-                                                            <?php } ?>
-                                                        </select>
-
-                                                    </div>
-                                                    <!-- <div class="form-group col-12 col-md-3">
-
+                                                    <div class="form-group col-12 col-md-2">
                                                         Serial No.
-
-                                                        <select class="form-control form-group" name="cpn_slno[]"
-                                                            id="cpn_slno" style="height:37px;" required>
-                                                            <option value="">Select Serial No.</option>
-                                                        </select>
-
-                                                    </div> -->
-
-                                                    <div class="form-group col-12 col-md-3">
-                                                        Serial No.
-                                                        <select class="form-control form-group" name="cpn_slno[]" id="cpn_slno" style="width: 100%;" required>
-                                                            <option value="">Select or Type Serial No.</option>
-                                                        </select>
+                                                        <input type="text" class="form-control" name="pub_cpn_slno[]" id="pub_cpn_slno[]" placeholder="Enter Serial No." required="required">
                                                     </div>
 
-
+                                                    <div class="form-group col-12 col-md-2">
+                                                        Denomination
+                                                        <input type="text" class="form-control" name="pub_cpn_deno[]" id="pub_cpn_deno[]" disabled>
+                                                    </div>
 
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-4">
-                                                <button type="button" id="add_cpn_row_btn" class="btn btn-info">Add
+                                                <button type="button" id="add_pub_cpn_row_btn" class="btn btn-info">Add
                                                     More</button>
                                             </div>
 
-                                            <hr class="mt-3">
-                                            <div class="form-group col-12 col-md-6">
-                                                <label>Total Coupon Value (in ₹)</label>
-                                            </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <input type="text" class="form-control" name="total_claim" id="total_claim" placeholder="0" required="required" disabled>
-                                                <br>
-                                            </div>
-
-                                            <div class="col-lg-12">
-                                                <br>
-                                                <button type="submit" name="save_cpn" class="btn btn-primary" id="save_cpn">Save</button>
-                                            </div>
-
-
-
-
                                         </div>
                                     </form>
-                                    <hr class="mt-3">
+                                    <!-- <hr class="mt-3">
                                     <div class="row bg-grey">
                                         <div class="form-group col-12"><br>
                                             <label><b>Bank Details</b></label>
@@ -379,7 +321,7 @@ function generateInvoice($invoiceNo)
                                             IFSC
                                             <input type="text" class="form-control" name="cpn_ifsc" id="cpn_ifsc" placeholder="IFSC" value="<?= $cpn_ifsc; ?>" maxlength="11" minlength="11" <?= $edit_bank; ?>>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -394,159 +336,21 @@ function generateInvoice($invoiceNo)
 </div>
 
 <?php include "../footer.php"; ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Select2 JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script type="text/javascript">
-    function claim_amount() {
-        // var amt50 = 10000;
-        var count50 = $("#count50").val();
-        amt50 = 50 * count50;
-        var count100 = $("#count100").val();
-        amt100 = 100 * count100;
-        var count200 = $("#count200").val();
-        amt200 = 200 * count200;
-        total_amt = amt50 + amt100 + amt200;
-        $("#total50").val(amt50);
-        $("#total100").val(amt100);
-        $("#total200").val(amt200);
-        $("#total_claim").val(total_amt);
-    }
-    document.getElementById("add_cpn_row_btn").addEventListener("click", function() {
-        // Select the first dynamic form block
-        const original = document.querySelector(".dynamic-form");
+  document.getElementById("add_pub_cpn_row_btn").addEventListener("click", function() {
+        // Clone the first row
+        const container = document.getElementById("dynamic-form-container");
+        const firstRow = container.querySelector(".dynamic-form");
+        const newRow = firstRow.cloneNode(true);
 
-        // Clone the original block
-        const clone = original.cloneNode(true);
-
-        // Generate a unique identifier for the cloned block
-        const uniqueIdSuffix = Date.now();
-
-        // Reset input values in the cloned block
-        const inputs = clone.querySelectorAll("input");
-        inputs.forEach(input => (input.value = ""));
-
-        const selects = clone.querySelectorAll("select");
-        selects.forEach(select => {
-            select.selectedIndex = 0;
-
-            // Remove existing IDs and events to prevent duplication
-            if (select.id.includes("cpn_denom")) {
-                select.id = `cpn_denom_${uniqueIdSuffix}`;
-                select.setAttribute("onchange", `listCouponsrlNo('${uniqueIdSuffix}')`);
-            }
-            if (select.id.includes("cpn_slno")) {
-                select.id = `cpn_slno_${uniqueIdSuffix}`;
-                select.innerHTML = '<option value="">Select or Type Serial No.</option>'; // Clear options
-            }
-        });
-
-        // Remove any extra dropdowns or fields accidentally appended
-        clone.querySelectorAll(".select2-container").forEach(select2Element => select2Element.remove());
-
-        // Create a small "Remove" button to remove the row
-        const removeButton = document.createElement("button");
-        removeButton.type = "button";
-        removeButton.className = "remove-row-btn btn btn-sm btn-danger";
-        removeButton.textContent = "X";
-        removeButton.style.cssText = `
-        font-size: 0.7rem;
-        padding: 0 5px;
-        cursor: pointer;
-        line-height: 1.2;
-        margin-left: 10px;
-    `;
-        removeButton.addEventListener("click", function() {
-            clone.remove();
-        });
-
-        // Add the button inline to the right of the "Coupon Serial Number" dropdown
-        const serialNumberContainer = clone.querySelector("select[id*='cpn_slno']");
-        if (serialNumberContainer) {
-            serialNumberContainer.parentNode.appendChild(removeButton);
+        // Clear the input value in the cloned row
+        const input = newRow.querySelector("input");
+        if (input) {
+            input.value = "";
         }
 
-        // Append the cloned block to the container
-        document.getElementById("dynamic-form-container").appendChild(clone);
-
-        // Reinitialize Select2 for the new select element
-        $(`#cpn_slno_${uniqueIdSuffix}`).select2({
-            placeholder: "Select or Type Serial No.",
-            allowClear: true
-        });
-    });
-
-
-    function listCouponsrlNo(uniqueIdSuffix) {
-        const couponDenom = document.getElementById(`cpn_denom_${uniqueIdSuffix}`).value;
-
-        // Clear the serial number dropdown if no denomination is selected
-        const serialNoSelect = $(`#cpn_slno_${uniqueIdSuffix}`);
-        serialNoSelect.empty();
-        serialNoSelect.append('<option value="">Select or Type Serial No.</option>');
-
-        if (!couponDenom) return; // Exit if no denomination is selected
-
-        $.ajax({
-            url: "<?= $base_url; ?>/dashboard/publisher/list_srlno.php",
-            type: "POST",
-            data: {
-                couponDenom_id: couponDenom,
-            },
-            dataType: "json",
-            success: function(data) {
-                data.forEach(item => {
-                    serialNoSelect.append(`<option value="${item[3]}">${item[3]}</option>`);
-                });
-
-                // Reinitialize Select2 for dynamic content
-                serialNoSelect.select2({
-                    placeholder: "Select or Type Serial No.",
-                    allowClear: true
-                });
-            }
-        });
-    }
-
-    $(document).ready(function() {
-        // Initialize Select2 for the first row's serial number select box
-        $('#cpn_slno').select2({
-            placeholder: "Select or Type Serial No.",
-            allowClear: true
-        });
-
-        // Bind onchange event to the first row's coupon denomination dropdown
-        $('#cpn_denom').on('change', function() {
-            const couponDenom = $(this).val();
-            const serialNoSelect = $('#cpn_slno');
-
-            // Clear the serial number dropdown if no denomination is selected
-            serialNoSelect.empty();
-            serialNoSelect.append('<option value="">Select or Type Serial No.</option>');
-
-            if (!couponDenom) return; // Exit if no denomination is selected
-
-            $.ajax({
-                url: "<?= $base_url; ?>/dashboard/publisher/list_srlno.php",
-                type: "POST",
-                data: {
-                    couponDenom_id: couponDenom,
-                },
-                dataType: "json",
-                success: function(data) {
-                    data.forEach(item => {
-                        serialNoSelect.append(`<option value="${item[3]}">${item[3]}</option>`);
-                    });
-
-                    // Reinitialize Select2 for dynamic content
-                    serialNoSelect.select2({
-                        placeholder: "Select or Type Serial No.",
-                        allowClear: true
-                    });
-                }
-            });
-        });
+        // Append the cloned row to the container
+        container.appendChild(newRow);
     });
 </script>
