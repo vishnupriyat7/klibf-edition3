@@ -127,7 +127,7 @@ include "sidebar.php";
                                         if ($result) {
                                             $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
                                                 Your Image is Successfully Uploaded.
-                                                <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                                         }
                                     }
