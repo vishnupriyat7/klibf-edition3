@@ -1,35 +1,3 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-<style>
-    .dynamic-form {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        /* Space between elements */
-    }
-
-    .dynamic-form select,
-    .dynamic-form input {
-        flex: 1;
-        /* Allow inputs and selects to grow */
-    }
-
-    .remove-row-btn {
-        background-color: #dc3545;
-        /* Bootstrap danger color */
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        padding: 0 5px;
-        font-size: 0.7rem;
-        line-height: 1.2;
-        cursor: pointer;
-    }
-
-    .remove-row-btn:hover {
-        background-color: #c82333;
-        /* Slightly darker for hover effect */
-    }
-</style>
 <?php
 // var_dump("hiii");
 ini_set('display_errors', '1');
@@ -149,19 +117,13 @@ function generateInvoice($invoiceNo)
     return $generatedNo;
 }
 ?>
-<style>
-    #pay-slip td {
-        text-align: right !important;
-        width: 20%;
-    }
-</style>
+
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -171,7 +133,9 @@ function generateInvoice($invoiceNo)
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i
+                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
 
@@ -179,10 +143,8 @@ function generateInvoice($invoiceNo)
                 </div>
             </div>
             <!-- end page title -->
-
             <br><br>
             <div class="row">
-
                 <!--end col-->
                 <div class="col-xxl-9">
                     <div class="card mt-xxl-n5">
@@ -209,67 +171,72 @@ function generateInvoice($invoiceNo)
                             $cpn_ifsc = $cpn_bank_det['bank_ifsc'];
                             $edit_bank = "disabled";
                         }
-                        if (isset($_POST['save_cpn'])) {
-                            $cpn_bank_name = mysqli_real_escape_string($con, $_POST['cpn_bank_name']);
-                            $cpn_bank_branch = mysqli_real_escape_string($con, $_POST['cpn_bank_branch']);
-                            $cpn_acc_no = mysqli_real_escape_string($con, $_POST['cpn_acc_no']);
-                            $cpn_ifsc = mysqli_real_escape_string($con, $_POST['cpn_ifsc']);
-                            $count50 = mysqli_real_escape_string($con, $_POST['count50']);
-                            $cpn_serial_50 = mysqli_real_escape_string($con, $_POST['cpn_serial_50']);
-                            $count100 = mysqli_real_escape_string($con, $_POST['count100']);
-                            $cpn_serial_100 = mysqli_real_escape_string($con, $_POST['cpn_serial_100']);
-                            $count200 = mysqli_real_escape_string($con, $_POST['count200']);
-                            $cpn_serial_200 = mysqli_real_escape_string($con, $_POST['cpn_serial_200']);
-                            $cpn_invoice = mysqli_real_escape_string($con, $_POST['cpn_invoice']);
-                            $cpn_bill_qry = "SELECT * FROM coupon_publisher WHERE cpn_bill_no = '$cpn_invoice'";
-                            $cpn_bill = mysqli_query($con, $cpn_bill_qry);
-                            if ($cpn_bill->num_rows > 0) {
-                                $status = "NOTOK";
-                                $msg = "Duplicate Invoice number. Please enetr a different one.";
-                            }
-                            $total_cpn_amt = ($count100 * 100) + ($count200 * 200) + ($count50 * 50);
+                        if (isset($_POST['save_pub_cpn'])) {
+                            $pub_cpn_invc_no = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_no']);
+                            $pub_cpn_invc_dt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_dt']);
+                            $pub_cpn_invc_tot_amt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_tot_amt']);
+                            $pub_cpn_invc_cpn_amt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_cpn_amt']);
+                            $pub_cpn_slnos = mysqli_real_escape_string($con, $_POST['pub_cpn_slno']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-                            $select_pub_bank_query = "SELECT * FROM pub_coupon_bankdtls WHERE users_id = ?";
-                            $stmt_pub_cpn_bank = $con->prepare($select_pub_bank_query);
-                            $stmt_pub_cpn_bank->bind_param("s", $user_id);
-                            $stmt_pub_cpn_bank->execute();
-                            $res_pub_cpn_bank = $stmt_pub_cpn_bank->get_result();
-                            $cpn_bank_det = $res_pub_cpn_bank->fetch_assoc();
-                            // if (!$cpn_bank_det) {
-                            //     $query_cpn_pub_bank = "INSERT INTO pub_coupon_bankdtls (users_id, bank_name, account_no, bank_ifsc, bank_branch, updated_date) values ('$user_id', '$cpn_bank_name', '$cpn_acc_no', '$cpn_ifsc', '$cpn_bank_branch', '$date')";
-                            //     $res_cpn_pub_bank = mysqli_query($con, $query_cpn_pub_bank);
-                            //     if (!$res_cpn_pub_bank) {
-                            //         $status = "NOTOK";
-                            //         $msg = "Some issues in insertion of bank details.";
-                            //     }
-                            // }
                             $errormsg = "";
-                            if ($status == "NOTOK") {
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
-                                    $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                               </div>"; //printing error if found in validation
-                            } else {
-                                $query_cpn_pub = "INSERT INTO coupon_publisher (users_id, cpn_200_count, cpn_100_count, cpn_50_count, cpn_50_srlno, cpn_100_srlno, cpn_200_srlno, cpn_bill_no, total_amount, updated_date, status) values ('$user_id', '$count200', '$count100', '$count50', '$cpn_serial_50', '$cpn_serial_100', '$cpn_serial_200', '$cpn_invoice', '$total_cpn_amt', '$date', 'E')";
-                                $res_cpn_pub = mysqli_query($con, $query_cpn_pub);
-                                if ($res_cpn_pub) {
-                                    $errormsg = "
-                              <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                                                Your payment details is Successfully Saved.
-                                                <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                                                </div>
-                               ";
-                                    $cpn_bank_name = $cpn_bank_det['bank_name'];
-                                    $cpn_bank_branch = $cpn_bank_det['account_no'];
-                                    $cpn_acc_no = $cpn_bank_det['bank_branch'];
-                                    $cpn_ifsc = $cpn_bank_det['bank_ifsc'];
+                            $con->begin_transaction();
+                            try {
+                                $query_pub_invoice = "INSERT INTO coupon_publisher_invoice (user_id, invoice_no, invoice_dt, tot_inv_amt, tot_cpn_amt, updated_date) VALUES ('$user_id', '$pub_cpn_invc_no', '$pub_cpn_invc_dt', '$pub_cpn_invc_tot_amt', '$pub_cpn_invc_cpn_amt', '$date');";
+                                $result_pub_invoice = mysqli_query($con, $query_pub_invoice);
+                                if ($result_pub_invoice) {
+                                    $last_id = mysqli_insert_id($con);
+                                    $pub_cpn_slnos = mysqli_real_escape_string($con, $_POST['pub_cpn_slno']);
+                                    $tot_deno_amt = 0;
+                                    // Loop through and insert into the database
+                                    for ($i = 0; $i < count($denominations); $i++) {
+                                        $denomination_id = mysqli_real_escape_string($con, $denominations[$i]);
+                                        $serial_no_from = mysqli_real_escape_string($con, $serials_from[$i]);
+                                        $serial_no_to = mysqli_real_escape_string($con, $serials_to[$i]);
+                                        $deno_amt = mysqli_real_escape_string($con, $amounts[$i]);
+                                        $tot_deno_amt = $tot_deno_amt + (int) $deno_amt;
+                                        $total_coupons = ($serial_no_to - $serial_no_from) + 1;
+                                        for ($j = 0; $j < $total_coupons; $j++) {
+                                            $coupon_serial_no = $serial_no_from + $j;
+                                            $duplicate_serial_query = "SELECT id FROM coupon_distribution WHERE serial_no='$coupon_serial_no';";
+                                            $duplicate_serial_result = mysqli_query($con, $duplicate_serial_query);
+                                            if ($duplicate_serial_result->num_rows > 0) {
+                                                $status = "NOTOK";
+                                                $msg = "Serial Number already exists";
+                                                throw new Exception("Serial Number already exists" . $con->error);
+                                            } else {
+                                                $query_sponser_coupon = "INSERT INTO coupon_distribution (sponser_id, denom_id, serial_no, updated_date) VALUES ('$last_id', '$denomination_id', '$coupon_serial_no', '$date');";
+                                                $result_sponser_coupon = mysqli_query($con, $query_sponser_coupon);
+                                                if (!$result_sponser_coupon) {
+                                                    $status = "NOTOK";
+                                                    $msg = "Query Failed. Coupon data not able to save.";
+                                                    throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if ($tot_deno_amt != (int) $spnsr_tot_amt) {
+                                        $status = "NOTOK";
+                                        $msg = "Missmatch in total amount and denomination total. Please verify.";
+                                        throw new Exception("Missmatch in total amount and denomination total. Please verify." . $con->error);
+                                    }
+                                    $errormsg = "";
+                                    if ($status == "NOTOK") {
+                                        throw new Exception($msg . $con->error);
+                                    } else {
+                                        $con->commit();
+                                        $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                            Your Coupon Sponser details is Successfully Saved.
+                                            <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                            </div>";
+                                    }
                                 } else {
-                                    $errormsg = "
-                                    <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                                               Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
-                                               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                               </div>";
+                                    throw new Exception("Query Failed. Sponser data not able to save." . $con->error);
                                 }
+                            } catch (Exception $e) {
+                                $con->rollback();
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" . $e->getMessage() . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                       </div>";
                             }
                         }
                         ?>
@@ -283,102 +250,80 @@ function generateInvoice($invoiceNo)
                                     ?>
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div class="row bg-grey">
-                                            <div class="form-group col-12"><br>
-                                                <label><b>Coupon Details</b></label>
+                                            <div class="form-group col-12">
+                                                <label>
+                                                    <b>Invoice Details</b>
+                                                </label><br><br>
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-12 col-md-2">
-                                                    <br>
-                                                    *Enter Invoice Number
+                                                    Invoice Number
+                                                    <input type="text" class="form-control" name="pub_cpn_invc_no"
+                                                        id="pub_cpn_invc_no" placeholder="Invoice Number"
+                                                        required="required">
                                                 </div>
                                                 <div class="form-group col-12 col-md-2">
-                                                    <br>
-                                                    <input type="text" class="form-control" name="cpn_invoice" id="cpn_invoice" placeholder="Invoice Number" required="required">
+                                                    Invoice Date
+                                                    <input type="date" class="form-control" name="pub_cpn_invc_dt"
+                                                        id="pub_cpn_invc_dt" placeholder="*Invoice Date"
+                                                        required="required">
                                                 </div>
-                                            </div><br>
-
-                                            <div id="dynamic-form-container" class="mt-5">
+                                                <div class="form-group col-12 col-md-3">
+                                                    Total Invoice Amount (in ₹)
+                                                    <input type="text" class="form-control" name="pub_cpn_invc_tot_amt"
+                                                        id="pub_cpn_invc_tot_amt" placeholder="Total Invoice Amount"
+                                                        required="required">
+                                                </div>
+                                                <div class="form-group col-12 col-md-3">
+                                                    Total Coupon Amount (in ₹)
+                                                    <input type="text" class="form-control" name="pub_cpn_invc_cpn_amt"
+                                                        id="pub_cpn_invc_cpn_amt" placeholder="Total Cupon Amount"
+                                                        required="required"><br>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group col-12">
+                                                <br><label>
+                                                    <b>Coupon Details</b>
+                                                </label><br><br>
+                                            </div>
+                                            <div id="dynamic-form-container">
                                                 <div class="row dynamic-form">
-                                                    <div class="form-group col-12 col-md-3">
-                                                        <?php
-
-                                                        $denominationQry = "SELECT * FROM coupon_denomination";
-                                                        $denominations_stmt = $con->prepare($denominationQry);
-                                                        $denominations_stmt->execute();
-                                                        $denominations_result = $denominations_stmt->get_result();
-                                                        $denominations = $denominations_result->fetch_all();
-
-                                                        $couponSlnos_Qry = "SELECT * FROM coupon_distribution";
-                                                        $couponSlnos_stmt = $con->prepare($couponSlnos_Qry);
-                                                        $couponSlnos_stmt->execute();
-                                                        $couponSlnos_result =  $couponSlnos_stmt->get_result();
-                                                        $couponSlnos = $couponSlnos_result->fetch_all();
-
-                                                        $counter = 0;
-                                                        ?>
-                                                        *Coupon Denomination
-                                                        <select class="form-control form-group" name="cpn_denom[]"
-                                                            id="cpn_denom" onchange="listCouponsrlNo();" style="height:37px;" required>
-                                                            <option value="">Select Denomination</option>
-
-                                                            <?php
-                                                            foreach ($denominations as  $denomination) {
-                                                                $denomination_selected = $denomination[0] ==  $denomination ? 'selected' : "";
-                                                            ?>
-                                                                <option value="<?= $denomination[0] ?>" <?= $denomination_selected ?>>
-                                                                    <?= $denomination[1] ?>
-                                                                </option>
-                                                            <?php } ?>
-                                                        </select>
-
-                                                    </div>
-                                                    <!-- <div class="form-group col-12 col-md-3">
-
+                                                    <div class="form-group col-12 col-md-2">
                                                         Serial No.
-
-                                                        <select class="form-control form-group" name="cpn_slno[]"
-                                                            id="cpn_slno" style="height:37px;" required>
-                                                            <option value="">Select Serial No.</option>
-                                                        </select>
-
+                                                        <input type="text" class="form-control pub_cpn_slno"
+                                                            name="pub_cpn_slno[]" id="pub_cpn_slno[]"
+                                                            placeholder="Enter Serial No." required="required">
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        Denomination
+                                                        <input type="text" class="form-control pub_cpn_deno"
+                                                            name="pub_cpn_deno[]" id="pub_cpn_deno[]" disabled>
+                                                    </div>
+                                                    <!-- <div class="form-group col-12 col-md-2">
+                                                        <button type="button"
+                                                            class="btn btn-danger dismiss-row-btn">Remove</button>
                                                     </div> -->
-
-                                                    <div class="form-group col-12 col-md-3">
-                                                        Serial No.
-                                                        <select class="form-control form-group" name="cpn_slno[]" id="cpn_slno" style="width: 100%;" required>
-                                                            <option value="">Select or Type Serial No.</option>
-                                                        </select>
-                                                    </div>
-
-
-
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-4">
-                                                <button type="button" id="add_cpn_row_btn" class="btn btn-info">Add
+                                                <button type="button" id="add_pub_cpn_row_btn" class="btn btn-info">Add
                                                     More</button>
                                             </div>
-
-                                            <hr class="mt-3">
-                                            <div class="form-group col-12 col-md-6">
-                                                <label>Total Coupon Value (in ₹)</label>
+                                            <div class="col-12 mt-4 col-md-2">
+                                                <h5>Total:</h5>
                                             </div>
-                                            <div class="form-group col-12 col-md-6">
-                                                <input type="text" class="form-control" name="total_claim" id="total_claim" placeholder="0" required="required" disabled>
-                                                <br>
+                                            <div class="col-12 mt-4 col-md-2">
+                                                <input type="text" class="form-control" name="total-denomination"
+                                                    id="total-denomination" disabled>
                                             </div>
-
-                                            <div class="col-lg-12">
-                                                <br>
-                                                <button type="submit" name="save_cpn" class="btn btn-primary" id="save_cpn">Save</button>
-                                            </div>
-
-
-
-
+                                        </div>
+                                        <div class="col-lg-12"><br>
+                                            <button type="submit" name="save_pub_cpn" class="btn btn-success"
+                                                id="save_pub_cpn">Save Coupon</button>
                                         </div>
                                     </form>
-                                    <hr class="mt-3">
+                                    <!-- <hr class="mt-3">
                                     <div class="row bg-grey">
                                         <div class="form-group col-12"><br>
                                             <label><b>Bank Details</b></label>
@@ -403,7 +348,7 @@ function generateInvoice($invoiceNo)
                                             IFSC
                                             <input type="text" class="form-control" name="cpn_ifsc" id="cpn_ifsc" placeholder="IFSC" value="<?= $cpn_ifsc; ?>" maxlength="11" minlength="11" <?= $edit_bank; ?>>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -418,159 +363,92 @@ function generateInvoice($invoiceNo)
 </div>
 
 <?php include "../footer.php"; ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Select2 JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script type="text/javascript">
-    function claim_amount() {
-        // var amt50 = 10000;
-        var count50 = $("#count50").val();
-        amt50 = 50 * count50;
-        var count100 = $("#count100").val();
-        amt100 = 100 * count100;
-        var count200 = $("#count200").val();
-        amt200 = 200 * count200;
-        total_amt = amt50 + amt100 + amt200;
-        $("#total50").val(amt50);
-        $("#total100").val(amt100);
-        $("#total200").val(amt200);
-        $("#total_claim").val(total_amt);
-    }
-    document.getElementById("add_cpn_row_btn").addEventListener("click", function() {
-        // Select the first dynamic form block
-        const original = document.querySelector(".dynamic-form");
 
-        // Clone the original block
-        const clone = original.cloneNode(true);
+    document.getElementById("add_pub_cpn_row_btn").addEventListener("click", function () {
+        const container = document.getElementById("dynamic-form-container");
+        const firstRow = container.querySelector(".dynamic-form");
+        const newRow = firstRow.cloneNode(true);
 
-        // Generate a unique identifier for the cloned block
-        const uniqueIdSuffix = Date.now();
-
-        // Reset input values in the cloned block
-        const inputs = clone.querySelectorAll("input");
-        inputs.forEach(input => (input.value = ""));
-
-        const selects = clone.querySelectorAll("select");
-        selects.forEach(select => {
-            select.selectedIndex = 0;
-
-            // Remove existing IDs and events to prevent duplication
-            if (select.id.includes("cpn_denom")) {
-                select.id = `cpn_denom_${uniqueIdSuffix}`;
-                select.setAttribute("onchange", `listCouponsrlNo('${uniqueIdSuffix}')`);
-            }
-            if (select.id.includes("cpn_slno")) {
-                select.id = `cpn_slno_${uniqueIdSuffix}`;
-                select.innerHTML = '<option value="">Select or Type Serial No.</option>'; // Clear options
-            }
+        // Clear input values in the new row
+        newRow.querySelectorAll("input").forEach(input => {
+            input.value = "";
+            if (input.disabled) input.disabled = true; // Keep Denomination field disabled
         });
+        let dismissButton = newRow.querySelector(".dismiss-row-btn");
+        if (!dismissButton) {
+            dismissButton = document.createElement("button");
+            dismissButton.type = "button";
+            dismissButton.className = "btn btn-danger dismiss-row-btn";
+            dismissButton.textContent = "Remove";
 
-        // Remove any extra dropdowns or fields accidentally appended
-        clone.querySelectorAll(".select2-container").forEach(select2Element => select2Element.remove());
+            // Append the button to the new row
+            const brContainer = document.createElement("br");
+            const buttonContainer = document.createElement("div");
+            buttonContainer.className = "form-group col-12 col-md-2";
+            buttonContainer.appendChild(brContainer);
+            buttonContainer.appendChild(dismissButton);
 
-        // Create a small "Remove" button to remove the row
-        const removeButton = document.createElement("button");
-        removeButton.type = "button";
-        removeButton.className = "remove-row-btn btn btn-sm btn-danger";
-        removeButton.textContent = "X";
-        removeButton.style.cssText = `
-        font-size: 0.7rem;
-        padding: 0 5px;
-        cursor: pointer;
-        line-height: 1.2;
-        margin-left: 10px;
-    `;
-        removeButton.addEventListener("click", function() {
-            clone.remove();
-        });
-
-        // Add the button inline to the right of the "Coupon Serial Number" dropdown
-        const serialNumberContainer = clone.querySelector("select[id*='cpn_slno']");
-        if (serialNumberContainer) {
-            serialNumberContainer.parentNode.appendChild(removeButton);
+            newRow.appendChild(buttonContainer);
         }
-
-        // Append the cloned block to the container
-        document.getElementById("dynamic-form-container").appendChild(clone);
-
-        // Reinitialize Select2 for the new select element
-        $(`#cpn_slno_${uniqueIdSuffix}`).select2({
-            placeholder: "Select or Type Serial No.",
-            allowClear: true
-        });
+        // Append the new row
+        container.appendChild(newRow);
     });
 
-
-    function listCouponsrlNo(uniqueIdSuffix) {
-        const couponDenom = document.getElementById(`cpn_denom_${uniqueIdSuffix}`).value;
-
-        // Clear the serial number dropdown if no denomination is selected
-        const serialNoSelect = $(`#cpn_slno_${uniqueIdSuffix}`);
-        serialNoSelect.empty();
-        serialNoSelect.append('<option value="">Select or Type Serial No.</option>');
-
-        if (!couponDenom) return; // Exit if no denomination is selected
-
-        $.ajax({
-            url: "<?= $base_url; ?>/dashboard/publisher/list_srlno.php",
-            type: "POST",
-            data: {
-                couponDenom_id: couponDenom,
-            },
-            dataType: "json",
-            success: function(data) {
-                data.forEach(item => {
-                    serialNoSelect.append(`<option value="${item[3]}">${item[3]}</option>`);
+    // Delegate input event to the container for dynamic rows
+    document.getElementById("dynamic-form-container").addEventListener("input", function (event) {
+        if (event.target.classList.contains("pub_cpn_slno")) {
+            const serialNoInput = event.target;
+            const serialNo = serialNoInput.value.trim();
+            const invoiceNo = document.getElementById("pub_cpn_invc_no").value;
+            const denominationInput = serialNoInput.closest(".dynamic-form").querySelector(".pub_cpn_deno");
+            if (serialNo) {
+                // Make an AJAX request to fetch denomination
+                denominationInput.value = "";
+                $.ajax({
+                    url: "<?= $base_url; ?>/dashboard/publisher/get_denomination.php",
+                    type: "POST",
+                    data: {
+                        slno: encodeURIComponent(serialNo),
+                        invoiceNo: invoiceNo
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        if (response != null) {
+                            denominationInput.value = response.denomination;
+                            calculateTotal();
+                        } else {
+                            denominationInput.value = 0;
+                            calculateTotal();
+                        }
+                    }
                 });
+            } else {
+                denominationInput.value = ""; // Clear Denomination if Serial No. is empty
+                calculateTotal();
+            }
+        }
+    });
 
-                // Reinitialize Select2 for dynamic content
-                serialNoSelect.select2({
-                    placeholder: "Select or Type Serial No.",
-                    allowClear: true
-                });
+    document.getElementById("dynamic-form-container").addEventListener("click", function (event) {
+        if (event.target.classList.contains("dismiss-row-btn")) {
+            const row = event.target.closest(".dynamic-form");
+            if (row) {
+                row.remove();
+                calculateTotal(); // Update total after row is removed
+            }
+        }
+    });
+
+    function calculateTotal() {
+        let total = 0;
+        document.querySelectorAll(".pub_cpn_deno").forEach(input => {
+            const value = parseFloat(input.value);
+            if (!isNaN(value)) {
+                total += value;
             }
         });
+        document.getElementById("total-denomination").value = total.toFixed(2);
     }
-
-    $(document).ready(function() {
-        // Initialize Select2 for the first row's serial number select box
-        $('#cpn_slno').select2({
-            placeholder: "Select or Type Serial No.",
-            allowClear: true
-        });
-
-        // Bind onchange event to the first row's coupon denomination dropdown
-        $('#cpn_denom').on('change', function() {
-            const couponDenom = $(this).val();
-            const serialNoSelect = $('#cpn_slno');
-
-            // Clear the serial number dropdown if no denomination is selected
-            serialNoSelect.empty();
-            serialNoSelect.append('<option value="">Select or Type Serial No.</option>');
-
-            if (!couponDenom) return; // Exit if no denomination is selected
-
-            $.ajax({
-                url: "<?= $base_url; ?>/dashboard/publisher/list_srlno.php",
-                type: "POST",
-                data: {
-                    couponDenom_id: couponDenom,
-                },
-                dataType: "json",
-                success: function(data) {
-                    data.forEach(item => {
-                        serialNoSelect.append(`<option value="${item[3]}">${item[3]}</option>`);
-                    });
-
-                    // Reinitialize Select2 for dynamic content
-                    serialNoSelect.select2({
-                        placeholder: "Select or Type Serial No.",
-                        allowClear: true
-                    });
-                }
-            });
-        });
-    });
 </script>
