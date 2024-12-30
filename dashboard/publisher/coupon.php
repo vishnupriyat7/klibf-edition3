@@ -176,7 +176,6 @@ function generateInvoice($invoiceNo)
                             $pub_cpn_invc_dt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_dt']);
                             $pub_cpn_invc_tot_amt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_tot_amt']);
                             $pub_cpn_invc_cpn_amt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_cpn_amt']);
-                            $pub_cpn_slnos = mysqli_real_escape_string($con, $_POST['pub_cpn_slno']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $errormsg = "";
@@ -186,15 +185,14 @@ function generateInvoice($invoiceNo)
                                 $result_pub_invoice = mysqli_query($con, $query_pub_invoice);
                                 if ($result_pub_invoice) {
                                     $last_id = mysqli_insert_id($con);
-                                    $pub_cpn_slnos = mysqli_real_escape_string($con, $_POST['pub_cpn_slno']);
+                                    $pub_cpn_slnos = $_POST['pub_cpn_slno'];
                                     $tot_deno_amt = 0;
                                     // Loop through and insert into the database
-                                    for ($i = 0; $i < count($denominations); $i++) {
-                                        $denomination_id = mysqli_real_escape_string($con, $denominations[$i]);
-                                        $serial_no_from = mysqli_real_escape_string($con, $serials_from[$i]);
-                                        $serial_no_to = mysqli_real_escape_string($con, $serials_to[$i]);
-                                        $deno_amt = mysqli_real_escape_string($con, $amounts[$i]);
-                                        $tot_deno_amt = $tot_deno_amt + (int) $deno_amt;
+                                    for ($i = 0; $i < count($pub_cpn_slnos); $i++) {
+                                        
+                                        $pub_cpn_slno = mysqli_real_escape_string($con, $pub_cpn_slnos[$i]);
+$query_pub_serial_no = "SELECT id from"
+                                       
                                         $total_coupons = ($serial_no_to - $serial_no_from) + 1;
                                         for ($j = 0; $j < $total_coupons; $j++) {
                                             $coupon_serial_no = $serial_no_from + $j;
