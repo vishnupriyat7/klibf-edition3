@@ -100,6 +100,12 @@
                             <i class="ri-file-upload-line"></i> <span data-key="t-landing">Catalogue Upload</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                            href="<?= $base_url ?>/dashboard/publisher/sdf.php">
+                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">SDF</span>
+                        </a>
+                    </li>
 
                     <!-- <li class="nav-item">
                         <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"

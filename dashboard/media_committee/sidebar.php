@@ -96,7 +96,7 @@
 
 
 
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#newsUploadsidebarX" data-bs-toggle="collapse" role="button"
                         aria-expanded="true" aria-controls="sidebarLanding">
                         <i class="ri-image-add-line"></i><span data-key="t-landing">News Upload</span>
@@ -114,7 +114,7 @@
 
                         </ul>
                     </div>
-                </li> -->
+                </li>
 
                 <!-- <li class="nav-item">
                     <a href="<?= $base_url ?>/dashboard/media_committee/video_link_upload.php" class="nav-link" data-key="t-analytics">
