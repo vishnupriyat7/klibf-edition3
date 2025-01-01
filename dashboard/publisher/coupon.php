@@ -184,40 +184,26 @@ function generateInvoice($invoiceNo)
                                 $query_pub_invoice = "INSERT INTO coupon_publisher_invoice (user_id, invoice_no, invoice_dt, tot_inv_amt, tot_cpn_amt, updated_date) VALUES ('$user_id', '$pub_cpn_invc_no', '$pub_cpn_invc_dt', '$pub_cpn_invc_tot_amt', '$pub_cpn_invc_cpn_amt', '$date');";
                                 $result_pub_invoice = mysqli_query($con, $query_pub_invoice);
                                 if ($result_pub_invoice) {
-                                    $last_id = mysqli_insert_id($con);
+                                    // $last_id = mysqli_insert_id($con);
                                     $pub_cpn_slnos = $_POST['pub_cpn_slno'];
                                     $tot_deno_amt = 0;
                                     // Loop through and insert into the database
                                     for ($i = 0; $i < count($pub_cpn_slnos); $i++) {
-                                        
                                         $pub_cpn_slno = mysqli_real_escape_string($con, $pub_cpn_slnos[$i]);
-$query_pub_serial_no = "SELECT id from"
-                                       
-                                        $total_coupons = ($serial_no_to - $serial_no_from) + 1;
-                                        for ($j = 0; $j < $total_coupons; $j++) {
-                                            $coupon_serial_no = $serial_no_from + $j;
-                                            $duplicate_serial_query = "SELECT id FROM coupon_distribution WHERE serial_no='$coupon_serial_no';";
-                                            $duplicate_serial_result = mysqli_query($con, $duplicate_serial_query);
-                                            if ($duplicate_serial_result->num_rows > 0) {
-                                                $status = "NOTOK";
-                                                $msg = "Serial Number already exists";
-                                                throw new Exception("Serial Number already exists" . $con->error);
-                                            } else {
-                                                $query_sponser_coupon = "INSERT INTO coupon_distribution (sponser_id, denom_id, serial_no, updated_date) VALUES ('$last_id', '$denomination_id', '$coupon_serial_no', '$date');";
-                                                $result_sponser_coupon = mysqli_query($con, $query_sponser_coupon);
-                                                if (!$result_sponser_coupon) {
-                                                    $status = "NOTOK";
-                                                    $msg = "Query Failed. Coupon data not able to save.";
-                                                    throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
-                                                }
-                                            }
+                                        $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = $pub_cpn_invc_no AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $pub_cpn_slno), '2024-12-31');";
+                                        $result_pub_cpn_slno = mysqli_query($con, $query_pub_cpn_slno);
+                                        if (!$result_pub_cpn_slno) {
+                                            $status = "NOTOK";
+                                            $msg = "Query Failed. Coupon data not able to save.";
+                                            throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
                                         }
+
                                     }
-                                    if ($tot_deno_amt != (int) $spnsr_tot_amt) {
-                                        $status = "NOTOK";
-                                        $msg = "Missmatch in total amount and denomination total. Please verify.";
-                                        throw new Exception("Missmatch in total amount and denomination total. Please verify." . $con->error);
-                                    }
+                                    // if ($tot_deno_amt != (int) $spnsr_tot_amt) {
+                                    //     $status = "NOTOK";
+                                    //     $msg = "Missmatch in total amount and denomination total. Please verify.";
+                                    //     throw new Exception("Missmatch in total amount and denomination total. Please verify." . $con->error);
+                                    // }
                                     $errormsg = "";
                                     if ($status == "NOTOK") {
                                         throw new Exception($msg . $con->error);
@@ -413,12 +399,26 @@ $query_pub_serial_no = "SELECT id from"
                     },
                     dataType: "json",
                     success: function (response) {
-                        if (response != null) {
-                            denominationInput.value = response.denomination;
+                        console.log(response);
+                        if (response[0] != null) {
+                            denominationInput.value = response[0].denomination;
                             calculateTotal();
                         } else {
                             denominationInput.value = 0;
                             calculateTotal();
+                        }
+                        if (response[1] != null) {
+                            // $('.alert-outline').html('Serial No. already exists.');
+                            denominationInput.style.color='red';
+                            denominationInput.value = 'Already exists.';
+                            document.getElementById("save_pub_cpn").setAttribute("disabled", true);
+                            document.getElementById("add_pub_cpn_row_btn").setAttribute("disabled", true);
+                            calculateTotal();
+                            // $('#save_pub_cpn').setAttribute('disabled', true);
+                        } else {
+                            denominationInput.style.color='';
+                            document.getElementById("save_pub_cpn").removeAttribute("disabled", true);
+                            document.getElementById("add_pub_cpn_row_btn").removeAttribute("disabled", true);
                         }
                     }
                 });
