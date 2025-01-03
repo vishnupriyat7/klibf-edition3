@@ -33,7 +33,7 @@
                         <div class="card-body overflow-auto">
                             <!-- <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button> -->
-                            <div class="card" style="width:85vw;">
+                            <div class="card" style="width:80vw;">
                                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                     style="font-style:normal; font-size: 12px;">
                                     <thead class="text-center">

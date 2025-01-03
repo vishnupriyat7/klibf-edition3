@@ -45,7 +45,7 @@ if (isset($_POST['update_news'])) {
 
     $current_date = new DateTime();
     $date = date_format($current_date, "Y-m-d");
-
+    // var_dump($news_paper, $news_title, $image_name, $news_date, $id);
     $update_query = "UPDATE newspaper_upload 
                      SET news_paper = '$news_paper', 
                          img_title = '$news_title', 
@@ -53,12 +53,13 @@ if (isset($_POST['update_news'])) {
                          news_date = '$news_date', 
                          updated_date = '$date'
                      WHERE id = $id";
+    mysqli_query($con, $update_query);
 
-    // if (mysqli_query($con, $update_query)) {
-    //     echo "<script>alert('News details updated successfully!'); window.location.href = 'news_upload_report.php';</script>";
-    // } else {
-    //     echo "<script>alert('Error updating news details!');</script>";
-    // }
+    if (mysqli_query($con, $update_query)) {
+        echo "<script>alert('News details updated successfully!'); window.location.href = 'news_upload_report.php';</script>";
+    } else {
+        echo "<script>alert('Error updating news details!');</script>";
+    }
 }
 ?>
 
