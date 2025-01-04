@@ -241,19 +241,19 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col-12 col-md-2">
-                                                    Invoice Number
+                                                    Bill Number
                                                     <input type="text" class="form-control" name="pub_cpn_invc_no"
-                                                        id="pub_cpn_invc_no" placeholder="Invoice Number"
+                                                        id="pub_cpn_invc_no" placeholder="Bill Number"
                                                         required="required">
                                                 </div>
                                                 <div class="form-group col-12 col-md-2">
-                                                    Invoice Date
+                                                    Bill Date
                                                     <input type="date" class="form-control" name="pub_cpn_invc_dt"
-                                                        id="pub_cpn_invc_dt" placeholder="*Invoice Date"
+                                                        id="pub_cpn_invc_dt" placeholder="*Bill Date"
                                                         required="required">
                                                 </div>
                                                 <div class="form-group col-12 col-md-3">
-                                                    Total Invoice Amount (in ₹)
+                                                    Total Bill Amount (in ₹)
                                                     <input type="text" class="form-control" name="pub_cpn_invc_tot_amt"
                                                         id="pub_cpn_invc_tot_amt" placeholder="Total Invoice Amount"
                                                         required="required">
@@ -273,7 +273,7 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div id="dynamic-form-container">
                                                 <div class="row dynamic-form">
-                                                    <div class="form-group col-12 col-md-2">
+                                                    <!-- <div class="form-group col-12 col-md-2">
                                                         Serial No.
                                                         <input type="text" class="form-control pub_cpn_slno"
                                                             name="pub_cpn_slno[]" id="pub_cpn_slno[]"
@@ -283,11 +283,26 @@ function generateInvoice($invoiceNo)
                                                         Denomination
                                                         <input type="text" class="form-control pub_cpn_deno"
                                                             name="pub_cpn_deno[]" id="pub_cpn_deno[]" disabled>
-                                                    </div>
-                                                    <!-- <div class="form-group col-12 col-md-2">
-                                                        <button type="button"
-                                                            class="btn btn-danger dismiss-row-btn">Remove</button>
                                                     </div> -->
+                                                    <div class="form-group col-12 col-md-2">
+                                                        Serial No. From
+                                                        <input type="text" class="form-control pub_cpn_slno"
+                                                            name="pub_cpn_slno_from[]" id="pub_cpn_slno_from"
+                                                            placeholder="Enter Serial No. From" required="required">
+                                                    </div>
+
+                                                    <div class="form-group col-12 col-md-2">
+                                                        Serial No. To
+                                                        <input type="text" class="form-control pub_cpn_slno"
+                                                            name="pub_cpn_slno_to[]" id="pub_cpn_slno_to"
+                                                            placeholder="Enter Serial No. To" required="required">
+                                                    </div>
+                                                    <div class="form-group col-12 col-md-2">
+                                                        Denomination
+                                                        <input type="text" class="form-control pub_cpn_deno"
+                                                            name="pub_cpn_deno[]" id="pub_cpn_deno[]" disabled>
+                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-4">
