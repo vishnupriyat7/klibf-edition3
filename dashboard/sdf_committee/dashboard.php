@@ -16,29 +16,41 @@
 </div>
 <!-- end page title -->
 <?php
-$total_quiz_qry = "SELECT count(id) FROM reg_quiz;";
-$total_quiz_stmt = $con->prepare($total_quiz_qry);
-$total_quiz_stmt->execute();
-$total_quiz_res = $total_quiz_stmt->get_result();
-$tot_quiz_reg_count = $total_quiz_res->fetch_assoc();
+// $total_sponsers_qry = "SELECT count(id) FROM reg_quiz;";
+// $total_quiz_stmt = $con->prepare($total_sponsers_qry);
+// $total_quiz_stmt->execute();
+// $total_quiz_res = $total_quiz_stmt->get_result();
+// $tot_quiz_reg_count = $total_quiz_res->fetch_assoc();
+$total_sponsers_qry = "SELECT count(id) AS tot_count_sponser FROM coupon_sponsers;";
+$total_sponsers_stmt = $con->prepare($total_sponsers_qry);
+$total_sponsers_stmt->execute();
+$total_sponsers_res = $total_sponsers_stmt->get_result();
+$total_sponsers_count = $total_sponsers_res->fetch_assoc();
 
-$total_quiz_school_qry = "SELECT count(id) FROM reg_quiz where category_id = 1;";
-$total_quiz_school_stmt = $con->prepare($total_quiz_school_qry);
-$total_quiz_school_stmt->execute();
-$total_quiz_school_res = $total_quiz_school_stmt->get_result();
-$tot_quiz_school_count = $total_quiz_school_res->fetch_assoc();
+$total_count_coupons_qry = "SELECT count(denom_id) AS tot_coupon_count FROM coupon_distribution;";
+$total_count_coupons_stmt = $con->prepare($total_count_coupons_qry);
+$total_count_coupons_stmt->execute();
+$total_count_coupons_res = $total_count_coupons_stmt->get_result();
+$total_coupons_count = $total_count_coupons_res->fetch_assoc();
 
-$total_quiz_college_qry = "SELECT count(id) FROM reg_quiz where category_id = 2;";
-$total_quiz_college_stmt = $con->prepare($total_quiz_college_qry);
-$total_quiz_college_stmt->execute();
-$total_quiz_college_res = $total_quiz_college_stmt->get_result();
-$total_quiz_college_count = $total_quiz_college_res->fetch_assoc();
+$total_count_50coupons_qry = "SELECT count(denom_id) AS tot_50coupon_count FROM coupon_distribution WHERE denom_id='1'";
+$total_count_50coupons_stmt = $con->prepare($total_count_50coupons_qry);
+$total_count_50coupons_stmt->execute();
+$total_count_50coupons_res = $total_count_50coupons_stmt->get_result();
+$total_50coupons_count = $total_count_50coupons_res->fetch_assoc();
 
-$total_quiz_public_qry = "SELECT count(id) FROM reg_quiz where category_id = 3;";
-$total_quiz_public_stmt = $con->prepare($total_quiz_public_qry);
-$total_quiz_public_stmt->execute();
-$total_quiz_public_res = $total_quiz_public_stmt->get_result();
-$total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
+$total_count_100coupons_qry = "SELECT count(denom_id) AS tot_100coupon_count FROM coupon_distribution WHERE denom_id='2'";
+$total_count_100coupons_stmt = $con->prepare($total_count_100coupons_qry);
+$total_count_100coupons_stmt->execute();
+$total_count_100coupons_res = $total_count_100coupons_stmt->get_result();
+$total_100coupons_count = $total_count_100coupons_res->fetch_assoc();
+
+
+$total_count_200coupons_qry = "SELECT count(denom_id) AS tot_200coupon_count FROM coupon_distribution WHERE denom_id='3'";
+$total_count_200coupons_stmt = $con->prepare($total_count_200coupons_qry);
+$total_count_200coupons_stmt->execute();
+$total_count_200coupons_res = $total_count_200coupons_stmt->get_result();
+$total_200coupons_count = $total_count_200coupons_res->fetch_assoc();
 ?>
 
 
@@ -64,6 +76,8 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
             <!--end row-->
 
             <div class="row h-100">
+
+
                 <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
@@ -75,9 +89,49 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
-                                    Sponser's</p>
-                                    <!-- <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $tot_quiz_reg_count['count(id)']; ?>"></span></h4> -->
+                                        Coupons</p>
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_coupons_count['tot_coupon_count']; ?>"></span></h4>
+                                </div>
+
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
+                                        Coupons 50</p>
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_50coupons_count['tot_50coupon_count']; ?>"></span></h4>
+                                </div>
+
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar-sm flex-shrink-0">
+                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
+                                        <i class="ri-git-merge-fill"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
+                                        Coupons 100</p>
+                                    <h4 class=" mb-0"><span class="counter-value"
+                                            data-target="<?= $total_100coupons_count['tot_100coupon_count']; ?>"></span></h4>
                                 </div>
 
                             </div>
@@ -85,7 +139,7 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                     </div><!-- end card -->
                 </div><!-- end col -->
 
-                <!-- <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -95,17 +149,19 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Schools
-                                        Registered</p>
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
+                                        Coupon 200</p>
                                     <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $tot_quiz_school_count['count(id)']; ?>"></span></h4>
+                                            data-target="<?= $total_200coupons_count['tot_200coupon_count']; ?>"></span></h4>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
-                <!-- <div class="col-lg-4 col-md-6">
+                            </div>
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
+
+
+                <div class="col-lg-4 col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
@@ -115,37 +171,16 @@ $total_quiz_public_count = $total_quiz_public_res->fetch_assoc();
                                     </span>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Colleges
-                                        Registered</p>
+                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Number of
+                                        Sponser's</p>
                                     <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $total_quiz_college_count['count(id)']; ?>"></span></h4>
+                                            data-target="<?= $total_sponsers_count['tot_count_sponser']; ?>"></span></h4>
                                 </div>
+
                             </div>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-lg-4 col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="avatar-sm flex-shrink-0">
-                                    <span class="avatar-title bg-light text-primary rounded-circle fs-3">
-                                        <i class="ri-git-merge-fill"></i>
-                                    </span>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <p class="text-uppercase fw-semibold fs-12 text-muted mb-1"> Total Public
-                                        Registered</p>
-                                    <h4 class=" mb-0"><span class="counter-value"
-                                            data-target="<?= $total_quiz_public_count['count(id)']; ?>"></span></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
-
+                        </div><!-- end card body -->
+                    </div><!-- end card -->
+                </div><!-- end col -->
             </div>
         </div> <!-- end .h-100-->
     </div> <!-- end col -->

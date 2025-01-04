@@ -38,20 +38,20 @@ include "sidebar.php";
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'publisher_profile_report-data')"
-                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <!-- <button onclick="exportTableToExcel('example', 'publisher_profile_report-data')"
+                                class="btn btn-primary">Export Table Data To Excel File</button> -->
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
                                         <th data-ordering="false" rowspan="2">Sl No</th>
-                                        <th data-ordering="false" colspan="2">Coupon Serial No (Range)</th>
+                                        <th data-ordering="false" colspan="1">Coupon Serial No (Range)</th>
                                         <th data-ordering="false" rowspan="2">Denomination</th>
                                         <th data-ordering="false" rowspan="2">Sponser</th>
                                     </tr>
                                     <tr>
-                                        <th data-ordering="false">From</th>
-                                        <th data-ordering="false">To</th>
+                                        <th data-ordering="false">From - To</th>
+                                        <!-- <th data-ordering="false">To</th> -->
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
@@ -83,12 +83,8 @@ include "sidebar.php";
                                                 <?= ++$counter; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['serial_no_from']; ?>
+                                                <?= $coupon['serial_no_from'] . ' - '. $coupon['serial_no_to']  ?>
                                             </td>
-                                            <td>
-                                                <?= $coupon['serial_no_to']; ?>
-                                            </td>
-
                                             <td>
                                                 <?= $coupon['denomination']; ?>
                                             </td>
