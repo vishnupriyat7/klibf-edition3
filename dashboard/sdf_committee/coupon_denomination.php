@@ -95,7 +95,7 @@ include "sidebar.php";
                                             <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xxl-6"><br>
                                                 <label><b>Coupon Denomination Details</b></label>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xxl-6">
                                                     <br>
                                                     *Enter Coupon Denomination
@@ -113,43 +113,61 @@ include "sidebar.php";
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xxl-6">
                                                 <br>
                                                 <button type="submit" name="save_cpn_denom" class="btn btn-primary" id="save_cpn_denom">Save</button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </form>
                                     <div class="card-body overflow-auto">
-                                        <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                                        <!-- <button onclick="exportTableToExcel('example', 'quiz_public_category_report')"
-                                            class="btn btn-primary">Export Table Data To Excel File</button> -->
+                                      
                                         <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                             style="font-style:normal; font-size: 12px;">
                                             <thead class="text-center">
                                                 <tr>
                                                     <th data-ordering="false" rowspan="2">Sl.No</th>
                                                     <th data-ordering="false" rowspan="2">Coupon Denomination</th>
+                                                    <th data-ordering="false" colspan="1">Coupon Serial No(Range)</th>
 
+                                                </tr>
+                                                <tr>
+                                                    <th data-ordering="false">From -To</th>
                                                 </tr>
 
                                             </thead>
-                                            <tbody>
+                                            <tbody class="text-center">
                                                 <?php
                                                 // Fetch all coupon denominations
-                                                $query = "SELECT * FROM coupon_denomination ORDER BY id ASC";
+                                                $query = "SELECT MIN(cdisbn.serial_no) AS serial_no_from, 
+                                                                 MAX(cdisbn.serial_no) AS serial_no_to, 
+                                                                 cdenom.denomination 
+                                                                 FROM 
+                                                                 coupon_distribution cdisbn 
+                                                                 JOIN 
+                                                                 coupon_denomination cdenom 
+                                                                 ON 
+                                                                 cdenom.id = cdisbn.denom_id
+                                                                GROUP BY 
+                                                                cdenom.denomination, cdenom.id
+                                                                ORDER BY 
+                                                                cdenom.id ASC";
                                                 $result = mysqli_query($con, $query);
 
                                                 if (mysqli_num_rows($result) > 0) {
                                                     $counter = 0;
-                                                    while ($row = mysqli_fetch_assoc($result)) {
-                                                        echo "<tr>
-                                                    <td  class='text-center'>" . ++$counter . "</td>
-                                                    <td  class='text-center'>" . $row['denomination'] . "</td>
-                                                </tr>";
-                                                    }
-                                                } else {
-                                                    echo "<tr>
-                                                <td colspan='2' class='text-center text-danger'>No Denomination Details found, Please Enter Coupon Denomination.</td>
-                                            </tr>";
-                                                }
-                                                ?>
+                                                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                                                        <tr>
+                                                            <td><?= ++$counter ?></td>
+                                                            <td><?= $row['denomination'] ?></td>
+                                                            <td>
+                                                                <?= $row['serial_no_from'] . ' - ' . $row['serial_no_to']; ?>
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    <?php }
+                                                } else { ?>
+                                                    <tr>
+                                                        <td colspan='2' class='text-center text-danger'>No Denomination Details found, Please Enter Coupon Denomination.</td>
+                                                    </tr>
+                                                <?php } ?>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
