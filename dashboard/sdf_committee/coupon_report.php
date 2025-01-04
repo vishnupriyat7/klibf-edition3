@@ -42,28 +42,53 @@ include "sidebar.php";
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
-                                <thead>
+                                <thead class="text-center">
                                     <tr>
-                                        <th data-ordering="false">Sl No</th>
-                                        <th data-ordering="false">Coupon No</th>
-                                        <th data-ordering="false">Denomination</th>
-                                        <th data-ordering="false">Sponser</th>
+                                        <th data-ordering="false" rowspan="2">Sl No</th>
+                                        <th data-ordering="false" colspan="2">Coupon Serial No (Range)</th>
+                                        <th data-ordering="false" rowspan="2">Denomination</th>
+                                        <th data-ordering="false" rowspan="2">Sponser</th>
+                                    </tr>
+                                    <tr>
+                                        <th data-ordering="false">From</th>
+                                        <th data-ordering="false">To</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="text-center">
                                     <?php
-                                    $coupon_query = "SELECT * FROM coupon_distribution cd JOIN coupon_sponsers cs ON cd.sponser_id = cs.id JOIN coupon_denomination cdn ON cd.denom_id = cdn.id ORDER BY cd.serial_no ASC";
+                                    // $coupon_query = "SELECT * FROM coupon_distribution cd JOIN coupon_sponsers cs ON cd.sponser_id = cs.id JOIN coupon_denomination cdn ON cd.denom_id = cdn.id ORDER BY cd.serial_no ASC";
+                                    $coupon_query = "
+    SELECT 
+        MIN(cd.serial_no) AS serial_no_from, 
+        MAX(cd.serial_no) AS serial_no_to, 
+        cdn.denomination, 
+        cs.spnsr_org_name
+    FROM 
+        coupon_distribution cd
+    JOIN 
+        coupon_sponsers cs ON cd.sponser_id = cs.id
+    JOIN 
+        coupon_denomination cdn ON cd.denom_id = cdn.id
+    GROUP BY 
+        cdn.denomination, cs.spnsr_org_name
+    ORDER BY 
+        serial_no_from ASC
+";
                                     $coupons = mysqli_query($con, $coupon_query);
                                     $counter = 0;
                                     while ($coupon = mysqli_fetch_array($coupons)) {
-                                        ?>
+                                    ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['serial_no']; ?>
+                                                <?= $coupon['serial_no_from']; ?>
                                             </td>
+                                            <td>
+                                                <?= $coupon['serial_no_to']; ?>
+                                            </td>
+
                                             <td>
                                                 <?= $coupon['denomination']; ?>
                                             </td>
