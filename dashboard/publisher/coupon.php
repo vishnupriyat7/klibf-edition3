@@ -190,12 +190,27 @@ function generateInvoice($invoiceNo)
                                     // Loop through and insert into the database
                                     for ($i = 0; $i < count($pub_cpn_slnos); $i++) {
                                         $pub_cpn_slno = mysqli_real_escape_string($con, $pub_cpn_slnos[$i]);
-                                        $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = $pub_cpn_invc_no AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $pub_cpn_slno), '2024-12-31');";
-                                        $result_pub_cpn_slno = mysqli_query($con, $query_pub_cpn_slno);
-                                        if (!$result_pub_cpn_slno) {
-                                            $status = "NOTOK";
-                                            $msg = "Query Failed. Coupon data not able to save.";
-                                            throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
+                                        $slno_range = explode("-", $pub_cpn_slno);
+                                        $slnoFrom = (int) trim($slno_range[0]);
+                                        if (count($slno_range) > 1) {
+                                            $slnoTo = (int) trim($slno_range[1]);
+                                            for ($j = $slnoFrom; $j <= $slnoTo; $j++) {
+                                                $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = $pub_cpn_invc_no AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $j), '2024-12-31');";
+                                                $result_pub_cpn_slno = mysqli_query($con, $query_pub_cpn_slno);
+                                                if (!$result_pub_cpn_slno) {
+                                                    $status = "NOTOK";
+                                                    $msg = "Query Failed. Coupon data not able to save.";
+                                                    throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
+                                                }
+                                            }
+                                        } else {
+                                            $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = $pub_cpn_invc_no AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $slnoFrom), '2024-12-31');";
+                                            $result_pub_cpn_slno = mysqli_query($con, $query_pub_cpn_slno);
+                                            if (!$result_pub_cpn_slno) {
+                                                $status = "NOTOK";
+                                                $msg = "Query Failed. Coupon data not able to save.";
+                                                throw new Exception("Query Failed. Coupon data not able to save." . $con->error);
+                                            }
                                         }
 
                                     }
@@ -273,44 +288,40 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div id="dynamic-form-container">
                                                 <div class="row dynamic-form">
-                                                    <!-- <div class="form-group col-12 col-md-2">
+                                                    <div class="form-group col-12 col-md-2">
                                                         Serial No.
                                                         <input type="text" class="form-control pub_cpn_slno"
-                                                            name="pub_cpn_slno[]" id="pub_cpn_slno[]"
+                                                            name="pub_cpn_slno[]" id="pub_cpn_slno"
                                                             placeholder="Enter Serial No." required="required">
-                                                    </div>
-                                                    <div class="form-group col-12 col-md-2">
-                                                        Denomination
-                                                        <input type="text" class="form-control pub_cpn_deno"
-                                                            name="pub_cpn_deno[]" id="pub_cpn_deno[]" disabled>
-                                                    </div> -->
-                                                    <div class="form-group col-12 col-md-2">
-                                                        Serial No. From
-                                                        <input type="text" class="form-control pub_cpn_slno"
-                                                            name="pub_cpn_slno_from[]" id="pub_cpn_slno_from"
-                                                            placeholder="Enter Serial No. From" required="required">
+                                                        <small><label>For range: eg. (10-18)</label></small>
                                                     </div>
 
-                                                    <div class="form-group col-12 col-md-2">
+                                                    <!-- <div class="form-group col-12 col-md-2">
                                                         Serial No. To
                                                         <input type="text" class="form-control pub_cpn_slno"
                                                             name="pub_cpn_slno_to[]" id="pub_cpn_slno_to"
                                                             placeholder="Enter Serial No. To" required="required">
-                                                    </div>
+                                                    </div> -->
                                                     <div class="form-group col-12 col-md-2">
                                                         Denomination
                                                         <input type="text" class="form-control pub_cpn_deno"
-                                                            name="pub_cpn_deno[]" id="pub_cpn_deno[]" disabled>
+                                                            name="pub_cpn_deno[]" id="pub_cpn_deno" disabled>
                                                     </div>
-                                                   
+                                                    <div class="form-group col-12 col-md-2">
+                                                        Total
+                                                        <input type="text" class="form-control pub_cpn_deno"
+                                                            name="pub_cpn_deno_total[]" id="pub_cpn_deno_total"
+                                                            disabled>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-4">
-                                                <button type="button" id="add_pub_cpn_row_btn" class="btn btn-info">Add
+                                                <button type="button" id="add_pub_cpn_row_btn" class="btn btn-info"
+                                                    disabled>Add
                                                     More</button>
                                             </div>
                                             <div class="col-12 mt-4 col-md-2">
-                                                <h5>Total:</h5>
+                                                <h5>Grand Total:</h5>
                                             </div>
                                             <div class="col-12 mt-4 col-md-2">
                                                 <input type="text" class="form-control" name="total-denomination"
@@ -319,7 +330,7 @@ function generateInvoice($invoiceNo)
                                         </div>
                                         <div class="col-lg-12"><br>
                                             <button type="submit" name="save_pub_cpn" class="btn btn-success"
-                                                id="save_pub_cpn">Save Coupon</button>
+                                                id="save_pub_cpn" disabled>Save Coupon</button>
                                         </div>
                                     </form>
                                     <!-- <hr class="mt-3">
@@ -415,26 +426,46 @@ function generateInvoice($invoiceNo)
                     dataType: "json",
                     success: function (response) {
                         console.log(response);
-                        if (response[0] != null) {
-                            denominationInput.value = response[0].denomination;
-                            calculateTotal();
-                        } else {
-                            denominationInput.value = 0;
-                            calculateTotal();
-                        }
-                        if (response[1] != null) {
-                            // $('.alert-outline').html('Serial No. already exists.');
-                            denominationInput.style.color='red';
+                        if (response[2] != null) {
+                            denominationInput.style.color = 'red';
                             denominationInput.value = 'Already exists.';
                             document.getElementById("save_pub_cpn").setAttribute("disabled", true);
                             document.getElementById("add_pub_cpn_row_btn").setAttribute("disabled", true);
                             calculateTotal();
-                            // $('#save_pub_cpn').setAttribute('disabled', true);
                         } else {
-                            denominationInput.style.color='';
+                            denominationInput.style.color = '';
                             document.getElementById("save_pub_cpn").removeAttribute("disabled", true);
                             document.getElementById("add_pub_cpn_row_btn").removeAttribute("disabled", true);
+                            if (response[0] != null && response[1] === null) {
+                                denominationInput.value = response[0].denomination;
+                                document.getElementById("save_pub_cpn").removeAttribute("disabled", true);
+                                document.getElementById("add_pub_cpn_row_btn").removeAttribute("disabled", true);
+                                calculateTotal();
+                            } else {
+                                denominationInput.style.color = 'red';
+                                denominationInput.value = 'Invalid Copuon.';
+                                document.getElementById("save_pub_cpn").setAttribute("disabled", true);
+                                document.getElementById("add_pub_cpn_row_btn").setAttribute("disabled", true);
+                                calculateTotal();
+                            }
+                            if (response[0] != null && response[1] != null) {
+                                if (response[0].denomination === response[1].denomination) {
+                                    denominationInput.style.color = '';
+                                    denominationInput.value = response[0].denomination;
+                                    document.getElementById("save_pub_cpn").removeAttribute("disabled", true);
+                                    document.getElementById("add_pub_cpn_row_btn").removeAttribute("disabled", true);
+                                    calculateTotal();
+                                } else {
+                                    denominationInput.style.color = 'red';
+                                    denominationInput.value = 'Invalid Copuon.';
+                                    document.getElementById("save_pub_cpn").setAttribute("disabled", true);
+                                    document.getElementById("add_pub_cpn_row_btn").setAttribute("disabled", true);
+                                    calculateTotal();
+                                }
+                            }
+
                         }
+
                     }
                 });
             } else {
@@ -456,12 +487,35 @@ function generateInvoice($invoiceNo)
 
     function calculateTotal() {
         let total = 0;
-        document.querySelectorAll(".pub_cpn_deno").forEach(input => {
-            const value = parseFloat(input.value);
-            if (!isNaN(value)) {
-                total += value;
+        // Iterate through each dynamic-form row
+        document.querySelectorAll(".dynamic-form").forEach(row => {
+            const slnoInput = row.querySelector(".pub_cpn_slno[name='pub_cpn_slno[]']");
+            const denoInput = row.querySelector(".pub_cpn_deno[name='pub_cpn_deno[]']");
+            const denoTotInput = row.querySelector(".pub_cpn_deno[name='pub_cpn_deno_total[]']");
+            const slnoValue = slnoInput.value;
+            const slnoRange = slnoValue.split("-");
+            var slnoTo = 0;
+            if (slnoRange.length > 1) {
+                var slnoTo = parseInt(slnoRange[1]);
+            }
+            const slnoFrom = parseInt(slnoRange[0]);
+            const denoValue = parseFloat(denoInput.value);
+            if (slnoTo !== 0) {
+                const rangeTotal = (slnoTo - slnoFrom + 1) * denoValue; // Add 1 to include the range endpoint
+                denoTotInput.value = rangeTotal;
+                if (rangeTotal > 0) {
+                    total += rangeTotal;
+                }
+            } else {
+                const rangeTotal = denoValue; // Add 1 to include the range endpoint
+                denoTotInput.value = rangeTotal;
+                if (rangeTotal > 0) {
+                    total += rangeTotal;
+                }
             }
         });
-        document.getElementById("total-denomination").value = total.toFixed(2);
+
+        // Display the total in the "total-denomination" field
+        document.getElementById("total-denomination").value = total;
     }
 </script>
