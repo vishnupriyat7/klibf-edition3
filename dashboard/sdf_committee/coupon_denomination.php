@@ -95,7 +95,7 @@ include "sidebar.php";
                                             <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xxl-6"><br>
                                                 <label><b>Coupon Denomination Details</b></label>
                                             </div>
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xxl-6">
                                                     <br>
                                                     *Enter Coupon Denomination
@@ -113,7 +113,7 @@ include "sidebar.php";
                                             <div class="col-sm-12 col-md-6 col-lg-6 col-xxl-6">
                                                 <br>
                                                 <button type="submit" name="save_cpn_denom" class="btn btn-primary" id="save_cpn_denom">Save</button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </form>
                                     <div class="card-body overflow-auto">
