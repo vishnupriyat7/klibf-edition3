@@ -72,7 +72,8 @@
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" href="#sidebarEvent" data-bs-toggle="collapse"
                             data-bs-target="#sidebarEvent">
-                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Book Release/Discussion Proposals</span>
+                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Book Release/Discussion
+                                Proposals</span>
                         </a>
                         <div class="menu-dropdown collapse" id="sidebarEvent">
                             <ul class="nav nav-sm flex-column">
@@ -87,8 +88,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php" class="nav-link"
-                                        data-key="t-nft-landing"> Book Discussion Proposal </a>
+                                    <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_proposal.php"
+                                        class="nav-link" data-key="t-nft-landing"> Book Discussion Proposal </a>
                                 </li>
                             </ul>
                         </div>
@@ -123,13 +124,13 @@
                         <div class="menu-dropdown collapse" id="sidebarCoupon">
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
-                                    <a href="<?= $base_url ?>/dashboard/publisher/coupon.php"
-                                        class="nav-link" data-key="t-one-page"> Coupon Entry
+                                    <a href="<?= $base_url ?>/dashboard/publisher/coupon.php" class="nav-link"
+                                        data-key="t-one-page"> Coupon Entry
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= $base_url ?>/dashboard/publisher/bank_dtls.php"
-                                        class="nav-link" data-key="t-one-page"> Bank Details
+                                    <a href="<?= $base_url ?>/dashboard/publisher/bank_dtls.php" class="nav-link"
+                                        data-key="t-one-page"> Bank Details
                                     </a>
                                 </li>
 
@@ -155,8 +156,8 @@
                                         Book Release Proposal Report </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php" class="nav-link"
-                                        data-key="t-nft-landing"> Book Discussion Proposal Report </a>
+                                    <a href="<?= $base_url ?>/dashboard/publisher/book_discussion_report.php"
+                                        class="nav-link" data-key="t-nft-landing"> Book Discussion Proposal Report </a>
                                 </li>
 
 
@@ -165,6 +166,25 @@
                                 <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
                                     data-key="t-nft-landing">Coupon List Report</a>
                             </li> -->
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
+                            data-bs-target="#sidebarGuidelines">
+                            <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Guidelines
+                                Coupon/SDF</span>
+                        </a>
+                        <div class="menu-dropdown collapse" id="sidebarGuidelines">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="<?= $base_url ?>/dashboard/publisher/guidelines_coupon.php" class="nav-link"
+                                        data-key="t-one-page"> Coupon </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $base_url ?>/dashboard/publisher/guidelines_sdf.php" class="nav-link"
+                                        data-key="t-nft-landing"> SDF </a>
+                                </li>
                             </ul>
                         </div>
                     </li>

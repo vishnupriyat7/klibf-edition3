@@ -38,54 +38,54 @@ include "sidebar.php";
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'sdf-coupon-distributed-report')"
+                            <button onclick="exportTableToExcel('example', 'sdf-total-coupon-collect-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
                                         <th data-ordering="false">Sl No</th>
-                                        <th data-ordering="false">Coupon Serial No (Range) <br>From-To</th>
+                                        <th data-ordering="false">Publisher</th>
+                                        <th data-ordering="false">Bill No</th>
+                                        <th data-ordering="false">Bill Date</th>
+                                        <th data-ordering="false">Net Bill Amount</th>
+                                        <th data-ordering="false">Coupon Amount</th>
+                                        <th data-ordering="false">Coupon Sl No</th>
                                         <th data-ordering="false">Denomination</th>
-                                        <th data-ordering="false">Sponser</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
                                     <?php
                                     // $coupon_query = "SELECT * FROM coupon_distribution cd JOIN coupon_sponsers cs ON cd.sponser_id = cs.id JOIN coupon_denomination cdn ON cd.denom_id = cdn.id ORDER BY cd.serial_no ASC";
-                                    $coupon_query = "
-    SELECT 
-        MIN(cd.serial_no) AS serial_no_from, 
-        MAX(cd.serial_no) AS serial_no_to, 
-        cdn.denomination, 
-        cs.spnsr_org_name
-    FROM 
-        coupon_distribution cd
-    JOIN 
-        coupon_sponsers cs ON cd.sponser_id = cs.id
-    JOIN 
-        coupon_denomination cdn ON cd.denom_id = cdn.id
-    GROUP BY 
-        cdn.denomination, cs.spnsr_org_name
-    ORDER BY 
-        serial_no_from ASC
-";
-                                    $coupons = mysqli_query($con, $coupon_query);
+                                    $total_coupon_query = "SELECT cd.serial_no, cpi.invoice_no, cpi.invoice_dt, cpi.tot_inv_amt, cpi.tot_cpn_amt, cdn.denomination, up.org_name  FROM coupon_publisher_serialno cps JOIN coupon_publisher_invoice cpi ON cps.cpn_pub_inv = cpi.id JOIN coupon_distribution cd ON cd.id = cps.cpn_slno JOIN coupon_denomination cdn ON cd.denom_id = cdn.id JOIN users_profile up ON cpi.user_id = up.user_id ORDER BY cd.serial_no ASC";
+                                    $total_coupons = mysqli_query($con, $total_coupon_query);
                                     $counter = 0;
-                                    while ($coupon = mysqli_fetch_array($coupons)) {
+                                    while ($coupon = mysqli_fetch_array($total_coupons)) {
                                         ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['serial_no_from'] . ' - ' . $coupon['serial_no_to'] ?>
+                                                <?= $coupon['org_name'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon['invoice_no']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon['invoice_dt']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon['tot_inv_amt']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon['tot_cpn_amt']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon['serial_no']; ?>
                                             </td>
                                             <td>
                                                 <?= $coupon['denomination']; ?>
-                                            </td>
-                                            <td>
-                                                <?= $coupon['spnsr_org_name']; ?>
                                             </td>
                                         </tr>
                                     <?php } ?>

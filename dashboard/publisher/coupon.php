@@ -176,6 +176,11 @@ function generateInvoice($invoiceNo)
                             $pub_cpn_invc_dt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_dt']);
                             $pub_cpn_invc_tot_amt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_tot_amt']);
                             $pub_cpn_invc_cpn_amt = mysqli_real_escape_string($con, $_POST['pub_cpn_invc_cpn_amt']);
+                            $pub_cpn_invc_cpn_grand_tot = mysqli_real_escape_string($con, $_POST['total-denomination']);
+                            if($pub_cpn_invc_cpn_amt != $pub_cpn_invc_cpn_grand_tot) {
+                                $status = "NOTOK";
+                                $msg = "Coupon amount mismatch";
+                            }
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $errormsg = "";
@@ -184,7 +189,6 @@ function generateInvoice($invoiceNo)
                                 $query_pub_invoice = "INSERT INTO coupon_publisher_invoice (user_id, invoice_no, invoice_dt, tot_inv_amt, tot_cpn_amt, updated_date) VALUES ('$user_id', '$pub_cpn_invc_no', '$pub_cpn_invc_dt', '$pub_cpn_invc_tot_amt', '$pub_cpn_invc_cpn_amt', '$date');";
                                 $result_pub_invoice = mysqli_query($con, $query_pub_invoice);
                                 if ($result_pub_invoice) {
-                                    // $last_id = mysqli_insert_id($con);
                                     $pub_cpn_slnos = $_POST['pub_cpn_slno'];
                                     $tot_deno_amt = 0;
                                     // Loop through and insert into the database
@@ -214,11 +218,6 @@ function generateInvoice($invoiceNo)
                                         }
 
                                     }
-                                    // if ($tot_deno_amt != (int) $spnsr_tot_amt) {
-                                    //     $status = "NOTOK";
-                                    //     $msg = "Missmatch in total amount and denomination total. Please verify.";
-                                    //     throw new Exception("Missmatch in total amount and denomination total. Please verify." . $con->error);
-                                    // }
                                     $errormsg = "";
                                     if ($status == "NOTOK") {
                                         throw new Exception($msg . $con->error);
@@ -234,8 +233,11 @@ function generateInvoice($invoiceNo)
                                 }
                             } catch (Exception $e) {
                                 $con->rollback();
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" . $e->getMessage() . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                       </div>";
+                                if ($e->getCode() == 1062) { // SQLSTATE code for integrity constraint violation
+                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Duplicate entry for Serial Number $slnoFrom. Please avoid.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+                                } else {
+                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Database Error: " . $e->getMessage() . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+                                }
                             }
                         }
                         ?>
@@ -259,7 +261,7 @@ function generateInvoice($invoiceNo)
                                                     Bill Number
                                                     <input type="text" class="form-control" name="pub_cpn_invc_no"
                                                         id="pub_cpn_invc_no" placeholder="Bill Number"
-                                                        required="required">
+                                                        required="required" onchange="getDuplicateBill();">
                                                 </div>
                                                 <div class="form-group col-12 col-md-2">
                                                     Bill Date
@@ -276,7 +278,7 @@ function generateInvoice($invoiceNo)
                                                 <div class="form-group col-12 col-md-3">
                                                     Total Coupon Amount (in ₹)
                                                     <input type="text" class="form-control" name="pub_cpn_invc_cpn_amt"
-                                                        id="pub_cpn_invc_cpn_amt" placeholder="Total Cupon Amount"
+                                                        id="pub_cpn_invc_cpn_amt" placeholder="Total Coupon Amount"
                                                         required="required"><br>
                                                 </div>
                                             </div>
@@ -325,7 +327,7 @@ function generateInvoice($invoiceNo)
                                             </div>
                                             <div class="col-12 mt-4 col-md-2">
                                                 <input type="text" class="form-control" name="total-denomination"
-                                                    id="total-denomination" disabled>
+                                                    id="total-denomination" readonly>
                                             </div>
                                         </div>
                                         <div class="col-lg-12"><br>
@@ -421,7 +423,8 @@ function generateInvoice($invoiceNo)
                     type: "POST",
                     data: {
                         slno: encodeURIComponent(serialNo),
-                        invoiceNo: invoiceNo
+                        invoiceNo: invoiceNo,
+                        userId: <?= $user_id ?>
                     },
                     dataType: "json",
                     success: function (response) {
@@ -465,6 +468,12 @@ function generateInvoice($invoiceNo)
                             }
 
                         }
+                        if (response[3] != null) {
+                            denominationInput.style.color = 'red';
+                            denominationInput.value = 'Bill no exists';
+                            document.getElementById("save_pub_cpn").setAttribute("disabled", true);
+                            document.getElementById("add_pub_cpn_row_btn").setAttribute("disabled", true);
+                        }
 
                     }
                 });
@@ -474,6 +483,29 @@ function generateInvoice($invoiceNo)
             }
         }
     });
+
+    function getDuplicateBill() {
+        const invoiceNo = document.getElementById("pub_cpn_invc_no").value;
+        $.ajax({
+            url: "<?= $base_url; ?>/dashboard/publisher/get_publisher_invoice.php",
+            type: "POST",
+            data: {
+                invoiceNo: invoiceNo,
+                userId: <?= $user_id ?>
+            },
+            dataType: "json",
+            success: function (response) {
+                if (response != null) {
+                    swal("Cancelled", "Bill no already exists", "warning").then(function (isConfirm) {
+                        document.getElementById("pub_cpn_invc_no").value = "";
+                    });
+                    document.getElementById("save_pub_cpn").setAttribute("disabled", true);
+                    document.getElementById("add_pub_cpn_row_btn").setAttribute("disabled", true);
+                }
+
+            }
+        });
+    }
 
     document.getElementById("dynamic-form-container").addEventListener("click", function (event) {
         if (event.target.classList.contains("dismiss-row-btn")) {

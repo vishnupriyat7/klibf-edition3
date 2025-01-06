@@ -40,8 +40,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_denomination.php" class="nav-link" data-key="t-analytics">
-                    <i class="ri-file-list-3-line"></i>
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_denomination.php" class="nav-link"
+                        data-key="t-analytics">
+                        <i class="ri-file-list-3-line"></i>
                         <span data-key="t-dashboards"> Coupon Denomination </span>
                     </a>
                 </li>
@@ -53,11 +54,45 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_report.php" class="nav-link"
-                        data-key="t-one-page">
-                        <i class="mdi mdi-cash-multiple"></i>
-                        <span data-key="t-dashboards">Coupon Report</span>
+                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarReport">
+                        <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Reports</span>
                     </a>
+                    <div class="menu-dropdown collapse" id="sidebarReport">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/coupon_report.php" class="nav-link"
+                                    data-key="t-one-page"> Coupon Distributed </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/total_coupon_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Overall Coupon Returned  </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
+                        data-bs-target="#sidebarGuidelines">
+                        <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Guidelines
+                            Coupon/SDF</span>
+                    </a>
+                    <div class="menu-dropdown collapse" id="sidebarGuidelines">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/guidelines_coupon.php" class="nav-link"
+                                    data-key="t-one-page"> Coupon </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/guidelines_sdf.php" class="nav-link"
+                                    data-key="t-nft-landing"> SDF </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/receipt_format.php" class="nav-link"
+                                    data-key="t-nft-landing"> Receipt Format </a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </div>
