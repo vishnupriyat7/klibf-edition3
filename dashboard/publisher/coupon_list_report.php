@@ -1,5 +1,6 @@
-<?php include "header.php"; ?>
-<?php include "sidebar_publisher.php"; ?>
+<?php include "../header.php";
+include "sidebar.php";
+$user_id = $user['id']; ?>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -17,7 +18,9 @@
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i
+                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
                     </div>
@@ -33,109 +36,82 @@
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report-data')" class="btn btn-primary">Export Table Data To Excel File</button>
-                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped" style="font-style:normal; font-size: 12px;">
+                            <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report-data')"
+                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th data-ordering="false" rowspan="2">Sl.No</th>
-                                        <th data-ordering="false" rowspan="2">Invoice No.</th>
-                                        <th data-ordering="false" colspan="2">Coupon 50 </th>
-
-                                        <th data-ordering="false" colspan="2">Coupon 100</th>
-
-                                        <th data-ordering="false" colspan="2">Coupon 200</th>
-
-                                        <th data-ordering="false" rowspan="2">Amount</th>
-                                        <!-- <th data-ordering="false" rowspan="2">Bank Name</th>
-                                        <th data-ordering="false" rowspan="2">Branch</th>
-                                        <th data-ordering="false" rowspan="2">Account Number</th>
-                                        <th data-ordering="false" rowspan="2">IFSC</th> -->
-                                        <!-- <th data-ordering="false" rowspan="2">Action</th> -->
+                                        <th data-ordering="false" rowspan="2">Sl No</th>
+                                        <th data-ordering="false" rowspan="2">Bill No</th>
+                                        <th data-ordering="false" rowspan="2">Bill Date</th>
+                                        <th data-ordering="false" rowspan="2">Net Bill Amount</th>
+                                        <th data-ordering="false" rowspan="2">Coupon Amount</th>
+                                        <th data-ordering="false" colspan="6">Denominations</th>
                                     </tr>
                                     <tr>
-
-                                        <th data-ordering="false">Count</th>
-                                        <th data-ordering="false">Sl.No </th>
-                                        <th data-ordering="false">Count</th>
-                                        <th data-ordering="false">Sl.No </th>
-                                        <th data-ordering="false">Count</th>
-                                        <th data-ordering="false">Sl.No </th>
+                                        <th data-ordering="false">50 Count</th>
+                                        <th data-ordering="false">Amount</th>
+                                        <th data-ordering="false">100 Count</th>
+                                        <th data-ordering="false">Amount</th>
+                                        <th data-ordering="false">200 Count</th>
+                                        <th data-ordering="false">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $userId = $user['id'];
-                                    $querycoupon = "SELECT cp.*, cb.*  FROM coupon_publisher cp JOIN  coupon_bankdtls cb ON cp.users_id = cb.users_id WHERE cp.users_id = $userId ORDER BY cp.id DESC";
-                                    $couponlist = mysqli_query($con, $querycoupon);
+                                    $total_coupon_invoice_query = "SELECT * FROM coupon_publisher_invoice WHERE user_id = '$user_id';";
+                                    $total_bills = mysqli_query($con, $total_coupon_invoice_query);
                                     $counter = 0;
-                                    while ($coupon = mysqli_fetch_array($couponlist)) {
-                                        $id = $coupon['id'];
-                                        $couponinvoice = $coupon['cpn_bill_no'];
-                                        $coupon50ct = $coupon['cpn_50_count'];
-                                        $coupon50slno = $coupon['cpn_50_srlno'];
-                                        $coupon100ct = $coupon['cpn_100_count'];
-                                        $coupon100slno = $coupon['cpn_100_srlno'];
-                                        $coupon200ct = $coupon['cpn_200_count'];
-                                        $coupon200slno = $coupon['cpn_200_srlno'];
-                                        $coupontotal = $coupon['total_amount'];
-                                        // $bankname = $coupon['bank_name'];
-                                        // $account_no = $coupon['account_no'];
-                                        // $bank_ifsc = $coupon['bank_ifsc'];
-                                        // $bank_branch = $coupon['bank_branch'];
-
-                                    ?>
+                                    while ($bill = mysqli_fetch_array($total_bills)) {
+                                        $coupon200_count = $coupon100_count = $coupon50_count = 0;
+                                        $invoice_no = $bill['id'];
+                                        $pub_inv_cpn_count_qry = "SELECT COUNT(cd.serial_no) AS serial_no_count, cd.denom_id FROM coupon_publisher_serialno cps JOIN coupon_distribution cd ON cps.cpn_slno=cd.id WHERE cps.cpn_pub_inv = '$invoice_no' GROUP BY cd.denom_id;";
+                                        $invoice_coupons = mysqli_query($con, $pub_inv_cpn_count_qry);
+                                        while ($coupon_denom_count = mysqli_fetch_array($invoice_coupons)) {
+                                            if ($coupon_denom_count['denom_id'] == 1) {
+                                                $coupon50_count = $coupon_denom_count['serial_no_count'];
+                                            } elseif ($coupon_denom_count['denom_id'] == 2) {
+                                                $coupon100_count = $coupon_denom_count['serial_no_count'];
+                                            } elseif ($coupon_denom_count['denom_id'] == 3) {
+                                                $coupon200_count = $coupon_denom_count['serial_no_count'];
+                                            }
+                                        }
+                                        ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
-
                                             <td>
-                                                <?= $couponinvoice; ?>
+                                                <?= $bill['invoice_no']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon50ct; ?>
+                                                <?= $bill['invoice_dt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon50slno; ?>
-                                            </td>
-
-                                            <td>
-                                                <?= $coupon100ct; ?>
-                                            </td>
-
-                                            <td>
-                                                <?= $coupon100slno; ?>
+                                                <?= $bill['tot_inv_amt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon200ct; ?>
+                                                <?= $bill['tot_cpn_amt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon200slno; ?>
+                                                <?= $coupon50_count; ?>
                                             </td>
                                             <td>
-                                                <?= $coupontotal; ?>
-                                            </td>
-                                            <!-- <td>
-                                                <?= $bankname; ?>
+                                                <?= 50 * $coupon50_count; ?>
                                             </td>
                                             <td>
-                                                <?= $account_no; ?>
+                                                <?= $coupon100_count; ?>
                                             </td>
                                             <td>
-                                                <?= $bank_ifsc; ?>
+                                                <?= 100 * $coupon100_count; ?>
                                             </td>
                                             <td>
-                                                <?= $bank_branch; ?>
-                                            </td> -->
-                                            <!-- <td>
-
-                                                <a href='publisher_bookrelease.php?bkrlsid=<?= $id; ?>' class='dropdown-item edit-item-btn'>
-                                                    <button class="btn btn-primary"> <i class='ri-edit-box-fill align-bottom me-2 text-white'></i> Edit</button>
-                                                </a>
-
-
-                                            </td> -->
-
+                                                <?= $coupon200_count; ?>
+                                            </td>
+                                            <td>
+                                                <?= 200 * $coupon200_count; ?>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -150,7 +126,7 @@
         <!-- container-fluid -->
     </div>
     <!-- End Page-content -->
-    <?php include "footer.php"; ?>
+    <?php include "../footer.php"; ?>
 
     <script>
         function exportTableToExcel(example, filename = '') {
