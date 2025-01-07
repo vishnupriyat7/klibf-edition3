@@ -42,6 +42,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/vendor/mdb-ui-kit3.6.0/css/mdb.min.css" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 
   <!-- =======================================================
   * Template Name: Squadfree

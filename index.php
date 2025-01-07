@@ -51,6 +51,7 @@
     <!-- ======= Contest Section ======= -->
     <?php include "./components/logo-video.php"; ?>
     <!-- End Contest Section -->
+    <?php include "./components/directory.php"; ?>
 
     <!-- ======= Contact Section ======= hh-->
     <?php include "./components/contact.php"; ?>
@@ -60,8 +61,6 @@
   <!-- ======= Footer ======= -->
   <?php include "footer.php"; ?>
   <!-- End Footer -->
-
-
 </body>
 
 </html>

@@ -56,12 +56,36 @@ include "sidebar.php";
                                 </thead>
                                 <tbody class="text-center">
                                     <?php
-                                    // $coupon_query = "SELECT * FROM coupon_distribution cd JOIN coupon_sponsers cs ON cd.sponser_id = cs.id JOIN coupon_denomination cdn ON cd.denom_id = cdn.id ORDER BY cd.serial_no ASC";
-                                    $total_coupon_query = "SELECT cd.serial_no, cpi.invoice_no, cpi.invoice_dt, cpi.tot_inv_amt, cpi.tot_cpn_amt, cdn.denomination, up.org_name  FROM coupon_publisher_serialno cps JOIN coupon_publisher_invoice cpi ON cps.cpn_pub_inv = cpi.id JOIN coupon_distribution cd ON cd.id = cps.cpn_slno JOIN coupon_denomination cdn ON cd.denom_id = cdn.id JOIN users_profile up ON cpi.user_id = up.user_id ORDER BY cd.serial_no ASC";
+                                    $total_coupon_query = "SELECT 
+    COUNT(cd.serial_no) AS serial_no_count, 
+    cpi.invoice_no, 
+    cpi.invoice_dt, 
+    cpi.tot_inv_amt, 
+    cpi.tot_cpn_amt, 
+    cdn.denomination, 
+    up.org_name
+FROM 
+    coupon_publisher_serialno cps 
+JOIN 
+    coupon_publisher_invoice cpi ON cps.cpn_pub_inv = cpi.id 
+JOIN 
+    coupon_distribution cd ON cd.id = cps.cpn_slno 
+JOIN 
+    coupon_denomination cdn ON cd.denom_id = cdn.id 
+JOIN 
+    users_profile up ON cpi.user_id = up.user_id 
+GROUP BY 
+    cpi.invoice_no, 
+    cpi.invoice_dt, 
+    cpi.tot_inv_amt, 
+    cpi.tot_cpn_amt, 
+    cdn.denomination, 
+    up.org_name
+    ORDER BY up.org_name, cpi.invoice_no  ASC;";
                                     $total_coupons = mysqli_query($con, $total_coupon_query);
                                     $counter = 0;
                                     while ($coupon = mysqli_fetch_array($total_coupons)) {
-                                        ?>
+                                    ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
@@ -82,7 +106,7 @@ include "sidebar.php";
                                                 <?= $coupon['tot_cpn_amt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['serial_no']; ?>
+                                                <?= $coupon['serial_no_count']; ?>
                                             </td>
                                             <td>
                                                 <?= $coupon['denomination']; ?>
