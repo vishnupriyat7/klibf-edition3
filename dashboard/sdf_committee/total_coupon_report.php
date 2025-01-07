@@ -44,72 +44,106 @@ include "sidebar.php";
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th data-ordering="false">Sl No</th>
-                                        <th data-ordering="false">Publisher</th>
-                                        <th data-ordering="false">Bill No</th>
-                                        <th data-ordering="false">Bill Date</th>
-                                        <th data-ordering="false">Net Bill Amount</th>
-                                        <th data-ordering="false">Coupon Amount</th>
-                                        <th data-ordering="false">Coupon Sl No</th>
-                                        <th data-ordering="false">Denomination</th>
+                                        <th data-ordering="false" rowspan="2">Sl No</th>
+                                        <th data-ordering="false" rowspan="2">Publisher</th>
+                                        <th data-ordering="false" rowspan="2">Bill No</th>
+                                        <th data-ordering="false" rowspan="2">Bill Date</th>
+                                        <th data-ordering="false" rowspan="2">Net Bill Amount</th>
+                                        <th data-ordering="false" rowspan="2">Coupon Amount</th>
+                                        <th data-ordering="false" colspan="6">Denominations</th>
+                                    </tr>
+                                    <tr>
+                                        <th data-ordering="false">50 Count</th>
+                                        <th data-ordering="false">Amount</th>
+                                        <th data-ordering="false">100 Count</th>
+                                        <th data-ordering="false">Amount</th>
+                                        <th data-ordering="false">200 Count</th>
+                                        <th data-ordering="false">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
                                     <?php
-                                    $total_coupon_query = "SELECT 
-    COUNT(cd.serial_no) AS serial_no_count, 
-    cpi.invoice_no, 
-    cpi.invoice_dt, 
-    cpi.tot_inv_amt, 
-    cpi.tot_cpn_amt, 
-    cdn.denomination, 
-    up.org_name
-FROM 
-    coupon_publisher_serialno cps 
-JOIN 
-    coupon_publisher_invoice cpi ON cps.cpn_pub_inv = cpi.id 
-JOIN 
-    coupon_distribution cd ON cd.id = cps.cpn_slno 
-JOIN 
-    coupon_denomination cdn ON cd.denom_id = cdn.id 
-JOIN 
-    users_profile up ON cpi.user_id = up.user_id 
-GROUP BY 
-    cpi.invoice_no, 
-    cpi.invoice_dt, 
-    cpi.tot_inv_amt, 
-    cpi.tot_cpn_amt, 
-    cdn.denomination, 
-    up.org_name
-    ORDER BY up.org_name, cpi.invoice_no  ASC;";
-                                    $total_coupons = mysqli_query($con, $total_coupon_query);
+                                    //                                                                         $total_coupon_query = "SELECT 
+//     COUNT(cd.serial_no) AS serial_no_count, 
+//     cpi.invoice_no, 
+//     cpi.invoice_dt, 
+//     cpi.tot_inv_amt, 
+//     cpi.tot_cpn_amt, 
+//     cdn.denomination, 
+//     up.org_name
+// FROM 
+//     coupon_publisher_serialno cps 
+// JOIN 
+//     coupon_publisher_invoice cpi ON cps.cpn_pub_inv = cpi.id 
+// JOIN 
+//     coupon_distribution cd ON cd.id = cps.cpn_slno 
+// JOIN 
+//     coupon_denomination cdn ON cd.denom_id = cdn.id 
+// JOIN 
+//     users_profile up ON cpi.user_id = up.user_id 
+// GROUP BY 
+//     cpi.invoice_no, 
+//     cpi.invoice_dt, 
+//     cpi.tot_inv_amt, 
+//     cpi.tot_cpn_amt, 
+//     cdn.denomination, 
+//     up.org_name
+//     ORDER BY up.org_name, cpi.invoice_no  ASC;";
+                                    
+                                    $total_coupon_invoice_query = "SELECT cpi.*, up.org_name FROM coupon_publisher_invoice cpi JOIN users_profile up ON cpi.user_id = up.user_id;";
+                                    $total_bills = mysqli_query($con, $total_coupon_invoice_query);
                                     $counter = 0;
-                                    while ($coupon = mysqli_fetch_array($total_coupons)) {
-                                    ?>
+                                    while ($bill = mysqli_fetch_array($total_bills)) {
+                                        $coupon200_count = $coupon100_count = $coupon50_count = 0;
+                                        $invoice_no = $bill['id'];
+                                        $pub_inv_cpn_count_qry = "SELECT COUNT(cd.serial_no) AS serial_no_count, cd.denom_id FROM coupon_publisher_serialno cps JOIN coupon_distribution cd ON cps.cpn_slno=cd.id WHERE cps.cpn_pub_inv = '$invoice_no' GROUP BY cd.denom_id;";
+                                        $invoice_coupons = mysqli_query($con, $pub_inv_cpn_count_qry);
+                                        while ($coupon_denom_count = mysqli_fetch_array($invoice_coupons)) {
+                                            if ($coupon_denom_count['denom_id'] == 1) {
+                                                $coupon50_count = $coupon_denom_count['serial_no_count'];
+                                            } elseif ($coupon_denom_count['denom_id'] == 2) {
+                                                $coupon100_count = $coupon_denom_count['serial_no_count'];
+                                            } elseif ($coupon_denom_count['denom_id'] == 3) {
+                                                $coupon200_count = $coupon_denom_count['serial_no_count'];
+                                            }
+                                        }
+                                        ?>
                                         <tr>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['org_name'] ?>
+                                                <?= $bill['org_name'] ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['invoice_no']; ?>
+                                                <?= $bill['invoice_no']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['invoice_dt']; ?>
+                                                <?= $bill['invoice_dt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['tot_inv_amt']; ?>
+                                                <?= $bill['tot_inv_amt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['tot_cpn_amt']; ?>
+                                                <?= $bill['tot_cpn_amt']; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['serial_no_count']; ?>
+                                                <?= $coupon50_count; ?>
                                             </td>
                                             <td>
-                                                <?= $coupon['denomination']; ?>
+                                                <?= 50 * $coupon50_count; ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon100_count; ?>
+                                            </td>
+                                            <td>
+                                                <?= 100 * $coupon100_count; ?>
+                                            </td>
+                                            <td>
+                                                <?= $coupon200_count; ?>
+                                            </td>
+                                            <td>
+                                                <?= 200 * $coupon200_count; ?>
                                             </td>
                                         </tr>
                                     <?php } ?>
