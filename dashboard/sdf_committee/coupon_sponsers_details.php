@@ -295,7 +295,7 @@ function generateInvoice($invoiceNo)
                                                 Transaction No
                                                 <input type="text" class="form-control" name="spnsr_trnctn_no"
                                                     id="spnsr_trnctn_no" placeholder="*Transaction No"
-                                                    value="<?= $trnctn_no; ?>" <?= $edit; ?> required>
+                                                    value="<?= $trnctn_no; ?>" <?= $edit; ?>>
                                             </div>
                                             <div class="form-group col-12 col-md-3">
                                                 <br>
@@ -309,7 +309,7 @@ function generateInvoice($invoiceNo)
                                                 *Transaction Date
                                                 <input type="date" class="form-control" name="spnsr_trnctn_dt"
                                                     id="spnsr_trnctn_dt" placeholder="*Transaction Date"
-                                                    required="required" value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
+                                                    value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
                                             </div>
                                         </div><br>
                                         <hr>
@@ -321,7 +321,7 @@ function generateInvoice($invoiceNo)
 
                                         <div id="dynamic-form-container">
                                             <div class="row dynamic-form">
-                                                <div class="form-group col-12 col-md-3">
+                                                <div class="form-group col-12 col-md-2">
                                                     <?php
                                                     $denominationQry = "SELECT * FROM coupon_denomination";
                                                     $denominations = mysqli_query($con, $denominationQry);
@@ -343,19 +343,19 @@ function generateInvoice($invoiceNo)
                                                     </select>
                                                 </div>
 
-                                                <div class="form-group col-12 col-md-3">
+                                                <div class="form-group col-12 col-md-2">
                                                     Serial No. From
                                                     <input type="text" class="form-control spnsr_cpn_slno_frm"
                                                         name="spnsr_cpn_slno_frm[]" placeholder="Coupon Serial No. From"
                                                         value="0">
                                                 </div>
-                                                <div class="form-group col-12 col-md-3">
+                                                <div class="form-group col-12 col-md-2">
                                                     Serial No. To
                                                     <input type="text" class="form-control spnsr_cpn_slno_to"
                                                         name="spnsr_cpn_slno_to[]" placeholder="Coupon Serial No. To"
                                                         value="0">
                                                 </div>
-                                                <div class="form-group col-12 col-md-3">
+                                                <div class="form-group col-12 col-md-2">
                                                     Amount
                                                     <input type="text" class="form-control spnsr_cpn_deno_amt"
                                                         name="spnsr_cpn_deno_amt[]" placeholder="Amount" value="0"
@@ -469,6 +469,23 @@ function generateInvoice($invoiceNo)
             newRow.querySelectorAll('input, select').forEach(field => field.value = '');
             newRow.querySelector('.spnsr_cpn_deno_amt').value = 0;
 
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.type = 'button';
+            removeButton.className = 'btn btn-danger dismiss-row-btn';
+            removeButton.addEventListener('click', () => {
+                newRow.remove();
+            });
+
+            // Create a container for the button and add the button
+            const brContainer = document.createElement("br");
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'form-group col-12 col-md-2';
+            buttonContainer.appendChild(brContainer);
+            buttonContainer.appendChild(removeButton);
+
+            // Append the button container to the new row
+            newRow.appendChild(buttonContainer);
             container.appendChild(newRow);
             updateAmount(newRow); // Attach event listener to new row
         });
