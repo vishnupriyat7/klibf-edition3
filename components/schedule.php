@@ -10,13 +10,15 @@
 
          <div class="container shadow min-vh-100 py-2">
              <div class="d-flex justify-content-center">
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-1.pdf">Day-1</button>&emsp;
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-2.pdf">Day-2</button>&emsp;
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-3.pdf">Day-3</button>&emsp;
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-4.pdf">Day-4</button>&emsp;
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-5.pdf">Day-5</button>&emsp;
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-6.pdf">Day-6</button>&emsp;
-                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-7.pdf">Day-7</button>&emsp;
+                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="Directory.pdf">Directory</button>&emsp;
+                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY1.pdf">Day-1</button>&emsp;
+
+                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-2.pdf">Day-2</button>&emsp; -->
+                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-3.pdf">Day-3</button>&emsp; -->
+                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-4.pdf">Day-4</button>&emsp; -->
+                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-5.pdf">Day-5</button>&emsp; -->
+                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-6.pdf">Day-6</button>&emsp; -->
+                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-7.pdf">Day-7</button>&emsp; -->
              </div>
              <br>
 

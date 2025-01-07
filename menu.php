@@ -2,6 +2,7 @@
   <ul>
     <li><a class="nav-link scrollto active" href="index.php">Home</a></li>
     <li><a class="nav-link scrollto" href="about-inner-page.php">About</a></li>
+    <li><a class="nav-link scrollto" href="#schedule">Schedule</a></li>
     <li class="dropdown"><a href="#"><span>Glimpses</span> <i class="bi bi-chevron-right"></i></a>
       <ul>
         <li><a href="news.php">News</a></li>

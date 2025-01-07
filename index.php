@@ -24,13 +24,13 @@
     <?php include "./components/depty-secr.php"; ?>
 
     <!-- End Speaker Section -->
-    <?php include "./components/directory.php"; ?>
+    <?php /*include "./components/directory.php";*/ ?>
 
     <!-- ======= Contest Section ======= -->
 
     <?php include "contests.php"; ?>
-<?php /*include "./components/schedule.php"; ?>
-<?php include "./components/reflections.php";*/ ?>
+    <?php include "./components/schedule.php"; ?>
+    <?php /*include "./components/reflections.php";*/ ?>
 
     <!----- End Contest Section ------>
 
@@ -51,7 +51,7 @@
     <!-- ======= Contest Section ======= -->
     <?php include "./components/logo-video.php"; ?>
     <!-- End Contest Section -->
-    
+
 
     <!-- ======= Contact Section ======= hh-->
     <?php include "./components/contact.php"; ?>
