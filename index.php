@@ -24,7 +24,7 @@
     <?php include "./components/depty-secr.php"; ?>
 
     <!-- End Speaker Section -->
-
+    <?php include "./components/directory.php"; ?>
 
     <!-- ======= Contest Section ======= -->
 
@@ -51,7 +51,7 @@
     <!-- ======= Contest Section ======= -->
     <?php include "./components/logo-video.php"; ?>
     <!-- End Contest Section -->
-    <?php include "./components/directory.php"; ?>
+    
 
     <!-- ======= Contact Section ======= hh-->
     <?php include "./components/contact.php"; ?>
