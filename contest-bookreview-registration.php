@@ -159,8 +159,10 @@
 
                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal" style="font-size: 16px;">General Rules</button>&emsp;
 
-                                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScRPA-RybIk8AAwA1fIrSepncpax-lrbOJTcbemkB-Y8Jjfbw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake" style="font-size: 16px;">Apply</button></a>
-                                        &emsp;
+                                        <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLScRPA-RybIk8AAwA1fIrSepncpax-lrbOJTcbemkB-Y8Jjfbw/viewform" target="_blank" title="More Details"><button class="btn btn-success horizontal-shake" style="font-size: 16px;">Apply</button></a>
+                                        &emsp; -->
+                                        <button class="btn btn-success horizontal-shake" data-bs-toggle="modal" data-bs-target="#result" style="font-size: 16px;">Result</button>&emsp;
+
                                     </div>
 
                                     <div class="modal" id="myModal">
@@ -173,6 +175,21 @@
                                                 <div class="modal-body">
                                                     <div class="embed-responsive embed-responsive-16by9">
                                                         <iframe src="assets/img/contests/pdf/general-rules.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal" id="result">
+                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title"></h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe src="assets/img/contests/pdf/bookrvw-result.pdf" class="embed-responsive-item" width="100%" height="700px"></iframe>
                                                     </div>
                                                 </div>
                                             </div>

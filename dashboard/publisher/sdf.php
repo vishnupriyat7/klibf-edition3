@@ -1,6 +1,6 @@
 <?php
 // var_dump("hiii");
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 include "../header.php";
 include "sidebar.php";
 $user_id = $user['id'];

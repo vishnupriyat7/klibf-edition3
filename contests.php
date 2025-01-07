@@ -104,7 +104,8 @@
 
                             <!-- <a href="https://docs.google.com/forms/d/e/1FAIpQLSfPrYWa1gRqVD4FG1wSSmDPAzw6n8I2_ybOT3XlvcOSulCtEA/viewform" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
 
-                            <a href="contest-bookreview-registration.php"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="contest-bookreview-registration.php"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                            <a href="contest-bookreview-registration.php"><i class="bx bx-link"></i><span>Results</span></a>
                             <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
                             <!-- <a href="assets/img/contests/Guide Lines.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a> -->
@@ -120,9 +121,9 @@
                         </a>
                         <div class="gallery-links">
                             <a href="assets/img/contests/pdf/poetry-rec-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
-                            <a href="contest-poetryrecitation.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="contest-poetryrecitation.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
                             <!-- <a href="https://www.youtube.com/watch?v=7evzxFxrxRU&list=PLWnK7DhsuZ9AaxYR2wbH2869cUtzr0sCk" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
-
+                            <a href="contest-poetryrecitation.php" title="More Details"><i class="bx bx-link"></i><span>Results</span></a>
                         </div>
                     </div>
                 </div>
@@ -132,7 +133,8 @@
                         <img src="assets/img/contests/story-telling.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSenjtwMpymnTi7mF88Iq38uGuackVdFhmM9hkbXjj_XRuX8Qw/viewform" target="_blank" class="img-fluid" alt="">
                         <div class="gallery-links">
                             <a href="assets/img/contests/pdf/story-telling.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
-                            <a href="contest-story-telling-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="contest-story-telling-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                            <a href="contest-story-telling-registration.php" title="More Details"><i class="bx bx-link"></i><span>Results</span></a>
                             <!-- <a href="https://www.youtube.com/watch?v=Lg-BCS3p3sA&list=PLWnK7DhsuZ9CJlcJaV1VCbIRuy9tYURIc" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
                         </div>
                     </div>
@@ -143,7 +145,8 @@
                         <img src="assets/img/contests/cartoon.jpeg" href="https://docs.google.com/forms/d/e/1FAIpQLSd0sQ8y6i5MIWK51x29rOHZMFpelMr5WJXxj18L8TStjJoVTg/viewform" target="_blank" class="img-fluid" alt="">
                         <div class="gallery-links">
                             <a href="assets/img/contests/pdf/cartoon-rules.pdf" data-gallery="galleryGallery" class="gallery-lightbox" title=""><i class="bx bx-plus"></i><span>Rules</span></a>
-                            <a href="contest-cartoon-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a>
+                            <!-- <a href="contest-cartoon-registration.php" title="More Details"><i class="bx bx-link"></i><span>Apply</span></a> -->
+                            <a href="contest-cartoon-registration.php" title="More Details"><i class="bx bx-link"></i><span>Results</span></a>
                             <!-- <a href="https://www.youtube.com/watch?v=SYhHiAijWSI&list=PLWnK7DhsuZ9AHgSDTDXzVEORnRROCUevX" target="_blank" title="More Details"><i class="bx bx-link"></i><span>Entries</span></a> -->
 
                         </div>
