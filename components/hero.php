@@ -8,7 +8,7 @@
     <!-- <h4>Stall Registration for Publishers Extended to November 20, 2024. <a href="register.php"> <span class="horizontal-shake"> Click Here</span> </a> to Register</h4> -->
     <!-- <a href="#about" class="btn-get-started"><i class="bx bx-chevrons-down"></i></a> -->
 
-    <h4><a href="#" data-bs-toggle="modal" data-bs-target="#myModal"> <span class="horizontal-shake" style="color: red;"> Click Here</span> </a> to view todays Luky Draw Winners</h4>
+    <!-- <h4><a href="#" data-bs-toggle="modal" data-bs-target="#myModal"> <span class="horizontal-shake" style="color: red;"> Click Here</span> </a> to view todays Luky Draw Winners</h4> -->
     <a href="#about" class="btn-get-started"><i class="bx bx-chevrons-down"></i></a>
     <!-- <h4>Publishers now have access to the Event Proposal menu in their Login. <a href="login.php"> <span class="horizontal-shake" style="color: blue;"> Click Here</span> </a> to Login</h4> -->
   
