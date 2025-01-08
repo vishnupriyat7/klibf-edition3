@@ -12,8 +12,7 @@
              <div class="d-flex justify-content-center">
                  <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="Directory.pdf">Directory</button>&emsp;
                  <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY1.pdf">Day-1</button>&emsp;
-
-                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-2.pdf">Day-2</button>&emsp; -->
+                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY2.pdf">Day-2</button>&emsp;
                  <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-3.pdf">Day-3</button>&emsp; -->
                  <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-4.pdf">Day-4</button>&emsp; -->
                  <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-5.pdf">Day-5</button>&emsp; -->
