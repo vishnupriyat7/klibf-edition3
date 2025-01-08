@@ -48,6 +48,7 @@ include "sidebar.php";
                                         <th data-ordering="false">Coupon Serial No (Range) <br>From-To</th>
                                         <th data-ordering="false">Denomination</th>
                                         <th data-ordering="false">Sponser</th>
+                                        <th data-ordering="false">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
@@ -58,7 +59,7 @@ include "sidebar.php";
         MIN(cd.serial_no) AS serial_no_from, 
         MAX(cd.serial_no) AS serial_no_to, 
         cdn.denomination, 
-        cs.spnsr_org_name
+        cs.spnsr_org_name, cs.id
     FROM 
         coupon_distribution cd
     JOIN 
@@ -66,7 +67,7 @@ include "sidebar.php";
     JOIN 
         coupon_denomination cdn ON cd.denom_id = cdn.id
     GROUP BY 
-        cdn.denomination, cs.spnsr_org_name
+        cdn.denomination, cs.spnsr_org_name, cs.id
     ORDER BY 
         serial_no_from ASC
 ";
@@ -86,6 +87,10 @@ include "sidebar.php";
                                             </td>
                                             <td>
                                                 <?= $coupon['spnsr_org_name']; ?>
+                                            </td>
+                                            <td>
+                                                
+                                                    <!-- <i class='mdi mdi-book-edit'></i> -->
                                             </td>
                                         </tr>
                                     <?php } ?>
