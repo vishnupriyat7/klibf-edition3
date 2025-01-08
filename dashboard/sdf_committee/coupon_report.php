@@ -48,29 +48,40 @@ include "sidebar.php";
                                         <th data-ordering="false">Coupon Serial No (Range) <br>From-To</th>
                                         <th data-ordering="false">Denomination</th>
                                         <th data-ordering="false">Sponser</th>
-                                        <th data-ordering="false">Action</th>
+                                        <!-- <th data-ordering="false">Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
                                     <?php
                                     // $coupon_query = "SELECT * FROM coupon_distribution cd JOIN coupon_sponsers cs ON cd.sponser_id = cs.id JOIN coupon_denomination cdn ON cd.denom_id = cdn.id ORDER BY cd.serial_no ASC";
-                                    $coupon_query = "
+                                    $coupon_query = "SELECT 
+    MIN(grouped_cd.serial_no) AS serial_no_from,
+    MAX(grouped_cd.serial_no) AS serial_no_to,
+    cdn.denomination,
+    cs.spnsr_org_name,
+    cs.id AS sponsor_id
+FROM (
     SELECT 
-        MIN(cd.serial_no) AS serial_no_from, 
-        MAX(cd.serial_no) AS serial_no_to, 
-        cdn.denomination, 
-        cs.spnsr_org_name, cs.id
+        cd.*,
+        @grp := IF(cd.serial_no = @prev_serial_no + 1 AND cd.sponser_id = @prev_sponser_id AND cd.denom_id = @prev_denom_id, @grp, @grp + 1) AS grp,
+        @prev_serial_no := cd.serial_no AS prev_serial_no,
+        @prev_sponser_id := cd.sponser_id AS prev_sponser_id,
+        @prev_denom_id := cd.denom_id AS prev_denom_id
     FROM 
         coupon_distribution cd
-    JOIN 
-        coupon_sponsers cs ON cd.sponser_id = cs.id
-    JOIN 
-        coupon_denomination cdn ON cd.denom_id = cdn.id
-    GROUP BY 
-        cdn.denomination, cs.spnsr_org_name, cs.id
+    CROSS JOIN 
+        (SELECT @grp := 0, @prev_serial_no := NULL, @prev_sponser_id := NULL, @prev_denom_id := NULL) AS vars
     ORDER BY 
-        serial_no_from ASC
-";
+        cd.sponser_id, cd.denom_id, cd.serial_no
+) AS grouped_cd
+JOIN 
+    coupon_sponsers cs ON grouped_cd.sponser_id = cs.id
+JOIN 
+    coupon_denomination cdn ON grouped_cd.denom_id = cdn.id
+GROUP BY 
+    grp, cdn.denomination, cs.spnsr_org_name, sponsor_id
+ORDER BY 
+    cs.spnsr_org_name, cdn.denomination, serial_no_from;";
                                     $coupons = mysqli_query($con, $coupon_query);
                                     $counter = 0;
                                     while ($coupon = mysqli_fetch_array($coupons)) {
@@ -88,10 +99,10 @@ include "sidebar.php";
                                             <td>
                                                 <?= $coupon['spnsr_org_name']; ?>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 
-                                                    <!-- <i class='mdi mdi-book-edit'></i> -->
-                                            </td>
+                                                    <i class='mdi mdi-book-edit'></i>
+                                            </td> -->
                                         </tr>
                                     <?php } ?>
                                 </tbody>
