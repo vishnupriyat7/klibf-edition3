@@ -172,13 +172,16 @@ function generateInvoice($invoiceNo)
                             $spnsr_pay_other = mysqli_real_escape_string($con, $_POST['spnsr_pay_other']);
                             $spnsr_trnctn_no = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_no']);
                             $spnsr_bnk_ref_no = mysqli_real_escape_string($con, $_POST['spnsr_bnk_ref_no']);
-                            $spnsr_trnctn_dt = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_dt']);
+                            $spnsr_trnctn_dt = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_dt']);                            
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $con->begin_transaction();
-                            // var_dump("mbdb");die;
                             try {
+                                if($spnsr_trnctn_type != '7') {
                                 $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, trnct_dt, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$spnsr_trnctn_dt', '$date');";
+                                } else {
+                                    $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$date');";
+                                }
                                 $result_sponser = mysqli_query($con, $query_sponser);
                                 if ($result_sponser) {
                                     $last_id = mysqli_insert_id($con);
