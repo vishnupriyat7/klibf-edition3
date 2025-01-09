@@ -76,7 +76,7 @@
                         <!-- card -->
                         <div class="box mt-5 mb-5 col-md-3">
                             <br>
-                            <p class="text">DAY 1 - 07.01.2025
+                            <p class="text"><b>DAY 1 - 07.01.2025</b>
                                 <br>
                                 <br>ഷെറിൻ വർഗ്ഗീസ് (12247)
                                 <br>ജയികൃഷ്ണൻ (15461)
@@ -104,7 +104,7 @@
                     <div class="col-md-3">
                         <div class="box mt-5 mb-5 col-md-3">
                             <br>
-                            <p class="text">DAY 2 - 08.01.2025
+                            <p class="text"><b>DAY 2 - 08.01.2025</b>
                                 <br>
                                 <br>സുധീർ എ (3094)
                                 <br>ഫസീല (21513)
