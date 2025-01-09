@@ -174,8 +174,8 @@ function generateInvoice($invoiceNo)
                         if ($cpn_bank_det) {
                             $cpn_bank_accholder = $cpn_bank_det['acc_holder_name'];
                             $cpn_bank_name = $cpn_bank_det['bank_name'];
-                            $cpn_bank_branch = $cpn_bank_det['account_no'];
-                            $cpn_acc_no = $cpn_bank_det['bank_branch'];
+                            $cpn_bank_branch = $cpn_bank_det['bank_branch'];
+                            $cpn_acc_no = $cpn_bank_det['account_no'];
                             $cpn_ifsc = $cpn_bank_det['bank_ifsc'];
                             // $edit_bank = "disabled";
                         }
