@@ -80,6 +80,9 @@
       <a class="nav-link scrollto" href="virtual_queue.php">Virtual Queue</a>
     </li>
     <li>
+      <a class="nav-link scrollto" href="lucky_draw.php">Lucky Draw</a>
+    </li>
+    <li>
       <a class="nav-link scrollto" href="#contact">Contact</a>
     </li>
     <li>
