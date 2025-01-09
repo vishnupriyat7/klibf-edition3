@@ -103,10 +103,23 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
-                            href="<?= $base_url ?>/dashboard/publisher/sdf.php">
-                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">SDF</span>
+                            href="<?= $base_url ?>/dashboard/publisher/bank_dtls.php">
+                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">SDF/Coupon Bank Details</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                            href="<?= $base_url ?>/dashboard/publisher/sdf.php">
+                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">SDF Entry</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                            href="<?= $base_url ?>/dashboard/publisher/coupon.php">
+                            <i class="mdi mdi-calendar-text-outline"></i> <span data-key="t-landing">Coupon Entry</span>
+                        </a>
+                    </li>
+                    
 
                     <!-- <li class="nav-item">
                         <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
@@ -116,7 +129,7 @@
                         </a>
                     </li> -->
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link menu-link" role="button" href="#sidebarCoupon" data-bs-toggle="collapse"
                             data-bs-target="#sidebarCoupon">
                             <i class="mdi mdi-cash-multiple"></i> <span data-key="t-landing">Coupon</span>
@@ -136,7 +149,7 @@
 
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
