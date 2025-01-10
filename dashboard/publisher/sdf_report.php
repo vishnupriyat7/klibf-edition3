@@ -34,6 +34,7 @@ $user_id = $user['id']; ?>
                         <div class="card-header">
                             <h5 class="card-title mb-0">Publisher Coupon List</h5>
                         </div>
+
                         <div class="card-body overflow-auto">
                             <div class="row">
                                 <?php
@@ -74,81 +75,44 @@ $user_id = $user['id']; ?>
                                 </div>
                             </div>
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'publisher-coupon-report')"
+                            <button onclick="exportTableToExcel('example', 'publisher-sdf-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th data-ordering="false" rowspan="2">Sl No</th>
-                                        <th data-ordering="false" rowspan="2">Bill No</th>
-                                        <th data-ordering="false" rowspan="2">Bill Date</th>
-                                        <th data-ordering="false" rowspan="2">Net Bill Amount</th>
-                                        <th data-ordering="false" rowspan="2">Coupon Amount</th>
-                                        <th data-ordering="false" colspan="6">Denominations</th>
-                                    </tr>
-                                    <tr>
-                                        <th data-ordering="false">50 Count</th>
-                                        <th data-ordering="false">Amount</th>
-                                        <th data-ordering="false">100 Count</th>
-                                        <th data-ordering="false">Amount</th>
-                                        <th data-ordering="false">200 Count</th>
-                                        <th data-ordering="false">Amount</th>
+                                        <th>Sl.No</th>
+                                        <th>Invoice Number</th>
+                                        <th>Invoice Date</th>
+                                        <th>MLA</th>
+                                        <th>Institution</th>
+                                        <th>Amount (in ₹)</th>
+                                        <th>Created Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $total_coupon_invoice_query = "SELECT * FROM coupon_publisher_invoice WHERE user_id = '$user_id';";
-                                    $total_bills = mysqli_query($con, $total_coupon_invoice_query);
-                                    $counter = 0;
-                                    while ($bill = mysqli_fetch_array($total_bills)) {
-                                        $coupon200_count = $coupon100_count = $coupon50_count = 0;
-                                        $invoice_no = $bill['id'];
-                                        $pub_inv_cpn_count_qry = "SELECT COUNT(cd.serial_no) AS serial_no_count, cd.denom_id FROM coupon_publisher_serialno cps JOIN coupon_distribution cd ON cps.cpn_slno=cd.id WHERE cps.cpn_pub_inv = '$invoice_no' GROUP BY cd.denom_id;";
-                                        $invoice_coupons = mysqli_query($con, $pub_inv_cpn_count_qry);
-                                        while ($coupon_denom_count = mysqli_fetch_array($invoice_coupons)) {
-                                            if ($coupon_denom_count['denom_id'] == 1) {
-                                                $coupon50_count = $coupon_denom_count['serial_no_count'];
-                                            } elseif ($coupon_denom_count['denom_id'] == 2) {
-                                                $coupon100_count = $coupon_denom_count['serial_no_count'];
-                                            } elseif ($coupon_denom_count['denom_id'] == 3) {
-                                                $coupon200_count = $coupon_denom_count['serial_no_count'];
-                                            }
+                                    $total_sdf_query = "SELECT s.*, mla.* FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE user_id=$user_id ORDER BY updated_date DESC;";
+                                    $result = mysqli_query($con, $total_sdf_query);
+                                    if (mysqli_num_rows($result)) {
+                                        $slno = 1;
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            ?>
+                                            <tr class="text-center">
+                                                <td><?php echo $slno; ?></td>
+                                                <td><?php echo $row['invc_no']; ?></td>
+                                                <td><?php echo $row['invc_date']; ?></td>
+                                                <td><?php echo $row['name']; ?></td>
+                                                <td><?php echo $row['inst_name']; ?></td>
+                                                <td>₹ <?php echo $row['amount']; ?></td>
+                                                <td><?php echo $row['updated_date']; ?></td>
+                                            </tr>
+                                            <?php
+                                            $slno++;
                                         }
-                                        ?>
+                                    } else { ?>
                                         <tr>
-                                            <td>
-                                                <?= ++$counter; ?>
-                                            </td>
-                                            <td>
-                                                <?= $bill['invoice_no']; ?>
-                                            </td>
-                                            <td>
-                                                <?= $bill['invoice_dt']; ?>
-                                            </td>
-                                            <td>
-                                                <?= $bill['tot_inv_amt']; ?>
-                                            </td>
-                                            <td>
-                                                <?= $bill['tot_cpn_amt']; ?>
-                                            </td>
-                                            <td>
-                                                <?= $coupon50_count; ?>
-                                            </td>
-                                            <td>
-                                                <?= 50 * $coupon50_count; ?>
-                                            </td>
-                                            <td>
-                                                <?= $coupon100_count; ?>
-                                            </td>
-                                            <td>
-                                                <?= 100 * $coupon100_count; ?>
-                                            </td>
-                                            <td>
-                                                <?= $coupon200_count; ?>
-                                            </td>
-                                            <td>
-                                                <?= 200 * $coupon200_count; ?>
+                                            <td colspan="7" class="text-center">No SDF Entries present, please Save details.
                                             </td>
                                         </tr>
                                     <?php } ?>

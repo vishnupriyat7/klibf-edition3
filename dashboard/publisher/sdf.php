@@ -183,7 +183,7 @@ $user_id = $user['id'];
                                 <tbody>
                                     <?php
                                     // $last_entries_query = "SELECT invc_no, invc_date, mla_id, amount, updated_date FROM sdf ORDER BY updated_date DESC";
-                                    $last_entries_query = "SELECT s.*, mla.* FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE user_id=$user_id ORDER BY updated_date DESC";
+                                    $last_entries_query = "SELECT s.*, mla.* FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE user_id=$user_id ORDER BY updated_date DESC LIMIT 5";
                                     $result = mysqli_query($con, $last_entries_query);
 
                                     if (mysqli_num_rows($result)) {
