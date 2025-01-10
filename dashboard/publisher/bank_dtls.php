@@ -215,29 +215,6 @@ function generateInvoice($invoiceNo)
                                                 <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                                 </div>";
                             }
-                            // else {
-                            //     $query_cpn_pub = "INSERT INTO coupon_publisher (users_id, cpn_200_count, cpn_100_count, cpn_50_count, cpn_50_srlno, cpn_100_srlno, cpn_200_srlno, cpn_bill_no, total_amount, updated_date, status) values ('$user_id', '$count200', '$count100', '$count50', '$cpn_serial_50', '$cpn_serial_100', '$cpn_serial_200', '$cpn_invoice', '$total_cpn_amt', '$date', 'E')";
-                            //     $res_cpn_pub = mysqli_query($con, $query_cpn_pub);
-                            //     if ($res_cpn_pub) {
-                            //         $errormsg = "
-                            //   <div class='alert alert-success alert-dismissible alert-outline fade show'>
-                            //                     Your payment details is Successfully Saved.
-                            //                     <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
-                            //                     </div>
-                            //    ";
-                            //         $cpn_bank_name = $cpn_bank_det['bank_name'];
-                            //         $cpn_bank_branch = $cpn_bank_det['account_no'];
-                            //         $cpn_acc_no = $cpn_bank_det['bank_branch'];
-                            //         $cpn_ifsc = $cpn_bank_det['bank_ifsc'];
-                            //     } else 
-                            //     {
-                            //         $errormsg = "
-                            //         <div class='alert alert-danger alert-dismissible alert-outline fade show'>
-                            //                    Some Technical Glitch Is There. Please Try Again Later Or Ask Admin For Help test.
-                            //                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            //                    </div>";
-                            //     }
-                            // }
                         }
                         ?>
                         <div class="card-body p-4">
