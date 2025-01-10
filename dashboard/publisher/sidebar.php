@@ -176,9 +176,15 @@
                                     <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
                                         data-key="t-nft-landing">Coupon Report</a>
                                 </li>
+
+                               
                                 <li class="nav-item">
                                     <a href="<?= $base_url ?>/dashboard/publisher/sdf_report.php" class="nav-link"
                                         data-key="t-nft-landing">SDF Report</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $base_url ?>/dashboard/publisher/coupon_sdf_report.php" class="nav-link"
+                                        data-key="t-nft-landing">Coupon Report For Submission </a>
                                 </li>
                             </ul>
                         </div>
