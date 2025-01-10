@@ -139,7 +139,9 @@ function generateInvoice($invoiceNo)
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
                                 <!-- <li class="breadcrumb-item active">Add</li> -->
-                                <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                                <a class="dropdown-item" href="logout.php"><i
+                                        class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle" data-key="t-logout">Logout</span></a>
                             </ol>
                         </div>
 
@@ -207,6 +209,11 @@ function generateInvoice($invoiceNo)
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
                                     $msg . "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                                </div>"; //printing error if found in validation
+                            } else {
+                                $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                                Your SDF/Coupon Bank Details saved successfully.
+                                                <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
+                                                </div>";
                             }
                             // else {
                             //     $query_cpn_pub = "INSERT INTO coupon_publisher (users_id, cpn_200_count, cpn_100_count, cpn_50_count, cpn_50_srlno, cpn_100_srlno, cpn_200_srlno, cpn_bill_no, total_amount, updated_date, status) values ('$user_id', '$count200', '$count100', '$count50', '$cpn_serial_50', '$cpn_serial_100', '$cpn_serial_200', '$cpn_invoice', '$total_cpn_amt', '$date', 'E')";
@@ -250,31 +257,42 @@ function generateInvoice($invoiceNo)
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 Account Holder Name
-                                                <input type="text" class="form-control" name="acc_holder_name" placeholder="Account Holder Name" id="acc_holder_name" value="<?= $cpn_bank_accholder; ?>">
+                                                <input type="text" class="form-control" name="acc_holder_name"
+                                                    placeholder="Account Holder Name" id="acc_holder_name"
+                                                    value="<?= $cpn_bank_accholder; ?>">
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 Bank Name
-                                                <input type="text" class="form-control" name="cpn_bank_name" placeholder="Bank Name" id="cpn_bank_name" value="<?= $cpn_bank_name; ?>">
+                                                <input type="text" class="form-control" name="cpn_bank_name"
+                                                    placeholder="Bank Name" id="cpn_bank_name"
+                                                    value="<?= $cpn_bank_name; ?>">
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 Branch
-                                                <input type="text" class="form-control" name="cpn_bank_branch" placeholder="Branch" id="cpn_bank_branch" value="<?= $cpn_bank_branch; ?>">
+                                                <input type="text" class="form-control" name="cpn_bank_branch"
+                                                    placeholder="Branch" id="cpn_bank_branch"
+                                                    value="<?= $cpn_bank_branch; ?>">
                                             </div>
                                             <div class="form-group col-12 col-md-6">
                                                 <br>
                                                 Account No
-                                                <input type="text" class="form-control" name="cpn_acc_no" id="cpn_acc_no" placeholder="Account No" value="<?= $cpn_acc_no; ?>">
+                                                <input type="text" class="form-control" name="cpn_acc_no"
+                                                    id="cpn_acc_no" placeholder="Account No"
+                                                    value="<?= $cpn_acc_no; ?>">
                                             </div>
                                             <div class="form-group col-12 col-md-6" id="ifsc-div">
                                                 <br>
                                                 IFSC
-                                                <input type="text" class="form-control" name="cpn_ifsc" id="cpn_ifsc" placeholder="IFSC" value="<?= $cpn_ifsc; ?>" maxlength="11" minlength="11">
+                                                <input type="text" class="form-control" name="cpn_ifsc" id="cpn_ifsc"
+                                                    placeholder="IFSC" value="<?= $cpn_ifsc; ?>" maxlength="11"
+                                                    minlength="11">
                                             </div>
                                             <div class="col-lg-12">
                                                 <br>
-                                                <button type="submit" name="save_bank_dtls" class="btn btn-primary" id="save_bank_dtls">Save</button>
+                                                <button type="submit" name="save_bank_dtls" class="btn btn-primary"
+                                                    id="save_bank_dtls">Save</button>
                                             </div>
                                         </div>
                                     </form>
@@ -307,7 +325,7 @@ function generateInvoice($invoiceNo)
             $("#total200").val(amt200);
             $("#total_claim").val(total_amt);
         }
-        document.getElementById("add_cpn_row_btn").addEventListener("click", function() {
+        document.getElementById("add_cpn_row_btn").addEventListener("click", function () {
             // Select the first dynamic form block
             const original = document.querySelector(".dynamic-form");
 
