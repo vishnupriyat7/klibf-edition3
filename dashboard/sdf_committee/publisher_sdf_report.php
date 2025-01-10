@@ -66,7 +66,8 @@ include "sidebar.php";
                                         <th>Invoice Number</th>
                                         <th>Invoice Date</th>
                                         <th>MLA</th>
-                                        <th>Institution</th>
+                                        <th>Institution Name</th>
+                                        <th>Institution Contact No</th>
                                         <th>Amount (in ₹)</th>
                                         <th>Created Date</th>
                                     </tr>
@@ -122,7 +123,7 @@ include "sidebar.php";
                 },
                 dataType: "json",
                 success: function (data) {
-                    document.getElementById("pub-sdf-list").append(data);
+                    $('#pub-sdf-list').empty().append(data);
                     // $('#disc_time_slot3').empty();
                     // var add_slot = "";
                     // $("#disc_time_slot3").append('<option value="">Select Proposed Event Time</option>');

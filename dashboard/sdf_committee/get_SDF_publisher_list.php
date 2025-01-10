@@ -13,12 +13,14 @@ if (mysqli_num_rows($result)) {
         $inst_name = $row['inst_name'];
         $amount = $row['amount'];
         $updated_date = $row['updated_date'];
+        $inst_no = $row['inst_cntct_no'];
         $listSDF = $listSDF . "<tr class='text-center'>
             <td>$slno</td>
             <td>$invc_no</td>
             <td>$invc_date</td>
             <td>$name</td>
             <td>$inst_name</td>
+            <td>$inst_no</td>
             <td>₹ $amount</td>
             <td>$updated_date</td>
         </tr>";
@@ -30,4 +32,4 @@ if (mysqli_num_rows($result)) {
         </td>
     </tr>';
 }
-echo $listSDF;
+echo json_encode($listSDF);
