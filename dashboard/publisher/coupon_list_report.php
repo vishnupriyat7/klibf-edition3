@@ -34,6 +34,11 @@ $user_id = $user['id']; ?>
                         <div class="card-header">
                             <h5 class="card-title mb-0">Publisher Coupon List</h5>
                         </div>
+                        <div class="row">
+                            <p>xbjsbjhjh</p>
+
+
+                        </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'publisher_book_discussion_report-data')"
