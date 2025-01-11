@@ -70,7 +70,11 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/publisher_sdf_report.php" class="nav-link"
-                                    data-key="t-nft-landing"> Publisher SDF Report </a>
+                                    data-key="t-nft-landing"> Publisher Wise SDF Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/mla_sdf_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> MLA Wise SDF Report </a>
                             </li>
                         </ul>
                     </div>
