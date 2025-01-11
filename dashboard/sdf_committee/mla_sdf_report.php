@@ -1,0 +1,136 @@
+<?php
+include "../header.php";
+include "sidebar.php";
+?>
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Report</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
+                                <!-- <li class="breadcrumb-item active">Add</li> -->
+                                <a class="dropdown-item" href="../logout.php">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                </a>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Publisher SDF Report</h5>
+                        </div>
+                        <div class="card-body overflow-auto">
+                            <div class="col-md-6">
+                                <?php
+                                $publisher_query = "SELECT DISTINCT m.id, u.name, m.name as mla FROM mla_15 m JOIN users u ON s.user_id = u.id JOIN sdf s ON s.mla_id = m.id;";
+                                $result_publisher = mysqli_query($con, $publisher_query);
+                                $coupon_publishers = $result_publisher->fetch_all();
+                                ?>
+                                <b>Select Publisher</b>
+                                <select class="form-control form-group col-md-6" id="cpn_publisher" style="height:37px;"
+                                    onchange="getSDFPublisher()">
+                                    <option value="">Select</option>
+                                    <?php foreach ($coupon_publishers as $publisher) { ?>
+                                        <option value="<?= $publisher[0]; ?>">
+                                            <?= $publisher[1]; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                                <br>
+                            </div>
+                            <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
+                            <button onclick="exportTableToExcel('example', 'sdf-coupon-mla-wise-report')"
+                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                style="font-style:normal; font-size: 12px;">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Sl.No</th>
+                                        <th>Invoice Number</th>
+                                        <th>Invoice Date</th>
+                                        <th>MLA</th>
+                                        <th>Institution Name</th>
+                                        <th>Institution Contact No</th>
+                                        <th>Amount (in ₹)</th>
+                                        <th>Created Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center" id="pub-sdf-list">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    <?php include "../footer.php"; ?>
+
+    <script>
+        function exportTableToExcel(example, filename = '') {
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(example);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            // Specify file name
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
+            // Create download link element
+            downloadLink = document.createElement("a");
+            document.body.appendChild(downloadLink);
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+                // Setting the file name
+                downloadLink.download = filename;
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+
+        function getSDFPublisher() {
+            var pubId = document.getElementById("cpn_publisher").value;
+            $.ajax({
+                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_publisher_list.php",
+                type: "POST",
+                data: {
+                    pubId: pubId
+                },
+                dataType: "json",
+                success: function (data) {
+                    $('#pub-sdf-list').empty().append(data);
+                    // $('#disc_time_slot3').empty();
+                    // var add_slot = "";
+                    // $("#disc_time_slot3").append('<option value="">Select Proposed Event Time</option>');
+                    // $.each(data, function (key, value) {
+                    //     $("#disc_time_slot3").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
+                    // });
+                }
+            });
+        }
+    </script>
