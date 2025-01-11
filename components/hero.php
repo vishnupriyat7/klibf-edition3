@@ -24,7 +24,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <!-- <button type="button" class="close" data-bs-dismiss="modal">&times;</button> -->
-        <h4 class="modal-title"><b>09.01.2025 ലെ കൂപ്പൺ വിജയികൾ</b></h4>
+        <h4 class="modal-title"><b>10.01.2025 ലെ കൂപ്പൺ വിജയികൾ</b></h4>
       </div>
       <div class="modal-body">
         <?php include "lucky_draw_day.php"; ?>

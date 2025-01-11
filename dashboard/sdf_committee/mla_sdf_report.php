@@ -39,7 +39,7 @@ include "sidebar.php";
                         <div class="card-body overflow-auto">
                             <div class="col-md-6">
                                 <?php
-                                $publisher_query = "SELECT DISTINCT m.id, u.name, m.name as mla FROM mla_15 m JOIN users u ON s.user_id = u.id JOIN sdf s ON s.mla_id = m.id;";
+                                $publisher_query = "SELECT DISTINCT m.id, m.name FROM mla_15 m JOIN sdf s ON s.mla_id = m.id;";
                                 $result_publisher = mysqli_query($con, $publisher_query);
                                 $coupon_publishers = $result_publisher->fetch_all();
                                 ?>
