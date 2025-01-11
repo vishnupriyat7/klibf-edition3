@@ -39,17 +39,17 @@ include "sidebar.php";
                         <div class="card-body overflow-auto">
                             <div class="col-md-6">
                                 <?php
-                                $publisher_query = "SELECT DISTINCT m.id, m.name FROM mla_15 m JOIN sdf s ON s.mla_id = m.id;";
-                                $result_publisher = mysqli_query($con, $publisher_query);
-                                $coupon_publishers = $result_publisher->fetch_all();
+                                $sdf_mla_query = "SELECT DISTINCT m.id, m.name FROM mla_15 m JOIN sdf s ON s.mla_id = m.id;";
+                                $result_sdf_mla = mysqli_query($con, $sdf_mla_query);
+                                $sdf_mlas = $result_sdf_mla->fetch_all();
                                 ?>
                                 <b>Select Publisher</b>
-                                <select class="form-control form-group col-md-6" id="cpn_publisher" style="height:37px;"
-                                    onchange="getSDFPublisher()">
+                                <select class="form-control form-group col-md-6" id="sdf_mla" style="height:37px;"
+                                    onchange="getSDFMLAPublisher()">
                                     <option value="">Select</option>
-                                    <?php foreach ($coupon_publishers as $publisher) { ?>
-                                        <option value="<?= $publisher[0]; ?>">
-                                            <?= $publisher[1]; ?>
+                                    <?php foreach ($sdf_mlas as $mla) { ?>
+                                        <option value="<?= $mla[0]; ?>">
+                                            <?= $mla[1]; ?>
                                         </option>
                                     <?php } ?>
                                 </select>
@@ -63,16 +63,16 @@ include "sidebar.php";
                                 <thead class="text-center">
                                     <tr>
                                         <th>Sl.No</th>
+                                        <th>Publisher</th>
                                         <th>Invoice Number</th>
-                                        <th>Invoice Date</th>
-                                        <th>MLA</th>
+                                        <th>Invoice Date</th>                                        
                                         <th>Institution Name</th>
                                         <th>Institution Contact No</th>
                                         <th>Amount (in ₹)</th>
                                         <th>Created Date</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" id="pub-sdf-list">
+                                <tbody class="text-center" id="pub-sdf-mla-list">
                                 </tbody>
                             </table>
                         </div>
@@ -113,23 +113,17 @@ include "sidebar.php";
             }
         }
 
-        function getSDFPublisher() {
-            var pubId = document.getElementById("cpn_publisher").value;
+        function getSDFMLAPublisher() {
+            var mlaID = document.getElementById("sdf_mla").value;
             $.ajax({
-                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_publisher_list.php",
+                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_MLA_publisher_list.php",
                 type: "POST",
                 data: {
-                    pubId: pubId
+                    mlaId: mlaID
                 },
                 dataType: "json",
                 success: function (data) {
-                    $('#pub-sdf-list').empty().append(data);
-                    // $('#disc_time_slot3').empty();
-                    // var add_slot = "";
-                    // $("#disc_time_slot3").append('<option value="">Select Proposed Event Time</option>');
-                    // $.each(data, function (key, value) {
-                    //     $("#disc_time_slot3").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
-                    // });
+                    $('#pub-sdf-mla-list').empty().append(data);
                 }
             });
         }

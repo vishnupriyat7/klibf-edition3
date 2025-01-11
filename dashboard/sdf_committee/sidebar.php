@@ -69,6 +69,10 @@
                                     data-key="t-nft-landing"> Overall Coupon Returned  </a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/overall_sdf_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Overall SDF Report </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/publisher_sdf_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Publisher Wise SDF Report </a>
                             </li>
