@@ -37,42 +37,55 @@ include "sidebar.php";
                             <h5 class="card-title mb-0">Publisher SDF Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
-                            <div class="col-md-6">
-                                <?php
-                                $publisher_query = "SELECT DISTINCT u.id, u.name FROM users u JOIN sdf s ON s.user_id = u.id;";
-                                $result_publisher = mysqli_query($con, $publisher_query);
-                                $coupon_publishers = $result_publisher->fetch_all();
-                                ?>
-                                <b>Select Publisher</b>
-                                <select class="form-control form-group col-md-6" id="cpn_publisher" style="height:37px;"
-                                    onchange="getSDFPublisher()">
-                                    <option value="">Select</option>
-                                    <?php foreach ($coupon_publishers as $publisher) { ?>
-                                        <option value="<?= $publisher[0]; ?>">
-                                            <?= $publisher[1]; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                                <br>
-                            </div>
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'sdf-coupon-publisher-wise-report')"
+                            <button onclick="exportTableToExcel('example', 'sdf-coupon-mla-wise-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Sl.No</th>
+                                        <th>Publisher</th>
+                                        <th>MLA</th>
                                         <th>Invoice Number</th>
                                         <th>Invoice Date</th>
-                                        <th>MLA</th>
                                         <th>Institution Name</th>
                                         <th>Institution Contact No</th>
                                         <th>Amount (in ₹)</th>
                                         <th>Created Date</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" id="pub-sdf-list">
+                                <tbody class="text-center">
+                                    <?php $total_sdf_query = "SELECT s.*, u.org_name, m.name FROM sdf s JOIN users_profile u ON
+                                    u.user_id = s.user_id JOIN mla_15 m ON s.mla_id=m.id ORDER BY updated_date DESC;";
+                                    $result = mysqli_query($con, $total_sdf_query);
+                                    if (mysqli_num_rows($result)) {
+                                        $slno = 1;
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            $invc_no = $row['invc_no'];
+                                            $invc_date = $row['invc_date'];
+                                            $name = $row['org_name'];
+                                            $inst_name = $row['inst_name'];
+                                            $amount = $row['amount'];
+                                            $updated_date = $row['updated_date'];
+                                            $inst_no = $row['inst_cntct_no']; ?>
+                                            <tr class='text-center'>
+                                                <td><?= $slno++ ?></td>
+                                                <td><?= $name ?></td>
+                                                <td><?= $row['name'] ?></td>
+                                                <td><?= $invc_no ?></td>
+                                                <td><?= $invc_date ?></td>
+                                                <td><?= $inst_name ?></td>
+                                                <td><?= $inst_no ?></td>
+                                                <td>₹ <?= $amount ?></td>
+                                                <td><?= $updated_date ?></td>
+                                            </tr>
+                                        <?php }
+                                    } else { ?>
+                                        <tr>
+                                            <td colspan="7" class="text-center">No SDF Entries present, please Save details.
+                                            </td>
+                                        </tr> <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -113,17 +126,17 @@ include "sidebar.php";
             }
         }
 
-        function getSDFPublisher() {
-            var pubId = document.getElementById("cpn_publisher").value;
+        function getSDFMLAPublisher() {
+            var mlaID = document.getElementById("sdf_mla").value;
             $.ajax({
-                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_publisher_list.php",
+                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_MLA_publisher_list.php",
                 type: "POST",
                 data: {
-                    pubId: pubId
+                    mlaId: mlaID
                 },
                 dataType: "json",
                 success: function (data) {
-                    $('#pub-sdf-list').empty().append(data);
+                    $('#pub-sdf-mla-list').empty().append(data);
                 }
             });
         }
