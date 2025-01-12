@@ -80,13 +80,14 @@ $user_id = $user['id']; ?>
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
+                                        <th data-ordering="false" rowspan="2">Action</th>
                                         <th data-ordering="false" rowspan="2">Sl No</th>
                                         <th data-ordering="false" rowspan="2">Bill No</th>
                                         <th data-ordering="false" rowspan="2">Bill Date</th>
                                         <th data-ordering="false" rowspan="2">Net Bill Amount</th>
                                         <th data-ordering="false" rowspan="2">Coupon Amount</th>
                                         <th data-ordering="false" colspan="6">Denominations</th>
-                                        <th data-ordering="false" rowspan="2">Action</th>
+
                                     </tr>
                                     <tr>
                                         <th data-ordering="false">50 Count</th>
@@ -118,6 +119,12 @@ $user_id = $user['id']; ?>
                                         }
                                         ?>
                                         <tr>
+                                            <td class="text-center">
+                                                <a href='#' class='dropdown-item remove-item-btn'
+                                                    onclick="deleteCouponEntry(<?= $invoice_no; ?>);">
+                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i> Delete
+                                                </a>
+                                            </td>
                                             <td>
                                                 <?= ++$counter; ?>
                                             </td>
@@ -151,12 +158,7 @@ $user_id = $user['id']; ?>
                                             <td>
                                                 <?= 200 * $coupon200_count; ?>
                                             </td>
-                                            <td>
-                                                <a href='#' class='dropdown-item remove-item-btn'
-                                                    onclick="deleteCouponEntry(<?= $invoice_no; ?>);">
-                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i> Delete
-                                                </a>
-                                            </td>
+
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -200,21 +202,37 @@ $user_id = $user['id']; ?>
         }
 
         function deleteCouponEntry(invId) {
-            swal("Delete", "Do you want to delete?", "warning").then(function (isConfirm) {
-                $.ajax({
-                    url: "<?= $base_url; ?>/dashboard/publisher/delete_coupon_entry.php",
-                    type: "POST",
-                    data: {
-                        invoiceId: invId
-                    },
-                    dataType: "json",
-                    success: function (response) {
-                        swal("Deleted", "", "success").then(function (isConfirm) {
-                            window.location.reload();
-                        });
-
-                    }
-                });
+            swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to delete?",
+                icon: "warning", // Use "icon" instead of "type" for SweetAlert2
+                showCancelButton: true, // Ensure this is set to show the cancel button
+                confirmButtonColor: "#DD6B55",
+                cancelButtonColor: "#d33", // Optional: set a color for the cancel button
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!", // Optional: customize the cancel button text
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the delete operation via AJAX
+                    $.ajax({
+                        url: "<?= $base_url; ?>/dashboard/publisher/delete_coupon_entry.php",
+                        type: "POST",
+                        data: {
+                            invoiceId: invId
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            swal.fire("Deleted!", "", "success").then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: function () {
+                            swal.fire("Error", "Failed to delete. Please try again.", "error");
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swal.fire("Cancelled", "Your data is safe.", "info");
+                }
             });
         }
     </script>

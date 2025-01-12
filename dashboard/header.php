@@ -33,7 +33,8 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
 
 ?>
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none">
 
 
 <!-- Mirrored from themesbrand.com/velzon/html/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jun 2022 20:35:42 GMT -->
@@ -50,10 +51,12 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
     <!-- <link href="assets/img/Logo_title.png" rel="icon"> -->
 
     <!-- jsvectormap css -->
-    <link href="<?= $base_url; ?>/dashboard/assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet"
+        type="text/css" />
 
     <!--Swiper slider css-->
-    <link href="<?= $base_url; ?>/dashboard/assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= $base_url; ?>/dashboard/assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet"
+        type="text/css" />
 
     <!-- Layout config Js -->
     <script src="<?= $base_url; ?>/dashboard/assets/js/layout.js"></script>
@@ -65,6 +68,7 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
     <link href="<?= $base_url; ?>/dashboard/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="<?= $base_url; ?>/dashboard/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
 </head>
 
@@ -98,7 +102,9 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
                             </a>
                         </div>
 
-                        <button type="button" class="btn btn-sm px-3 fs-16 header-item horizontal-menu-btn topnav-hamburger" id="topnav-hamburger-icon">
+                        <button type="button"
+                            class="btn btn-sm px-3 fs-16 header-item horizontal-menu-btn topnav-hamburger"
+                            id="topnav-hamburger-icon">
                             <!-- <span class="hamburger-icon"> -->
                             <span>MENU</span>
                             <span></span>
@@ -113,15 +119,20 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
                     <div class="d-flex align-items-center">
 
                         <div class="dropdown d-md-none topbar-head-dropdown header-item">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                                id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 <i class="bx bx-search fs-22"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                aria-labelledby="page-header-search-dropdown">
                                 <form class="p-3">
                                     <div class="form-group m-0">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                            <input type="text" class="form-control" placeholder="Search ..."
+                                                aria-label="Recipient's username">
+                                            <button class="btn btn-primary" type="submit"><i
+                                                    class="mdi mdi-magnify"></i></button>
                                         </div>
                                     </div>
                                 </form>
@@ -131,24 +142,28 @@ if (isset($_SESSION['SESSION_EMAIL'])) {
 
 
                         <div class="ms-1 header-item d-none d-sm-flex">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
+                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
+                                data-toggle="fullscreen">
                                 <i class='bx bx-fullscreen fs-22'></i>
                             </button>
                         </div>
 
                         <div class="ms-1 header-item d-none d-sm-flex">
-                            <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode">
+                            <button type="button"
+                                class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle light-dark-mode">
                                 <i class='bx bx-moon fs-22'></i>
                             </button>
                         </div>
 
 
                         <div class="dropdown ms-sm-3 header-item topbar-user">
-                            <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
                                 <span class="d-flex align-items-center">
 
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php print $user['name']; ?></span>
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?php print $user['name']; ?></span>
 
                                     </span>
                                 </span>
