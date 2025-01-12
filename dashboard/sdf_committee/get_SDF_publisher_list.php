@@ -35,4 +35,4 @@ if (mysqli_num_rows($result)) {
 $cpn_bnk_dtls_qry = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = $pubId;";
 $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
 $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
-echo json_encode(value: [$listSDF, $cpn_bnk_dtls]);
+echo json_encode( [$listSDF, $cpn_bnk_dtls]);
