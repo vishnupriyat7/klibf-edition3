@@ -118,9 +118,9 @@ $html .= '<thead>
 
 $counter = 0;
 $grand_total = 0;
-$coupon50_total_count=0;
-$coupon100_total_count=0;
-$coupon200_total_count=0;
+$coupon50_total_count = 0;
+$coupon100_total_count = 0;
+$coupon200_total_count = 0;
 
 while ($bill = mysqli_fetch_array($total_bills)) {
     $coupon200_count = $coupon100_count = $coupon50_count = 0;
@@ -144,9 +144,9 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     $total_amount = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
     $grand_total = (int)$grand_total + (int)$total_amount;
 
-    $coupon50_total_count = $coupon50_count +$coupon50_total_count ;
-    $coupon100_total_count = $coupon50_count +$coupon100_total_count ;
-    $coupon200_total_count = $coupon50_count +$coupon200_total_count ;
+    $coupon50_total_count = $coupon50_count + $coupon50_total_count;
+    $coupon100_total_count = $coupon50_count + $coupon100_total_count;
+    $coupon200_total_count = $coupon50_count + $coupon200_total_count;
     // Add row to table
     // $html .= "<tr>
     //             <td>" . (++$counter) . "</td>
@@ -208,6 +208,8 @@ $html .= '<tr>
           </tr>  
 
 </body></html>';
+
+
 $grandtotal_words = convertNumberToWordsForIndia($grand_total);
 $html .= '<p>I here by submitting Coupons worth <strong>' . $grand_total . '/- </strong> (Grand Total)  <strong>' . ($grandtotal_words) . '</strong> only in the below mentioned denominations. </p>';
 
@@ -221,19 +223,19 @@ $html .= '<thead>
 <tr><th colspan="4"></th></tr>
             <tr>
                                 <td>50</td>
-                <td>'.$coupon50_total_count.'</td>
+                <td>' . $coupon50_total_count . '</td>
                 <td>Amount</td>
                                            
             </tr>
             <tr>
                                 <td>100</td>
-                <td>'.$coupon100_total_count.'</td>
+                <td>' . $coupon100_total_count . '</td>
                 <td>Amount</td>
                                            
             </tr>
             <tr>
                                 <td>200</td>
-                <td>'.$coupon200_total_count.'</td>
+                <td>' . $coupon200_total_count . '</td>
                 <td>Amount</td>
                                            
             </tr>
