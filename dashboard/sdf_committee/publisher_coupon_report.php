@@ -39,13 +39,13 @@ include "sidebar.php";
                         <div class="card-body overflow-auto">
                             <div class="col-md-6">
                                 <?php
-                                $publisher_query = "SELECT DISTINCT u.id, u.name FROM users u JOIN sdf s ON s.user_id = u.id;";
+                                $publisher_query = "SELECT DISTINCT u.id, u.name FROM users u JOIN coupon_publisher_invoice cpi ON cpi.user_id = u.id;";
                                 $result_publisher = mysqli_query($con, $publisher_query);
                                 $coupon_publishers = $result_publisher->fetch_all();
                                 ?>
                                 <b>Select Publisher</b>
-                                <select class="form-control form-group col-md-6" id="cpn_publisher" style="height:37px;"
-                                    onchange="getSDFPublisher()">
+                                <select class="form-control form-group col-md-6" id="coupon_pub" style="height:37px;"
+                                    onchange="getCouponList()">
                                     <option value="">Select</option>
                                     <?php foreach ($coupon_publishers as $publisher) { ?>
                                         <option value="<?= $publisher[0]; ?>">
@@ -55,24 +55,57 @@ include "sidebar.php";
                                 </select>
                                 <br>
                             </div>
+                            <div class="row" id="pub-coupon-bnk-dtls" hidden>
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <label>Bank Name</label>
+                                    <input type="text" class="form-control" id="cpn-bnk-name" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <label for="">Bank Branck</label>
+                                    <input type="text" class="form-control" id="cpn-bnk-branch" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <br>
+                                    <label for="">Account Holder Name</label>
+                                    <input type="text" class="form-control" id="cpn-bnk-acc-name" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <br>
+                                    <label for="">Account Number</label>
+                                    <input type="text" class="form-control" id="cpn-bnk-accno" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <br>
+                                    <label for="">IFSC</label>
+                                    <input type="text" class="form-control" id="cpn-bnk-ifsc" readonly>
+                                    <br>
+                                </div>
+                            </div>
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'sdf-coupon-publisher-wise-report')"
+                            <button onclick="exportTableToExcel('example', 'coupon-publisher-wise-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>Sl.No</th>
-                                        <th>Invoice Number</th>
-                                        <th>Invoice Date</th>
-                                        <th>MLA</th>
-                                        <th>Institution Name</th>
-                                        <th>Institution Contact No</th>
-                                        <th>Amount (in ₹)</th>
-                                        <th>Created Date</th>
+                                        <th data-ordering="false" rowspan="2">Sl No</th>
+                                        <th data-ordering="false" rowspan="2">Publisher</th>
+                                        <th data-ordering="false" rowspan="2">Bill No</th>
+                                        <th data-ordering="false" rowspan="2">Bill Date</th>
+                                        <th data-ordering="false" rowspan="2">Net Bill Amount</th>
+                                        <th data-ordering="false" rowspan="2">Coupon Amount</th>
+                                        <th data-ordering="false" colspan="6">Denominations</th>
+                                    </tr>
+                                    <tr>
+                                        <th data-ordering="false">50 Count</th>
+                                        <th data-ordering="false">Amount</th>
+                                        <th data-ordering="false">100 Count</th>
+                                        <th data-ordering="false">Amount</th>
+                                        <th data-ordering="false">200 Count</th>
+                                        <th data-ordering="false">Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center" id="pub-sdf-list">
+                                <tbody class="text-center" id="pub-coupon-list">
                                 </tbody>
                             </table>
                         </div>
@@ -113,23 +146,32 @@ include "sidebar.php";
             }
         }
 
-        function getSDFPublisher() {
-            var pubId = document.getElementById("cpn_publisher").value;
+        function getCouponList() {
+            var pubId = document.getElementById("coupon_pub").value;
             $.ajax({
-                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_publisher_list.php",
+                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_coupon_publisher_list.php",
                 type: "POST",
                 data: {
                     pubId: pubId
                 },
                 dataType: "json",
                 success: function (data) {
-                    $('#pub-sdf-list').empty().append(data);
-                    // $('#disc_time_slot3').empty();
-                    // var add_slot = "";
-                    // $("#disc_time_slot3").append('<option value="">Select Proposed Event Time</option>');
-                    // $.each(data, function (key, value) {
-                    //     $("#disc_time_slot3").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
-                    // });
+                    $('#pub-coupon-list').empty().append(data[0]);
+                    if (data[1] !== null) {
+                        document.getElementById("cpn-bnk-name").value = data[1]['bank_name'];
+                        document.getElementById("cpn-bnk-branch").value = data[1]['bank_branch'];
+                        document.getElementById("cpn-bnk-acc-name").value = data[1]['acc_holder_name'];
+                        document.getElementById("cpn-bnk-accno").value = data[1]['account_no'];
+                        document.getElementById("cpn-bnk-ifsc").value = data[1]['bank_ifsc'];
+                        document.getElementById("pub-coupon-bnk-dtls").removeAttribute('hidden');
+                    } else {
+                        document.getElementById("cpn-bnk-name").value = "";
+                        document.getElementById("cpn-bnk-branch").value = "";
+                        document.getElementById("cpn-bnk-acc-name").value = "";
+                        document.getElementById("cpn-bnk-accno").value = "";
+                        document.getElementById("cpn-bnk-ifsc").value = "";
+                        document.getElementById("pub-coupon-bnk-dtls").setAttribute('hidden', "");
+                    }
                 }
             });
         }
