@@ -73,6 +73,9 @@ while ($bill = mysqli_fetch_array($total_bills)) {
                 <td>{$coupon200_count}</td>
                 <td>" . (200 * $coupon200_count) . "</td>
               </tr>";
+    $html .= "<tr>
+              <td rowspan='3'>{$bill['tot_inv_amt']}</td>
+              </tr>";
 }
 
 $html .= '</tbody></table></body></html>';
