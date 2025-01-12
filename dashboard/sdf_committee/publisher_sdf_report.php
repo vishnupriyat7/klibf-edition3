@@ -155,12 +155,14 @@ include "sidebar.php";
                         document.getElementById("sdf-bnk-branch").value = data[1]['bank_branch'];
                         document.getElementById("sdf-bnk-acc-name").value = data[1]['acc_holder_name'];
                         document.getElementById("sdf-bnk-accno").value = data[1]['account_no'];
+                        document.getElementById("sdf-bnk-ifsc").value = data[1]['bank_ifsc'];
                         document.getElementById("pub-bnk-dtls").removeAttribute('hidden');
                     } else {
                         document.getElementById("sdf-bnk-name").value = "";
                         document.getElementById("sdf-bnk-branch").value = "";
                         document.getElementById("sdf-bnk-acc-name").value = "";
                         document.getElementById("sdf-bnk-accno").value = "";
+                        document.getElementById("sdf-bnk-ifsc").value = "";
                         document.getElementById("pub-bnk-dtls").setAttribute('hidden', "");
                     }
                 }
