@@ -150,12 +150,18 @@ include "sidebar.php";
                 dataType: "json",
                 success: function (data) {
                     $('#pub-sdf-list').empty().append(data[0]);
-                    if (data[1] != null) {
-                        document.getElementById("sdf-bnk-name").value(data[1]['bank_name']);
-                        document.getElementById("sdf-bnk-branch").value(data[1]['bank_branch']);
-                        document.getElementById("sdf-bnk-acc-name").value(data[1]['acc_holder_name']);
-                        document.getElementById("sdf-bnk-accno").value(data[1]['account_no']);
+                    if (data[1] !== null) {
+                        document.getElementById("sdf-bnk-name").value = data[1]['bank_name'];
+                        document.getElementById("sdf-bnk-branch").value = data[1]['bank_branch'];
+                        document.getElementById("sdf-bnk-acc-name").value = data[1]['acc_holder_name'];
+                        document.getElementById("sdf-bnk-accno").value = data[1]['account_no'];
                         document.getElementById("pub-bnk-dtls").removeAttribute('hidden');
+                    } else {
+                        document.getElementById("sdf-bnk-name").value = "";
+                        document.getElementById("sdf-bnk-branch").value = "";
+                        document.getElementById("sdf-bnk-acc-name").value = "";
+                        document.getElementById("sdf-bnk-accno").value = "";
+                        document.getElementById("pub-bnk-dtls").setAttribute('hidden', "");
                     }
                 }
             });
