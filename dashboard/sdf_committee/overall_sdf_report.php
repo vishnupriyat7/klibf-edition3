@@ -38,7 +38,7 @@ include "sidebar.php";
                         </div>
                         <div class="card-body overflow-auto">
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'sdf-coupon-mla-wise-report')"
+                            <button onclick="exportTableToExcel('example', 'sdf-overall-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
