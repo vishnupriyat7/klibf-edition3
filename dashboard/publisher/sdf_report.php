@@ -81,6 +81,7 @@ $user_id = $user['id']; ?>
                                 style="font-style:normal; font-size: 12px;">
                                 <thead class="text-center">
                                     <tr>
+                                        <th>Action</th>
                                         <th>Sl.No</th>
                                         <th>Invoice Number</th>
                                         <th>Invoice Date</th>
@@ -92,13 +93,19 @@ $user_id = $user['id']; ?>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $total_sdf_query = "SELECT s.*, mla.* FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE user_id=$user_id ORDER BY updated_date DESC;";
+                                    $total_sdf_query = "SELECT s.*, mla.name FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE user_id=$user_id ORDER BY updated_date DESC;";
                                     $result = mysqli_query($con, $total_sdf_query);
                                     if (mysqli_num_rows($result)) {
                                         $slno = 1;
                                         while ($row = mysqli_fetch_assoc($result)) {
                                             ?>
                                             <tr class="text-center">
+                                                <td class="text-center">
+                                                    <a href='#' class='dropdown-item remove-item-btn'
+                                                        onclick="deleteSDFEntry(<?= $row['id']; ?>);">
+                                                        <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i> Delete
+                                                    </a>
+                                                </td>
                                                 <td><?php echo $slno; ?></td>
                                                 <td><?php echo $row['invc_no']; ?></td>
                                                 <td><?php echo $row['invc_date']; ?></td>
@@ -154,5 +161,40 @@ $user_id = $user['id']; ?>
                 //triggering the function
                 downloadLink.click();
             }
+        }
+
+        function deleteSDFEntry(sdfId) {
+            swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to delete?",
+                icon: "warning", // Use "icon" instead of "type" for SweetAlert2
+                showCancelButton: true, // Ensure this is set to show the cancel button
+                confirmButtonColor: "#DD6B55",
+                cancelButtonColor: "#d33", // Optional: set a color for the cancel button
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!", // Optional: customize the cancel button text
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the delete operation via AJAX
+                    $.ajax({
+                        url: "<?= $base_url; ?>/dashboard/publisher/delete_sdf_entry.php",
+                        type: "POST",
+                        data: {
+                            sdfId: sdfId
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            swal.fire("Deleted!", "", "success").then(() => {
+                                window.location.reload();
+                            });
+                        },
+                        error: function () {
+                            swal.fire("Error", "Failed to delete. Please try again.", "error");
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swal.fire("Cancelled", "Your data is safe.", "info");
+                }
+            });
         }
     </script>
