@@ -55,6 +55,32 @@ include "sidebar.php";
                                 </select>
                                 <br>
                             </div>
+                            <div class="row" id="pub-bnk-dtls" hidden>
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <label>Bank Name</label>
+                                    <input type="text" class="form-control" id="sdf-bnk-name" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                                    <label for="">Bank Branck</label>
+                                    <input type="text" class="form-control" id="sdf-bnk-branch" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <br>
+                                    <label for="">Account Holder Name</label>
+                                    <input type="text" class="form-control" id="sdf-bnk-acc-name" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <br>
+                                    <label for="">Account Number</label>
+                                    <input type="text" class="form-control" id="sdf-bnk-accno" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
+                                    <br>
+                                    <label for="">IFSC</label>
+                                    <input type="text" class="form-control" id="sdf-bnk-ifsc" readonly>
+                                    <br>
+                                </div>
+                            </div>
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'sdf-coupon-publisher-wise-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
@@ -123,7 +149,14 @@ include "sidebar.php";
                 },
                 dataType: "json",
                 success: function (data) {
-                    $('#pub-sdf-list').empty().append(data);
+                    $('#pub-sdf-list').empty().append(data[0]);
+                    if (data[1] != null) {
+                        document.getElementById("sdf-bnk-name").value(data[1]['bank_name']);
+                        document.getElementById("sdf-bnk-branch").value(data[1]['bank_branch']);
+                        document.getElementById("sdf-bnk-acc-name").value(data[1]['acc_holder_name']);
+                        document.getElementById("sdf-bnk-accno").value(data[1]['account_no']);
+                        document.getElementById("pub-bnk-dtls").removeAttribute('hidden');
+                    }
                 }
             });
         }

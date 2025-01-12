@@ -86,6 +86,7 @@ $user_id = $user['id']; ?>
                                         <th data-ordering="false" rowspan="2">Net Bill Amount</th>
                                         <th data-ordering="false" rowspan="2">Coupon Amount</th>
                                         <th data-ordering="false" colspan="6">Denominations</th>
+                                        <th data-ordering="false" rowspan="2">Action</th>
                                     </tr>
                                     <tr>
                                         <th data-ordering="false">50 Count</th>
@@ -150,6 +151,12 @@ $user_id = $user['id']; ?>
                                             <td>
                                                 <?= 200 * $coupon200_count; ?>
                                             </td>
+                                            <td>
+                                                <a href='#' class='dropdown-item remove-item-btn'
+                                                    onclick="deleteCouponEntry(<?= $invoice_no; ?>);">
+                                                    <i class='ri-delete-bin-fill align-bottom me-2 text-danger'></i> Delete
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -190,5 +197,24 @@ $user_id = $user['id']; ?>
                 //triggering the function
                 downloadLink.click();
             }
+        }
+
+        function deleteCouponEntry(invId) {
+            swal("Delete", "Do you want to delete?", "warning").then(function (isConfirm) {
+                $.ajax({
+                    url: "<?= $base_url; ?>/dashboard/publisher/delete_coupon_entry.php",
+                    type: "POST",
+                    data: {
+                        invoiceId: invId
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        swal("Deleted", "", "success").then(function (isConfirm) {
+                            window.location.reload();
+                        });
+
+                    }
+                });
+            });
         }
     </script>

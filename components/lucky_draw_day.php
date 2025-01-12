@@ -98,7 +98,7 @@
 </style>
 <div class="buttons">
     <button class="btn-hover color-1">രശ്മീ ജയചന്ദ്രൻ<br>82261</button>
-    <button class="btn-hover color-3">ഷമീല എൻ<br>58701</button>
+    <button class="btn-hover color-3">ഷജീല എൻ<br>58701</button>
     <button class="btn-hover color-4">അനുഷ<br>38741</button>
     <button class="btn-hover color-5">ശില്പ<br>68776</button>
     <button class="btn-hover color-6">ഇഷിത പ്രദീപ്<br>44461</button>
