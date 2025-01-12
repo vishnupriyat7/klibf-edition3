@@ -13,13 +13,14 @@ $html .= '<h3 style="text-align: center;">Book Coupon Details</h3>';
 $html .= '<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">';
 $html .= '<thead>
             <tr>
+                <tr>
                 <th>Sl No</th>
-                <th>Bill No</th>
-                <th>Bill Date</th>
+                <th>Bill No & Date</th>
                 <th>Denomination</th>
                 <th>Count</th>
                 <th>Amount</th>
                 <th>Sub Total</th>
+            
             </tr>
           </thead><tbody>';
 
@@ -55,11 +56,23 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     //             <td>{$total_amount}</td>
     //             <td>{$bill['tot_inv_amt']}</td>
     //           </tr>";
-
-    $html .= "<tr rowspan="2">
-    
-    
-    </tr>"
+    $html .= "<tr>
+                <td rowspan='3'>" . (++$counter) . "</td>
+                <td rowspan='3'>{$bill['invoice_no']}<br>{$bill['invoice_dt']}</td>
+                <td>50</td>
+                <td>{$coupon50_count}</td>
+                <td>" . (50 * $coupon50_count) . "</td>
+              </tr>";
+    $html .= "<tr>
+                <td>100</td>
+                <td>{$coupon100_count}</td>
+                <td>" . (100 * $coupon100_count) . "</td>
+              </tr>";
+    $html .= "<tr>
+                <td>200</td>
+                <td>{$coupon200_count}</td>
+                <td>" . (200 * $coupon200_count) . "</td>
+              </tr>";
 }
 
 $html .= '</tbody></table></body></html>';
