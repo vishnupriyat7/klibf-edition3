@@ -97,24 +97,24 @@
     }
 </style>
 <div class="buttons">
-    <button class="btn-hover color-1">ലിഷ<br>39539</button>
-    <button class="btn-hover color-3">ജുവൽ തോമസ്<br>26844</button>
-    <button class="btn-hover color-4">വിജയകുമാരൻ നായർ കെ<br>6465</button>
-    <button class="btn-hover color-5">ഡാനിയൽ<br>53527</button>
-    <button class="btn-hover color-6">തലനാട് ചന്ദ്രശേഖരൻ<br>23617</button>
-    <button class="btn-hover color-7">ദിവ്യ<br>53599</button>
-    <button class="btn-hover color-8">നിവേദ് പി<br>32143</button>
-    <button class="btn-hover color-9">ശ്രീക്കുട്ടി എ<br>38637</button>
-    <button class="btn-hover color-10">അബ്ദുൾസലാം<br>48111</button>
-    <button class="btn-hover color-11">സനൽകുമാർ<br>50181</button>
-    <button class="btn-hover color-1">ലക്ഷ്മിപ്രിയ പി<br>35987</button>
-    <button class="btn-hover color-3">അഥീന ഉണ്ണിത്താൻ<br>32705</button>
-    <button class="btn-hover color-5">പ്രശാന്ത് പി എസ്<br>2129</button>
-    <button class="btn-hover color-7">ബെൻ<br>36042</button>
-    <button class="btn-hover color-9">അരുൺ കുമാർ<br>49192</button>
-    <button class="btn-hover color-2">ദിവ്യ ജി<br>47397</button>
-    <button class="btn-hover color-4">രാം കിരൺ<br>33342</button>
-    <button class="btn-hover color-6">ചെരിഷ് ബിനു<br>35796</button>
-    <button class="btn-hover color-8">വിജയകുമാർ എസ്<br>50164</button>
-    <button class="btn-hover color-6">ഐസക് ജോൺ<br>20597</button>
+    <button class="btn-hover color-1">രശ്മീ ജയചന്ദ്രൻ<br>82261</button>
+    <button class="btn-hover color-3">ഷജീല എൻ<br>58701</button>
+    <button class="btn-hover color-4">അനുഷ<br>38741</button>
+    <button class="btn-hover color-5">ശില്പ<br>68776</button>
+    <button class="btn-hover color-6">ഇഷിത പ്രദീപ്<br>44461</button>
+    <button class="btn-hover color-7">ആശംസ മറീന വർഗ്ഗീസ്<br>63727</button>
+    <button class="btn-hover color-8">പ്രമോദ് എസ് എൽ<br>65276</button>
+    <button class="btn-hover color-9">കെ ദിലീപ് കുമാർ<br>36564</button>
+    <button class="btn-hover color-10">രതീഷ് ആർ<br>75529</button>
+    <button class="btn-hover color-11">അഡ്വ. അനൂപ് പറക്കാട്ട്<br>38217</button>
+    <button class="btn-hover color-1">നിതിൻ ജെ എസ്<br>80533</button>
+    <button class="btn-hover color-3">അഞ്ചു ആർ ഐ<br>80579</button>
+    <button class="btn-hover color-5">കെ വേണുഗോപാൽ<br>36900</button>
+    <button class="btn-hover color-7">തീർത്ഥ എസ് നായർ<br>81000</button>
+    <button class="btn-hover color-9">മോഹൻദാസ് കെ<br>40895</button>
+    <button class="btn-hover color-2">ഷാജി കെ ആർ<br>43455</button>
+    <button class="btn-hover color-4">സൂര്യനാരായൺ എസ്<br>47695</button>
+    <button class="btn-hover color-6">കൃഷ്ണാഞ്ജന പി ജെ<br>71654</button>
+    <button class="btn-hover color-8">ഫിദ മെഹബൂബ്<br>58703</button>
+    <button class="btn-hover color-6">അശ്വതി ജെ<br>73168</button>
 </div>
