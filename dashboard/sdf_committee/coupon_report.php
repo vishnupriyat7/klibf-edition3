@@ -47,6 +47,7 @@ include "sidebar.php";
                                         <th data-ordering="false">Sl No</th>
                                         <th data-ordering="false">Coupon Serial No (Range) <br>From-To</th>
                                         <th data-ordering="false">Denomination</th>
+                                        <th data-ordering="false">Amount</th>
                                         <th data-ordering="false">Sponser</th>
                                         <!-- <th data-ordering="false">Action</th> -->
                                     </tr>
@@ -85,6 +86,8 @@ ORDER BY
                                     $coupons = mysqli_query($con, $coupon_query);
                                     $counter = 0;
                                     while ($coupon = mysqli_fetch_array($coupons)) {
+                                        $count = ($coupon['serial_no_to'] - $coupon['serial_no_from']) + 1;
+                                        $deno_amt = $coupon['denomination'] * $count;
                                         ?>
                                         <tr>
                                             <td>
@@ -95,6 +98,9 @@ ORDER BY
                                             </td>
                                             <td>
                                                 <?= $coupon['denomination']; ?>
+                                            </td>
+                                            <td>
+                                                <?= $deno_amt; ?>
                                             </td>
                                             <td>
                                                 <?= $coupon['spnsr_org_name']; ?>
