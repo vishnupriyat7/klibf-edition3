@@ -20,7 +20,7 @@ $user_id = $user['id'];
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0">Coupon Sponser</h4>
+                        <h4 class="mb-sm-0">Coupon Receipt</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
@@ -52,13 +52,13 @@ $user_id = $user['id'];
                             $spnsr_pay_other = mysqli_real_escape_string($con, $_POST['spnsr_pay_other']);
                             $spnsr_trnctn_no = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_no']);
                             $spnsr_bnk_ref_no = mysqli_real_escape_string($con, $_POST['spnsr_bnk_ref_no']);
-                            $spnsr_trnctn_dt = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_dt']);                            
+                            $spnsr_trnctn_dt = mysqli_real_escape_string($con, $_POST['spnsr_trnctn_dt']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $con->begin_transaction();
                             try {
-                                if($spnsr_trnctn_type != '7') {
-                                $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, trnct_dt, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$spnsr_trnctn_dt', '$date');";
+                                if ($spnsr_trnctn_type != '7') {
+                                    $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, trnct_dt, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$spnsr_trnctn_dt', '$date');";
                                 } else {
                                     $query_sponser = "INSERT INTO coupon_sponsers (spnsr_org_name, spnsr_amt, pay_mode_id, other_remark, trnctn_no, bnk_ref_no, updated_date) VALUES ('$spnsr_org_name', '$spnsr_tot_amt', '$spnsr_trnctn_type', '$spnsr_pay_other', '$spnsr_trnctn_no', '$spnsr_bnk_ref_no', '$date');";
                                 }
@@ -131,96 +131,29 @@ $user_id = $user['id'];
                                     }
                                     ?>
                                     <form action="" method="post" enctype="multipart/form-data">
-                                        <div class="row bg-grey">
-                                            <div class="form-group col-12">
-                                                <label><b>Sponser's Bank Details</b></label>
-                                            </div>
-                                            <div class="form-group col-12 col-md-9">
-                                                *Organisation name
-                                                <input type="text" class="form-control" name="spnsr_org_name"
-                                                    placeholder="Organisation Name" id="spnsr_org_name" value="">
-                                            </div>
-                                            <div class="form-group col-12 col-md-3">
-                                                *Total Sponsership Amount (in ₹)
-                                                <input type="text" class="form-control" name="spnsr_tot_amt"
-                                                    id="spnsr_tot_amt" placeholder="*Total Sponsership Amount (in  ₹)"
-                                                    required="required"
-                                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                                    <?= $edit; ?> value="<?= $total_amt; ?>">
-                                                <!-- <input type="text" class="form-control" name="spnsr_tot_amt"
-                                                    placeholder="Total Sponsership Amount" id="spnsr_tot_amt" value=""> -->
-                                            </div>
-                                            <div class="form-group col-12 col-md-3">
-                                                <?php
-                                                $payModeQry = "SELECT * FROM payment_mode";
-                                                $paymentModes = mysqli_query($con, $payModeQry);
-                                                $counter = 0;
-                                                ?>
-                                                <br>*Mode of Payment
-                                                <select class="form-control form-group" name="spnsr_trnctn_type"
-                                                    id="spnsr_trnctn_type" required="required" style="height:37px;"
-                                                    onchange="spnsrPaymentMode()">
-                                                    <option value="" <?= $select0; ?>>Select</option>
-                                                    <?php while ($paymentMode = mysqli_fetch_array($paymentModes)) { ?>
-                                                        <option value="<?= $paymentMode['id']; ?>" <?= $selectd; ?>>
-                                                            <?= $paymentMode['payment_type']; ?>
-                                                        </option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-12 col-md-9" id="spnsr_pay_other_div" hidden>
-                                                <br>Others Description
-                                                <input type="text" class="form-control" name="spnsr_pay_other"
-                                                    placeholder="Description" id="spnsr_pay_other" value="">
-                                            </div>
-                                            <div class="form-group col-12 col-md-3">
-                                                <br>
-                                                Transaction No
-                                                <input type="text" class="form-control" name="spnsr_trnctn_no"
-                                                    id="spnsr_trnctn_no" placeholder="*Transaction No"
-                                                    value="<?= $trnctn_no; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-12 col-md-3">
-                                                <br>
-                                                Bank Reference No
-                                                <input type="text" class="form-control" name="spnsr_bnk_ref_no"
-                                                    id="spnsr_bnk_ref_no" placeholder="Bank Reference No"
-                                                    value="<?= $ifsc; ?>" <?= $edit; ?>>
-                                            </div>
-                                            <div class="form-group col-12 col-md-3">
-                                                <br>
-                                                *Transaction Date
-                                                <input type="date" class="form-control" name="spnsr_trnctn_dt"
-                                                    id="spnsr_trnctn_dt" placeholder="*Transaction Date"
-                                                    value="<?= $trnctn_dt; ?>" <?= $edit; ?>>
-                                            </div>
-                                        </div><br>
-                                        <hr>
-                                        <div class="form-group col-12">
+
+                                        <!-- <div class="form-group col-12">
                                             <label>
-                                                <b>Sponsor's Coupon Details</b>
+                                                <b>Coupon Details</b>
                                             </label>
-                                        </div>
+                                        </div> -->
 
                                         <div id="dynamic-form-container">
                                             <div class="row dynamic-form">
                                                 <div class="form-group col-12 col-md-2">
                                                     <?php
-                                                    $denominationQry = "SELECT * FROM coupon_denomination";
-                                                    $denominations = mysqli_query($con, $denominationQry);
-                                                    $counter = 0;
-                                                    $denominationData = []; // Store denominations for JavaScript
+                                                    $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN
+                                                    coupon_publisher_invoice cpi ON cpi.user_id = up.user_id;";
+                                                    $result_publisher = mysqli_query($con, $publisher_query);
+                                                    $coupon_publishers = $result_publisher->fetch_all();
                                                     ?>
-                                                    *Coupon Denomination
-                                                    <select class="form-control spnsr_cpn_deno" name="spnsr_cpn_deno[]"
-                                                        required="required" style="height:37px;">
-                                                        <option value="">Select Denomination</option>
-                                                        <?php while ($denomination = mysqli_fetch_array($denominations)) {
-                                                            // Store denomination data in a PHP array
-                                                            $denominationData[$denomination['id']] = $denomination['denomination'];
-                                                            ?>
-                                                            <option value="<?= $denomination['id']; ?>">
-                                                                <?= $denomination['denomination']; ?>
+                                                    <b>Select Publisher</b>
+                                                    <select class="form-control form-group col-md-6" id="coupon_pub"
+                                                        style="height:37px;" onchange="getCouponList()">
+                                                        <option value="">Select</option>
+                                                        <?php foreach ($coupon_publishers as $publisher) { ?>
+                                                            <option value="<?= $publisher[0]; ?>">
+                                                                <?= $publisher[1]; ?>
                                                             </option>
                                                         <?php } ?>
                                                     </select>

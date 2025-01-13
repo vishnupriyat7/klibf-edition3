@@ -142,7 +142,7 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     }
 
     $total_amount = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
-    $grand_total = (int)$grand_total + (int)$total_amount;
+    $grand_total = (int) $grand_total + (int) $total_amount;
 
     $coupon50_total_count = $coupon50_count + $coupon50_total_count;
     $coupon100_total_count = $coupon100_count + $coupon100_total_count;
@@ -150,11 +150,11 @@ while ($bill = mysqli_fetch_array($total_bills)) {
 
 
     $coupon50_total_amount = $coupon50_total_count * 50;
-    $coupon100_total_amount =  $coupon100_total_count * 100;
+    $coupon100_total_amount = $coupon100_total_count * 100;
     $coupon200_total_amount = $coupon200_total_count * 200;
+    $sub_total = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
 
-
-    $total_amount =  $coupon50_total_amount +  $coupon100_total_amount +  $coupon200_total_amount;
+    // $total_amount =  $coupon50_total_amount +  $coupon100_total_amount +  $coupon200_total_amount;
 
     // Add row to table
     // $html .= "<tr>
@@ -173,7 +173,7 @@ while ($bill = mysqli_fetch_array($total_bills)) {
                 <td>50</td>
                 <td>{$coupon50_count}</td>
                 <td>" . (50 * $coupon50_count) . "</td>
-                <td rowspan='3'><strong>{$total_amount}</strong></td>
+                <td rowspan='3'><strong>" . $sub_total . "</strong></td>
               </tr>";
     $html .= "<tr>
                 <td>100</td>
@@ -249,7 +249,7 @@ $html .= '<thead></thead>
             </tr>
             <tr>
             <td colspan="2" style="text-align: right;"><strong>Total</strong></td>
-           <td><strong>' . $total_amount . '</strong></td>
+           <td><strong>' . $grand_total . '</strong></td>
             </tr>
             </tbody></table><br><br><br><br><br>';
 $html .= '<table style="width: 100%; border: none; margin-top: 20px;">

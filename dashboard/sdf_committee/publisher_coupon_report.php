@@ -39,7 +39,8 @@ include "sidebar.php";
                         <div class="card-body overflow-auto">
                             <div class="col-md-6">
                                 <?php
-                                $publisher_query = "SELECT DISTINCT u.id, u.name FROM users u JOIN coupon_publisher_invoice cpi ON cpi.user_id = u.id;";
+                                $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN
+                                                    coupon_publisher_invoice cpi ON cpi.user_id = up.user_id;";
                                 $result_publisher = mysqli_query($con, $publisher_query);
                                 $coupon_publishers = $result_publisher->fetch_all();
                                 ?>
