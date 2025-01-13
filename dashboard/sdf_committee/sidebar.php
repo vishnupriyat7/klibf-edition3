@@ -54,6 +54,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/publisher_coupon_receipt.php" class="nav-link"
+                        data-key="t-one-page">
+                        <i class="mdi mdi-cash-multiple"></i>
+                        <span data-key="t-dashboards">Coupon Receipt</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
                         data-bs-target="#sidebarReport">
                         <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Reports</span>
