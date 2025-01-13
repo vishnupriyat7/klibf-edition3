@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', '0');
+ini_set('display_errors', '1');
 include "../header.php";
 include "sidebar.php";
 $user_id = $user['id'];
@@ -52,17 +52,24 @@ $user_id = $user['id'];
                             $receipt_remarks = mysqli_real_escape_string($con, $_POST['receipt_remarks']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
-                            $con->begin_transaction();
-                            $query_publisher_receipt = "INSERT INTO coupon_publisher_receipt (user_id, received_dt, status, remarks, updated_date) VALUES ('$receipt_pub', '$receipt_received_dt', '$receipt_status', '$receipt_remarks', '$date');";
-                            // var_dump($query_publisher_receipt);die;
-                            $result_publisher_receipt = mysqli_query($con, $query_publisher_receipt);
-                            if ($result_publisher_receipt) {
-                                $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                            $receipt_dup_query = "SELECT id FROM coupon_publisher_receipt WHERE user_id = $receipt_pub";
+                            $result_receipt_dup = mysqli_query($con, $receipt_dup_query);
+                            $dup_receipt = $result_receipt_dup->fetch_assoc();
+                            if ($dup_receipt == NULL) {
+                                $query_publisher_receipt = "INSERT INTO coupon_publisher_receipt (user_id, received_dt, status, remarks, updated_date) VALUES ('$receipt_pub', '$receipt_received_dt', '$receipt_status', '$receipt_remarks', '$date');";
+                                // var_dump($query_publisher_receipt);die;
+                                $result_publisher_receipt = mysqli_query($con, $query_publisher_receipt);
+                                if ($result_publisher_receipt) {
+                                    $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Publisher Coupon Receipt details is Successfully Saved.
                                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                             </div>";
+                                } else {
+                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Something went wrong.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                       </div>";
+                                }
                             } else {
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Something went wrong.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Already Received.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                        </div>";
                             }
                         }
