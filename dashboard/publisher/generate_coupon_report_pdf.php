@@ -98,9 +98,17 @@ $total_coupon_invoice_query = "SELECT * FROM coupon_publisher_invoice WHERE user
 $total_bills = mysqli_query($con, $total_coupon_invoice_query);
 
 
+$publisher_dtls_query = "SELECT org_name, head_org_mobile FROM users_profile WHERE user_id = '$user_id';";
+$publisher_dtls = mysqli_query($con, $publisher_dtls_query);
+$publisher_dtls_row = mysqli_fetch_array($publisher_dtls);
+
+
 
 // Generate HTML content
-$html = '<html><head><title>Summary</title></head><body>';
+
+$html = '<html><head><title>Summary</title></head><body><br>';
+$html .= '<p style="text-align: left;"><strong>Publisher Name :  ' . $publisher_dtls_row['org_name'] . '</strong> <p>';
+$html .= '<p style="text-align: left;"><strong>Contact Number:  ' . $publisher_dtls_row['head_org_mobile'] . '</strong> <p><br>';
 
 $html .= '<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">';
 $html .= '<thead>
