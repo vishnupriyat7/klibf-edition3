@@ -36,7 +36,7 @@ $user_id = $user['id']; ?>
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Coupon Report For Submission</h5>
+                            <h5 class="card-title mb-0">SDF Report For Submission</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <div class="row text-center">
@@ -45,7 +45,7 @@ $user_id = $user['id']; ?>
                                         disabled>Generate Coupon Report</button> -->
 
 
-                                    <button type="button" id="cpn_report" class="btn btn-success" onclick="generatePdfReport()">Generate Coupon Report</button>
+                                    <button type="button" id="cpn_report" class="btn btn-success" onclick="generatePdfReport()">Generate SDF Report</button>
                                 </div>
 
 
@@ -72,7 +72,7 @@ $user_id = $user['id']; ?>
 
             // AJAX Request
             $.ajax({
-                url: "generate_coupon_report_pdf.php", // PHP file that generates HTML content
+                url: "generate_sdf_report_pdf.php", // PHP file that generates HTML content
                 type: "POST",
                 data: {
                     user_id: userId
@@ -85,10 +85,6 @@ $user_id = $user['id']; ?>
                     // iframeDocument.open();
                     // iframeDocument.write(response);
                     // iframeDocument.close();
-
-
-
-
 
                     var iframe = document.getElementById("print-invoice-frame");
                     iframe.contentDocument.write(response);

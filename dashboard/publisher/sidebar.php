@@ -195,6 +195,13 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                            href="<?= $base_url ?>/dashboard/publisher/sdf_report_for_submission.php">
+                            <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">SDF Report For Submission</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
                             data-bs-target="#sidebarGuidelines">
                             <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Guidelines

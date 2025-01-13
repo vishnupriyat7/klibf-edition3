@@ -16,11 +16,8 @@
                  <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY3.pdf">Day-3</button>&emsp;
                  <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY4.pdf">Day-4</button>&emsp;
                  <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY5.pdf">Day-5</button>&emsp;
-                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-6.pdf">Day-6</button>&emsp; -->
-                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-4.pdf">Day-4</button>&emsp; -->
-                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-5.pdf">Day-5</button>&emsp; -->
                  <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY6.pdf">Day-6</button>&emsp;
-                 <!-- <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY-7.pdf">Day-7</button>&emsp; -->
+                 <button class="btn btn-success" data-bs-toggle="modal" data-pdf-url="DAY7.pdf">Day-7</button>&emsp;
              </div>
              <br>
 

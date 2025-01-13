@@ -141,8 +141,9 @@ while ($bill = mysqli_fetch_array($total_bills)) {
         }
     }
 
-    $total_amount = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
-    $grand_total = (int) $grand_total + (int) $total_amount;
+    // $total_amount = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
+    $sub_total = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
+    $grand_total = (int) $grand_total + (int) $sub_total;
 
     $coupon50_total_count = $coupon50_count + $coupon50_total_count;
     $coupon100_total_count = $coupon100_count + $coupon100_total_count;
@@ -152,7 +153,7 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     $coupon50_total_amount = $coupon50_total_count * 50;
     $coupon100_total_amount = $coupon100_total_count * 100;
     $coupon200_total_amount = $coupon200_total_count * 200;
-    $sub_total = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
+    // $sub_total = (50 * $coupon50_count) + (100 * $coupon100_count) + (200 * $coupon200_count);
 
     // $total_amount =  $coupon50_total_amount +  $coupon100_total_amount +  $coupon200_total_amount;
 
