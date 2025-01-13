@@ -113,8 +113,8 @@
     <button class="btn-hover color-7">പ്രതീഷ് പി. <br>96602</button>
     <button class="btn-hover color-9">അനീസ എൻ. <br>112018</button>
     <button class="btn-hover color-2">പ്രമോദ് കൃഷ്ണ <br>107326</button>
-    <button class="btn-hover color-4">രതീഷ് ആർ. ജെ.<br>63004</button>
-    <button class="btn-hover color-6">ക്രിസ്റ്റീന <br>89318</button>
-    <button class="btn-hover color-8">വിഷ്ണുദേവ് <br>89757</button>
-    <button class="btn-hover color-6">ഋജൂത<br>87021</button>
+    <button class="btn-hover color-4">ദിയാൻ എ. കൃഷ്ണ <br>116537</button>
+    <button class="btn-hover color-6">അനിത എസ്. <br>114950</button>
+    <button class="btn-hover color-8">ആസിഫ് എസ്. താഹ  <br>116110</button>
+    <button class="btn-hover color-6">ജി. സിദ്ധാനന്ദൻ<br>11943</button>
 </div>
