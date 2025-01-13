@@ -28,9 +28,9 @@ $user_id = $user['id']; ?>
             </div>
             <!-- end page title -->
             <?php
-            $total_coupon_invoice_query = "SELECT * FROM coupon_publisher_invoice WHERE user_id = '$user_id';";
-            $total_bills = mysqli_query($con, $total_coupon_invoice_query);
-            $counter = 0;
+            $cpn_bnk_dtls_qry = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = $user_id;";
+            $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
+            $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
             ?>
             <div class="row">
                 <div class="col-lg-12">
@@ -40,14 +40,24 @@ $user_id = $user['id']; ?>
                         </div>
                         <div class="card-body overflow-auto">
                             <div class="row text-center">
-                                <div class="col-lg-12">
-                                    <!-- <button type="submit" name="cpn_report" id="cpn_report" class="btn btn-success" onclick="generateSdfReport()"
+                                <?php if ($cpn_bnk_dtls) { ?>
+                                    <div class="col-lg-12">
+                                        <!-- <button type="submit" name="cpn_report" id="cpn_report" class="btn btn-success" onclick="generateSdfReport()"
                                         disabled>Generate Coupon Report</button> -->
 
 
-                                    <button type="button" id="cpn_report" class="btn btn-success" onclick="generatePdfReport()">Generate Coupon Report</button>
-                                </div>
+                                        <button type="button" id="cpn_report" class="btn btn-success" onclick="generatePdfReport()">Generate Coupon Report</button>
+                                    </div>
+                                <?php } else { ?>
+                                    <!-- No bank details -->
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong>Please Provide Bank Details First!.. Then Generate Report</strong>
+                                        </div>
+                                    </div>
 
+
+                                <?php } ?>
 
 
                             </div>
