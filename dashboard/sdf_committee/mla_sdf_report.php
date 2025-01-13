@@ -34,7 +34,7 @@ include "sidebar.php";
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Publisher SDF Report</h5>
+                            <h5 class="card-title mb-0">MLA SDF Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <div class="col-md-6">
@@ -64,6 +64,7 @@ include "sidebar.php";
                                     <tr>
                                         <th>Sl.No</th>
                                         <th>Publisher</th>
+                                        <th>Contact No.</th>
                                         <th>Invoice Number</th>
                                         <th>Invoice Date</th>                                        
                                         <th>Institution Name</th>

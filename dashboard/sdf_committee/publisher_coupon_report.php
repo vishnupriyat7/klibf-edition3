@@ -34,27 +34,33 @@ include "sidebar.php";
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">Publisher SDF Report</h5>
+                            <h5 class="card-title mb-0">Publisher-Wise Coupon Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
-                            <div class="col-md-6">
-                                <?php
-                                $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php
+                                    $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN
                                                     coupon_publisher_invoice cpi ON cpi.user_id = up.user_id;";
-                                $result_publisher = mysqli_query($con, $publisher_query);
-                                $coupon_publishers = $result_publisher->fetch_all();
-                                ?>
-                                <b>Select Publisher</b>
-                                <select class="form-control form-group col-md-6" id="coupon_pub" style="height:37px;"
-                                    onchange="getCouponList()">
-                                    <option value="">Select</option>
-                                    <?php foreach ($coupon_publishers as $publisher) { ?>
-                                        <option value="<?= $publisher[0]; ?>">
-                                            <?= $publisher[1]; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                                <br>
+                                    $result_publisher = mysqli_query($con, $publisher_query);
+                                    $coupon_publishers = $result_publisher->fetch_all();
+                                    ?>
+                                    <b>Select Publisher</b>
+                                    <select class="form-control form-group col-md-6" id="coupon_pub"
+                                        style="height:37px;" onchange="getCouponList()">
+                                        <option value="">Select</option>
+                                        <?php foreach ($coupon_publishers as $publisher) { ?>
+                                            <option value="<?= $publisher[0]; ?>">
+                                                <?= $publisher[1]; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                    <br>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4" id="cpn-pub-cntct-div" hidden>
+                                    Contact No
+                                    <input type="text" class="form-control" id="cpn-pub-cntct" readonly>
+                                </div>
                             </div>
                             <div class="row" id="pub-coupon-bnk-dtls" hidden>
                                 <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
@@ -90,7 +96,6 @@ include "sidebar.php";
                                 <thead class="text-center">
                                     <tr>
                                         <th data-ordering="false" rowspan="2">Sl No</th>
-                                        <th data-ordering="false" rowspan="2">Publisher</th>
                                         <th data-ordering="false" rowspan="2">Bill No</th>
                                         <th data-ordering="false" rowspan="2">Bill Date</th>
                                         <th data-ordering="false" rowspan="2">Net Bill Amount</th>
@@ -164,6 +169,8 @@ include "sidebar.php";
                         document.getElementById("cpn-bnk-acc-name").value = data[1]['acc_holder_name'];
                         document.getElementById("cpn-bnk-accno").value = data[1]['account_no'];
                         document.getElementById("cpn-bnk-ifsc").value = data[1]['bank_ifsc'];
+                        document.getElementById("cpn-pub-cntct").value = data[2];
+                        document.getElementById("cpn-pub-cntct-div").removeAttribute('hidden');
                         document.getElementById("pub-coupon-bnk-dtls").removeAttribute('hidden');
                     } else {
                         document.getElementById("cpn-bnk-name").value = "";
@@ -171,6 +178,8 @@ include "sidebar.php";
                         document.getElementById("cpn-bnk-acc-name").value = "";
                         document.getElementById("cpn-bnk-accno").value = "";
                         document.getElementById("cpn-bnk-ifsc").value = "";
+                        document.getElementById("cpn-pub-cntct").value = data[2];
+                        document.getElementById("cpn-pub-cntct-div").setAttribute('hidden', "");
                         document.getElementById("pub-coupon-bnk-dtls").setAttribute('hidden', "");
                     }
                 }

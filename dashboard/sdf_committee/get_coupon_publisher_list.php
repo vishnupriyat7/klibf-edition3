@@ -2,7 +2,7 @@
 include "../z_db.php";
 $pubId = $_POST['pubId'];
 $listCoupon = "";
-$coupon_invoice_query = "SELECT cpi.* FROM coupon_publisher_invoice cpi JOIN users_profile up ON cpi.user_id = up.user_id WHERE cpi.user_id = $pubId;";
+$coupon_invoice_query = "SELECT cpi.*, up.head_org_mobile FROM coupon_publisher_invoice cpi JOIN users_profile up ON cpi.user_id = up.user_id WHERE cpi.user_id = $pubId;";
 $coupon_bills = mysqli_query($con, $coupon_invoice_query);
 $counter = 0;
 while ($bill = mysqli_fetch_array($coupon_bills)) {
@@ -19,7 +19,7 @@ while ($bill = mysqli_fetch_array($coupon_bills)) {
             $coupon200_count = $coupon_denom_count['serial_no_count'];
         }
     }
-    $org_name = $bill['org_name'];
+    $pub_cntct = $bill['head_org_mobile'];
     $invoice_no = $bill['invoice_no'];
     $invoice_dt = $bill['invoice_dt'];
     $tot_inv_amt = $bill['tot_inv_amt'];
@@ -30,7 +30,6 @@ while ($bill = mysqli_fetch_array($coupon_bills)) {
     $newcount = ++$counter;
     $listCoupon .= "<tr>
         <td>$newcount</td>
-        <td>$org_name</td>
         <td>$invoice_no</td>
         <td>$invoice_dt</td>
         <td>$tot_inv_amt</td>
@@ -46,4 +45,4 @@ while ($bill = mysqli_fetch_array($coupon_bills)) {
 $cpn_bnk_dtls_qry = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = $pubId;";
 $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
 $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
-echo json_encode([$listCoupon, $cpn_bnk_dtls]);
+echo json_encode([$listCoupon, $cpn_bnk_dtls, $pub_cntct]);

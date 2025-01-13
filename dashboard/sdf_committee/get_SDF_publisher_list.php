@@ -2,11 +2,12 @@
 include "../z_db.php";
 $pubId = $_POST['pubId'];
 $listSDF = "";
-$total_sdf_query = "SELECT s.*, mla.* FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE user_id=$pubId ORDER BY updated_date DESC;";
+$total_sdf_query = "SELECT s.*, mla.* FROM sdf s JOIN mla_15 mla ON s.mla_id = mla.id WHERE s.user_id=$pubId ORDER BY s.updated_date DESC;";
 $result = mysqli_query($con, $total_sdf_query);
 if (mysqli_num_rows($result)) {
     $slno = 1;
     while ($row = mysqli_fetch_assoc($result)) {
+        $pub_cntct = $bill['head_org_mobile'];
         $invc_no = $row['invc_no'];
         $invc_date = $row['invc_date'];
         $name = $row['name'];
@@ -32,7 +33,7 @@ if (mysqli_num_rows($result)) {
         </td>
     </tr>';
 }
-$cpn_bnk_dtls_qry = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = $pubId;";
+$cpn_bnk_dtls_qry = "SELECT pub.*,  up.head_org_mobile FROM pub_coupon_bankdtls pub JOIN users_profile up ON pub.user_id = up.user_id WHERE pub.user_id = $pubId;";
 $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
 $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
 echo json_encode( [$listSDF, $cpn_bnk_dtls]);
