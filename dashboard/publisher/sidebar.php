@@ -176,13 +176,27 @@
                                     <a href="<?= $base_url ?>/dashboard/publisher/coupon_list_report.php" class="nav-link"
                                         data-key="t-nft-landing">Coupon Report</a>
                                 </li>
+
+                               
                                 <li class="nav-item">
                                     <a href="<?= $base_url ?>/dashboard/publisher/sdf_report.php" class="nav-link"
                                         data-key="t-nft-landing">SDF Report</a>
                                 </li>
+                                <!-- <li class="nav-item">
+                                    <a href="<?= $base_url ?>/dashboard/publisher/coupon_sdf_report.php" class="nav-link"
+                                        data-key="t-nft-landing">Coupon Report For Submission </a>
+                                </li> -->
                             </ul>
                         </div>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" role="button" aria-expanded="true" aria-controls="sidebarLanding"
+                            href="<?= $base_url ?>/dashboard/publisher/coupon_sdf_report.php">
+                            <i class="mdi mdi-file-chart-outline"></i> <span data-key="t-landing">Coupon Report For Submission</span>
+                        </a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link menu-link" role="button" data-bs-toggle="collapse"
                             data-bs-target="#sidebarGuidelines">
