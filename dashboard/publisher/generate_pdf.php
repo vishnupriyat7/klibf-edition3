@@ -145,8 +145,17 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     $grand_total = (int)$grand_total + (int)$total_amount;
 
     $coupon50_total_count = $coupon50_count + $coupon50_total_count;
-    $coupon100_total_count = $coupon50_count + $coupon100_total_count;
-    $coupon200_total_count = $coupon50_count + $coupon200_total_count;
+    $coupon100_total_count = $coupon100_count + $coupon100_total_count;
+    $coupon200_total_count = $coupon200_count + $coupon200_total_count;
+
+
+    $coupon50_total_amount = $coupon50_total_count * 50;
+    $coupon100_total_amount =  $coupon100_total_count * 100;
+    $coupon200_total_amount = $coupon200_total_count * 200;
+
+
+    $total_amount =  $coupon50_total_amount +  $coupon100_total_amount +  $coupon200_total_amount;
+
     // Add row to table
     // $html .= "<tr>
     //             <td>" . (++$counter) . "</td>
@@ -182,7 +191,7 @@ $html .= "<tr>
 <td colspan='5'><strong>Grand Total</strong></td>
 <td><strong>" . $grand_total . "</strong></td></tr>";
 
-$html .= '</tbody></table><br><br><br>';
+$html .= '</tbody></table><br><br>';
 $html .= '<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">';
 $html .= '<thead>
 <tr><th colspan="4">Bank Details</th></tr>
@@ -205,44 +214,50 @@ $html .= '<tr>
             <td>' . ($cpn_bnk_dtls["bank_branch"]) . '</td>
               <td>' . ($cpn_bnk_dtls["bank_ifsc"]) . '</td>
                 <td>' . ($cpn_bnk_dtls["account_no"]) . '</td>
-          </tr>  
-
-</body></html>';
+          </tr> ';
+$html .= '</tbody></table><br><br>';
 
 
 $grandtotal_words = convertNumberToWordsForIndia($grand_total);
 $html .= '<p>I here by submitting Coupons worth <strong>' . $grand_total . '/- </strong> (Grand Total)  <strong>' . ($grandtotal_words) . '</strong> only in the below mentioned denominations. </p>';
-
-$html .= "<tr>
-<td colspan='5'><strong>Grand Total</strong></td>
-<td><strong>" . $grand_total . "</strong></td></tr>";
-
 $html .= '</tbody></table><br><br><br>';
-$html .= '<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">';
-$html .= '<thead>
-<tr><th colspan="4"></th></tr>
+
+
+
+$html .= '<table border="0" style="width: 100%; text-align: center;">';
+$html .= '<thead></thead>
+            <tbody>
+
             <tr>
                                 <td>50</td>
                 <td>' . $coupon50_total_count . '</td>
-                <td>Amount</td>
+                <td>' . $coupon50_total_amount . '</td>
                                            
             </tr>
             <tr>
                                 <td>100</td>
                 <td>' . $coupon100_total_count . '</td>
-                <td>Amount</td>
+                <td>' . $coupon100_total_amount . '</td>
                                            
             </tr>
             <tr>
                                 <td>200</td>
                 <td>' . $coupon200_total_count . '</td>
-                <td>Amount</td>
+                <td>' . $coupon200_total_amount . '</td>
                                            
             </tr>
-          </thead><tbody>
+            <tr>
+            <td colspan="2" style="text-align: right;"><strong>Total</strong></td>
+           <td><strong>' . $total_amount . '</strong></td>
+            </tr>
+            </tbody></table><br><br><br><br><br>';
+$html .= '<table style="width: 100%; border: none; margin-top: 20px;">
+            <tr>
+                <td style="text-align: left; width: 50%;">Date: ' . date("d-m-Y") . '</td>
+                <td style="text-align: right; width: 50%;">Authorised Signatory <br>(Seal)</td>
+            </tr>
+          </table>';
 
 
-
-
-</body></html>';
+$html .= '</body></html>';
 echo $html;
