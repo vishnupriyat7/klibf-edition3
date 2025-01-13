@@ -168,7 +168,8 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     //           </tr>";
     $html .= "<tr>
                 <td rowspan='3'>" . (++$counter) . "</td>
-                <td rowspan='3'>{$bill['invoice_no']} &{$bill['invoice_dt']}</td>
+               
+                <td rowspan='3'>{$bill['invoice_no']} & " . date('d-m-Y', strtotime($bill['invoice_dt'])) . "</td>
                 <td>50</td>
                 <td>{$coupon50_count}</td>
                 <td>" . (50 * $coupon50_count) . "</td>
