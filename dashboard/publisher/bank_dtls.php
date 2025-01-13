@@ -198,12 +198,15 @@ function generateInvoice($invoiceNo)
                             $cpn_bank_det = $res_pub_cpn_bank->fetch_assoc();
                             if (!$cpn_bank_det) {
                                 $query_cpn_pub_bank = "INSERT INTO pub_coupon_bankdtls (user_id, acc_holder_name, bank_name, account_no, bank_ifsc, bank_branch, updated_date) values ('$user_id', '$cpn_bank_accholder', '$cpn_bank_name', '$cpn_acc_no', '$cpn_ifsc', '$cpn_bank_branch', '$date')";
-                                $res_cpn_pub_bank = mysqli_query($con, $query_cpn_pub_bank);
-                                if (!$res_cpn_pub_bank) {
-                                    $status = "NOTOK";
-                                    $msg = "Some issues in insertion of bank details.";
-                                }
+                            } else {
+                                $query_cpn_pub_bank = "UPDATE pub_coupon_bankdtls SET acc_holder_name = '$cpn_bank_accholder', bank_name = '$cpn_bank_name', account_no = '$cpn_acc_no', bank_ifsc = '$cpn_ifsc', bank_branch = '$cpn_bank_branch', updated_date = '$date' WHERE user_id = $user_id";
                             }
+                            $res_cpn_pub_bank = mysqli_query($con, $query_cpn_pub_bank);
+                            if (!$res_cpn_pub_bank) {
+                                $status = "NOTOK";
+                                $msg = "Some issues in insertion of bank details.";
+                            }
+
                             $errormsg = "";
                             if ($status == "NOTOK") {
                                 $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>" .
