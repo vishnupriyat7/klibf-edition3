@@ -37,23 +37,29 @@ include "sidebar.php";
                             <h5 class="card-title mb-0">Publisher SDF Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
-                            <div class="col-md-6">
-                                <?php
-                                $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN sdf s ON s.user_id = up.user_id;";
-                                $result_publisher = mysqli_query($con, $publisher_query);
-                                $coupon_publishers = $result_publisher->fetch_all();
-                                ?>
-                                <b>Select Publisher</b>
-                                <select class="form-control form-group col-md-6" id="cpn_publisher" style="height:37px;"
-                                    onchange="getSDFPublisher()">
-                                    <option value="">Select</option>
-                                    <?php foreach ($coupon_publishers as $publisher) { ?>
-                                        <option value="<?= $publisher[0]; ?>">
-                                            <?= $publisher[1]; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                                <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php
+                                    $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN sdf s ON s.user_id = up.user_id;";
+                                    $result_publisher = mysqli_query($con, $publisher_query);
+                                    $coupon_publishers = $result_publisher->fetch_all();
+                                    ?>
+                                    <b>Select Publisher</b>
+                                    <select class="form-control form-group col-md-6" id="cpn_publisher"
+                                        style="height:37px;" onchange="getSDFPublisher()">
+                                        <option value="">Select</option>
+                                        <?php foreach ($coupon_publishers as $publisher) { ?>
+                                            <option value="<?= $publisher[0]; ?>">
+                                                <?= $publisher[1]; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                    <br>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-4" id="cpn-pub-cntct-div-sdf" hidden>
+                                    Contact No
+                                    <input type="text" class="form-control" id="cpn-pub-cntct-sdf" readonly>
+                                </div>
                             </div>
                             <div class="row" id="pub-bnk-dtls" hidden>
                                 <div class="form-group col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
@@ -156,6 +162,8 @@ include "sidebar.php";
                         document.getElementById("sdf-bnk-acc-name").value = data[1]['acc_holder_name'];
                         document.getElementById("sdf-bnk-accno").value = data[1]['account_no'];
                         document.getElementById("sdf-bnk-ifsc").value = data[1]['bank_ifsc'];
+                        document.getElementById("cpn-pub-cntct-sdf").value = data[1]['head_org_mobile'];
+                        document.getElementById("cpn-pub-cntct-div-sdf").removeAttribute('hidden');
                         document.getElementById("pub-bnk-dtls").removeAttribute('hidden');
                     } else {
                         document.getElementById("sdf-bnk-name").value = "";
@@ -163,6 +171,8 @@ include "sidebar.php";
                         document.getElementById("sdf-bnk-acc-name").value = "";
                         document.getElementById("sdf-bnk-accno").value = "";
                         document.getElementById("sdf-bnk-ifsc").value = "";
+                        document.getElementById("cpn-pub-cntct-sdf").value = "";
+                        document.getElementById("cpn-pub-cntct-div-sdf").setAttribute('hidden', "");
                         document.getElementById("pub-bnk-dtls").setAttribute('hidden', "");
                     }
                 }
