@@ -25,7 +25,7 @@ $slno_dup = $result_slno_dup->fetch_assoc();
 if ($slno_dup) {
     $slno_dup_status = 1;
 }
-$query_dup_pub_billno = "SELECT id FROM coupon_publisher_invoice WHERE user_id = $userId AND invoice_no = $invoiceNo;";
+$query_dup_pub_billno = "SELECT id FROM coupon_publisher_invoice WHERE user_id = $userId AND invoice_no = '$invoiceNo';";
 $result_dup_pub_billno = mysqli_query($con, $query_dup_pub_billno);
 $dup_pub_billno = $result_dup_pub_billno->fetch_assoc();
 echo json_encode([$slno_deno_from, $slno_deno_to, $slno_dup_status, $dup_pub_billno]);
