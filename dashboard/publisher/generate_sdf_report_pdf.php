@@ -136,7 +136,7 @@ $grand_total = 0;
 while ($row = mysqli_fetch_array($result)) {
     // $coupon200_count = $coupon100_count = $coupon50_count = 0;
     $invoice_no = $row['id'];
-
+    $grand_total += $row['amount'];
 
 
     $html .= "<tr>
