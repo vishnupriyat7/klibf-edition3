@@ -52,9 +52,9 @@ $user_id = $user['id'];
                             $errormsg = "";
                             $status = "";
                             // Check if invoice number already exists
-                            $check_invc_query = "SELECT * FROM sdf WHERE invc_no = ?";
+                            $check_invc_query = "SELECT * FROM sdf WHERE invc_no = ? AND user_id=?";
                             $stmt = $con->prepare($check_invc_query);
-                            $stmt->bind_param("s", $invc_no);
+                            $stmt->bind_param("ss", $invc_no, $user_id);
                             $stmt->execute();
                             $result = $stmt->get_result();
                             if ($result->num_rows > 0) {
