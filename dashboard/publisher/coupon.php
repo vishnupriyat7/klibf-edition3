@@ -199,7 +199,7 @@ function generateInvoice($invoiceNo)
                                         if (count($slno_range) > 1) {
                                             $slnoTo = (int) trim($slno_range[1]);
                                             for ($j = $slnoFrom; $j <= $slnoTo; $j++) {
-                                                $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = $pub_cpn_invc_no AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $j), '2024-12-31');";
+                                                $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = '$pub_cpn_invc_no' AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $j), '2024-12-31');";
                                                 $result_pub_cpn_slno = mysqli_query($con, $query_pub_cpn_slno);
                                                 if (!$result_pub_cpn_slno) {
                                                     $status = "NOTOK";
@@ -208,7 +208,7 @@ function generateInvoice($invoiceNo)
                                                 }
                                             }
                                         } else {
-                                            $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = $pub_cpn_invc_no AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $slnoFrom), '2024-12-31');";
+                                            $query_pub_cpn_slno = "INSERT INTO coupon_publisher_serialno (cpn_pub_inv, cpn_slno, updated_date) VALUES ((SELECT id FROM coupon_publisher_invoice WHERE invoice_no = '$pub_cpn_invc_no' AND user_id = $user_id), (SELECT id FROM coupon_distribution WHERE serial_no = $slnoFrom), '2024-12-31');";
                                             $result_pub_cpn_slno = mysqli_query($con, $query_pub_cpn_slno);
                                             if (!$result_pub_cpn_slno) {
                                                 $status = "NOTOK";
