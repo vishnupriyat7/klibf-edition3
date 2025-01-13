@@ -48,7 +48,6 @@ include "sidebar.php";
                                         <th data-ordering="false">Coupon Serial No (Range) <br>From-To</th>
                                         <th data-ordering="false">Denomination</th>
                                         <th data-ordering="false">Amount</th>
-                                        <th data-ordering="false">Total</th>
                                         <th data-ordering="false">Sponser</th>
                                         <!-- <th data-ordering="false">Action</th> -->
                                     </tr>
@@ -86,21 +85,9 @@ ORDER BY
     cs.spnsr_org_name, cdn.denomination, serial_no_from;";
                                     $coupons = mysqli_query($con, $coupon_query);
                                     $counter = 0;
-                                    $total_sponser_amt = 0;
-                                    $i = 0;
                                     while ($coupon = mysqli_fetch_array($coupons)) {
                                         $count = ($coupon['serial_no_to'] - $coupon['serial_no_from']) + 1;
                                         $deno_amt = $coupon['denomination'] * $count;
-                                        if ($previousCoupon !== null && $previousCoupon['sponsor_id'] == $coupon['sponsor_id']) {
-                                            // Access previous iteration value
-                                            // echo "Previous Serial No: " . $previousCoupon['serial_no'] . "\n";
-                                            $total_sponser_amt += $deno_amt;
-                                            $i++;
-                                        } else {
-                                            $total_sponser_amt = $deno_amt;
-                                            $i = 1;
-                                        }
-
                                         ?>
                                         <tr>
                                             <td>
@@ -115,14 +102,9 @@ ORDER BY
                                             <td>
                                                 <?= $deno_amt; ?>
                                             </td>
-                                            <?php if ($previousCoupon['sponsor_id'] != $coupon['sponsor_id']): ?>
-                                                <!-- Only output the total_sponser_amt column for the first row of a sponsor -->
-                                                <td rowspan="<?= $i; ?>"><?= $total_sponser_amt; ?></td>
-                                                <td rowspan="<?= $i; ?>">
-                                                    <?= $coupon['spnsr_org_name']; ?>
-                                                </td>
-                                            <?php endif; ?>
-
+                                            <td>
+                                                <?= $coupon['spnsr_org_name']; ?>
+                                            </td>
                                             <!-- <td>
                                                 
                                                     <i class='mdi mdi-book-edit'></i>

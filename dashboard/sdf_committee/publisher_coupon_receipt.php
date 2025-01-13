@@ -48,29 +48,37 @@ $user_id = $user['id'];
                         if (isset($_POST['save_receipt'])) {
                             $receipt_pub = mysqli_real_escape_string($con, $_POST['receipt_pub']);
                             $receipt_received_dt = mysqli_real_escape_string($con, $_POST['receipt_received_dt']);
-                            $receipt_status = mysqli_real_escape_string($con, $_POST['receipt_status']);
+                            $receipt_no = mysqli_real_escape_string($con, $_POST['receipt_no']);
                             $receipt_remarks = mysqli_real_escape_string($con, $_POST['receipt_remarks']);
                             $current_date = new DateTime();
                             $date = date_format($current_date, "Y-m-d H:i:s");
                             $receipt_dup_query = "SELECT id FROM coupon_publisher_receipt WHERE user_id = $receipt_pub";
                             $result_receipt_dup = mysqli_query($con, $receipt_dup_query);
                             $dup_receipt = $result_receipt_dup->fetch_assoc();
-                            if ($dup_receipt == NULL) {
-                                $query_publisher_receipt = "INSERT INTO coupon_publisher_receipt (user_id, received_dt, status, remarks, updated_date) VALUES ('$receipt_pub', '$receipt_received_dt', '$receipt_status', '$receipt_remarks', '$date');";
-                                // var_dump($query_publisher_receipt);die;
-                                $result_publisher_receipt = mysqli_query($con, $query_publisher_receipt);
-                                if ($result_publisher_receipt) {
-                                    $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                            $receipt_no_dup_query = "SELECT id FROM coupon_publisher_receipt WHERE receipt_no = $receipt_no";
+                            $result_receipt_no_dup = mysqli_query($con, $receipt_no_dup_query);
+                            $dup_receipt_no = $result_receipt_no_dup->fetch_assoc();
+                            if ($dup_receipt_no == NULL) {
+                                if ($dup_receipt == NULL) {
+                                    $query_publisher_receipt = "INSERT INTO coupon_publisher_receipt (user_id, received_dt, receipt_no, remarks, updated_date) VALUES ('$receipt_pub', '$receipt_received_dt', '$receipt_no', '$receipt_remarks', '$date');";
+                                    // var_dump($query_publisher_receipt);die;
+                                    $result_publisher_receipt = mysqli_query($con, $query_publisher_receipt);
+                                    if ($result_publisher_receipt) {
+                                        $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Publisher Coupon Receipt details is Successfully Saved.
                                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                             </div>";
+                                    } else {
+                                        $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Something went wrong.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                       </div>";
+                                    }
                                 } else {
-                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Something went wrong.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Already Received.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                        </div>";
                                 }
                             } else {
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Already Received.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                       </div>";
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Receipt Number already exists.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
                             }
                         }
                         ?>
@@ -85,7 +93,12 @@ $user_id = $user['id'];
                                     <form action="" method="post" enctype="multipart/form-data">
                                         <div id="dynamic-form-container">
                                             <div class="row dynamic-form">
-                                                <div class="form-group col-12 col-md-6">
+                                                <div class="form-group col-12 col-md-2">
+                                                    Receipt No.
+                                                    <input type="text" class="form-control" id="receipt_no"
+                                                        name="receipt_no" placeholder="No."><br>
+                                                </div>
+                                                <div class="form-group col-12 col-md-8">
                                                     <?php
                                                     $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN
                                                     coupon_publisher_invoice cpi ON cpi.user_id = up.user_id;";
@@ -110,17 +123,7 @@ $user_id = $user['id'];
                                                     <input type="date" class="form-control" name="receipt_received_dt"
                                                         id="receipt_received_dt" placeholder="*Received Date">
                                                 </div>
-                                                <div class="form-group col-12 col-md-2">
-                                                    Status
-                                                    <select class="form-control form-group col-md-6" id="receipt_status"
-                                                        name="receipt_status" style="height:37px;"
-                                                        onchange="getCouponList()">
-                                                        <option value="">Select</option>
-                                                        <option value="A">Accepted</option>
-                                                        <option value="R">Rejected</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-12 col-md-2">
+                                                <div class="form-group col-12 col-md-12">
                                                     Remarks
                                                     <input type="text" class="form-control" id="receipt_remarks"
                                                         name="receipt_remarks" placeholder="Remarks"><br>
