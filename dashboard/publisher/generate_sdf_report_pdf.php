@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 include "../z_db.php";
 function convertNumberToWordsForIndia($number)
 {
@@ -105,13 +105,13 @@ $result = mysqli_query($con, $total_sdf_query);
 
 $publisher_dtls_query = "SELECT org_name, head_org_mobile FROM users_profile WHERE user_id = '$user_id';";
 $publisher_dtls = mysqli_query($con, $publisher_dtls_query);
-$row = mysqli_fetch_array($publisher_dtls);
+$publisher_dtls_row = mysqli_fetch_array($publisher_dtls);
 
 
 // Generate HTML content
 $html = '<html><head><title>Summary</title></head><body><br>';
-$html = '<p>Publisher Name :'.$publisher_dtls['org_name'].' <p><br>';
-$html = '<p>Contact Number:'.$publisher_dtls['head_org_mobile'].' <p><br>';
+$html .= '<p style="text-align: left;"><strong>Publisher Name :' . $publisher_dtls_row['org_name'] . '</strong> <p>';
+$html .= '<p style="text-align: left;"><strong>Contact Number:' . $publisher_dtls_row['head_org_mobile'] . '</strong> <p><br>';
 
 $html .= '<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">';
 $html .= '<thead>
@@ -134,22 +134,22 @@ $grand_total = 0;
 
 
 while ($row = mysqli_fetch_array($result)) {
-    $coupon200_count = $coupon100_count = $coupon50_count = 0;
+    // $coupon200_count = $coupon100_count = $coupon50_count = 0;
     $invoice_no = $row['id'];
 
-  
+
+
     $html .= "<tr>
                 <td>" . (++$counter) . "</td>
                
-                <td>{$row['invoice_no']} </td>
-                <td>" . date('d-m-Y', strtotime($row['invoice_dt'])) . "</td>
+                <td>{$row['invc_no']} </td>
+                <td>" . date('d-m-Y', strtotime($row['invc_dt'])) . "</td>
 
                 <td>{$row['name']}</td>
                 <td>{$row['inst_name']}</td>
                 <td>{$row['amount']}</td>
               
               </tr>";
-   
 }
 // var_dump($grand_total);
 $html .= "<tr>
@@ -174,48 +174,35 @@ $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
 $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
 // var_dump($cpn_bnk_dtls);
 
-$html .= '<tr>
-          <td>' . ($cpn_bnk_dtls["bank_name"]) . '</td>
-            <td>' . ($cpn_bnk_dtls["bank_branch"]) . '</td>
+// $html .= '<tr>
+//           <td>' . ($cpn_bnk_dtls["bank_name"]) . '</td>
+//             <td>' . ($cpn_bnk_dtls["bank_branch"]) . '</td>
+//               <td>' . ($cpn_bnk_dtls["bank_ifsc"]) . '</td>
+//                 <td>' . ($cpn_bnk_dtls["account_no"]) . '</td>
+//           </tr> ';
+
+
+if ($cpn_bnk_dtls) {
+    // Bank details found
+    $html .= '<tr>
+              <td>' . ($cpn_bnk_dtls["bank_name"]) . '</td>
+              <td>' . ($cpn_bnk_dtls["bank_branch"]) . '</td>
               <td>' . ($cpn_bnk_dtls["bank_ifsc"]) . '</td>
-                <td>' . ($cpn_bnk_dtls["account_no"]) . '</td>
-          </tr> ';
-$html .= '</tbody></table><br><br>';
+              <td>' . ($cpn_bnk_dtls["account_no"]) . '</td>
+          </tr>';
+} else {
+    // No bank details found
+    $html .= '<tr>
+              <td colspan="4" style="color: red;">No bank Details Provided, Please Add Bank Details</td>
+          </tr>';
+}
 
 
-$grandtotal_words = convertNumberToWordsForIndia($grand_total);
-$html .= '<p>I here by submitting Coupons worth <strong>' . $grand_total . '/- </strong> (Grand Total)  <strong>' . ($grandtotal_words) . '</strong> only in the below mentioned denominations. </p>';
-$html .= '</tbody></table><br><br><br>';
+$html .= '</tbody></table><br><br><br><br><br>';
 
 
 
-$html .= '<table border="0" style="width: 100%; text-align: center;">';
-$html .= '<thead></thead>
-            <tbody>
 
-            <tr>
-                                <td>50</td>
-                <td>' . $coupon50_total_count . '</td>
-                <td>' . $coupon50_total_amount . '</td>
-                                           
-            </tr>
-            <tr>
-                                <td>100</td>
-                <td>' . $coupon100_total_count . '</td>
-                <td>' . $coupon100_total_amount . '</td>
-                                           
-            </tr>
-            <tr>
-                                <td>200</td>
-                <td>' . $coupon200_total_count . '</td>
-                <td>' . $coupon200_total_amount . '</td>
-                                           
-            </tr>
-            <tr>
-            <td colspan="2" style="text-align: right;"><strong>Total</strong></td>
-           <td><strong>' . $grand_total . '</strong></td>
-            </tr>
-            </tbody></table><br><br><br><br><br>';
 $html .= '<table style="width: 100%; border: none; margin-top: 20px;">
             <tr>
                 <td style="text-align: left; width: 50%;">Date: ' . date("d-m-Y") . '</td>
