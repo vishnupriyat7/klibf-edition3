@@ -94,6 +94,7 @@ function convertNumberToWordsForIndia($number)
 }
 // Fetch data
 $user_id = $_POST['user_id']; // Retrieve user_id from AJAX POST request
+$updated_date = $_POST['date'];
 $total_coupon_invoice_query = "SELECT * FROM coupon_publisher_invoice WHERE user_id = '$user_id';";
 $total_bills = mysqli_query($con, $total_coupon_invoice_query);
 
@@ -137,7 +138,8 @@ while ($bill = mysqli_fetch_array($total_bills)) {
     $pub_inv_cpn_count_qry = "SELECT COUNT(cd.serial_no) AS serial_no_count, cd.denom_id 
                               FROM coupon_publisher_serialno cps 
                               JOIN coupon_distribution cd ON cps.cpn_slno=cd.id 
-                              WHERE cps.cpn_pub_inv = '$invoice_no' GROUP BY cd.denom_id;";
+                              JOIN coupon_publisher_invoice cpi ON cps.cpn_pub_inv = cpi.id
+                              WHERE cps.cpn_pub_inv = '$invoice_no' AND cpi.updated_date >= '$updated_date' GROUP BY cd.denom_id;";
     $invoice_coupons = mysqli_query($con, $pub_inv_cpn_count_qry);
     while ($coupon_denom_count = mysqli_fetch_array($invoice_coupons)) {
         if ($coupon_denom_count['denom_id'] == 1) {
