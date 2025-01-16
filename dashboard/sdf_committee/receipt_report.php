@@ -1,0 +1,134 @@
+<?php
+include "../header.php";
+include "sidebar.php";
+?>
+
+<!-- ============================================================== -->
+<!-- Start right Content here -->
+<!-- ============================================================== -->
+<div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0">Report</h4>
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <!-- <li class="breadcrumb-item"><a href="javascript: void(0);">Profile</a></li> -->
+                                <!-- <li class="breadcrumb-item active">Add</li> -->
+                                <a class="dropdown-item" href="../logout.php">
+                                    <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                    <span class="align-middle" data-key="t-logout">Logout</span>
+                                </a>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Publisher SDF Report</h5>
+                        </div>
+                        <div class="card-body overflow-auto">
+                            <?php
+                            $publisher_query = "SELECT cpi.user_id, SUM(cpi.tot_cpn_amt) as tot_coupon_amt, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id as receipt_id FROM coupon_publisher_invoice cpi JOIN coupon_publisher_receipt cpr ON cpi.user_id = cpr.user_id JOIN users_profile up ON cpi.user_id = up.user_id JOIN pub_coupon_bankdtls pcb ON pcb.user_id = up.user_id GROUP BY cpi.user_id, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id;";
+                            $result_publisher = mysqli_query($con, $publisher_query);
+                            // $coupon_publishers = $result_publisher->fetch_all();
+                            ?>
+                            <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
+                            <button onclick="exportTableToExcel('example', 'coupon-receipt-report')"
+                                class="btn btn-primary">Export Table Data To Excel File</button>
+                            <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
+                                style="font-style:normal; font-size: 12px;">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th>Sl.No</th>
+                                        <th>Publisher</th>
+                                        <th>Contact No.</th>
+                                        <th>Bank Name & Branch</th>
+                                        <th>Account Holder Name</th>
+                                        <th>IFSC</th>
+                                        <th>Account No.</th>
+                                        <th>Amount (in ₹)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center" id="pub-sdf-list">
+                                    <?php
+                                    $counter = 1;
+                                    while ($publisher = mysqli_fetch_assoc($result_publisher)) {
+                                        $invc_no = $row['invc_no'];
+                                        $invc_date = $row['invc_date'];
+                                        $name = $row['org_name'];
+                                        $cntct_no = $row['head_org_mobile'];
+                                        $inst_name = $row['inst_name'];
+                                        $amount = $row['amount'];
+                                        $updated_date = $row['updated_date'];
+                                        $inst_no = $row['inst_cntct_no']; ?>
+                                        <tr>
+                                            <td><?= $counter++; ?></td>
+                                            <td><?= $publisher['org_name'] ?></td>
+                                            <td><?= $publisher['head_org_mobile'] ?></td>
+                                            <td><?= $publisher['bank_name'] ?>, <?= $publisher['bank_branch'] ?></td>
+                                            <td><?= $publisher['acc_holder_name'] ?></td>
+                                            <td><?= $publisher['bank_ifsc'] ?></td>
+                                            <td><?= $publisher['account_no'] ?></td>
+                                            <td><?= $publisher['tot_coupon_amt'] ?></td>
+                                            <td>
+                                                <a href='#' class='dropdown-item' onclick="editReceipt(<?= $publisher['receipt_id'] ?>);">
+                                                    <i class='mdi mdi-book-edit'></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    <?php include "../footer.php"; ?>
+
+    <script>
+        function exportTableToExcel(example, filename = '') {
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(example);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            // Specify file name
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
+            // Create download link element
+            downloadLink = document.createElement("a");
+            document.body.appendChild(downloadLink);
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+                // Setting the file name
+                downloadLink.download = filename;
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+
+        function editReceipt(receiptId) {
+alert(receiptId);
+        }
+    </script>
