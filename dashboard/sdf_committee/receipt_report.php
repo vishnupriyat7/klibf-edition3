@@ -38,7 +38,7 @@ include "sidebar.php";
                         </div>
                         <div class="card-body overflow-auto">
                             <?php
-                            $publisher_query = "SELECT cpi.user_id, SUM(cpi.tot_cpn_amt) as tot_coupon_amt, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id as receipt_id FROM coupon_publisher_invoice cpi JOIN coupon_publisher_receipt cpr ON cpi.user_id = cpr.user_id JOIN users_profile up ON cpi.user_id = up.user_id JOIN pub_coupon_bankdtls pcb ON pcb.user_id = up.user_id GROUP BY cpi.user_id, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id;";
+                            $publisher_query = "SELECT cpi.user_id, SUM(cpi.tot_cpn_amt) as tot_coupon_amt, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id as receipt_id, cpr.remarks FROM coupon_publisher_invoice cpi JOIN coupon_publisher_receipt cpr ON cpi.user_id = cpr.user_id JOIN users_profile up ON cpi.user_id = up.user_id JOIN pub_coupon_bankdtls pcb ON pcb.user_id = up.user_id GROUP BY cpi.user_id, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id, cpr.remarks;";
                             $result_publisher = mysqli_query($con, $publisher_query);
                             // $coupon_publishers = $result_publisher->fetch_all();
                             ?>
@@ -57,6 +57,7 @@ include "sidebar.php";
                                         <th>IFSC</th>
                                         <th>Account No.</th>
                                         <th>Amount (in ₹)</th>
+                                        <th>Remarks</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -81,6 +82,7 @@ include "sidebar.php";
                                             <td><?= $publisher['bank_ifsc'] ?></td>
                                             <td><?= $publisher['account_no'] ?></td>
                                             <td><?= $publisher['tot_coupon_amt'] ?></td>
+                                            <td><?= $publisher['remarks'] ?></td>
                                             <td>
                                                 <a href='#' class='dropdown-item' onclick="editReceipt(<?= $publisher['receipt_id'] ?>);">
                                                     <i class='mdi mdi-book-edit'></i>
