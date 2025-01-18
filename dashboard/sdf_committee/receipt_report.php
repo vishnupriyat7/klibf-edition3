@@ -106,29 +106,39 @@ include "sidebar.php";
 
     <script>
         function exportTableToExcel(example, filename = '') {
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById(example);
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-            // Specify file name
-            filename = filename ? filename + '.xls' : 'excel_data.xls';
-            // Create download link element
-            downloadLink = document.createElement("a");
-            document.body.appendChild(downloadLink);
-            if (navigator.msSaveOrOpenBlob) {
-                var blob = new Blob(['\ufeff', tableHTML], {
-                    type: dataType
-                });
-                navigator.msSaveOrOpenBlob(blob, filename);
-            } else {
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-                // Setting the file name
-                downloadLink.download = filename;
-                //triggering the function
-                downloadLink.click();
-            }
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+
+        // Clone the table to avoid modifying the original
+        var tableSelect = document.getElementById(example);
+        var tableClone = tableSelect.cloneNode(true);
+
+        // Remove all buttons and other non-data elements
+        var buttons = tableClone.querySelectorAll('button, a, input');
+        buttons.forEach(button => button.remove());
+
+        // Prepare the HTML for export
+        var tableHTML = tableClone.outerHTML.replace(/ /g, '%20');
+
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+        // Create download link element
+        downloadLink = document.createElement("a");
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], { type: dataType });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            // Setting the file name
+            downloadLink.download = filename;
+            // Triggering the download
+            downloadLink.click();
         }
+    }
 
         function editReceipt(receiptId) {
 alert(receiptId);
