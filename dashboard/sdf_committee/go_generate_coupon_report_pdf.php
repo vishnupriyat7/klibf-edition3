@@ -159,7 +159,7 @@ if ($result_publisher->num_rows > 0) {
     $grandtotal_words = convertNumberToWordsForIndia($grand_total);
     // $html .= '<p>I here by submitting Coupons worth <strong>' . $grand_total . '/- </strong> (Grand Total)  <strong>' . ($grandtotal_words) . '</strong> only in the below mentioned denominations. </p>';
 } else {
-    $html .= "<tr><td colspan='6'>No data</td></tr>";
+    $html .= "<tr><td colspan='9' style='color: red;'>Please Select Date Range to See Coupon Report Details</td></tr>";
 }
 
 $html .= '<table style="width: 100%; border: none; margin-top: 20px;">
