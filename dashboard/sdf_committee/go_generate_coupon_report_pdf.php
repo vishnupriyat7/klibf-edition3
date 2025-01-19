@@ -118,23 +118,19 @@ $html = '<html><head><title>Summary</title></head><body><br>';
 
 $html .= '<table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">';
 $html .= '<thead>
-            <tr>
-                <th colspan="9">KLIBF THIRD EDITION</th></tr>
-               <tr> <th colspan="9">Book Coupon GO Report</th></tr>
-               <tr> <th>Sl No</th>
+            <tr><th colspan="9">KLIBF THIRD EDITION</th></tr>
+            <tr> <th colspan="9">Book Coupon GO Report</th></tr>
+            <tr> <th>Sl No</th>
                 <th>Publisher</th>
                 <th>Contact No.</th>
                 <th>Bank Name & Branch</th>
                 <th>Account Holder Name</th>
                 <th>IFSC</th>
-                 <th>Account No.</th>
-          <th>Amount (in ₹)</th>
-           <th>Remarks</th>
-                        </tr>
+                <th>Account No.</th>
+                <th>Amount (in ₹)</th>
+                <th>Remarks</th>
+            </tr>
           </thead><tbody>';
-
-
-
 $counter = 1;
 $grand_total = 0;
 
@@ -155,9 +151,9 @@ if ($result_publisher->num_rows > 0) {
         $grand_total +=  $tot_coupon_amt;
     }
 
-    $html .= "<tr>
-        <td colspan='7'><strong>Grand Total</strong></td>
-        <td><strong>" . $grand_total . "</strong></td></tr>";
+    $html .= "<tr><td colspan='7'><strong>Grand Total</strong></td>
+                    <td><strong>" . $grand_total . "</strong></td>
+            </tr>";
     $html .= '</tbody></table><br><br>';
 
     $grandtotal_words = convertNumberToWordsForIndia($grand_total);
