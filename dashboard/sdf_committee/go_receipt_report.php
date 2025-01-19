@@ -30,10 +30,10 @@ $user_id = $user['id'];
             </div>
             <!-- end page title -->
             <!-- <?php
-            $cpn_bnk_dtls_qry = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = $user_id;";
-            $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
-            $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
-            ?> -->
+                    $cpn_bnk_dtls_qry = "SELECT * FROM pub_coupon_bankdtls WHERE user_id = $user_id;";
+                    $result_bnk_dtls = mysqli_query($con, $cpn_bnk_dtls_qry);
+                    $cpn_bnk_dtls = $result_bnk_dtls->fetch_assoc();
+                    ?> -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -55,7 +55,7 @@ $user_id = $user['id'];
                             <!-- Button on Next Line -->
                             <div class="row align-items-center text-center mt-3">
                                 <div class="col-lg-12">
-                                    <button type="button" id="cpn_report" class="btn btn-success" onclick="generatePdfReport()">
+                                    <button type="button" id="cpn_report" class="btn btn-success" onclick="generateGoCouponPdfReport()">
                                         Generate Coupon GO Report
                                     </button>
                                 </div>
@@ -77,33 +77,21 @@ $user_id = $user['id'];
 <!-- End Page-content -->
 <?php include "../footer.php"; ?>
 <script>
-    function generatePdfReport() {
+    function generateGoCouponPdfReport() {
         const userId = "<?= $user['id'] ?>"; // Pass the user_id dynamically
         // const updated_date = document.getElementById('updated_date').value;
         const fromDate = document.getElementById('from_date').value;
         const toDate = document.getElementById('to_date').value;
         // AJAX Request
         $.ajax({
-            url: "generate_coupon_go_report_pdf.php", // PHP file that generates HTML content
+            url: "go_generate_coupon_report_pdf.php", // PHP file that generates HTML content
             type: "POST",
             data: {
                 user_id: userId,
                 from_date: fromDate,
-                to_date : toDate
+                to_date: toDate
             },
             success: function(response) {
-                // Set the iframe content dynamically
-                // const iframe = document.getElementById("print-invoice-frame");
-                // iframe.style.display = "block";
-                // const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                // iframeDocument.open();
-                // iframeDocument.write(response);
-                // iframeDocument.close();
-
-
-
-
-
                 var iframe = document.getElementById("print-invoice-frame");
                 iframe.contentDocument.write(response);
                 iframe.contentDocument.close();

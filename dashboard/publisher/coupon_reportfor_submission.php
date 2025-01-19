@@ -92,18 +92,6 @@ $user_id = $user['id'];
                 date: updated_date
             },
             success: function(response) {
-                // Set the iframe content dynamically
-                // const iframe = document.getElementById("print-invoice-frame");
-                // iframe.style.display = "block";
-                // const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                // iframeDocument.open();
-                // iframeDocument.write(response);
-                // iframeDocument.close();
-
-
-
-
-
                 var iframe = document.getElementById("print-invoice-frame");
                 iframe.contentDocument.write(response);
                 iframe.contentDocument.close();
