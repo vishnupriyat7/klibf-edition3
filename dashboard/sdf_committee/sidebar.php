@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $base_url ?>/dashboard/sdf_committee/publisher_coupon_receipt.php" class="nav-link"
+                    <a href="<?= $base_url ?>/dashboard/sdf_committee/publisher_coupon_receipt.php?receiptId=0" class="nav-link"
                         data-key="t-one-page">
                         <i class="mdi mdi-cash-multiple"></i>
                         <span data-key="t-dashboards">Coupon Receipt</span>

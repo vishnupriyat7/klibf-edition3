@@ -84,9 +84,14 @@ include "sidebar.php";
                                             <td><?= $publisher['tot_coupon_amt'] ?></td>
                                             <td><?= $publisher['remarks'] ?></td>
                                             <td>
-                                                <a href='#' class='dropdown-item' onclick="editReceipt(<?= $publisher['receipt_id'] ?>);">
+                                                <a href='publisher_coupon_receipt.php?receiptId=<?= $publisher['receipt_id'] ?>'
+                                                    class='dropdown-item remove-item-btn'>
                                                     <i class='mdi mdi-book-edit'></i>
                                                 </a>
+                                                <!-- <a href='#' class='dropdown-item'
+                                                    onclick="editReceipt(<?= $publisher['receipt_id'] ?>);">
+                                                    <i class='mdi mdi-book-edit'></i>
+                                                </a> -->
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -101,46 +106,83 @@ include "sidebar.php";
         </div>
         <!-- container-fluid -->
     </div>
+
+    <div id="editReceiptModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-xl">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-bs-dismiss="modal">&times;</button> -->
+                    <h4 class="modal-title"><b>13.01.2025 ലെ കൂപ്പൺ വിജയികൾ</b></h4>
+                </div>
+                <div class="modal-body" id="receipt-data">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <!-- End Page-content -->
     <?php include "../footer.php"; ?>
 
     <script>
         function exportTableToExcel(example, filename = '') {
-        var downloadLink;
-        var dataType = 'application/vnd.ms-excel';
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
 
-        // Clone the table to avoid modifying the original
-        var tableSelect = document.getElementById(example);
-        var tableClone = tableSelect.cloneNode(true);
+            // Clone the table to avoid modifying the original
+            var tableSelect = document.getElementById(example);
+            var tableClone = tableSelect.cloneNode(true);
 
-        // Remove all buttons and other non-data elements
-        var buttons = tableClone.querySelectorAll('button, a, input');
-        buttons.forEach(button => button.remove());
+            // Remove all buttons and other non-data elements
+            var buttons = tableClone.querySelectorAll('button, a, input');
+            buttons.forEach(button => button.remove());
 
-        // Prepare the HTML for export
-        var tableHTML = tableClone.outerHTML.replace(/ /g, '%20');
+            // Prepare the HTML for export
+            var tableHTML = tableClone.outerHTML.replace(/ /g, '%20');
 
-        // Specify file name
-        filename = filename ? filename + '.xls' : 'excel_data.xls';
+            // Specify file name
+            filename = filename ? filename + '.xls' : 'excel_data.xls';
 
-        // Create download link element
-        downloadLink = document.createElement("a");
-        document.body.appendChild(downloadLink);
+            // Create download link element
+            downloadLink = document.createElement("a");
+            document.body.appendChild(downloadLink);
 
-        if (navigator.msSaveOrOpenBlob) {
-            var blob = new Blob(['\ufeff', tableHTML], { type: dataType });
-            navigator.msSaveOrOpenBlob(blob, filename);
-        } else {
-            // Create a link to the file
-            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-            // Setting the file name
-            downloadLink.download = filename;
-            // Triggering the download
-            downloadLink.click();
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], { type: dataType });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+                // Setting the file name
+                downloadLink.download = filename;
+                // Triggering the download
+                downloadLink.click();
+            }
         }
-    }
 
-        function editReceipt(receiptId) {
-alert(receiptId);
-        }
+        // function editReceipt(receiptId) {
+        //     $.ajax({
+        //         url: "<?= $base_url; ?>/dashboard/sdf_committee/publisher_coupon_receipt.php",
+        //         type: "POST",
+        //         data: {
+        //             receiptId: receiptId
+        //         },
+        //         dataType: "json",
+        //         success: function (data) {
+        //             document.getElementById("receipt-data").html(data);
+        //             document.getElementById("editReceiptModal").modal('show');
+        //             // $('#disc_time_slot2').empty();
+        //             // var add_slot = "";
+        //             // $("#disc_time_slot2").append('<option value="">Select Proposed Event Time</option>');
+        //             // $.each(data, function (key, value) {
+        //             //     $("#disc_time_slot2").append('<option value=' + value[0] + '>' + value[1] + ' ' + value[2] + '</option>');
+        //             // });
+        //         }
+        //     });
+        // }
     </script>

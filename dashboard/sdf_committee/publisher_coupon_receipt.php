@@ -45,6 +45,15 @@ $user_id = $user['id'];
                         $msg = "";
                         $current_date = new DateTime();
                         $date = date_format($current_date, "Y-m-d H:i:s");
+                        $receiptid = $_GET['receiptId'];
+                        $publisher_receipt['remarks'] = $publisher_receipt['receipt_no'] = $publisher_receipt['received_dt'] = $read = $publisher_receipt['user_id'] = $disable = '';
+                        if ($receiptid != 0) {
+                            $receipt_query = "SELECT * FROM coupon_publisher_receipt WHERE id = $receiptid";
+                            $result_receipt = mysqli_query($con, $receipt_query);
+                            $publisher_receipt = $result_receipt->fetch_assoc();
+                            $read = 'readonly';
+                            $disable = 'disabled';
+                        }
                         if (isset($_POST['save_receipt'])) {
                             $receipt_pub = mysqli_real_escape_string($con, $_POST['receipt_pub']);
                             $receipt_received_dt = mysqli_real_escape_string($con, $_POST['receipt_received_dt']);
@@ -58,29 +67,31 @@ $user_id = $user['id'];
                             $receipt_no_dup_query = "SELECT id FROM coupon_publisher_receipt WHERE receipt_no = $receipt_no";
                             $result_receipt_no_dup = mysqli_query($con, $receipt_no_dup_query);
                             $dup_receipt_no = $result_receipt_no_dup->fetch_assoc();
-                            if ($dup_receipt_no == NULL) {
+                            if ($dup_receipt_no != NULL && $receiptid == 0) {
+                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Receipt Number already exists.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                            } else {
                                 if ($dup_receipt == NULL) {
                                     $query_publisher_receipt = "INSERT INTO coupon_publisher_receipt (user_id, received_dt, receipt_no, remarks, updated_date) VALUES ('$receipt_pub', '$receipt_received_dt', '$receipt_no', '$receipt_remarks', '$date');";
-                                    // var_dump($query_publisher_receipt);die;
-                                    $result_publisher_receipt = mysqli_query($con, $query_publisher_receipt);
-                                    if ($result_publisher_receipt) {
-                                        $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
+                                } else {
+                                    $query_publisher_receipt = "UPDATE coupon_publisher_receipt SET received_dt = '$receipt_received_dt', remarks = '$receipt_remarks', updated_date = '$date' WHERE id = '$receiptid';";
+                                }
+                                // var_dump($query_publisher_receipt);die;
+                                $result_publisher_receipt = mysqli_query($con, $query_publisher_receipt);
+                                if ($result_publisher_receipt) {
+                                    $errormsg = "<div class='alert alert-success alert-dismissible alert-outline fade show'>
                                             Your Publisher Coupon Receipt details is Successfully Saved.
                                             <button type='button' class='btn-close' data-dismiss='alert' aria-label='Close'></button>
                                             </div>";
-                                    } else {
-                                        $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Something went wrong.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                                       </div>";
-                                    }
                                 } else {
-                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Already Received.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                    $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Something went wrong.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
                                        </div>";
                                 }
-                            } else {
-                                $errormsg = "<div class='alert alert-danger alert-dismissible alert-outline fade show'>Receipt Number already exists.<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-                            </div>";
                             }
+
+
                         }
+                        // }
                         ?>
                         <div class="card-body p-4">
                             <div class="tab-content">
@@ -96,22 +107,26 @@ $user_id = $user['id'];
                                                 <div class="form-group col-12 col-md-2">
                                                     Receipt No.
                                                     <input type="text" class="form-control" id="receipt_no"
-                                                        name="receipt_no" placeholder="No."><br>
+                                                        name="receipt_no" placeholder="No."
+                                                        value="<?= $publisher_receipt['receipt_no'] ?>" <?= $read; ?>><br>
                                                 </div>
                                                 <div class="form-group col-12 col-md-8">
                                                     <?php
-                                                    $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN
-                                                    coupon_publisher_invoice cpi ON cpi.user_id = up.user_id;";
+                                                    $publisher_query = $publisher_receipt['user_id'] == '' ? "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN coupon_publisher_invoice cpi ON cpi.user_id = up.user_id LEFT JOIN coupon_publisher_receipt cpr ON cpr.user_id = up.user_id WHERE cpr.user_id IS NULL;" : "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN coupon_publisher_invoice cpi ON cpi.user_id = up.user_id;";
+                                                    // $publisher_query = "SELECT DISTINCT up.user_id, up.org_name FROM users_profile up JOIN coupon_publisher_invoice cpi ON cpi.user_id = up.user_id LEFT JOIN coupon_publisher_receipt cpr ON cpr.user_id = up.user_id WHERE cpr.user_id IS NULL;";
                                                     $result_publisher = mysqli_query($con, $publisher_query);
                                                     $coupon_publishers = $result_publisher->fetch_all();
                                                     ?>
                                                     Select Publisher
                                                     <select class="form-control form-group col-md-6" id="receipt_pub"
                                                         style="height:37px;" onchange="getCouponList()"
-                                                        name="receipt_pub">
+                                                        name="receipt_pub" <?= $read; ?>>
                                                         <option value="">Select</option>
-                                                        <?php foreach ($coupon_publishers as $publisher) { ?>
-                                                            <option value="<?= $publisher[0]; ?>">
+                                                        <?php
+                                                        foreach ($coupon_publishers as $publisher) {
+                                                            $selected = $publisher[0] == $publisher_receipt['user_id'] ? 'selected' : '';
+                                                            ?>
+                                                            <option value="<?= $publisher[0]; ?>" <?= $selected; ?>>
                                                                 <?= $publisher[1]; ?>
                                                             </option>
                                                         <?php } ?>
@@ -121,12 +136,14 @@ $user_id = $user['id'];
                                                 <div class="form-group col-12 col-md-2">
                                                     Received Date
                                                     <input type="date" class="form-control" name="receipt_received_dt"
-                                                        id="receipt_received_dt" placeholder="*Received Date">
+                                                        id="receipt_received_dt" placeholder="*Received Date"
+                                                        value="<?= $publisher_receipt['received_dt'] ?>">
                                                 </div>
                                                 <div class="form-group col-12 col-md-12">
                                                     Remarks
                                                     <input type="text" class="form-control" id="receipt_remarks"
-                                                        name="receipt_remarks" placeholder="Remarks"><br>
+                                                        name="receipt_remarks" placeholder="Remarks"
+                                                        value="<?= $publisher_receipt['remarks'] ?>"><br>
                                                 </div>
                                             </div>
                                         </div>
