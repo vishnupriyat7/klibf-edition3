@@ -126,10 +126,14 @@ $user_id = $user['id'];
                 to_date: toDate
             },
             xhrFields: {
-                responseType: 'blob' // Receive the file as a binary blob
+                responseType: 'text/csv'
             },
             success: function(response, status, xhr) {
-                const filename = xhr.getResponseHeader('Content-Disposition').split('filename=')[1];
+
+                // const filename = xhr.getResponseHeader('Content-Disposition').split('filename=')[1];
+                const rawFilename = xhr.getResponseHeader('Content-Disposition').split('filename=')[1];
+                const filename = rawFilename.replace(/(^"|"$)/g, '').trim(); // Remove quotes and whitespace
+
                 const blob = new Blob([response], {
                     type: 'text/csv'
                 });

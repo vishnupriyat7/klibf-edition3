@@ -44,8 +44,16 @@ header('Content-Disposition: attachment; filename="coupon_report.csv"');
 $output = fopen('php://output', 'w');
 
 // Write the CSV headers
-fputcsv($output, ['Sl No', 'Publisher', 'Address & Contact No.', 'Bank Name & Branch', 
-                  'Account Holder Name', 'IFSC', 'Account No.', 'Amount (in ₹)']);
+fputcsv($output, [
+    'Sl No',
+    'Publisher',
+    'Address & Contact No.',
+    'Bank Name & Branch',
+    'Account Holder Name',
+    'IFSC',
+    'Account No.',
+    'Amount (in ₹)'
+]);
 
 $counter = 1;
 $grand_total = 0;
@@ -75,4 +83,3 @@ if ($result->num_rows > 0) {
 // Close the output stream
 fclose($output);
 exit;
-?>
