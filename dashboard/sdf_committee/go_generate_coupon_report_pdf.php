@@ -99,7 +99,7 @@ $to_date = $_POST['to_date'];
 
 
 
-$publisher_query = "SELECT cpi.user_id, SUM(cpi.tot_cpn_amt) as tot_coupon_amt, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id as receipt_id, cpr.remarks FROM coupon_publisher_invoice cpi JOIN coupon_publisher_receipt cpr ON cpi.user_id = cpr.user_id JOIN users_profile up ON cpi.user_id = up.user_id JOIN pub_coupon_bankdtls pcb ON pcb.user_id = up.user_id WHERE cpi.updated_date >= '$from_date' AND cpi.updated_date <= '$to_date' GROUP BY cpi.user_id, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id, cpr.remarks;";
+$publisher_query = "SELECT cpi.user_id, SUM(cpi.tot_cpn_amt) as tot_coupon_amt, up.org_name, up.head_org_addr, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, cpr.id as receipt_id, cpr.remarks FROM coupon_publisher_invoice cpi JOIN coupon_publisher_receipt cpr ON cpi.user_id = cpr.user_id JOIN users_profile up ON cpi.user_id = up.user_id JOIN pub_coupon_bankdtls pcb ON pcb.user_id = up.user_id WHERE cpi.updated_date >= '$from_date' AND cpi.updated_date <= '$to_date' GROUP BY cpi.user_id, up.org_name, pcb.acc_holder_name, pcb.bank_name, pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile, up.head_org_addr, cpr.id, cpr.remarks;";
 $result_publisher = mysqli_query($con, $publisher_query);
 
 
@@ -122,13 +122,13 @@ $html .= '<thead>
             <tr> <th colspan="9">Book Coupon GO Report</th></tr>
             <tr> <th>Sl No</th>
                 <th>Publisher</th>
-                <th>Contact No.</th>
+                <th>Address & Contact No.</th>
                 <th>Bank Name & Branch</th>
                 <th>Account Holder Name</th>
                 <th>IFSC</th>
                 <th>Account No.</th>
                 <th>Amount (in ₹)</th>
-                <th>Remarks</th>
+               
             </tr>
           </thead><tbody>';
 $counter = 1;
@@ -141,13 +141,12 @@ if ($result_publisher->num_rows > 0) {
         $html .= "<tr>
         <td>" . $counter++ . "</td>
         <td>" . $publisher['org_name'] . "</td>
-        <td>" . $publisher['head_org_mobile'] . "</td>
+        <td>" . $publisher['head_org_addr'] . " <br> Ph. " . $publisher['head_org_mobile'] . "</td>
         <td>" . $publisher['bank_name'] . " , " . $publisher['bank_branch'] . "</td>
         <td>" . $publisher['acc_holder_name'] . "</td>
         <td>" . $publisher['bank_ifsc'] . "</td>
         <td>" . $publisher['account_no'] . "</td>
-        <td>" . $publisher['tot_coupon_amt'] . "</td>
-        <td>" . $publisher['remarks'] . "</td></tr>";
+        <td>" . $publisher['tot_coupon_amt'] . "</td></tr>";
         $grand_total +=  $tot_coupon_amt;
     }
 
