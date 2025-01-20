@@ -72,11 +72,11 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/total_coupon_report.php" class="nav-link"
-                                    data-key="t-nft-landing"> Overall Coupon Returned  </a>
+                                    data-key="t-nft-landing"> Overall Coupon Returned </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/publisher_coupon_report.php" class="nav-link"
-                                    data-key="t-nft-landing">Publisher-Wise Coupon Returned  </a>
+                                    data-key="t-nft-landing">Publisher-Wise Coupon Returned </a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/overall_sdf_report.php" class="nav-link"
@@ -93,6 +93,10 @@
                             <li class="nav-item">
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/receipt_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Coupon Receipt Report </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/go_receipt_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Coupon Receipt GO Report </a>
                             </li>
                         </ul>
                     </div>
