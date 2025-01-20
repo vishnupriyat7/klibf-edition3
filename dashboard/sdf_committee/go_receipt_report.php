@@ -56,8 +56,12 @@ $user_id = $user['id'];
                             <div class="row align-items-center text-center mt-3">
                                 <div class="col-lg-12">
                                     <button type="button" id="cpn_report" class="btn btn-success" onclick="generateGoCouponPdfReport()">
-                                        Generate Coupon GO Report
+                                        Generate Coupon GO PDF Report
                                     </button>
+                                    <button type="button" id="cpn_report-xl" class="btn btn-success" onclick="generateGoCouponExcelReport()">
+                                        Generate Coupon GO Excel Report
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
@@ -97,6 +101,42 @@ $user_id = $user['id'];
                 iframe.contentDocument.close();
                 iframe.focus(); // Optional: focus on the iframe
                 iframe.contentWindow.print();
+            },
+            error: function() {
+                alert("Error while generating the report.");
+            }
+        });
+    }
+
+
+    function generateGoCouponExcelReport() {
+        const fromDate = document.getElementById('from_date').value;
+        const toDate = document.getElementById('to_date').value;
+
+        if (!fromDate || !toDate) {
+            alert("Please select both 'From Date' and 'To Date'.");
+            return;
+        }
+
+        $.ajax({
+            url: "go_generate_coupon_report_csv.php",
+            type: "POST",
+            data: {
+                from_date: fromDate,
+                to_date: toDate
+            },
+            xhrFields: {
+                responseType: 'blob' // Receive the file as a binary blob
+            },
+            success: function(response, status, xhr) {
+                const filename = xhr.getResponseHeader('Content-Disposition').split('filename=')[1];
+                const blob = new Blob([response], {
+                    type: 'text/csv'
+                });
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
             },
             error: function() {
                 alert("Error while generating the report.");
