@@ -57,9 +57,13 @@ include "sidebar.php";
                                     </select>
                                     <br>
                                 </div>
-                                <div class="form-group col-sm-12 col-md-4" id="cpn-pub-cntct-div" hidden>
+                                <div class="form-group col-sm-12 col-md-3" id="cpn-pub-cntct-div" hidden>
                                     Contact No
                                     <input type="text" class="form-control" id="cpn-pub-cntct" readonly>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3" id="cpn-pub-tot-amt-div" hidden>
+                                    Total Amount (in ₹)
+                                    <input type="text" class="form-control" id="cpn-pub-tot-amt" readonly>
                                 </div>
                             </div>
                             <div class="row" id="pub-coupon-bnk-dtls" hidden>
@@ -101,6 +105,7 @@ include "sidebar.php";
                                         <th data-ordering="false" rowspan="2">Net Bill Amount</th>
                                         <th data-ordering="false" rowspan="2">Coupon Amount</th>
                                         <th data-ordering="false" colspan="6">Denominations</th>
+                                        <th data-ordering="false" rowspan="2">Updated Date</th>
                                     </tr>
                                     <tr>
                                         <th data-ordering="false">50 Count</th>
@@ -170,6 +175,8 @@ include "sidebar.php";
                         document.getElementById("cpn-bnk-accno").value = data[1]['account_no'];
                         document.getElementById("cpn-bnk-ifsc").value = data[1]['bank_ifsc'];
                         document.getElementById("cpn-pub-cntct").value = data[2];
+                        document.getElementById("cpn-pub-tot-amt").value = data[3];
+                        document.getElementById("cpn-pub-tot-amt-div").removeAttribute('hidden');
                         document.getElementById("cpn-pub-cntct-div").removeAttribute('hidden');
                         document.getElementById("pub-coupon-bnk-dtls").removeAttribute('hidden');
                     } else {
@@ -178,7 +185,9 @@ include "sidebar.php";
                         document.getElementById("cpn-bnk-acc-name").value = "";
                         document.getElementById("cpn-bnk-accno").value = "";
                         document.getElementById("cpn-bnk-ifsc").value = "";
-                        document.getElementById("cpn-pub-cntct").value = data[2];
+                        document.getElementById("cpn-pub-cntct").value = "";
+                        document.getElementById("cpn-pub-tot-amt").value = "";
+                        document.getElementById("cpn-pub-tot-amt-div").setAttribute('hidden', "");
                         document.getElementById("cpn-pub-cntct-div").setAttribute('hidden', "");
                         document.getElementById("pub-coupon-bnk-dtls").setAttribute('hidden', "");
                     }
