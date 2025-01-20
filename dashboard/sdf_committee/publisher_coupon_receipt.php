@@ -120,7 +120,7 @@ $user_id = $user['id'];
                                                     Select Publisher
                                                     <select class="form-control form-group col-md-6" id="receipt_pub"
                                                         style="height:37px;" onchange="getCouponList()"
-                                                        name="receipt_pub" <?= $read; ?> <?= $disable; ?>>
+                                                        name="receipt_pub" <?= $read; ?>>
                                                         <option value="">Select</option>
                                                         <?php
                                                         foreach ($coupon_publishers as $publisher) {
