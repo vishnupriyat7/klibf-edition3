@@ -88,11 +88,6 @@ include "sidebar.php";
                                                     class='dropdown-item remove-item-btn'>
                                                     <i class='mdi mdi-book-edit'></i>
                                                 </a>
-                                                <!-- <a href='#' class='dropdown-item'
-                                                    onclick="editReceipt(<?= $publisher['receipt_id'] ?>);">
-                                                    <i class='mdi mdi-book-edit'></i>
-                                                </a> -->
-                                            </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

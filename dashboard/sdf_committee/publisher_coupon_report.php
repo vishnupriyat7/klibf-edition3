@@ -174,10 +174,7 @@ include "sidebar.php";
                         document.getElementById("cpn-bnk-acc-name").value = data[1]['acc_holder_name'];
                         document.getElementById("cpn-bnk-accno").value = data[1]['account_no'];
                         document.getElementById("cpn-bnk-ifsc").value = data[1]['bank_ifsc'];
-                        document.getElementById("cpn-pub-cntct").value = data[2];
-                        document.getElementById("cpn-pub-tot-amt").value = data[3];
-                        document.getElementById("cpn-pub-tot-amt-div").removeAttribute('hidden');
-                        document.getElementById("cpn-pub-cntct-div").removeAttribute('hidden');
+
                         document.getElementById("pub-coupon-bnk-dtls").removeAttribute('hidden');
                     } else {
                         document.getElementById("cpn-bnk-name").value = "";
@@ -187,10 +184,14 @@ include "sidebar.php";
                         document.getElementById("cpn-bnk-ifsc").value = "";
                         document.getElementById("cpn-pub-cntct").value = "";
                         document.getElementById("cpn-pub-tot-amt").value = "";
-                        document.getElementById("cpn-pub-tot-amt-div").setAttribute('hidden', "");
-                        document.getElementById("cpn-pub-cntct-div").setAttribute('hidden', "");
+                        // document.getElementById("cpn-pub-tot-amt-div").setAttribute('hidden', "");
+                        // document.getElementById("cpn-pub-cntct-div").setAttribute('hidden', "");
                         document.getElementById("pub-coupon-bnk-dtls").setAttribute('hidden', "");
                     }
+                    document.getElementById("cpn-pub-cntct").value = data[2];
+                    document.getElementById("cpn-pub-tot-amt").value = data[3];
+                    document.getElementById("cpn-pub-tot-amt-div").removeAttribute('hidden');
+                    document.getElementById("cpn-pub-cntct-div").removeAttribute('hidden');
                 }
             });
         }
