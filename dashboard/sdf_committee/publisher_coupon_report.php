@@ -62,7 +62,7 @@ include "sidebar.php";
                                     <input type="text" class="form-control" id="cpn-pub-cntct" readonly>
                                 </div>
                                 <div class="form-group col-sm-12 col-md-3" id="cpn-pub-tot-amt-div" hidden>
-                                    Total Amount (in ₹)
+                                    Total Coupon Amount (in ₹)
                                     <input type="text" class="form-control" id="cpn-pub-tot-amt" readonly>
                                 </div>
                             </div>

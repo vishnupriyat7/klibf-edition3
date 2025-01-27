@@ -107,14 +107,12 @@ include "sidebar.php";
                                                     <?php if ($status == 'A') { ?>
                                                         <button class="btn btn-success">Approved</button>
                                                     <?php } else { ?>
-                                                        <?php if ($user['user_type'] != 'PC') { ?>
-                                                            <i class='align-bottom me-2'>
-                                                                <button class="btn btn-primary"
-                                                                    onclick="approvePayment(<?= $chellan_id ?>)">
-                                                                    <span class="mdi mdi-bank-check"></span> Verify
-                                                                </button>
-                                                            </i>
-                                                        <?php } ?>
+                                                        <i class='align-bottom me-2'>
+                                                            <button class="btn btn-primary"
+                                                                onclick="approvePayment(<?= $chellan_id ?>)">
+                                                                <span class="mdi mdi-bank-check"></span> Verify1
+                                                            </button>
+                                                        </i>
                                                     <?php }
                                                     ?>
                                                 </td>
@@ -196,17 +194,18 @@ include "sidebar.php";
 <?php include "../footer.php"; ?>
 <script type="text/javascript">
     function approvePayment(chellanId) {
-        swal({
-            title: "Approve",
-            text: "Verified the details!",
-            icon: "warning",
-            buttons: [
-                'No, cancel it!',
-                'Yes, Approve!'
-            ],
-            // dangerMode: true,
-        }).then(function (isConfirm) {
-            if (isConfirm) {
+        // alert("hjkhjk");
+        // swal({
+        //     title: "Approve",
+        //     text: "Verified the details!",
+        //     icon: "warning",
+        //     buttons: [
+        //         'No, cancel it!',
+        //         'Yes, Approve!'
+        //     ],
+        //     // dangerMode: true,
+        // }).then(function (isConfirm) {
+        //     if (isConfirm) {
                 $.ajax({
                     url: "<?= $base_url; ?>/dashboard/finance_committee/payment_approve.php",
                     type: "POST",
@@ -228,10 +227,10 @@ include "sidebar.php";
                         }
                     }
                 });
-            } else {
-                swal("Cancelled", "Further verification needed.", "error");
-            }
-        });
+        //     } else {
+        //         swal("Cancelled", "Further verification needed.", "error");
+        //     }
+        // });
     }
 
     function exportTableToExcel(example, filename = '') {
