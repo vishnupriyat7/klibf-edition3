@@ -37,24 +37,31 @@ include "sidebar.php";
                             <h5 class="card-title mb-0">MLA SDF Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
-                            <div class="col-md-6">
-                                <?php
-                                $sdf_mla_query = "SELECT DISTINCT m.id, m.name FROM mla_15 m JOIN sdf s ON s.mla_id = m.id;";
-                                $result_sdf_mla = mysqli_query($con, $sdf_mla_query);
-                                $sdf_mlas = $result_sdf_mla->fetch_all();
-                                ?>
-                                <b>Select Publisher</b>
-                                <select class="form-control form-group col-md-6" id="sdf_mla" style="height:37px;"
-                                    onchange="getSDFMLAPublisher()">
-                                    <option value="">Select</option>
-                                    <?php foreach ($sdf_mlas as $mla) { ?>
-                                        <option value="<?= $mla[0]; ?>">
-                                            <?= $mla[1]; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                                <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <?php
+                                    $sdf_mla_query = "SELECT DISTINCT m.id, m.name FROM mla_15 m JOIN sdf s ON s.mla_id = m.id;";
+                                    $result_sdf_mla = mysqli_query($con, $sdf_mla_query);
+                                    $sdf_mlas = $result_sdf_mla->fetch_all();
+                                    ?>
+                                    <b>Select Publisher</b>
+                                    <select class="form-control form-group col-md-6" id="sdf_mla" style="height:37px;"
+                                        onchange="getSDFMLAPublisher()">
+                                        <option value="">Select</option>
+                                        <?php foreach ($sdf_mlas as $mla) { ?>
+                                            <option value="<?= $mla[0]; ?>">
+                                                <?= $mla[1]; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                    <br>
+                                </div>
+                                <div class="col-md-4">
+                                    <b>Total Amount</b>
+                                    <input type="text" id="sdf-mla-total" class="form-control form-group">
+                                </div>
                             </div>
+
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'sdf-mla-wise-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
@@ -66,7 +73,7 @@ include "sidebar.php";
                                         <th>Publisher</th>
                                         <th>Contact No.</th>
                                         <th>Invoice Number</th>
-                                        <th>Invoice Date</th>                                        
+                                        <th>Invoice Date</th>
                                         <th>Institution Name</th>
                                         <th>Institution Contact No</th>
                                         <th>Amount (in ₹)</th>
@@ -124,7 +131,8 @@ include "sidebar.php";
                 },
                 dataType: "json",
                 success: function (data) {
-                    $('#pub-sdf-mla-list').empty().append(data);
+                    $('#pub-sdf-mla-list').empty().append(data[0]);
+                    document.getElementById('sdf-mla-total').value = '₹ ' + data[1];
                 }
             });
         }

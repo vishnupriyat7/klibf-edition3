@@ -4,6 +4,7 @@ $mlaId = $_POST['mlaId'];
 $listSDF = "";
 $total_sdf_query = "SELECT s.*, u.org_name, u.head_org_mobile FROM sdf s JOIN users_profile u ON u.user_id = s.user_id WHERE s.mla_id=$mlaId ORDER BY updated_date DESC;";
 $result = mysqli_query($con, $total_sdf_query);
+$total_amt = 0;
 if (mysqli_num_rows($result)) {
     $slno = 1;
     while ($row = mysqli_fetch_assoc($result)) {
@@ -27,6 +28,7 @@ if (mysqli_num_rows($result)) {
             <td>$updated_date</td>
         </tr>";
         $slno++;
+        $total_amt = $total_amt + $amount;
     }
 } else {
     $listSDF = $listSDF . '<tr>
@@ -34,4 +36,4 @@ if (mysqli_num_rows($result)) {
         </td>
     </tr>';
 }
-echo json_encode($listSDF);
+echo json_encode([$listSDF, $total_amt]);
