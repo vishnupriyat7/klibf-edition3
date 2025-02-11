@@ -26,7 +26,7 @@ $query = "SELECT cpi.user_id, SUM(cpi.tot_cpn_amt) as tot_coupon_amt,
           JOIN pub_coupon_bankdtls pcb ON pcb.user_id = up.user_id
           WHERE cpi.updated_date >= '$from_date' AND cpi.updated_date <= '$to_date'
           GROUP BY cpi.user_id, up.org_name, up.head_org_addr, pcb.acc_holder_name, pcb.bank_name, 
-          pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile";
+          pcb.account_no, pcb.bank_ifsc, pcb.bank_branch, up.head_org_mobile ORDER BY up.org_name ASC;";
 
 $result = mysqli_query($con, $query);
 
@@ -44,8 +44,16 @@ header('Content-Disposition: attachment; filename="coupon_report.csv"');
 $output = fopen('php://output', 'w');
 
 // Write the CSV headers
-fputcsv($output, ['Sl No', 'Publisher', 'Address & Contact No.', 'Bank Name & Branch', 
-                  'Account Holder Name', 'IFSC', 'Account No.', 'Amount (in ₹)']);
+fputcsv($output, [
+    'Sl No',
+    'Publisher',
+    'Address & Contact No.',
+    'Bank Name & Branch',
+    'Account Holder Name',
+    'IFSC',
+    'Account No.',
+    'Amount (in ₹)'
+]);
 
 $counter = 1;
 $grand_total = 0;
@@ -75,4 +83,3 @@ if ($result->num_rows > 0) {
 // Close the output stream
 fclose($output);
 exit;
-?>
