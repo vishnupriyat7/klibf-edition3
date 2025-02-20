@@ -34,7 +34,7 @@ include "sidebar.php";
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0">MLA SDF Report</h5>
+                            <h5 class="card-title mb-0">Publisher Bank Details Report</h5>
                         </div>
                         <div class="card-body overflow-auto">
                             <div class="row">
@@ -56,14 +56,10 @@ include "sidebar.php";
                                     </select>
                                     <br>
                                 </div>
-                                <div class="col-md-4">
-                                    <b>Total Amount</b>
-                                    <input type="text" id="sdf-mla-total" class="form-control form-group">
-                                </div>
                             </div>
 
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
-                            <button onclick="exportTableToExcel('example', 'sdf-mla-wise-report')"
+                            <button onclick="exportTableToExcel('example', 'sdf-publisher-bank-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
                             <table id="example" class="table table-bordered dt-responsive nowrap table-striped"
                                 style="font-style:normal; font-size: 12px;">
@@ -72,15 +68,12 @@ include "sidebar.php";
                                         <th>Sl.No</th>
                                         <th>Publisher</th>
                                         <th>Contact No.</th>
-                                        <th>Invoice Number</th>
-                                        <th>Invoice Date</th>
-                                        <th>Institution Name</th>
-                                        <th>Institution Contact No</th>
-                                        <th>Amount (in ₹)</th>
-                                        <th>Created Date</th>
-                                    </tr>
+                                        <th>Bank</th>
+                                        <th>Branch</th>
+                                        <th>Account Number</th>
+                                        <th>IFSC</th>
                                 </thead>
-                                <tbody class="text-center" id="pub-sdf-mla-list">
+                                <tbody class="text-center" id="pub-sdf-mla-bank-list">
                                 </tbody>
                             </table>
                         </div>
@@ -124,15 +117,14 @@ include "sidebar.php";
         function getSDFMLAPublisher() {
             var mlaID = document.getElementById("sdf_mla").value;
             $.ajax({
-                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_MLA_publisher_list.php",
+                url: "<?= $base_url; ?>/dashboard/sdf_committee/get_SDF_publisher_bank_details.php",
                 type: "POST",
                 data: {
                     mlaId: mlaID
                 },
                 dataType: "json",
                 success: function (data) {
-                    $('#pub-sdf-mla-list').empty().append(data[0]);
-                    document.getElementById('sdf-mla-total').value = '₹ ' + data[1];
+                    $('#pub-sdf-mla-bank-list').empty().append(data);
                 }
             });
         }

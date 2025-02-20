@@ -98,6 +98,10 @@
                                 <a href="<?= $base_url ?>/dashboard/sdf_committee/go_receipt_report.php" class="nav-link"
                                     data-key="t-nft-landing"> Coupon Receipt GO Report </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= $base_url ?>/dashboard/sdf_committee/bank_details_report.php" class="nav-link"
+                                    data-key="t-nft-landing"> Publisher Bank Details Report </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
