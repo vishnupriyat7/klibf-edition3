@@ -26,7 +26,7 @@ if (mysqli_num_rows($result)) {
     }
 } else {
     $listSDF_publisher = $listSDF_publisher . '<tr>
-        <td colspan="7" class="text-center">No SDF Entries present, please Save details.
+        <td colspan="6" class="text-center">No SDF Entries present, please Save details.
         </td>
     </tr>';
 }

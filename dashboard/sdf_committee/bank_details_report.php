@@ -57,7 +57,6 @@ include "sidebar.php";
                                     <br>
                                 </div>
                             </div>
-
                             <!-- <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%"> -->
                             <button onclick="exportTableToExcel('example', 'sdf-publisher-bank-report')"
                                 class="btn btn-primary">Export Table Data To Excel File</button>
@@ -72,6 +71,7 @@ include "sidebar.php";
                                         <th>Branch</th>
                                         <th>Account Number</th>
                                         <th>IFSC</th>
+                                    </tr>
                                 </thead>
                                 <tbody class="text-center" id="pub-sdf-mla-bank-list">
                                 </tbody>
